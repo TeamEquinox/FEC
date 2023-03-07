@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
+const productAPI = require('../helpers/productAPI.js')
 
 const app = express();
 
@@ -8,14 +9,20 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 app.use((req, res, next) => {
-  console.log(`the incomming request type is a ${req.method} request`);
-  console.log(`the incomming request url is ${req.url}`);
+  console.log(`the incoming request type is a ${req.method} request`);
+  console.log(`the incoming request url is ${req.url}`);
   next();
 })
 
-
-
-
+app.get('/products', (req, res) => {
+  // console.log('req', req)
+  // console.log('res', req)
+  productAPI.getProducts()
+    .then((data) => {
+      console.log('data', data)
+      res.send(data)
+    })
+})
 
 
 app.listen(process.env.PORT, (() => {

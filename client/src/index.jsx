@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { useState, useEffect } from 'react';
+import ProductOverview from './product/ProductOverview.jsx'
 
 const App = () => {
   return (
-    <div>Hello World!</div>
+    <div>
+      <h1>Logo</h1>
+      <ProductOverview />
+    </div>
+
   )
 }
 

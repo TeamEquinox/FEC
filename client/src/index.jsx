@@ -1,11 +1,18 @@
-import React from "react";
-import ReactDom from "react-dom";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ReactDOM from "react-dom";
+
+import ReviewList from './reviews/body/reviewList.jsx'
+import ProductBreakdown from './reviews/summary/productBreakdown.jsx'
 
 const App = () => {
+
   return (
-    <div>Hello World!</div>
+    <div>
+      <ReviewList />
+      <ProductBreakdown />
+    </div>
   )
 }
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))

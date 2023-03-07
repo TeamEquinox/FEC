@@ -16,7 +16,67 @@
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"Hello World!\");\n};\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), document.getElementById('root'));\n\n//# sourceURL=webpack://fec/./client/src/index.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _reviews_body_reviewList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reviews/body/reviewList.jsx */ \"./client/src/reviews/body/reviewList.jsx\");\n/* harmony import */ var _reviews_summary_productBreakdown_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reviews/summary/productBreakdown.jsx */ \"./client/src/reviews/summary/productBreakdown.jsx\");\n\n\n\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_body_reviewList_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_summary_productBreakdown_jsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null));\n};\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), document.getElementById('root'));\n\n//# sourceURL=webpack://fec/./client/src/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/reviews/body/individualReview.jsx":
+/*!******************************************************!*\
+  !*** ./client/src/reviews/body/individualReview.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar IndividualReview = function IndividualReview() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is from the IndividualReview\");\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndividualReview);\n\n//# sourceURL=webpack://fec/./client/src/reviews/body/individualReview.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/reviews/body/newReviews.jsx":
+/*!************************************************!*\
+  !*** ./client/src/reviews/body/newReviews.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar NewReviews = function NewReviews() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is from the NewReviews\");\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReviews);\n\n//# sourceURL=webpack://fec/./client/src/reviews/body/newReviews.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/reviews/body/reviewList.jsx":
+/*!************************************************!*\
+  !*** ./client/src/reviews/body/reviewList.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _individualReview_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./individualReview.jsx */ \"./client/src/reviews/body/individualReview.jsx\");\n/* harmony import */ var _newReviews_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newReviews.jsx */ \"./client/src/reviews/body/newReviews.jsx\");\n\n\n\n\nvar ReviewList = function ReviewList() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_individualReview_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_newReviews_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is from the ReviewList\"));\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewList);\n\n//# sourceURL=webpack://fec/./client/src/reviews/body/reviewList.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/reviews/summary/productBreakdown.jsx":
+/*!*********************************************************!*\
+  !*** ./client/src/reviews/summary/productBreakdown.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _ratingBreakdown_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ratingBreakdown.jsx */ \"./client/src/reviews/summary/ratingBreakdown.jsx\");\n/* harmony import */ var _sortOptions_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sortOptions.jsx */ \"./client/src/reviews/summary/sortOptions.jsx\");\n\n\n\n\nvar ProductBreakdown = function ProductBreakdown() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ratingBreakdown_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sortOptions_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is from the ProductBreakdown\"));\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductBreakdown);\n\n//# sourceURL=webpack://fec/./client/src/reviews/summary/productBreakdown.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/reviews/summary/ratingBreakdown.jsx":
+/*!********************************************************!*\
+  !*** ./client/src/reviews/summary/ratingBreakdown.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar RatingBreakdown = function RatingBreakdown() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is from the RatingBreakdown\");\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingBreakdown);\n\n//# sourceURL=webpack://fec/./client/src/reviews/summary/ratingBreakdown.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/reviews/summary/sortOptions.jsx":
+/*!****************************************************!*\
+  !*** ./client/src/reviews/summary/sortOptions.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar SortOptions = function SortOptions() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"This is from the SortOptions\");\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SortOptions);\n\n//# sourceURL=webpack://fec/./client/src/reviews/summary/sortOptions.jsx?");
 
 /***/ }),
 
@@ -137,6 +197,23 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports

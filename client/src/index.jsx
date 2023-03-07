@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { useState, useEffect } from 'react';
+import Parent from './related/Parent.jsx';
 
 const App = () => {
   return (
-    <div>Hello World!</div>
+    <div>
+      <Parent/>
+    </div>
   )
 }
 

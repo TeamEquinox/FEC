@@ -1,12 +1,13 @@
+require('dotenv').config();
 const axios = require('axios');
-const config = require('../MLconfig.js')
+// const config = require('../MLconfig.js')
 
 let getProducts = () => {
   let options = {
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products',
     headers: {
-      'Authorization': `${config.TOKEN}`
+      'Authorization': `${process.env.TOKEN}`
     }
   }
   let axiosRequest = axios(options);

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import ProductOverview from './product/ProductOverview.jsx'
 import ReviewList from './reviews/body/reviewList.jsx'
 import ProductBreakdown from './reviews/summary/productBreakdown.jsx'
+import RelatedProducts from './related/RelatedProducts.jsx'
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const App = () => {
     <div>
       <h1>Logo</h1>
       <ProductOverview />
+      <RelatedProducts/>
       <ReviewList />
       <ProductBreakdown />
     </div>

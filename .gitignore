@@ -1,4 +1,4 @@
 node_modules
 .env
 MLconfig.js
-./client/dist/compiled/bundle.js
+client/dist/compiled

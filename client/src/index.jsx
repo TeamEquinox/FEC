@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDom from "react-dom";
+import ReactDOM from "react-dom";
 import { useState, useEffect } from 'react';
 import ProductOverview from './product/ProductOverview.jsx'
 import ReviewList from './reviews/body/reviewList.jsx'

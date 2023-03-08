@@ -1,0 +1,29 @@
+body {
+  font-family: ubuntu;
+}
+
+.div__product {
+  display: block;
+  left: 600px;
+  position: relative;
+  border-radius: 5px;
+  border: solid black;
+  width: 40%;
+}
+
+.section__image {
+  display: block;
+  border-radius: 5px;
+  border: solid black;
+  position: relative;
+  bottom: 200px;
+  width: 40%;
+}
+
+.select__size {
+  margin-right: 10px;
+}
+
+.button__cart {
+  margin-right: 10px;
+}

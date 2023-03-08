@@ -27,3 +27,10 @@ body {
 .button__cart {
   margin-right: 10px;
 }
+
+.list {
+  display: block;
+  border-radius: 5px;
+  border: solid olive;
+  position: relative;
+}

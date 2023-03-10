@@ -3,6 +3,7 @@ import {RxStar} from 'react-icons/Rx';
 
 
 const Products = () => {
+  
   return (
     <div>
       <div>

@@ -13,11 +13,12 @@ const App = () => {
 
   const pageLoad = () => {
     $.ajax({
-      url: 'http://localhost:3001/products',
+      url: `http://localhost:3000/products`,
       method: "GET",
       success: (data) => {
         console.log('success from get', data)
         setProduct(data)
+        
       },
       error: (err) => {
         console.log('error getting data', err)
@@ -38,7 +39,7 @@ const App = () => {
     <div>
       <h1>Logo</h1>
       <ProductOverview product={product} />
-      <RelatedProducts />
+      <RelatedProducts product={product} />
       <ReviewList />
       <ProductBreakdown />
     </div >

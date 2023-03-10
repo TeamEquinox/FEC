@@ -55,4 +55,4 @@ All reviews will be saved per product.  Specific styles will not be accounted fo
 ### Usage - Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io  ). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD).
 
 * npm test
-* We are using Mocha/Chai
+* We are using JEST

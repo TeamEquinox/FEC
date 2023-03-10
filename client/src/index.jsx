@@ -5,7 +5,7 @@ import ProductOverview from './product/ProductOverview.jsx'
 import ReviewList from './reviews/body/reviewList.jsx'
 import ProductBreakdown from './reviews/summary/productBreakdown.jsx'
 import $ from 'jquery'
-
+import RelatedProducts from './related/RelatedProducts.jsx'
 
 const App = () => {
 
@@ -38,9 +38,10 @@ const App = () => {
     <div>
       <h1>Logo</h1>
       <ProductOverview product={product} />
+      <RelatedProducts />
       <ReviewList />
       <ProductBreakdown />
-    </div>
+    </div >
 
   )
 }

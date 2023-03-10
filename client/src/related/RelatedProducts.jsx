@@ -4,18 +4,24 @@ import Product from './Products.jsx';
 import Outfits from './Outfits.jsx';
 
 const RelatedProducts = ({ product }) => {
-  console.log('inside RelatedProducts ', product);
   
   //managing state==========================
   const [relatedData, setRelatedData] = useState([]);
-
+  
   //API requests============================
-  var getRelatedProducts = () => {
-    axios.get('relatedProducts', {params: {data: id}})
-      .then((data) => {
-        console.log('recieved data in the client getRelatedProducts get request', data)
-      })
-      .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
+  if (!product[1]) {
+    console.log('Hi, Im loading')
+  } else {
+    // console.log('inside RelatedProducts ', product[1]['product_id']);
+    var productId = product[1]['product_id'];
+    var getRelatedProducts = (id) => {
+      axios.get('relatedProducts', {params: {data: id}})
+        .then((data) => {
+          console.log('recieved data in the client getRelatedProducts get request', data)
+        })
+        .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
+    }
+    getRelatedProducts(productId);
   }
 
   //returning components to index.jsx=======

@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
-const productAPI = require('../helpers/helperAPIs.js')
+const productAPI = require('../helpers/helperAPIs.js');
+const relatedHelpers = require('../helpers/relatedProductHelpers.js');
 
 const app = express();
 
@@ -40,6 +41,12 @@ app.get('/products', (req, res) => {
     })
 })
 
+app.get('/relatedProducts', (req, res) => {
+ relatedHelpers.relatedProducts(req.query.data)
+ .then((data) => {
+   console.log({data});
+ })
+})
 
 app.post('/', (req, res) => {
   console.log('hello from app.post')

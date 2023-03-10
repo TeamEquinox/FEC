@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 
-const StarRating = ({ rating, pixels }) => {
+/*
+*   Pass in a ranting and pixel size to create the stars
+*     <StarRating rating={3.8} pixels={15} />
+*/
+export const StarRating = ({ rating, pixels }) => {
   const wholeStars = Math.floor(rating)
   const percentFill = 100 - ((rating - wholeStars) * 100);
   let clipPathValue = 0;

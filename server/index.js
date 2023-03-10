@@ -15,6 +15,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/products', (req, res) => {
+  let dataToSend = [];
   helperAPI.getProducts()
     .then((data) => {
       console.log('data', data)

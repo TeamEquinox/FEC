@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const helperAPI = require('../helpers/helperAPIs.js')
+const questionsAPI = require('../helpers/questionsAPI.js');
 
 const app = express();
 
@@ -50,6 +51,9 @@ app.get('*', (req, res) => {
   res.redirect('/')
 })
 
+app.get('/questions', (req, res) => {
+  questionsAPI.getQuestions(req, res);
+})
 
 app.listen(process.env.PORT, (() => {
   console.log(`The server is listening on port ${process.env.PORT}`)

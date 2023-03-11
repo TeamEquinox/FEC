@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import ProductOverview from './product/ProductOverview.jsx'
 import ReviewList from './reviews/body/reviewList.jsx'
 import ProductBreakdown from './reviews/summary/productBreakdown.jsx'
-import $ from 'jquery'
 import RelatedProducts from './related/RelatedProducts.jsx'
+import $ from 'jquery'
+import QuestionsList from './questions/QuestionsList.jsx'
+
 
 const App = () => {
 
@@ -41,7 +43,8 @@ const App = () => {
       <RelatedProducts />
       <ReviewList />
       <ProductBreakdown />
-    </div >
+      <QuestionsList />
+    </div>
 
   )
 }

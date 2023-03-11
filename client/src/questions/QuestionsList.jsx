@@ -79,7 +79,8 @@ const QuestionsList = () => {
 
   const [ questions, setQuestions ] = useState([]);
   const [ displayQs, setDisplayQs ] = useState([]);
-  var qInd = 0;
+  // var qInd = 0;
+  const [ displayIndex, setDisplayIndex ] = useState(0);
   // to retrieve questions, make API GET call to /qa/questions
   useEffect(() => {
     setQuestions(sampleQs.results);

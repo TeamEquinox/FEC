@@ -34,3 +34,12 @@ body {
   border: solid olive;
   position: relative;
 }
+
+.questionsList {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.question {
+  bottom: 20px;
+}

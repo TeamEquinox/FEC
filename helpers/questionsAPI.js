@@ -40,9 +40,10 @@ let getAnswers = (req, res) => {
       res.send(`this is the answer data for question ${req.body.question_id}`, data);
     })
     .catch((err) => {
-      console.log('error getting questions', err);
+      console.log(`error getting answers for question ${req.body.question_id}`, err);
       res.send(err);
     });
 }
 
 module.exports.getQuestions = getQuestions;
+module.exports.getAnswers = getAnswers;

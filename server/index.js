@@ -1,8 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-require('dotenv').config();
-const productAPI = require('../helpers/productAPI.js')
+const helperAPI = require('../helpers/helperAPIs.js')
 const questionsAPI = require('../helpers/questionsAPI.js');
 
 const app = express();
@@ -17,14 +16,28 @@ app.use((req, res, next) => {
 })
 
 app.get('/products', (req, res) => {
-  // console.log('req', req)
-  // console.log('res', req)
-  productAPI.getProducts()
+  let dataToSend = [];
+  helperAPI.getProducts()
     .then((data) => {
       console.log('data', data)
-      res.send(data)
+      // res.send(data)
+      helperAPI.getProductsById(data[0].id)
+        .then((data2) => {
+          console.log('data2', data2)
+          // res.send(data2)
+          dataToSend.push(data2)
+          helperAPI.getProductsByStyle(data2.id)
+            .then((data3) => {
+              dataToSend.push(data3)
+              res.send(dataToSend)
+            })
+        })
+    })
+    .catch(err => {
+      console.log('err', err)
     })
 })
+
 
 app.post('/', (req, res) => {
   console.log('hello from app.post')

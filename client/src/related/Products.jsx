@@ -2,7 +2,8 @@ import React from 'react';
 import {RxStar} from 'react-icons/Rx';
 
 
-const Products = () => {
+const Products = ({ data }) => {
+  console.log('inside Products Component', data);
   
   return (
     <div>

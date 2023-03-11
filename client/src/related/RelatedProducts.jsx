@@ -12,22 +12,22 @@ const RelatedProducts = ({ product }) => {
   if (!product[1]) {
     console.log('Hi, Im loading')
   } else {
-    // console.log('inside RelatedProducts ', product[1]['product_id']);
     var productId = product[1]['product_id'];
-    var getRelatedProducts = (id) => {
-      axios.get('relatedProducts', {params: {data: id}})
+    // var getRelatedProducts = (id) => {
+      axios.get('relatedProducts', {params: {data: productId}})
         .then((data) => {
-          console.log('recieved data in the client getRelatedProducts get request', data)
+          console.log('recieved data in the client getRelatedProducts get request', data.data)
+          setRelatedData(data.data)
         })
         .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
-    }
-    getRelatedProducts(productId);
+    // }
+    // getRelatedProducts(productId);
   }
 
   //returning components to index.jsx=======
   return (
     <div>
-     <Product relatedData={relatedData}/>
+     <Product data={relatedData}/>
      <Outfits/>
     </div>
   )

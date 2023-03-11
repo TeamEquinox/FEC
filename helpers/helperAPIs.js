@@ -1,6 +1,5 @@
 require('dotenv').config();
 const axios = require('axios');
-// const config = require('../MLconfig.js')
 
 let getProducts = () => {
   let options = {
@@ -86,7 +85,6 @@ let getRelatedProducts = (productId) => {
   }
   return axios(options)
     .then((data) => {
-      // console.log('inside getRelatedProduct success call ', data.data);
       return data.data;
     })
     .catch((err) => {
@@ -95,17 +93,20 @@ let getRelatedProducts = (productId) => {
 }
 
 
-let getMetaReviewData = () => {
+let getMetaReviewData = (productId) => {
   let options = {
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta',
     headers: {
       'Authorization': `${process.env.TOKEN}`
+    },
+    params: {
+      product_id: productId
     }
   }
-  return axios.get(options)
+  return axios(options)
     .then((data) => {
-      return data;
+      return data.data;
     })
     .catch((err) => {
       return err;

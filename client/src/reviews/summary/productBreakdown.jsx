@@ -7,9 +7,9 @@ const ProductBreakdown = () => {
 
   return (
     <>
+      <div>This is from the ProductBreakdown</div>
       <RatingBreakdown />
       <SortOptions />
-      <div>This is from the ProductBreakdown</div>
     </>
   )
 }

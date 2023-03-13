@@ -8,7 +8,7 @@ const Products = ({ relatedData }) => {
   return (
     <div className="div_realated_container">
       <div>
-        <span><RxStar/></span>
+        <div><RxStar/></div>
         <div>place image here</div>
       </div>
       <div>

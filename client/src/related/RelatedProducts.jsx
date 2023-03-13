@@ -3,16 +3,16 @@ import axios from 'axios';
 import Product from './Products.jsx';
 import Outfits from './Outfits.jsx';
 
-const RelatedProducts = ({ product, relatedData, setRelatedData }) => {
-  console.log('product---->', product)
+const RelatedProducts = ({ relatedData }) => {
+  // console.log('product---->', product)
   //managing state==========================
   // const [relatedData, setRelatedData] = useState([]);
   
-  //API requests============================
-  if (!relatedData) {
-    console.log('Hi, Im loading')
-  } else {
-    console.log('inside RelatedProducts ', relatedData);
+  // //API requests============================
+  // if (!relatedData) {
+  //   console.log('Hi, Im loading')
+  // } else {
+  //   console.log('inside RelatedProducts ', relatedData);
     // console.log('inside RelatedProducts ', product[1]['product_id']);
     // var productId = product[1]['product_id'];
     // var getRelatedProducts = (id) => {
@@ -24,7 +24,7 @@ const RelatedProducts = ({ product, relatedData, setRelatedData }) => {
     //     .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
     // }
     // getRelatedProducts(productId);
-  }
+  // }
 
   //returning components to index.jsx=======
   return (

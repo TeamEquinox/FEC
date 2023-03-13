@@ -140,10 +140,11 @@ let getReviews = (productId) => {
   return axiosPromise;
 }
 
+
+
 module.exports.getProducts = getProducts;
 module.exports.getProductsById = getProductsById;
 module.exports.getProductsByStyle = getProductsByStyle;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
-
 module.exports.getReviews = getReviews;

@@ -38,12 +38,11 @@ const App = () => {
       })
       .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
   }
-  
+
 
   useEffect(() => {
     pageLoad();
   }, [])
-
 
   useEffect(() => {
     console.log('productAfterUseEffect', product)
@@ -54,8 +53,8 @@ const App = () => {
       <h1>Logo</h1>
       <ProductOverview product={product} />
       <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData}/>
-      <ReviewList />
-      <ProductBreakdown />
+      <ReviewList product={product}/>
+      <ProductBreakdown product={product}/>
       <QuestionsList />
     </div>
 

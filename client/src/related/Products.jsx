@@ -2,11 +2,13 @@ import React from 'react';
 import {RxStar} from 'react-icons/Rx';
 
 
-const Products = () => {
+const Products = ({ relatedData }) => {
+  console.log('inside Products Component', relatedData);
+  
   return (
-    <div>
+    <div className="div_realated_container">
       <div>
-        <span><RxStar/></span>
+        <div><RxStar/></div>
         <div>place image here</div>
       </div>
       <div>

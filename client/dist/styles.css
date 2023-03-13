@@ -97,3 +97,16 @@ body {
 .question {
   bottom: 20px;
 }
+
+#related_outfits_container {
+  border: 2px solid;
+}
+.div_realated_container * {
+  border: 2px solid red;
+  margin: 3px;
+}
+
+.div_outfit_container * {
+  border: 2px solid greenyellow;
+  margin: 3px;
+}

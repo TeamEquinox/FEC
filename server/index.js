@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const helperAPI = require('../helpers/helperAPIs.js')
+const helperAPI = require('../helpers/helperAPIs.js');
+const relatedHelpers = require('../helpers/relatedProductHelpers.js');
 const questionsAPI = require('../helpers/questionsAPI.js');
 
 const app = express();
@@ -38,6 +39,17 @@ app.get('/products', (req, res) => {
     })
 })
 
+app.get('/relatedProducts', (req, res) => {
+ relatedHelpers.relatedProducts(req.query.data)
+ .then((data) => {
+   return relatedHelpers.relatedProductInfo(data);
+  })
+  .then((data2) => {
+   console.log('related Products Data from successfull realatedProductsInfo call ', data2);
+    res.status(200).send(data2);
+ })
+ .catch((err) => res.status(400).send(err));
+})
 
 app.post('/', (req, res) => {
   console.log('hello from app.post')

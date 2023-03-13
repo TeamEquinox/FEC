@@ -6,7 +6,7 @@ const Products = ({ relatedData }) => {
   console.log('inside Products Component', relatedData);
   
   return (
-    <div>
+    <div className="div_realated_container">
       <div>
         <span><RxStar/></span>
         <div>place image here</div>

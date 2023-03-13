@@ -4,7 +4,7 @@ import {RxCrossCircled} from 'react-icons/Rx';
 
 const Outfits = () => {
   return (
-    <div>
+    <div className="div_outfit_container">
       <div>
         <span><RxCrossCircled/></span>
         <div>place image here</div>

@@ -28,7 +28,7 @@ const RelatedProducts = ({ product, relatedData, setRelatedData }) => {
 
   //returning components to index.jsx=======
   return (
-    <div>
+    <div id="related_outfits_container">
      <Product relatedData={relatedData}/>
      <Outfits/>
     </div>

@@ -10,15 +10,15 @@ import RelatedProducts from './related/RelatedProducts.jsx'
 const App = () => {
 
   const [product, setProduct] = useState([])
+  const [relatedData, setRelatedData] = useState([]);
 
   const pageLoad = () => {
     $.ajax({
-      url: `http://localhost:3000/products`,
+      url: 'http://localhost:3000/products',
       method: "GET",
       success: (data) => {
         console.log('success from get', data)
         setProduct(data)
-        
       },
       error: (err) => {
         console.log('error getting data', err)
@@ -39,11 +39,10 @@ const App = () => {
     <div>
       <h1>Logo</h1>
       <ProductOverview product={product} />
-      <RelatedProducts product={product} />
+      <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData}/>
       <ReviewList />
       <ProductBreakdown />
     </div >
-
   )
 }
 

@@ -47,8 +47,8 @@ app.get('/relatedProducts', (req, res) => {
    return relatedHelpers.relatedProductInfo(data);
   })
   .then((data2) => {
-  //  console.log('related Products Data from successfull realatedProductsInfo call ', data2);
-    // res.status(200).send(data2);
+   console.log('related Products Data from successfull realatedProductsInfo call ', data2);
+    res.status(200).send(data2);
  })
  .catch((err) => res.status(400).send(err));
 })

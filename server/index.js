@@ -30,7 +30,16 @@ app.get('/products', (req, res) => {
           helperAPI.getProductsByStyle(data2.id)
             .then((data3) => {
               dataToSend.push(data3)
-              res.send(dataToSend)
+              helperAPI.getReviews(data2.id) // review queries
+                .then((data4) => {
+                  dataToSend.push(data4)
+                  helperAPI.getMetaReviewData(data2.id)
+                  .then((data5) => {
+                    dataToSend.push(data5)
+                    console.log('queried data: ', data5)
+                    res.send(dataToSend)
+                  })
+                })
             })
         })
     })
@@ -45,7 +54,7 @@ app.get('/relatedProducts', (req, res) => {
    return relatedHelpers.relatedProductInfo(data);
   })
   .then((data2) => {
-   console.log('related Products Data from successfull realatedProductsInfo call ', data2);
+  //  console.log('related Products Data from successfull realatedProductsInfo call ', data2);
     res.status(200).send(data2);
  })
  .catch((err) => res.status(400).send(err));
@@ -65,6 +74,11 @@ app.get('*', (req, res) => {
 
 app.get('/questions', (req, res) => {
   questionsAPI.getQuestions(req, res);
+})
+
+app.get('/reviews/:id', (req, res) => {
+  console.log('in /reviews')
+  helperAPI.getReviews();
 })
 
 app.listen(process.env.PORT, (() => {

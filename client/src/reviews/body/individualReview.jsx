@@ -8,17 +8,29 @@ import StarRating from '../../starRatings'
 
 
 
-const IndividualReview = () => {
+const IndividualReview = ({ reviews }) => {
 
+  let reviewArr = []
+  if (reviews !== undefined) {
+    reviewArr = reviews.results;
+
+    console.log('from individualReview: ', reviewArr)
+  }
   return (
     <>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <div>
-      This is from the IndividualReview
-    </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+
+      {reviewArr.map((review) => (
+        <div key={review.review_id}>
+          <StarRating rating={review.rating} pixels={10} />
+          <h3>{review.summary ?? 'No Summary'}</h3>
+          <p>{review.reviewer_name ?? 'Anonymous'}</p>
+          <p>{review.body ?? 'No Review'}</p>
+        </div>
+      ))}
     </>
   )
 

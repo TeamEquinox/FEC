@@ -81,3 +81,19 @@ body {
 .button__cart {
   margin-right: 10px;
 }
+
+.list {
+  display: block;
+  border-radius: 5px;
+  border: solid olive;
+  position: relative;
+}
+
+.questionsList {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.question {
+  bottom: 20px;
+}

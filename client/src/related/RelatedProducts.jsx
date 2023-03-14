@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Product from './Products.jsx';
 import Outfits from './Outfits.jsx';
+import Modal from './Modal.jsx';
 
 const RelatedProducts = ({ relatedData }) => {
+  const [showModal, setShowModal] = useState(false);
   // console.log('product---->', product)
   //managing state==========================
   // const [relatedData, setRelatedData] = useState([]);
@@ -29,8 +31,9 @@ const RelatedProducts = ({ relatedData }) => {
   //returning components to index.jsx=======
   return (
     <div id="related_outfits_container">
-     <Product relatedData={relatedData}/>
-     <Outfits/>
+      <Product relatedData={relatedData} setShowModal={setShowModal} /> 
+      <Outfits/>
+      {showModal ? <Modal setShowModal={setShowModal}/> : null}
     </div>
   )
 }

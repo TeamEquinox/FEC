@@ -101,9 +101,15 @@ body {
 /*
 Start Related CSS======================>
 */
+
 #related_outfits_container {
-  border: 2px solid;
-}
+  border: 2px solid red;
+  /* position: fixed; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* /* justify-content: center; */
+  /* align-items: center; */
+} 
 .div_related_container {
   /* display:inline-block; */
   position: relative;
@@ -113,7 +119,7 @@ Start Related CSS======================>
 }
 .div_realated_card {
   display:inline-block;
-  /* border: 2px solid black; */
+  border: 2px solid black;
   width: 175px;
   height: 280px;
   margin: 3px;
@@ -143,6 +149,9 @@ Start Related CSS======================>
   border-radius: 10px;
   left: 85%;
   top: 12px;
+}
+.icon_related_action:hover {
+  background-color: blue;
 }
 
 .div_realated_info_container{
@@ -185,6 +194,26 @@ Start Related CSS======================>
   scroll-behavior: smooth;
 }
 
+/* .div_modal_Background {
+  width:100dvw;
+  height: 100dvh;
+  background-color: antiquewhite;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.div_modal_container {
+  position: fixed;
+  /* display: flex; */
+  
+  height: 200px;
+  width: 200px;
+  top: 30%;
+  left:50%;
+  background-color: antiquewhite;
+
+}
 /*
 END Related CSS======================^
 */

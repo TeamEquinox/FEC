@@ -9,6 +9,7 @@ module.exports = {
     filename: "bundle.js",
     path: DIST_DIR,
   },
+  // devtool: "eval-source-map",
   /** "target"
    * setting "node" as target app (server side), and setting it as "web" is
    * for browser (client side). Default is "web"

@@ -1,10 +1,10 @@
 import React from 'react';
 import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
-import {AiFillCaretRight, AiFillCaretLeft} from 'react-icons/Ai'
-import StarRating from '../starRatings.jsx'
+import StarRating from '../starRatings.jsx';
 
 
-const Products = ({ relatedData }) => {
+
+const Products = ({ relatedData, setShowModal }) => {
   // console.log('inside Products Component', relatedData);
 
   var configRatings = (obj) => {
@@ -30,6 +30,10 @@ const Products = ({ relatedData }) => {
     slider.scrollLeft = slider.scrollLeft + 190
   }
 
+  const handleStarClick = () => {
+    setShowModal(true);
+  }
+
   return (
     <div className="div_related_container">
       <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
@@ -41,9 +45,9 @@ const Products = ({ relatedData }) => {
             price = item.sales_price;
           }
           // console.log('ITEM=========>', item)
-          return <div key={item.id} className="div_realated_card">
+          return <div key={item.id} className="div_realated_card" value={item}>
             <div className="div_related_image_action_container">
-              <RxStar className="icon_related_action"/>
+              <RxStar className="icon_related_action" onClick={handleStarClick}/>
               <img className="img_related" src={item.photo}></img>
             </div>
             <div className="div_realated_info_container">
@@ -58,6 +62,7 @@ const Products = ({ relatedData }) => {
       }
       </div>
       <RxCaretRight onClick={slideRight} className="div_right_caret"/>
+      {/* <Modal /> */}
     </div>
     
   )

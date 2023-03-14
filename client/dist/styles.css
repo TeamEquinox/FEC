@@ -101,12 +101,48 @@ body {
 #related_outfits_container {
   border: 2px solid;
 }
-.div_realated_container * {
+.div_realated_container {
   border: 2px solid red;
+  width: 175px;
+  height: 290px;
   margin: 3px;
 }
 
 .div_outfit_container * {
   border: 2px solid greenyellow;
   margin: 3px;
+}
+
+.div_related_image_action_container {
+  position: relative;
+  height: 70%;
+  width: 100%;
+}
+
+.img_related {
+  width: 100%;
+  height: 100%;
+}
+
+.icon_related_action {
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  left: 85%;
+  top: 12px;
+}
+
+.div_realated_info_container{
+  position: relative;
+  height: 30%;
+  width: 100%;
+  font-size: small;
+  background-color: blanchedalmond;
+}
+
+.div_related_rating {
+  /* position: absolute; */
+  left:5px;
+  top: 85%;
 }

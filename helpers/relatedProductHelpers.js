@@ -10,13 +10,14 @@ let findDefault = (arr) => {
     if (style['default?']) {
       result = style;
     }
-    if (style.photos[0].url !== null && count === 0) {
-      hasPhotos = style;
-      count++;
-    }
+    // if (style.photos[0].url !== null && count === 0) {
+    //   hasPhotos = style;
+    //   count++;
+    // }
   })
   if (Object.keys(result).length === 0 ) {
-    result = hasPhotos;
+    // result = hasPhotos;
+    result = arr[0];
   }
   return result;
 }
@@ -49,9 +50,9 @@ let relatedProductInfo = (related) => {
   .then((data) => {
     var result = [];
     for (var i = 0; i < data.length; i+=3) {
-      var one = data[0];
-      var two = data[1];
-      var three = data[2];
+      var one = data[i];
+      var two = data[i + 1];
+      var three = data[i + 2];
       var obj = {};
 
       obj.id = one.id;
@@ -60,7 +61,11 @@ let relatedProductInfo = (related) => {
 
       var defaults = findDefault(two.results);
       obj['original_price'] = defaults['original_price'];
-      obj['sales_price'] = defaults['sales_price'];
+      if (!defaults['sales_price']) {
+        obj['sales_price'] = 'N/A';
+      } else {
+        obj['sales_price'] = defaults['sales_price'];
+      }
       if (defaults.photos[0].url === null) {
         obj.photo = 'N/A';
       } else {
@@ -75,6 +80,10 @@ let relatedProductInfo = (related) => {
   .catch((err) => err);
 }
 
-//expot helper function ====================
+
+let modal = () => {
+  
+}
+//export helper function ====================
 module.exports.relatedProducts = relatedProducts;
 module.exports.relatedProductInfo = relatedProductInfo;

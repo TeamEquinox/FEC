@@ -18,7 +18,7 @@ export const StarRating = ({ rating, pixels }) => {
   } else if (percentFill >= 13 && percentFill < 38) {
     clipPathValue = 35
   } else if (percentFill >= 38 && percentFill < 63) {
-    clipPathValue = 50
+    clipPathValue = 45
   } else if (percentFill >= 63 && percentFill < 88) {
     clipPathValue = 60
   } else {

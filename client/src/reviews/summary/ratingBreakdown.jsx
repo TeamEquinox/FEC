@@ -9,6 +9,9 @@ const RatingBreakdown = ({ breakdown }) => {
   let quality = 50;
   let fit = 50;
   let rating = 50;
+  let numOfReviews = 0;
+  let recommendCount = 0;
+  let notRecommendCount = 0;
   let numOfStars = 4.5;
 
   if (breakdown !== undefined) {
@@ -16,8 +19,12 @@ const RatingBreakdown = ({ breakdown }) => {
     length = breakdown.characteristics.Length.value / 5 * 100;
     quality = breakdown.characteristics.Quality.value / 5 * 100;
     fit = breakdown.characteristics.Fit.value / 5 * 100;
-    rating = (Number(breakdown.ratings[1]) + Number(breakdown.ratings[2]) + Number(breakdown.ratings[3]) + Number(breakdown.ratings[4]) + Number(breakdown.ratings[5])) / 5
-    numOfStars = rating / 100 * 5
+    rating = (Number(breakdown.ratings[1]) + Number(breakdown.ratings[2]) + Number(breakdown.ratings[3]) + Number(breakdown.ratings[4]) + Number(breakdown.ratings[5])) / 5;
+    numOfReviews = Number(breakdown.ratings[1]) + Number(breakdown.ratings[2]) + Number(breakdown.ratings[3]) + Number(breakdown.ratings[4]) + Number(breakdown.ratings[5]);
+    recommendCount = Number(breakdown.recommended['true'])
+    notRecommendCount = Number(breakdown.recommended['false'])
+    numOfStars = rating / 100 * 5;
+    console.log(breakdown)
   }
 
   const HorizontalLine = () => {
@@ -50,13 +57,34 @@ const RatingBreakdown = ({ breakdown }) => {
 
   return (
     <>
-      <div>
-        This is from RatingBreakdown
-      </div>
       <div style={{ width: '300px' }}>
-        <h3 style={{ fontWeight: 'bold' }}>Overall Rating</h3>
+        <h3>Overall Rating: {numOfStars.toFixed(1)}</h3>
+        <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
         <StarRating rating={numOfStars} pixels={15} style={{ marginTop: '-20px' }} />
-
+        <div class="container">
+          <div class="filled-bar"></div>
+          <div class="empty-bar"></div>
+        </div>
+        <br></br>
+        <div class="container">
+          <div class="filled-bar"></div>
+          <div class="empty-bar"></div>
+        </div>
+        <br></br>
+        <div class="container">
+          <div class="filled-bar"></div>
+          <div class="empty-bar"></div>
+        </div>
+        <br></br>
+        <div class="container">
+          <div class="filled-bar"></div>
+          <div class="empty-bar"></div>
+        </div>
+        <br></br>
+        <div class="container">
+          <div class="filled-bar"></div>
+          <div class="empty-bar"></div>
+        </div>
         <h4>Size</h4>
         <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
           <div style={{ width: '33.33%', zIndex: 1 }}>

@@ -80,6 +80,10 @@ let relatedProductInfo = (related) => {
   .catch((err) => err);
 }
 
-//expot helper function ====================
+
+let modal = () => {
+  
+}
+//export helper function ====================
 module.exports.relatedProducts = relatedProducts;
 module.exports.relatedProductInfo = relatedProductInfo;

@@ -1,5 +1,6 @@
 import React from 'react';
-import {RxStar} from 'react-icons/Rx';
+import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
+import {AiFillCaretRight, AiFillCaretLeft} from 'react-icons/Ai'
 import StarRating from '../starRatings.jsx'
 
 
@@ -13,15 +14,26 @@ const Products = ({ relatedData }) => {
     var fourStar = Number(obj['4']);
     var fiveStar = Number(obj['5']);
     var actualRating = ((oneStar * 1) + (twoStar * 2) + (threeStar * 3) + (fourStar * 4) + (fiveStar * 5));
-    // console.log('actualRating', actualRating);
     var totalPossibleRating = ((oneStar + twoStar + threeStar + fourStar + fiveStar) * 5);
-    // console.log('totalPossibleRating', totalPossibleRating);
     var result = Math.round((actualRating/totalPossibleRating * 5) * 10) / 10;
     return result;
   }
   // console.log('ConfigRatings----->', configRatings({1: '3', 2: '1', 3: '1', 4: '2', 5: '8'}));
+  
+  const slideLeft = () => {
+    var slider = document.getElementById('slider');
+    slider.scrollLeft = slider.scrollLeft - 190;
+  }
+
+  const slideRight = () => {
+    var slider = document.getElementById('slider');
+    slider.scrollLeft = slider.scrollLeft + 190
+  }
+
   return (
-    <div>
+    <div className="div_related_container">
+      <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
+      <div id="slider" className="div_slider">
       {
         relatedData.map((item) => {
           var price = item.original_price;
@@ -29,7 +41,7 @@ const Products = ({ relatedData }) => {
             price = item.sales_price;
           }
           // console.log('ITEM=========>', item)
-          return <div key={item.id} className="div_realated_container">
+          return <div key={item.id} className="div_realated_card">
             <div className="div_related_image_action_container">
               <RxStar className="icon_related_action"/>
               <img className="img_related" src={item.photo}></img>
@@ -44,6 +56,8 @@ const Products = ({ relatedData }) => {
           </div>
         })
       }
+      </div>
+      <RxCaretRight onClick={slideRight} className="div_right_caret"/>
     </div>
     
   )

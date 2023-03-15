@@ -7,7 +7,6 @@ import { CgLoadbar } from 'react-icons/cg';
 import StarRating from '../../starRatings'
 
 
-
 const IndividualReview = ({ reviews }) => {
 
   let reviewArr = []

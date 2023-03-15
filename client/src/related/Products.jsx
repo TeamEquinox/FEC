@@ -1,7 +1,7 @@
 import React from 'react';
 import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
 import StarRating from '../starRatings.jsx';
-// import configRatings from './../../../helpers/relatedProductHelpers.js';
+// import configRatings from '../../../../helpers/relatedProductHelpers.js';
 
 
 const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
@@ -30,9 +30,9 @@ const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
     slider.scrollLeft = slider.scrollLeft + 190
   }
 
-  const handleStarClick = () => {
+  const handleStarClick = (e) => {
     setShowModal(true);
-    // setCompareRelated(e.target.value);
+    console.log('eeeeeeee======-=-->>>', e);
   }
 
   return (
@@ -46,9 +46,10 @@ const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
             price = item.sales_price;
           }
           // console.log('ITEM=========>', item)
-          return <div key={item.id} className="div_realated_card" value={item}>
+          return <div key={item.id} className="div_realated_card">
             <div className="div_related_image_action_container">
-              <RxStar className="icon_related_action" onClick={handleStarClick}/>
+              <RxStar className="icon_related_action" value="HELLO!!!!" onClick={ () => {
+                handleStarClick(item)} }/>
               <img className="img_related" src={item.photo}></img>
             </div>
             <div className="div_realated_info_container">

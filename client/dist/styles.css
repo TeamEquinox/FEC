@@ -183,7 +183,7 @@ Start Related CSS======================>
 
 .icon_related_action {
   position: absolute;
-  background-color: black;
+  /* background-color: black; */
   color: white;
   border-radius: 10px;
   left: 85%;

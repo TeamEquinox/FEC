@@ -46,9 +46,9 @@ const App = () => {
     pageLoad();
   }, [])
 
-  useEffect(() => {
+  // useEffect(() => {
     // console.log('productAfterUseEffect', product)
-  }, [product])
+  // }, [product])
 
   if (product.length) {
     return (

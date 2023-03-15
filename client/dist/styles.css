@@ -4,13 +4,17 @@ body {
 
 .div__product {
   display: block;
-  left: 600px;
+  left: 800px;
   top: 150px;
   position: relative;
   /* border-radius: 5px;
   border: solid black; */
   width: 40%;
 }
+
+/*
+IMAGE CSS
+*/
 
 .div__image_container {
   display: inline-block;
@@ -33,7 +37,7 @@ body {
 }
 
 .div__large_image {
-  width: 50%;
+  /* width: 50%; */
   display: inline-block;
   position: relative;
   left: 150px
@@ -49,7 +53,7 @@ body {
 
 .div__img_gallery {
   display: inline-block;
-  position: relative;
+  position: absolute;
   right: 500px
 }
 
@@ -61,23 +65,57 @@ body {
   border-radius: 50%;
 }
 
+/*
+STYLE CSS
+*/
+
 .div__style_container {
   display: inline-block;
   position: relative;
-
+  padding-right: 10px;
 }
 
+/*
+CART CSS
+*/
+
 .select__size {
-  position: relative;
-  right: 485px;
-  /* margin-right: 10px; */
+  position: absolute;
+  left: -10px;
+  top: 250px
+    /* margin-right: 10px; */
 }
 
 .select__quantity {
-  position: relative;
-  right: 470px;
+  position: absolute;
+  left: 140px;
+  top: 250px
 }
 
 .button__cart {
   margin-right: 10px;
+  position: absolute;
+  left: -10px;
+}
+
+.button__star {
+  position: absolute;
+
+  left: 150px;
+
+}
+
+/*
+DESCRIPTION CSS
+*/
+.div__description {
+  position: absolute;
+  top: 830px;
+  width: 50%
+}
+
+.div__feature {
+  display: inline-block;
+  position: absolute;
+  top: 800px;
 }

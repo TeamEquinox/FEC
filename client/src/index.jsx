@@ -26,24 +26,30 @@ const App = () => {
   }
 
   useEffect(() => {
+    // console.log('pageload use effect')
     pageLoad();
   }, [])
 
-
   useEffect(() => {
-    console.log('productAfterUseEffect', product)
+    // console.log('productAfterUseEffect', product)
   }, [product])
 
-  return (
-    <div>
-      <h1>Logo</h1>
-      <ProductOverview product={product} />
-      <RelatedProducts />
-      <ReviewList />
-      <ProductBreakdown />
-    </div >
+  if (product.length) {
+    return (
+      <div>
+        <h1>Equinox Apparel</h1>
+        <ProductOverview product={product} />
+        <RelatedProducts />
+        <ReviewList />
+        <ProductBreakdown />
+      </div >
 
-  )
+    )
+  } else {
+    return (
+      <div>Loading..</div>
+    )
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))

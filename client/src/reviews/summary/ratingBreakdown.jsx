@@ -14,6 +14,7 @@ const RatingBreakdown = ({ breakdown }) => {
   let notRecommendCount = 0;
   let numOfStars = 4.5;
 
+  // assign values from product
   if (breakdown !== undefined) {
     comfort = breakdown.characteristics.Comfort.value / 5 * 100;
     length = breakdown.characteristics.Length.value / 5 * 100;
@@ -24,13 +25,22 @@ const RatingBreakdown = ({ breakdown }) => {
     recommendCount = Number(breakdown.recommended['true'])
     notRecommendCount = Number(breakdown.recommended['false'])
     numOfStars = rating / 100 * 5;
-    console.log(breakdown)
+    const bar5 = document.getElementById("5star");
+    bar5.style.width = `${Number(breakdown.ratings[5]) / numOfReviews * 100}%`;
+    const bar4 = document.getElementById("4star");
+    bar4.style.width = `${Number(breakdown.ratings[4]) / numOfReviews * 100}%`;
+    const bar3 = document.getElementById("3star");
+    bar3.style.width = `${Number(breakdown.ratings[3]) / numOfReviews * 100}%`;
+    const bar2 = document.getElementById("2star");
+    bar2.style.width = `${Number(breakdown.ratings[2]) / numOfReviews * 100}%`;
+    const bar1 = document.getElementById("1star");
+    bar1.style.width = `${Number(breakdown.ratings[1]) / numOfReviews * 100}%`;
   }
 
   const HorizontalLine = () => {
     const lineStyle = {
       height: '10px',
-      backgroundColor: '#929292',
+      backgroundColor: '#b1b1b1',
       border: 'none',
       borderRadius: '5px',
       marginRight: '2px'
@@ -61,30 +71,24 @@ const RatingBreakdown = ({ breakdown }) => {
         <h3>Overall Rating: {numOfStars.toFixed(1)}</h3>
         <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
         <StarRating rating={numOfStars} pixels={15} style={{ marginTop: '-20px' }} />
-        <div class="container">
-          <div class="filled-bar"></div>
-          <div class="empty-bar"></div>
-        </div>
-        <br></br>
-        <div class="container">
-          <div class="filled-bar"></div>
-          <div class="empty-bar"></div>
-        </div>
-        <br></br>
-        <div class="container">
-          <div class="filled-bar"></div>
-          <div class="empty-bar"></div>
-        </div>
-        <br></br>
-        <div class="container">
-          <div class="filled-bar"></div>
-          <div class="empty-bar"></div>
-        </div>
-        <br></br>
-        <div class="container">
-          <div class="filled-bar"></div>
-          <div class="empty-bar"></div>
-        </div>
+
+        <table>
+          <tbody className="stars-container">
+            {[5, 4, 3, 2, 1].map((stars) => (
+              <tr key={stars} className="stars-bar-container">
+                <td className="stars-text">{stars} Stars</td>
+                <td className="container-bar">
+                  <div className="filled-bar" id={`${stars}star`}></div>
+                  <div className="empty-bar"></div>
+                </td>
+                <td className="reviews-text">{breakdown !== undefined ? Number(breakdown.ratings[stars]) + ' Reviews' : 'No reviews'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+
+
         <h4>Size</h4>
         <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
           <div style={{ width: '33.33%', zIndex: 1 }}>
@@ -105,7 +109,7 @@ const RatingBreakdown = ({ breakdown }) => {
               <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px' }}>Large</div>
             </div>
           </div>
-          <div style={{ position: 'absolute', left: `${fit}%`, top: '0', bottom: '0', marginLeft: '-1px', zIndex: 2 }}>
+          <div style={{ position: 'absolute', left: `${fit}%`, marginLeft: '-1px', zIndex: 2 }}>
             <VerticalLine />
           </div>
         </div>

@@ -1,8 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-require('dotenv').config();
-const productAPI = require('../helpers/helperAPIs.js')
+const helperAPI = require('../helpers/helperAPIs.js');
+const relatedHelpers = require('../helpers/relatedProductHelpers.js');
+const questionsAPI = require('../helpers/questionsAPI.js');
 
 const app = express();
 
@@ -16,22 +17,29 @@ app.use((req, res, next) => {
 })
 
 app.get('/products', (req, res) => {
-  // console.log('req', req)
-  // console.log('res', req)
   let dataToSend = [];
-  productAPI.getProducts()
+  helperAPI.getProducts()
     .then((data) => {
       console.log('data', data)
       // res.send(data)
-      productAPI.getProductsById(data[0].id)
+      helperAPI.getProductsById(data[0].id)
         .then((data2) => {
           console.log('data2', data2)
           // res.send(data2)
           dataToSend.push(data2)
-          productAPI.getProductsByStyle(data2.id)
+          helperAPI.getProductsByStyle(data2.id)
             .then((data3) => {
               dataToSend.push(data3)
-              res.send(dataToSend)
+              helperAPI.getReviews(data2.id) // review queries
+                .then((data4) => {
+                  dataToSend.push(data4)
+                  helperAPI.getMetaReviewData(data2.id)
+                  .then((data5) => {
+                    dataToSend.push(data5)
+                    console.log('queried data: ', data5)
+                    res.send(dataToSend)
+                  })
+                })
             })
         })
     })
@@ -40,6 +48,17 @@ app.get('/products', (req, res) => {
     })
 })
 
+app.get('/relatedProducts', (req, res) => {
+ relatedHelpers.relatedProducts(req.query.data)
+ .then((data) => {
+   return relatedHelpers.relatedProductInfo(data);
+  })
+  .then((data2) => {
+  //  console.log('related Products Data from successfull realatedProductsInfo call ', data2);
+    res.status(200).send(data2);
+ })
+ .catch((err) => res.status(400).send(err));
+})
 
 app.post('/', (req, res) => {
   console.log('hello from app.post')
@@ -53,6 +72,14 @@ app.get('*', (req, res) => {
   res.redirect('/')
 })
 
+app.get('/questions', (req, res) => {
+  questionsAPI.getQuestions(req, res);
+})
+
+app.get('/reviews/:id', (req, res) => {
+  console.log('in /reviews')
+  helperAPI.getReviews();
+})
 
 app.listen(process.env.PORT, (() => {
   console.log(`The server is listening on port ${process.env.PORT}`)

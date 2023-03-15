@@ -119,3 +119,116 @@ DESCRIPTION CSS
   position: absolute;
   top: 800px;
 }
+
+.list {
+  display: block;
+  border-radius: 5px;
+  border: solid olive;
+  position: relative;
+}
+
+.questionsList {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.question {
+  bottom: 20px;
+}
+
+/*
+Start Related CSS======================>
+*/
+#related_outfits_container {
+  border: 2px solid;
+}
+
+.div_related_container {
+  /* display:inline-block; */
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* border: 2px solid red; */
+}
+
+.div_realated_card {
+  display: inline-block;
+  /* border: 2px solid black; */
+  width: 175px;
+  height: 280px;
+  margin: 3px;
+}
+
+.div_outfit_container * {
+  border: 2px solid greenyellow;
+  margin: 3px;
+}
+
+.div_related_image_action_container {
+  position: relative;
+  height: 70%;
+  width: 100%;
+}
+
+.img_related {
+
+  width: 100%;
+  height: 100%;
+}
+
+.icon_related_action {
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  left: 85%;
+  top: 12px;
+}
+
+.div_realated_info_container {
+  position: relative;
+  height: 30%;
+  width: 100%;
+  font-size: 12px;
+  background-color: blanchedalmond;
+}
+
+.div_related_rating {
+  left: 5px;
+  top: 85%;
+}
+
+.div_left_caret {
+  /* border: 2px solid red; */
+  font-size: 30px;
+  opacity: 50%;
+}
+
+.div_left_caret:hover {
+  opacity: 100%;
+}
+
+.div_right_caret {
+  /* border: 2px solid red; */
+  font-size: 30px;
+  opacity: 50%;
+}
+
+.div_right_caret:hover {
+  opacity: 100%;
+}
+
+.div_slider {
+  object-fit: cover;
+  /* border: 2px solid red; */
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+
+/*
+END Related CSS======================^
+*/

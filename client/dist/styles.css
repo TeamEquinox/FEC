@@ -4,13 +4,17 @@ body {
 
 .div__product {
   display: block;
-  left: 600px;
+  left: 800px;
   top: 150px;
   position: relative;
   /* border-radius: 5px;
   border: solid black; */
   width: 40%;
 }
+
+/*
+IMAGE CSS
+*/
 
 .div__image_container {
   display: inline-block;
@@ -33,7 +37,7 @@ body {
 }
 
 .div__large_image {
-  width: 50%;
+  /* width: 50%; */
   display: inline-block;
   position: relative;
   left: 150px
@@ -49,7 +53,7 @@ body {
 
 .div__img_gallery {
   display: inline-block;
-  position: relative;
+  position: absolute;
   right: 500px
 }
 
@@ -61,25 +65,59 @@ body {
   border-radius: 50%;
 }
 
+/*
+STYLE CSS
+*/
+
 .div__style_container {
   display: inline-block;
   position: relative;
-
+  padding-right: 10px;
 }
 
+/*
+CART CSS
+*/
+
 .select__size {
-  position: relative;
-  right: 485px;
-  /* margin-right: 10px; */
+  position: absolute;
+  left: -10px;
+  top: 250px
+    /* margin-right: 10px; */
 }
 
 .select__quantity {
-  position: relative;
-  right: 470px;
+  position: absolute;
+  left: 140px;
+  top: 250px
 }
 
 .button__cart {
   margin-right: 10px;
+  position: absolute;
+  left: -10px;
+}
+
+.button__star {
+  position: absolute;
+
+  left: 150px;
+
+}
+
+/*
+DESCRIPTION CSS
+*/
+.div__description {
+  position: absolute;
+  top: 830px;
+  width: 50%
+}
+
+.div__feature {
+  display: inline-block;
+  position: absolute;
+  top: 800px;
 }
 
 .list {
@@ -104,6 +142,7 @@ Start Related CSS======================>
 #related_outfits_container {
   border: 2px solid;
 }
+
 .div_related_container {
   /* display:inline-block; */
   position: relative;
@@ -111,8 +150,9 @@ Start Related CSS======================>
   align-items: center;
   /* border: 2px solid red; */
 }
+
 .div_realated_card {
-  display:inline-block;
+  display: inline-block;
   /* border: 2px solid black; */
   width: 175px;
   height: 280px;
@@ -145,7 +185,7 @@ Start Related CSS======================>
   top: 12px;
 }
 
-.div_realated_info_container{
+.div_realated_info_container {
   position: relative;
   height: 30%;
   width: 100%;
@@ -154,22 +194,26 @@ Start Related CSS======================>
 }
 
 .div_related_rating {
-  left:5px;
+  left: 5px;
   top: 85%;
 }
+
 .div_left_caret {
   /* border: 2px solid red; */
   font-size: 30px;
   opacity: 50%;
 }
+
 .div_left_caret:hover {
   opacity: 100%;
 }
+
 .div_right_caret {
   /* border: 2px solid red; */
   font-size: 30px;
   opacity: 50%;
 }
+
 .div_right_caret:hover {
   opacity: 100%;
 }

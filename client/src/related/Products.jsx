@@ -1,10 +1,10 @@
 import React from 'react';
 import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
 import StarRating from '../starRatings.jsx';
+// import configRatings from './../../../helpers/relatedProductHelpers.js';
 
 
-
-const Products = ({ relatedData, setShowModal }) => {
+const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
   // console.log('inside Products Component', relatedData);
 
   var configRatings = (obj) => {
@@ -32,6 +32,7 @@ const Products = ({ relatedData, setShowModal }) => {
 
   const handleStarClick = () => {
     setShowModal(true);
+    // setCompareRelated(e.target.value);
   }
 
   return (

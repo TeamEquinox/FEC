@@ -61,9 +61,9 @@ app.get('/relatedProducts', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  console.log('hello from app.post')
+  // console.log('hello from app.post')
 
-  console.log(req.body)
+  // console.log(req.body)
   res.send('Hello, World!');
 })
 

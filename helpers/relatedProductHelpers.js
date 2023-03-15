@@ -80,10 +80,22 @@ let relatedProductInfo = (related) => {
   .catch((err) => err);
 }
 
-
-let modal = () => {
-  
+let configRatings = (obj) => {
+  var oneStar = Number(obj['1']);
+  var twoStar = Number(obj['2']);
+  var threeStar = Number(obj['3']);
+  var fourStar = Number(obj['4']);
+  var fiveStar = Number(obj['5']);
+  var actualRating = ((oneStar * 1) + (twoStar * 2) + (threeStar * 3) + (fourStar * 4) + (fiveStar * 5));
+  var totalPossibleRating = ((oneStar + twoStar + threeStar + fourStar + fiveStar) * 5);
+  var result = Math.round((actualRating/totalPossibleRating * 5) * 10) / 10;
+  return result;
 }
+
+// let modal = () => {
+  
+// }
 //export helper function ====================
 module.exports.relatedProducts = relatedProducts;
 module.exports.relatedProductInfo = relatedProductInfo;
+// module.exports.configRatings = configRatings;

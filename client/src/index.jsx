@@ -32,7 +32,7 @@ const App = () => {
   }
 
   const getRelatedProducts = (id) => {
-    axios.get('relatedProducts', {params: {data: id}})
+    axios.get('relatedProducts', { params: { data: id } })
       .then((data) => {
         // console.log('recieved data in the client getRelatedProducts get request', data)
         setRelatedData(data.data);
@@ -42,24 +42,30 @@ const App = () => {
 
 
   useEffect(() => {
+    // console.log('pageload use effect')
     pageLoad();
   }, [])
 
   useEffect(() => {
-    console.log('productAfterUseEffect', product)
+    // console.log('productAfterUseEffect', product)
   }, [product])
 
-  return (
-    <div>
-      <h1>Logo</h1>
-      <ProductOverview product={product} />
-      <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData}/>
-      <ReviewList product={product}/>
-      <ProductBreakdown product={product}/>
-      <QuestionsList />
-    </div>
-
-  )
+  if (product.length) {
+    return (
+      <div>
+        <h1>Equinox Apparel</h1>
+        <ProductOverview product={product} />
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} />
+        <ReviewList product={product} />
+        <ProductBreakdown product={product} />
+        <QuestionsList />
+      </div >
+    )
+  } else {
+    return (
+      <div>Loading..</div>
+    )
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))

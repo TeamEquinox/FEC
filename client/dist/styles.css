@@ -143,6 +143,7 @@ Start Related CSS======================>
   border: 2px solid;
 }
 
+
 .div_related_container {
   /* display:inline-block; */
   position: relative;
@@ -151,7 +152,9 @@ Start Related CSS======================>
   /* border: 2px solid red; */
 }
 
+
 .div_realated_card {
+  display: inline-block;
   display: inline-block;
   /* border: 2px solid black; */
   width: 175px;
@@ -195,8 +198,10 @@ Start Related CSS======================>
 
 .div_related_rating {
   left: 5px;
+  left: 5px;
   top: 85%;
 }
+
 
 .div_left_caret {
   /* border: 2px solid red; */
@@ -204,15 +209,18 @@ Start Related CSS======================>
   opacity: 50%;
 }
 
+
 .div_left_caret:hover {
   opacity: 100%;
 }
+
 
 .div_right_caret {
   /* border: 2px solid red; */
   font-size: 30px;
   opacity: 50%;
 }
+
 
 .div_right_caret:hover {
   opacity: 100%;
@@ -231,4 +239,80 @@ Start Related CSS======================>
 
 /*
 END Related CSS======================^
+<<<<<<< HEAD
+*/
+
+/*
+START Review CSS======================^
+*/
+
+.stars-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stars-bar-container {
+  display: flex;
+  align-items: center;
+}
+
+.stars-text {
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.reviews-text {
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+#5star {
+  width: 100%;
+}
+
+#4star {
+  width: 80%;
+}
+
+#3star {
+  width: 60%;
+}
+
+#2star {
+  width: 40%;
+}
+
+#1star {
+  width: 20%;
+}
+
+.container-bar {
+  height: 10px;
+  width: 300px;
+  background-color: #ccc;
+  position: relative;
+}
+
+.filled-bar {
+  height: 100%;
+  background-color: #2aad2a;
+  width: 60%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.empty-bar {
+  height: 100%;
+  background-color: #b1b1b1;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/*
+END Review CSS======================^
 */

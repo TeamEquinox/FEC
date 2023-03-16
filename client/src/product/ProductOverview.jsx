@@ -10,7 +10,8 @@ import StarRating from '../starRatings.jsx'
 
 
 const ProductOverview = ({ product }) => {
-  console.log('productOnLoad', product)
+  console.table('productOnLoad', product)
+
   const [gallery, setGallery] = useState([])
   const [largeImage, setLargeImage] = useState('')
 
@@ -42,8 +43,8 @@ const ProductOverview = ({ product }) => {
       <div className="div__description">{product.length ? product[0].description : "Description"}</div>
       <div className="div__feature">{product.length ? product[0].features.map((feature) => {
         return (
-          <ul>
-            <li>{feature.feature}: {feature.value}</li>
+          <ul key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>
+            <li key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>{feature.feature}: {feature.value}</li>
           </ul>
         )
       })

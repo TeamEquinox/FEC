@@ -9,9 +9,10 @@ import StarRating from '../../starRatings'
 
 const IndividualReview = ({ reviews }) => {
 
+
+  // console.log('reviews in individualReviews: ', reviews)
   let reviewArr = []
   if (reviews !== undefined) {
-    // console.log('reviews in individualReviews: ', reviews)
     reviewArr = reviews;
   }
   return (

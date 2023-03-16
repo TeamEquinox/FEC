@@ -8,7 +8,7 @@ import IndividualReview from './individualReview.jsx'
 const RatingBreakdown = ({ breakdown, reviews }) => {
 
   let reviewList = reviews.results;
-  console.log('in RatingBreakdown reviewList: ', reviewList)
+  // console.log('in RatingBreakdown reviewList: ', reviewList)
 
   // default values
   // let comfort = null;
@@ -25,8 +25,9 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
 
   // assign values from product
   // if (breakdown !== undefined) {
-  const [filteredReviews, setFilteredReviews] = useState(reviewList)
+  const [filteredReviews, setFilteredReviews] = useState([])
   const [displayedReviews, setDisplayedReviews] = useState([]);
+
 
   let comfort = breakdown.characteristics.Comfort ? (breakdown.characteristics.Comfort.value / 5 * 100) : null
   let length = breakdown.characteristics.Length ? (breakdown.characteristics.Length.value / 5 * 100) : null
@@ -58,13 +59,28 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
 
   const clickHandler = (stars) => {
     const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
-    const newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
-    setDisplayedReviews(newDisplayedReviews);
+    let newDisplayedReviews;
+    if (displayedReviews.includes(...currentReviewCollection)) {
+      newDisplayedReviews = displayedReviews.filter(review => !currentReviewCollection.includes(review));
+    } else {
+      newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
+    }
+    if (newDisplayedReviews.length === 0) {
+      setDisplayedReviews(reviewList);
+    } else {
+      setDisplayedReviews(newDisplayedReviews);
+    }
   }
+
+
 
   useEffect(() => {
     setFilteredReviews([...new Set(displayedReviews)])
   }, [displayedReviews])
+
+  useEffect(() => {
+    setFilteredReviews(reviewList);
+  }, [reviewList]);
 
   return (
     <>

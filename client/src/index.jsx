@@ -48,17 +48,23 @@ const App = () => {
     console.log('productAfterUseEffect', product)
   }, [product])
 
-  return (
-    <div>
-      <h1>Logo</h1>
-      <ProductOverview product={product} />
-      <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData}/>
-      <ReviewList product={product}/>
-      <ProductBreakdown product={product}/>
-      <QuestionsList />
-    </div>
+  if (product.length === 0) {
+    return (
+      <div>Loading...</div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>Logo</h1>
+        <ProductOverview product={product} />
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData}/>
+        <ReviewList product={product}/>
+        <ProductBreakdown product={product}/>
+        <QuestionsList product_id={product[0]['id']}/>
+      </div>
+    )
+  }
 
-  )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))

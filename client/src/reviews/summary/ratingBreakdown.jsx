@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from '../../starRatings'
+import { SingleBarDisplay } from './barDisplay'
+import { MultiBarDisplay } from './barDisplay'
+import IndividualReview from './individualReview.jsx'
 
-const RatingBreakdown = ({ breakdown }) => {
+
+const RatingBreakdown = ({ breakdown, reviews }) => {
+
+  let reviewList = reviews.results;
+  console.log('in RatingBreakdown reviewList: ', reviewList)
 
   // default values
   // let comfort = null;
@@ -18,6 +25,9 @@ const RatingBreakdown = ({ breakdown }) => {
 
   // assign values from product
   // if (breakdown !== undefined) {
+  const [filteredReviews, setFilteredReviews] = useState(reviewList)
+  const [displayedReviews, setDisplayedReviews] = useState([]);
+
   let comfort = breakdown.characteristics.Comfort ? (breakdown.characteristics.Comfort.value / 5 * 100) : null
   let length = breakdown.characteristics.Length ? (breakdown.characteristics.Length.value / 5 * 100) : null
   let width = breakdown.characteristics.Width ? (breakdown.characteristics.Width.value / 5 * 100) : null
@@ -30,6 +40,7 @@ const RatingBreakdown = ({ breakdown }) => {
   let recommendCount = Number(breakdown.recommended['true'])
   let notRecommendCount = Number(breakdown.recommended['false'])
   let numOfStars = rating / 100 * 5;
+
   const bar5 = document.getElementById("5star");
   const bar4 = document.getElementById("4star");
   const bar3 = document.getElementById("3star");
@@ -45,37 +56,15 @@ const RatingBreakdown = ({ breakdown }) => {
   }
   // }
 
-  const HorizontalLine = () => {
-    const lineStyle = {
-      height: '10px',
-      backgroundColor: '#b1b1b1',
-      border: 'none',
-      borderRadius: '5px',
-      marginRight: '2px'
-    };
-    return (
-      <hr style={lineStyle} />
-    )
-  }
-
-  // rating marker
-  const VerticalLine = () => {
-    const lineStyle = {
-      height: '10px',
-      width: '5px',
-      backgroundColor: '#000000',
-      border: 'none',
-      borderRadius: '5px',
-      marginRight: '2px'
-    };
-    return (
-      <hr style={lineStyle} />
-    )
-  }
-
   const clickHandler = (stars) => {
-    console.log('clicked!', stars)
+    const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
+    const newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
+    setDisplayedReviews(newDisplayedReviews);
   }
+
+  useEffect(() => {
+    setFilteredReviews([...new Set(displayedReviews)])
+  }, [displayedReviews])
 
   return (
     <>
@@ -86,7 +75,7 @@ const RatingBreakdown = ({ breakdown }) => {
 
         <StarRating rating={numOfStars} pixels={15} style={{ marginTop: '-20px' }} />
 
-{/* displays the rating bars and handlers clicks to send which bar/rating is clicked to set state */}
+        {/* displays the rating bars and handlers clicks to send which bar/rating is clicked to set state */}
         <table>
           <tbody className="stars-container">
             {[5, 4, 3, 2, 1].map((stars) => (
@@ -102,167 +91,16 @@ const RatingBreakdown = ({ breakdown }) => {
           </tbody>
         </table>
 
-{/* displays the Size, Width, Comfort, Quality, Length, and Fit IF they exist */}
-        {comfort && (
-          <>
-            <h4>Comfort</h4>
-            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
-              <div style={{ width: '100%', position: 'relative' }}>
-                <HorizontalLine />
-                <div style={{ fontSize: '12px', textAlign: 'left', marginTop: '-5px', marginLeft: '5px' }}>Poor</div>
-                <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-14px', marginRight: '5px' }}>Perfect</div>
-              </div>
-              <div style={{ position: 'absolute', left: `${comfort}%`, top: '0', bottom: '0', marginLeft: '-1px', zIndex: 2 }}>
-                <VerticalLine />
-              </div>
-            </div>
-          </>
-        )}
+        {/* displays the Size, Width, Comfort, Quality, Length, and Fit IF they exist */}
+        <SingleBarDisplay element={comfort} headerText={"Comfort"} lowRating={"Physical Pain"} highRating={"Nirvana"} />
+        <SingleBarDisplay element={length} headerText={"Length"} lowRating={"For Shorties"} highRating={"For Giants"} />
+        <MultiBarDisplay element={width} headerText={"Width"} />
+        <MultiBarDisplay element={quality} headerText={"Quality"} />
+        <MultiBarDisplay element={size} headerText={"Size"} />
+        <MultiBarDisplay element={fit} headerText={"Fit"} />
 
-        {length && (
-          <>
-            <h4>Length</h4>
-            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px' }}>Poor</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '-5px' }}>Good</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px' }}>Excellent</div>
-                </div>
-              </div>
-              <div style={{ position: 'absolute', left: `${length}%`, marginLeft: '-1px', zIndex: 2 }}>
-                <VerticalLine />
-              </div>
-            </div>
-          </>
-        )}
+        <IndividualReview reviews={filteredReviews}/>
 
-        {width && (
-          <>
-            <h4>Width</h4>
-            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px' }}>Poor</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '-5px' }}>Good</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px' }}>Excellent</div>
-                </div>
-              </div>
-              <div style={{ position: 'absolute', left: `${width}%`, marginLeft: '-1px', zIndex: 2 }}>
-                <VerticalLine />
-              </div>
-            </div>
-          </>
-        )}
-
-        {quality && (
-          <>
-            <h4>Quality</h4>
-            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px' }}>Poor</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '-5px' }}>Good</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px' }}>Excellent</div>
-                </div>
-              </div>
-              <div style={{ position: 'absolute', left: `${quality}%`, marginLeft: '-1px', zIndex: 2 }}>
-                <VerticalLine />
-              </div>
-            </div>
-          </>
-        )}
-
-        {size && (
-          <>
-            <h4>Size</h4>
-            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px' }}>Small</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '-5px' }}>Perfect</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px' }}>Large</div>
-                </div>
-              </div>
-              <div style={{ position: 'absolute', left: `${size}%`, marginLeft: '-1px', zIndex: 2 }}>
-                <VerticalLine />
-              </div>
-            </div>
-          </>
-        )}
-
-        {fit && (
-          <>
-            <h4>Fit</h4>
-            <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'flex-start', marginTop: '-25px', position: 'relative' }}>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px' }}>Small</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '-5px' }}>Perfect</div>
-                </div>
-              </div>
-              <div style={{ width: '33.33%', zIndex: 1 }}>
-                <div style={{ position: 'relative' }}>
-                  <HorizontalLine />
-                  <div style={{ fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px' }}>Large</div>
-                </div>
-              </div>
-              <div style={{ position: 'absolute', left: `${fit}%`, marginLeft: '-1px', zIndex: 2 }}>
-                <VerticalLine />
-              </div>
-            </div>
-          </>
-        )}
       </div>
     </>
   );

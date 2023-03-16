@@ -11,7 +11,7 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
         <div className="div__img_gallery_small">
           {gallery.length ? gallery.map((photo) => {
             return (
-              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url) }}></img>
+              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url) }} key={photo.thumbnail_url}></img>
             )
           }) : null}
 
@@ -25,11 +25,7 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
         <div className="div__img_gallery_small">
           {photos[0].photos ? photos[0].photos.map((photo) => {
             return (
-
-
-              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url) }}></img>
-
-
+              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url) }} key={photo.thumbnail_url}></img>
             )
           }) : null}
 

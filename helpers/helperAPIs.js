@@ -128,16 +128,13 @@ let getReviews = (productId) => {
     }
   }
 
-  let axiosRequest = axios(options);
-
-  let axiosPromise = axiosRequest
+  return axios(options)
     .then((response) =>
       response.data
     )
     .catch(err => {
       console.log(`error with ${productId}`, err)
     })
-  return axiosPromise;
 }
 
 

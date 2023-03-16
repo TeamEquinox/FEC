@@ -12,7 +12,7 @@ const Style = ({ styles, setGallery, setLargeImage }) => {
   const [currPrice, setCurrPrice] = useState('')
   const [salePrice, setSalePrice] = useState('')
   const [onSale, setOnSale] = useState(true)
-
+  const [size, setSize] = useState([])
 
   return (
     < div className="div__size_quant">
@@ -22,17 +22,28 @@ const Style = ({ styles, setGallery, setLargeImage }) => {
         color: onSale ? "red" : "black"
       }}>{styles ? salePrice : null}</div>
       <p>Style > {styles ? currStyle : null}</p>
+      <div className="div__thumbnails">
+        {styles ? styles.map((style) => {
+          return (
+            <StyleList style={style} setCurrStyle={setCurrStyle} setCurrPrice={setCurrPrice} setSalePrice={setSalePrice} setOnSale={setOnSale} setGallery={setGallery} setLargeImage={setLargeImage} key={style.style_id} setSize={setSize} />
+          )
+        }) : null}
+      </div>
 
-      {styles ? styles.map((style) => {
-        return (
-          <StyleList style={style} setCurrStyle={setCurrStyle} setCurrPrice={setCurrPrice} setSalePrice={setSalePrice} setOnSale={setOnSale} setGallery={setGallery} setLargeImage={setLargeImage} key={style.style_id} />
-        )
-      }) : null}
       <select className="select__size">
         <option>Select Size</option>
+        {Object.values(size).map((value) => {
+          console.log('values', value)
+          return (<option>{value.size}</option>)
+        })}
       </select>
       <select className="select__quantity">
         <option >Quantity</option>
+        {Object.values(size).map((value) => {
+          console.log('values', value)
+          return (<option>{value.quantity}</option>)
+        })}
+
       </select>
       <br></br>
       <br></br>

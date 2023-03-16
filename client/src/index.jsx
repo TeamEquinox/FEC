@@ -14,6 +14,7 @@ const App = () => {
 
   const [product, setProduct] = useState([])
   const [relatedData, setRelatedData] = useState([]);
+  const [dataToCompare, setDataToCompare] =  useState ({});
   
 
   const pageLoad = () => {
@@ -32,7 +33,7 @@ const App = () => {
   }
 
   const getRelatedProducts = (id) => {
-    axios.get('relatedProducts', { params: { data: id } })
+    axios.get('/relatedProducts', { params: { data: id } })
       .then((data) => {
         // console.log('recieved data in the client getRelatedProducts get request', data)
         setRelatedData(data.data);
@@ -40,6 +41,14 @@ const App = () => {
       .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
   }
 
+  const getAndUpdateCurrentProduct = (id) => {
+    axios.get('/compare', { params: { data: id } })
+    .then((data) => {
+      console.log('recieved data in the client updateCurrentProduct get request', data)
+      setDataToCompare(data.data);
+    })
+    .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
+  }
 
   useEffect(() => {
     // console.log('pageload use effect')
@@ -55,7 +64,7 @@ const App = () => {
       <div>
         <h1>Equinox Apparel</h1>
         <ProductOverview product={product} />
-        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} />
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndUpdateCurrentProduct} compare={dataToCompare}/>
         <ReviewList product={product} />
         <ProductBreakdown product={product} />
         <QuestionsList />

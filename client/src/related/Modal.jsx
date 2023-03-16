@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Modal = ({ setShowModal }) => {
+const Modal = ({ setShowModal, compare }) => {
 
+  console.log('COMPARE--------------->', compare);
+  
   const handleCancelClick = () => {
     setShowModal(false);
   }

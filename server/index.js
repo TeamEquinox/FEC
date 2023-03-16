@@ -20,11 +20,11 @@ app.get('/products', (req, res) => {
   let dataToSend = [];
   helperAPI.getProducts()
     .then((data) => {
-      console.log('data', data)
+      // console.log('data', data)
       // res.send(data)
       helperAPI.getProductsById(data[0].id)
         .then((data2) => {
-          console.log('data2', data2)
+          // console.log('data2', data2)
           // res.send(data2)
           dataToSend.push(data2)
           helperAPI.getProductsByStyle(data2.id)
@@ -36,7 +36,7 @@ app.get('/products', (req, res) => {
                   helperAPI.getMetaReviewData(data2.id)
                   .then((data5) => {
                     dataToSend.push(data5)
-                    console.log('queried data: ', data5)
+                    // console.log('queried data: ', data5)
                     res.send(dataToSend)
                   })
                 })
@@ -58,6 +58,16 @@ app.get('/relatedProducts', (req, res) => {
     res.status(200).send(data2);
  })
  .catch((err) => res.status(400).send(err));
+})
+
+app.get('/compare', (req, res) => {
+  // console.log('related Products Data from successfull getAndUpdateCurrentProduct call ', req.query.data);
+  helperAPI.getProductsById(req.query.data)
+  .then((data) => {
+       console.log('related Products Data from successfull compare call ', data);
+      res.status(200).send(data);
+    })
+    .catch((err) => res.status(400).send(err));
 })
 
 app.post('/', (req, res) => {

@@ -4,7 +4,7 @@ import StarRating from '../starRatings.jsx';
 // import configRatings from '../../../../helpers/relatedProductHelpers.js';
 
 
-const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
+const Products = ({ relatedData, setShowModal, updates }) => {
   // console.log('inside Products Component', relatedData);
 
   var configRatings = (obj) => {
@@ -30,9 +30,10 @@ const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
     slider.scrollLeft = slider.scrollLeft + 190
   }
 
-  const handleStarClick = (e) => {
+  const handleStarClick = (item) => {
     setShowModal(true);
-    console.log('eeeeeeee======-=-->>>', e);
+    updates(item);
+    // console.log('eeeeeeee======-=-->>>', item);
   }
 
   return (
@@ -48,8 +49,8 @@ const Products = ({ relatedData, setShowModal, setCompareRelated }) => {
           // console.log('ITEM=========>', item)
           return <div key={item.id} className="div_realated_card">
             <div className="div_related_image_action_container">
-              <RxStar className="icon_related_action" value="HELLO!!!!" onClick={ () => {
-                handleStarClick(item)} }/>
+              <RxStar className="icon_related_action" onClick={ () => {
+                handleStarClick(item.id)} }/>
               <img className="img_related" src={item.photo}></img>
             </div>
             <div className="div_realated_info_container">

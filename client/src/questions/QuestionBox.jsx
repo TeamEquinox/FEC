@@ -48,26 +48,3 @@ const QuestionBox = (props) => {
 }
 
 export default QuestionBox;
-// let sampleAns = {
-//   "question": "1",
-//   "page": 0,
-//   "count": 5,
-//   "results": [
-//     {
-//       "answer_id": 8,
-//       "body": "What a great question!",
-//       "date": "2018-01-04T00:00:00.000Z",
-//       "answerer_name": "metslover",
-//       "helpfulness": 8,
-//       "photos": [],
-//     },
-//     {
-//       "answer_id": 5,
-//       "body": "Something pretty durable but I can't be sure",
-//       "date": "2018-01-04T00:00:00.000Z",
-//       "answerer_name": "metslover",
-//       "helpfulness": 5,
-//       "photos": []
-//     }
-//   ]
-// }

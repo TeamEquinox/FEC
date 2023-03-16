@@ -2,6 +2,13 @@ body {
   font-family: ubuntu;
 }
 
+.section__announcement {
+  position: absolute;
+  width: 50%;
+  left: 500px;
+  padding-bottom: 205px;
+}
+
 .div__product {
   display: block;
   left: 800px;
@@ -19,12 +26,12 @@ IMAGE CSS
 .div__image_container {
   display: inline-block;
   position: relative;
-  bottom: 230px;
+  bottom: 375px;
   width: 50%;
 }
 
 .img__gallery {
-  width: 400px;
+  width: 450px;
   height: auto;
 }
 
@@ -37,15 +44,14 @@ IMAGE CSS
 }
 
 .div__large_image {
-  /* width: 50%; */
+  width: 450px;
+  height: auto;
   display: inline-block;
   position: relative;
   left: 150px
 }
 
 .div__img_gallery_small {
-  /* width: 20%;
-  height: auto; */
   display: inline-block;
   position: relative;
 }
@@ -58,8 +64,6 @@ IMAGE CSS
 }
 
 .img__style {
-  display: inline-block;
-  position: relative;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -68,11 +72,18 @@ IMAGE CSS
 /*
 STYLE CSS
 */
+.div__thumbnails {
+  width: 65%;
+  height: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+}
 
 .div__style_container {
-  display: inline-block;
+  width: 25%;
+  box-sizing: border-box;
   position: relative;
-  padding-right: 10px;
 }
 
 /*
@@ -80,29 +91,41 @@ CART CSS
 */
 
 .select__size {
+  border-radius: 0px;
+  width: 150px;
+  height: 45px;
   position: absolute;
   left: -10px;
-  top: 250px
-    /* margin-right: 10px; */
+  top: 460px;
+
 }
 
 .select__quantity {
+  border-radius: 0px;
   position: absolute;
-  left: 140px;
-  top: 250px
+  width: 150px;
+  height: 45px;
+  left: 150px;
+  top: 460px;
 }
 
 .button__cart {
+  border-radius: 0px;
   margin-right: 10px;
   position: absolute;
   left: -10px;
+  top: 535px;
+  width: 150px;
+  height: 45px;
 }
 
 .button__star {
+  border-radius: 0px;
   position: absolute;
-
   left: 150px;
-
+  top: 535px;
+  width: 100px;
+  height: 45px;
 }
 
 /*
@@ -110,16 +133,19 @@ DESCRIPTION CSS
 */
 .div__description {
   position: absolute;
-  top: 830px;
+  top: 960px;
   width: 50%
 }
 
 .div__feature {
   display: inline-block;
   position: absolute;
-  top: 800px;
+  top: 920px;
 }
 
+/*
+END OF PRODUCT CSS
+*/
 .list {
   display: block;
   border-radius: 5px;

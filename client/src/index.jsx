@@ -52,7 +52,8 @@ const App = () => {
   if (product.length) {
     return (
       <div>
-        <h1>Equinox Apparel</h1>
+        <h1><b>Equinox Apparel</b></h1>
+        <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
         <ProductOverview product={product} />
         <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} />
         <ReviewList product={product} />

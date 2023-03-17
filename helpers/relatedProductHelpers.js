@@ -92,8 +92,34 @@ let configRatings = (obj) => {
   return result;
 }
 
-// let modal = () => {
-  
+// let modal = (currentProduct, relatedProduct) => {
+//   var result = [
+//     [currentProduct.name, 'Name', relatedProduct.name],
+//     [currentProduct.category, 'Category', relatedProduct.category],
+//     [currentProduct.description, 'Description', relatedProduct.description],
+//   ];
+//   var currentProductFeatures = currentProduct.features;
+//   var relatedProductFeatures = relatedProduct.features;
+//   var featureWithMoreItems = currentProductFeatures;
+//   var usingCurrentProductFeature = true;
+//   if (relatedProductFeatures.length > currentProductFeatures.length) {
+//     featureWithMoreItems = relatedProductFeatures;
+//     usingCurrentProductFeature = false;
+//   }
+//   for (var i = 0; i < featureWithMoreItems.length; i++) {
+//     var feature = featureWithMoreItems[i]feature;
+//     var value = featureWithMoreItems[i].value;
+//     var secondFeature;
+//     var secondValue;
+//     if (usingCurrentProductFeature) {
+//       secondFeature = relatedProductFeatures[i].feature;
+//       secondValue = relatedProductFeatures[i].value;
+//     } else {
+//       secondFeature = currentProductFeatures[i].feature;
+//       secondValue = currentProductFeatures[i].value;
+//     }
+
+//   }
 // }
 //export helper function ====================
 module.exports.relatedProducts = relatedProducts;

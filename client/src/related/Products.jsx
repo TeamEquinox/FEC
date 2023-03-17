@@ -35,40 +35,47 @@ const Products = ({ relatedData, setShowModal, updates }) => {
     updates(item);
     // console.log('eeeeeeee======-=-->>>', item);
   }
-
-  return (
-    <div className="div_related_container">
-      <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
-      <div id="slider" className="div_slider">
-      {
-        relatedData.map((item) => {
-          var price = item.original_price;
-          if (item.sales_price !== 'N/A') {
-            price = item.sales_price;
-          }
-          // console.log('ITEM=========>', item)
-          return <div key={item.id} className="div_realated_card">
-            <div className="div_related_image_action_container">
-              <RxStar className="icon_related_action" onClick={ () => {
-                handleStarClick(item.id)} }/>
-              <img className="img_related" src={item.photo}></img>
-            </div>
-            <div className="div_realated_info_container">
-              <div className="div_related_category related_card">Category: {item.category}</div>
-              <div className="div_related_name related_card">Name: {item.name}</div>
-              <div className="div_related_price related_card">Price: {price}</div>
-              <br></br>
-              <StarRating rating={configRatings(item.rating)} pixels={10} className="div_related_rating"/>
-            </div>
-          </div>
-        })
-      }
+  if (!relatedData) {
+    return (
+      <div>
+        Loading.....!
       </div>
-      <RxCaretRight onClick={slideRight} className="div_right_caret"/>
-      {/* <Modal /> */}
-    </div>
-    
-  )
+    )
+  } else {
+    return (
+      <div className="div_related_container">
+        <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
+        <div id="slider" className="div_slider">
+        {
+          relatedData.map((item) => {
+            var price = item.original_price;
+            if (item.sales_price !== 'N/A') {
+              price = item.sales_price;
+            }
+            // console.log('ITEM=========>', item)
+            return <div key={item.id} className="div_realated_card">
+              <div className="div_related_image_action_container">
+                <RxStar className="icon_related_action" onClick={ () => {
+                  handleStarClick(item.id)} }/>
+                <img className="img_related" src={item.photo}></img>
+              </div>
+              <div className="div_realated_info_container">
+                <div className="div_related_category related_card">Category: {item.category}</div>
+                <div className="div_related_name related_card">Name: {item.name}</div>
+                <div className="div_related_price related_card">Price: {price}</div>
+                <br></br>
+                <StarRating rating={configRatings(item.rating)} pixels={10} className="div_related_rating"/>
+              </div>
+            </div>
+          })
+        }
+        </div>
+        <RxCaretRight onClick={slideRight} className="div_right_caret"/>
+        {/* <Modal /> */}
+      </div>
+      
+    )
+  }
 }
 
 export default Products;

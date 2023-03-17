@@ -40,7 +40,7 @@ const Style = ({ styles, setGallery, setLargeImage }) => {
       <select className="select__quantity">
         <option >Quantity</option>
         {Object.values(size).map((value) => {
-          console.log('values', value)
+          // console.log('values', value)
           return (<option key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>{value.quantity}</option>)
         })}
 

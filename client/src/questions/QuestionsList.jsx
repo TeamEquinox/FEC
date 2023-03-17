@@ -77,10 +77,10 @@ let sampleQs = {
 
 const QuestionsList = () => {
 
-  const [ questions, setQuestions ] = useState([]);
-  const [ displayQs, setDisplayQs ] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [displayQs, setDisplayQs] = useState([]);
   // var qInd = 0;
-  const [ displayIndex, setDisplayIndex ] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0);
   // to retrieve questions, make API GET call to /qa/questions
   useEffect(() => {
     setQuestions(sampleQs.results);
@@ -97,8 +97,8 @@ const QuestionsList = () => {
         {/* map over retrieved question list and pass them to the individual question item */}
         This is the QuestionsList
         {questions.map((q) => {
-          console.log('this is the individual question', q);
-          return <QuestionBox question={q} key={q.question_id}/>
+          // console.log('this is the individual question', q);
+          return <QuestionBox question={q} key={q.question_id} />
         })}
         {questions.length > 2 && (<button type="button">More AnsweredQuestions</button>)}
       </div>

@@ -72,6 +72,14 @@ app.get('/answers', (req, res) => {
   questionsAPI.getAnswers(req, res);
 })
 
+app.post('/questions', (req, res) => {
+  questionsAPI.postQuestion(req, res);
+})
+
+app.post('/answers', (req, res) => {
+  questionsAPI.postAnswer(req, res);
+})
+
 app.post('/', (req, res) => {
   // console.log('hello from app.post')
 

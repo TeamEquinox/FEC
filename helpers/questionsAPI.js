@@ -10,8 +10,8 @@ let getQuestions = (req, res) => {
       'Authorization': `${process.env.TOKEN}`
     },
     params: {
-      // product_id: 71698,
-      product_id: Number(req.query.productId),
+      product_id: 71698,
+      // product_id: Number(req.query.productId),
       page: 1,
       count: 5
     }
@@ -44,6 +44,7 @@ let getAnswers = (req, res) => {
   axios(options)
     .then((data) => {
       // on success, res.send the body
+      // console.log('ANSWERS', data.data);
       res.send(data.data);
     })
     .catch((err) => {
@@ -52,5 +53,61 @@ let getAnswers = (req, res) => {
     });
 }
 
+var postQuestion = (req, res) => {
+  var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
+  let options = {
+    method: 'post',
+    url: url,
+    headers: {
+      'Authorization': `${process.env.TOKEN}`
+    },
+    data: {
+      body: req.body.qBody,
+      name: req.body.askerName,
+      email: req.body.email,
+      product_id: req.body.product_id
+    }
+  }
+
+  axios(options)
+    .then((created) => {
+      res.send('you tried to post a question. how cute!')
+    })
+    .err((err) => {
+      console.log(`error posting new question about product ${req.body.product_id}`, err)
+      res.send(err);
+    })
+
+}
+
+var postAnswer = (req, res) => {
+  var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/answers`;
+  let options = {
+    method: 'post',
+    url: url,
+    headers: {
+      'Authorization': `${process.env.TOKEN}`
+    },
+    data: {
+      body: req.body.aBody,
+      name: req.body.answererName,
+      email: req.body.email,
+      photos: req.body.photosUrls,
+      product_id: req.body.product_id
+    }
+  }
+
+  axios(options)
+    .then((created) => {
+      res.send('you tried to post an answer! how sweet!')
+    })
+    .err((err) => {
+      console.log(`error posting answer to question ${req.query.questionId}`, err);
+      res.send(err)
+    })
+}
+
 module.exports.getQuestions = getQuestions;
 module.exports.getAnswers = getAnswers;
+module.exports.postAnswer = postAnswer;
+module.exports.postQuestion = postQuestion;

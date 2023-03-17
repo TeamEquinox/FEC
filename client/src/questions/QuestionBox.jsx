@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx'
 import axios from 'axios';
+import AnswerModal from './AnswerModal.jsx';
 
 
 const QuestionBox = (props) => {
 
   const [ answers, setAnswers ] = useState([]);
+  const [ showAnsModal, setShowAnsModal ] = useState(false);
   // make API call to answers endpoint using question id (passed as key)
   var getAnswers = (questionId) => {
     axios.get('/answers/', { params: { questionId } })
@@ -18,6 +20,12 @@ const QuestionBox = (props) => {
       });
   }
 
+  // control answer modal
+  var changeWindow = () => {
+    setShowAnsModal(!showAnsModal);
+  }
+
+  // set answers once questions have loaded
   useEffect(() => {
     // setAnswers(sampleAns.results);
     getAnswers(props.question.question_id);
@@ -41,7 +49,8 @@ const QuestionBox = (props) => {
         {answers.map((ans) => {
           return <Answers answer={ans} key={ans.answer_id}/>
         })}
-      <button type="button">Add Answer</button>
+      <AnswerModal show={showAnsModal} closeModal={changeWindow}/>
+      <button type="button" onClick={changeWindow}>Add Answer</button>
       </div>)}
     </div>
   )

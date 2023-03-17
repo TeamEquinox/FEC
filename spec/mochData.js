@@ -493,5 +493,49 @@ module.exports = {
         }
       }
     }
-  ]
+  ],
+  question: {
+    product_id: '71698',
+    results: [
+      {
+        question_id: 644690,
+        question_body: 'what is love?',
+        question_date: '2023-01-06T00:00:00.000Z',
+        asker_name: 'justin',
+        question_helpfulness: 9,
+        reported: false,
+        answers: {
+          question: '644690',
+          page: 1,
+          count: 5,
+          results: [
+            {
+              answer_id: 5990043,
+              body: 'Baby dont hurt me',
+              date: '2023-01-06T00:00:00.000Z',
+              answerer_name: 'no more',
+              helpfulness: 3,
+              photos: []
+            },
+            {
+              answer_id: 5990131,
+              body: 'POOP',
+              date: '2023-01-29T00:00:00.000Z',
+              answerer_name: 'POOPMASTER',
+              helpfulness: 1,
+              photos: []
+            },
+            {
+              answer_id: 5990130,
+              body: 'Creating another one',
+              date: '2023-01-29T00:00:00.000Z',
+              answerer_name: 'Kevin',
+              helpfulness: 0,
+              photos: []
+            }
+          ]
+        }
+      }
+    ]
+  }
 }

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
-import ProductOverview from './client/src/product/ProductOverview.jsx';
+import ProductOverview from '../client/src/product/ProductOverview.jsx';
 
 let product = [
   {

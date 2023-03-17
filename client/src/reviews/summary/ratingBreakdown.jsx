@@ -87,7 +87,7 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
       <div style={{ width: '300px' }}>
         <h3>Overall Rating: {numOfStars.toFixed(1)}</h3>
         <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
-        <h5>Which means {(recommendCount / numOfReviews * 100).toFixed(0)}% of buyers recommend this! </h5>
+        <h5>{(recommendCount / numOfReviews * 100).toFixed(0)}% of reviews recommend this product! </h5>
 
         <StarRating rating={numOfStars} pixels={15} style={{ marginTop: '-20px' }} />
 

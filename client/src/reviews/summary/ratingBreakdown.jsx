@@ -25,7 +25,8 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
 
   // assign values from product
   // if (breakdown !== undefined) {
-  const [filteredReviews, setFilteredReviews] = useState([])
+  const [filteredReviews, setFilteredReviews] = useState([]) // current filtered reviews if any
+  const [currentFilters, setCurrentFilters] = useState([]); // stars clicked so far for filtering
   const [displayedReviews, setDisplayedReviews] = useState([]);
 
 
@@ -55,24 +56,34 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
     bar2.style.width = `${Number(breakdown.ratings[2]) / numOfReviews * 100}%`;
     bar1.style.width = `${Number(breakdown.ratings[1]) / numOfReviews * 100}%`;
   }
+
+  const ratingsFilter = new Set();
+
   // }
 
   const clickHandler = (stars) => {
     const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
+    console.log('User clicked: ', stars, Promise.resolve(currentFilters.includes(stars)))
     let newDisplayedReviews;
-    if (displayedReviews.includes(...currentReviewCollection)) {
+    let newStars = [];
+    if (currentFilters.includes(stars)) {
       newDisplayedReviews = displayedReviews.filter(review => !currentReviewCollection.includes(review));
+      newStars = currentFilters.filter(star => star !== stars);
+      console.log('removing filters: ', newStars)
+
+      setCurrentFilters(newStars);
     } else {
       newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
+      console.log('adding filters: ', [...currentFilters, stars])
+      setCurrentFilters([...currentFilters, stars]);
     }
+
     if (newDisplayedReviews.length === 0) {
       setDisplayedReviews(reviewList);
     } else {
       setDisplayedReviews(newDisplayedReviews);
     }
   }
-
-
 
   useEffect(() => {
     setFilteredReviews([...new Set(displayedReviews)])
@@ -87,7 +98,7 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
       <div style={{ width: '300px' }}>
         <h3>Overall Rating: {numOfStars.toFixed(1)}</h3>
         <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
-        <h5>Which means {(recommendCount / numOfReviews * 100).toFixed(0)}% of buyers recommend this! </h5>
+        <h5>{(recommendCount / numOfReviews * 100).toFixed(0)}% of reviews recommend this product! </h5>
 
         <StarRating rating={numOfStars} pixels={15} style={{ marginTop: '-20px' }} />
 
@@ -107,6 +118,24 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
           </tbody>
         </table>
 
+        <>
+          {currentFilters.length > 0 && (
+            <>
+              <div className="applied-filters" style={{ display: "inline" }}>Applied filters: </div>
+              <div style={{ display: "inline" }}>
+                {currentFilters.map((star, index) => (
+                  <span key={star} className="applied-filters">
+                    {index > 0 && ", "}
+                    {star}
+                  </span>
+                ))}
+              </div>
+              <button onClick={() => setCurrentFilters([])} className="applied-filters-button" style={{ display: "inline" }}>Clear filters</button>
+            </>
+          )}
+        </>
+
+
         {/* displays the Size, Width, Comfort, Quality, Length, and Fit IF they exist */}
         <SingleBarDisplay element={comfort} headerText={"Comfort"} lowRating={"Physical Pain"} highRating={"Nirvana"} />
         <SingleBarDisplay element={length} headerText={"Length"} lowRating={"For Shorties"} highRating={"For Giants"} />
@@ -115,7 +144,7 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
         <MultiBarDisplay element={size} headerText={"Size"} />
         <MultiBarDisplay element={fit} headerText={"Fit"} />
 
-        <IndividualReview reviews={filteredReviews}/>
+        <IndividualReview reviews={filteredReviews} />
 
       </div>
     </>

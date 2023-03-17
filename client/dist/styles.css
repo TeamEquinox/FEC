@@ -382,6 +382,18 @@ START Review CSS======================^
   z-index: 1;
 }
 
+.applied-filters {
+  font-size: 12px;
+}
+
+.applied-filters-button {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 10px;
+}
 /*
 END Review CSS======================^
 */

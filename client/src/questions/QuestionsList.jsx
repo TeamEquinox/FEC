@@ -5,9 +5,9 @@ import axios from 'axios';
 
 const QuestionsList = (props) => {
 
-  const [ questions, setQuestions ] = useState([]);
-  const [ displayQs, setDisplayQs ] = useState([]);
-  const [ displayIndex, setDisplayIndex ] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [displayQs, setDisplayQs] = useState([]);
+  const [displayIndex, setDisplayIndex] = useState(0);
   // to retrieve questions, make API GET call to /qa/questions
   var getQuestions = (productId) => {
     axios.get('/questions/', { params: { productId } })
@@ -46,7 +46,7 @@ const QuestionsList = (props) => {
           {/* map over retrieved question list and pass them to the individual question item */}
           {questions.map((q) => {
             // console.log('this is the individual question', q);
-            return <QuestionBox question={q} key={q.question_id}/>
+            return <QuestionBox question={q} key={q.question_id} />
           })}
           <button type="button">Ask a Question!</button>
           {questions.length > 2 && (<button type="button">More AnsweredQuestions</button>)}

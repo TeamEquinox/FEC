@@ -13,7 +13,7 @@ const RelatedProducts = ({ relatedData, product, update, compare }) => {
 
 
   // const [compareRelated, setCompareRelated] = useState({});
-  // console.log('product---->', product);
+  // console.log('Inside Related product looking at compare---->', compare);
   // console.log('compareRelated---->', compareRelated)
 
   //returning components to index.jsx=======
@@ -21,7 +21,7 @@ const RelatedProducts = ({ relatedData, product, update, compare }) => {
     <div id="related_outfits_container">
       <Product relatedData={relatedData} setShowModal={setShowModal} updates={update}/> 
       <Outfits/>
-      {showModal ? <Modal setShowModal={setShowModal} compare={[product[0], compare]}/> : null}
+      {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]}/> : null}
     </div>
   )
 }

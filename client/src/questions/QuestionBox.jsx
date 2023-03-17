@@ -1,37 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx'
+import axios from 'axios';
 
-let sampleAns = {
-  "question": "1",
-  "page": 0,
-  "count": 5,
-  "results": [
-    {
-      "answer_id": 8,
-      "body": "What a great question!",
-      "date": "2018-01-04T00:00:00.000Z",
-      "answerer_name": "metslover",
-      "helpfulness": 8,
-      "photos": [],
-    },
-    {
-      "answer_id": 5,
-      "body": "Something pretty durable but I can't be sure",
-      "date": "2018-01-04T00:00:00.000Z",
-      "answerer_name": "metslover",
-      "helpfulness": 5,
-      "photos": []
-    }
-  ]
-}
 
 const QuestionBox = (props) => {
 
   const [ answers, setAnswers ] = useState([]);
   // make API call to answers endpoint using question id (passed as key)
+  var getAnswers = (questionId) => {
+    axios.get('/answers/', { params: { questionId } })
+      .then((aData) => {
+        console.log('this is answers', aData);
+        setAnswers(aData.data.results);
+      })
+      .catch((err) => {
+        console.log(`error retrieving answers for question ${props.question.question_id}`, err);
+      });
+  }
 
   useEffect(() => {
-    setAnswers(sampleAns.results);
+    // setAnswers(sampleAns.results);
+    getAnswers(props.question.question_id);
   }, []);
 
   return (
@@ -44,12 +33,16 @@ const QuestionBox = (props) => {
         {props.question.question_helpfulness}
       </span>
       <button type="button" className="report">Report</button>
-      <div className='list answersList'>
+      {answers.length === 0 && (<div>No answers yet!
+        <button type="button">Add Answer</button>
+      </div>)}
+      {answers.length > 0 && (<div className='list answersList'>
       {/* map over results array from answers and pass to answer */}
         {answers.map((ans) => {
           return <Answers answer={ans} key={ans.answer_id}/>
         })}
-      </div>
+      <button type="button">Add Answer</button>
+      </div>)}
     </div>
   )
 }

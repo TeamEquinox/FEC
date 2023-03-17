@@ -20,11 +20,11 @@ app.get('/products', (req, res) => {
   let dataToSend = [];
   helperAPI.getProducts()
     .then((data) => {
-      console.log('data', data)
+      // console.log('data', data)
       // res.send(data)
       helperAPI.getProductsById(data[0].id)
         .then((data2) => {
-          console.log('data2', data2)
+          // console.log('data2', data2)
           // res.send(data2)
           dataToSend.push(data2)
           helperAPI.getProductsByStyle(data2.id)
@@ -36,7 +36,7 @@ app.get('/products', (req, res) => {
                   helperAPI.getMetaReviewData(data2.id)
                   .then((data5) => {
                     dataToSend.push(data5)
-                    console.log('queried data: ', data5)
+                    // console.log('queried data: ', data5)
                     res.send(dataToSend)
                   })
                 })
@@ -60,8 +60,20 @@ app.get('/relatedProducts', (req, res) => {
  .catch((err) => res.status(400).send(err));
 })
 
+app.get('/questions', (req, res) => {
+  // console.log('you are inside the questions get route', req.query);
+  // res.send('i made it into questions');
+  // console.log('INSIDE /QUESTIONS ', req);
+  questionsAPI.getQuestions(req, res);
+})
+
+app.get('/answers', (req, res) => {
+  // console.log('you are in the answers route', req.query);
+  questionsAPI.getAnswers(req, res);
+})
+
 app.post('/', (req, res) => {
-  console.log('hello from app.post')
+  // console.log('hello from app.post')
 
   console.log(req.body)
   res.send('Hello, World!');
@@ -72,12 +84,10 @@ app.get('*', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/questions', (req, res) => {
-  questionsAPI.getQuestions(req, res);
-})
+
 
 app.get('/reviews/:id', (req, res) => {
-  console.log('in /reviews')
+  // console.log('in /reviews')
   helperAPI.getReviews();
 })
 

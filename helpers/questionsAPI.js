@@ -8,6 +8,12 @@ let getQuestions = (req, res) => {
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
     headers: {
       'Authorization': `${process.env.TOKEN}`
+    },
+    params: {
+      // product_id: 71698,
+      product_id: Number(req.query.productId),
+      page: 1,
+      count: 5
     }
   }
 
@@ -15,7 +21,8 @@ let getQuestions = (req, res) => {
   axios(options)
     .then((data) => {
       // on success, res.send the body
-      res.send('this is the questions data', data);
+      // console.log('RETURNED FROM QA/QUESTIONS/ ', data.data)
+      res.send(data.data);
     })
     .catch((err) => {
       console.log('error getting questions', err);
@@ -27,7 +34,7 @@ let getAnswers = (req, res) => {
   let options = {
     method: 'get',
     // look up url params :question_id
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.body.question_id}/answers`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/answers`,
     headers: {
       'Authorization': `${process.env.TOKEN}`
     }
@@ -37,10 +44,10 @@ let getAnswers = (req, res) => {
   axios(options)
     .then((data) => {
       // on success, res.send the body
-      res.send(`this is the answer data for question ${req.body.question_id}`, data);
+      res.send(data.data);
     })
     .catch((err) => {
-      console.log(`error getting answers for question ${req.body.question_id}`, err);
+      console.log(`error getting answers for question ${req.query.questionId}`, err);
       res.send(err);
     });
 }

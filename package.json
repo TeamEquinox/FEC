@@ -19,6 +19,9 @@
     "url": "https://github.com/TeamEquinox/FEC/issues"
   },
   "homepage": "https://github.com/TeamEquinox/FEC#readme",
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",

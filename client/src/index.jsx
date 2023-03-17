@@ -58,7 +58,7 @@ const App = () => {
         <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} />
         <ReviewList product={product} />
         <ProductBreakdown product={product} />
-        <QuestionsList />
+        <QuestionsList product_id={product[0]['id']}/>
       </div >
     )
   } else {
@@ -68,4 +68,4 @@ const App = () => {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'));

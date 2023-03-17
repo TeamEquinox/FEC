@@ -70,6 +70,18 @@ app.get('/compare', (req, res) => {
     .catch((err) => res.status(400).send(err));
 })
 
+app.get('/questions', (req, res) => {
+  // console.log('you are inside the questions get route', req.query);
+  // res.send('i made it into questions');
+  // console.log('INSIDE /QUESTIONS ', req);
+  questionsAPI.getQuestions(req, res);
+})
+
+app.get('/answers', (req, res) => {
+  // console.log('you are in the answers route', req.query);
+  questionsAPI.getAnswers(req, res);
+})
+
 app.post('/', (req, res) => {
   // console.log('hello from app.post')
 
@@ -82,12 +94,10 @@ app.get('*', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/questions', (req, res) => {
-  questionsAPI.getQuestions(req, res);
-})
+
 
 app.get('/reviews/:id', (req, res) => {
-  console.log('in /reviews')
+  // console.log('in /reviews')
   helperAPI.getReviews();
 })
 

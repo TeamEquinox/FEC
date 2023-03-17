@@ -13,7 +13,7 @@ const RelatedProducts = ({ relatedData, product, update, compare }) => {
 
 
   // const [compareRelated, setCompareRelated] = useState({});
-  console.log('product---->', product);
+  // console.log('product---->', product);
   // console.log('compareRelated---->', compareRelated)
 
   //returning components to index.jsx=======

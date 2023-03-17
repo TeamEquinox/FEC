@@ -68,7 +68,7 @@ const App = () => {
         <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndUpdateCurrentProduct} compare={dataToCompare}/>
         <ReviewList product={product} />
         <ProductBreakdown product={product} />
-        <QuestionsList />
+        <QuestionsList product_id={product[0]['id']}/>
       </div >
     )
   } else {

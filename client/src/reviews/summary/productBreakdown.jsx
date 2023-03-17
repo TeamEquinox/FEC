@@ -7,11 +7,15 @@ const axios = require('axios');
 
 const ProductBreakdown = ({ product }) => {
 
-  // console.log('In ProductBreakdown: ', product[3])
+  const [breakdown, setBreakdown] = useState(product[3]);
+  const [reviews, setReviews] = useState(product[2]);
+
+
+  // console.log('In ProductBreakdown: ', product[2].results[2].rating)
   return (
     <>
       <div>This is from the ProductBreakdown</div>
-      <RatingBreakdown breakdown={product[3]}/>
+      <RatingBreakdown breakdown={breakdown} reviews={reviews}/>
       <SortOptions />
     </>
   )

@@ -61,7 +61,7 @@ app.get('/relatedProducts', (req, res) => {
 })
 
 app.get('/questions', (req, res) => {
-  // console.log('you are inside the questions get route', req.query);
+  console.log('you are inside the questions get route', req.query);
   // res.send('i made it into questions');
   // console.log('INSIDE /QUESTIONS ', req);
   questionsAPI.getQuestions(req, res);

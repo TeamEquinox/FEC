@@ -2,6 +2,7 @@ require('dotenv').config();
 const axios = require('axios');
 
 let getQuestions = (req, res) => {
+  var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
   // set options
   let options = {
     method: 'get',
@@ -10,8 +11,8 @@ let getQuestions = (req, res) => {
       'Authorization': `${process.env.TOKEN}`
     },
     params: {
-      product_id: 71698,
-      // product_id: Number(req.query.productId),
+      // product_id: 71701,
+      product_id: Number(req.query.productId),
       page: 1,
       count: 5
     }
@@ -69,12 +70,31 @@ var postQuestion = (req, res) => {
     }
   }
 
-  axios(options)
-    .then((created) => {
-      res.send('you tried to post a question. how cute!')
+  // axios(options)
+  //   .then((created) => {
+  //     res.send('you tried to post a question. how cute!')
+  //   })
+  //   .err((err) => {
+  //     console.log(`error posting new question about product ${req.body.product_id}`, err)
+  //     res.send(err);
+  //   })
+
+  axios.post(url, {
+    body: req.body.qBody,
+    name: req.body.askerName,
+    email: req.body.email,
+    product_id: Number(req.body.product_id)
+  }, {
+    headers: {
+      'Authorization': `${process.env.TOKEN}`
+    }
+  })
+    .then((success) => {
+      // console.log(success);
+      res.status(201).send(success.data);
     })
-    .err((err) => {
-      console.log(`error posting new question about product ${req.body.product_id}`, err)
+    .catch((err) => {
+      console.log('error posting question in server', err);
       res.send(err);
     })
 

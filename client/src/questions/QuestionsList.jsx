@@ -15,7 +15,7 @@ const QuestionsList = (props) => {
   var getQuestions = (productId) => {
     axios.get('/questions/', { params: { productId } })
       .then((qData) => {
-        // console.log('this is questions', qData);
+        console.log('this is questions', qData);
         setQuestions(qData.data.results);
       })
       .catch((err) => {
@@ -39,7 +39,10 @@ const QuestionsList = (props) => {
     return (
       <div className="list">
         <h2>Questions</h2>
-        No questions yet...</div>
+        No questions yet...
+        <button type="button" onClick={changeWindow}>Ask a Question!</button>
+        <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id} getQuestions={getQuestions}/>
+        </div>
     )
   } else {
     return (
@@ -52,7 +55,7 @@ const QuestionsList = (props) => {
             return <QuestionBox question={q} key={q.question_id}/>
           })}
           <button type="button" onClick={changeWindow}>Ask a Question!</button>
-          <QuestionModal show={showModal} closeModal={changeWindow}/>
+          <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id} getQuestions={getQuestions}/>
           {questions.length > 2 && (<button type="button">More AnsweredQuestions</button>)}
         </div>
       </section>

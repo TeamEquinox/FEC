@@ -34,7 +34,7 @@ const QuestionBox = (props) => {
   return (
     <div className='question'>
       <span>{props.question.asker_name}</span>
-      <h3>{props.question.question_body}</h3>
+      <h3>Q: {props.question.question_body}</h3>
       <p>{props.question.question_date}</p>
       <span>Is this helpful?
         <button type="button">Yes!</button>

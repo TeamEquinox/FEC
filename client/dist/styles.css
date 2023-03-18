@@ -230,7 +230,6 @@ Start Related CSS======================>
 
 .div_related_rating {
   left: 5px;
-  left: 5px;
   top: 85%;
 }
 
@@ -269,25 +268,44 @@ Start Related CSS======================>
   scroll-behavior: smooth;
 }
 
-/* .div_modal_Background {
-  width:100dvw;
-  height: 100dvh;
-  background-color: antiquewhite;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 .div_modal_container {
   position: fixed;
+  /* position: absolute; */
+  /* position: relative; */
   /* display: flex; */
   
-  height: 200px;
-  width: 200px;
-  top: 30%;
-  left:50%;
+  height: 250px;
+  width: 320px;
+  top: 0;
+  right:0;
+  left: 0;
+  bottom: 0;
   background-color: antiquewhite;
-
+  overflow:auto;
+  z-index: 9999;
+}
+.div_modal_X_button {
+  position: absolute;
+  left:90%;
+  top: 5px;
+  border-radius: 10px;
+}
+.button_modal {
+  border: none;
+  background-color: antiquewhite;
+}
+.button_modal:hover {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+/* .div_modal_title {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+} */
+.div_modal_body {
+  /* overflow-y: scroll; */
+  /* white-space: nowrap; */
 }
 /*
 END Related CSS======================^

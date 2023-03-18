@@ -41,13 +41,13 @@ const App = () => {
       .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
   }
 
-  const getAndUpdateCurrentProduct = (id) => {
+  const getAndCompareCurrentProduct = (id) => {
     axios.get('/compare', { params: { data: id } })
     .then((data) => {
-      console.log('recieved data in the client updateCurrentProduct get request', data)
+      console.log('recieved data in the client getCurrentProduct get request', data)
       setDataToCompare(data.data);
     })
-    .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
+    .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err))
   }
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const App = () => {
         <h1><b>Equinox Apparel</b></h1>
         <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
         <ProductOverview product={product} />
-        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndUpdateCurrentProduct} compare={dataToCompare}/>
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} setCompare={setDataToCompare} compare={dataToCompare}/>
         <ReviewList product={product} />
         <ProductBreakdown product={product} />
         <QuestionsList product_id={product[0]['id']}/>

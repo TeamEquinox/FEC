@@ -3,25 +3,21 @@ import axios from 'axios';
 import Product from './Products.jsx';
 import Outfits from './Outfits.jsx';
 import Modal from './Modal.jsx';
+// import modal from '../../../helpers/relatedProductHelpers.js';
 
-const RelatedProducts = ({ relatedData, product, update, compare }) => {
+const RelatedProducts = ({ relatedData, product, update, compare, setDataToCompare }) => {
   const [showModal, setShowModal] = useState(false);
   // const [compares, setCompare] = useState([]);
-  
-  
   // setCompare([product[0], compare]);
 
 
-  // const [compareRelated, setCompareRelated] = useState({});
-  // console.log('Inside Related product looking at compare---->', compare);
-  // console.log('compareRelated---->', compareRelated)
-
+  
   //returning components to index.jsx=======
   return (
     <div id="related_outfits_container">
+      {showModal ? <Modal setShowModal={setShowModal} setDataToCompare={setDataToCompare} compares={[product[0], compare]}/> : null}
       <Product relatedData={relatedData} setShowModal={setShowModal} updates={update}/> 
       <Outfits/>
-      {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]}/> : null}
     </div>
   )
 }

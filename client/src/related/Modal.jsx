@@ -98,6 +98,7 @@ const Modal = ({ setShowModal, compares, setDataToCompare }) => {
         </div>
         <div className="div_modal_body">
           <table>
+            <tbody>
             {result.map((element) => {
               return <tr key={element[1]}>
                 <td>{element[0]}</td>
@@ -105,6 +106,7 @@ const Modal = ({ setShowModal, compares, setDataToCompare }) => {
                 <td>{element[2]}</td>
               </tr>
             })}
+            </tbody>
           </table>
         </div>
       </div>

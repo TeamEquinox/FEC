@@ -27,6 +27,7 @@ const QuestionModal = (props) => {
       product_id: props.productId
     })
       .then((success) => {
+        console.log('return from posting question', success);
         props.closeModal();
         props.getQuestions(props.productId);
       })

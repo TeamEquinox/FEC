@@ -73,6 +73,7 @@ app.get('/answers', (req, res) => {
 })
 
 app.post('/questions', (req, res) => {
+  console.log('this is the question to post', req.body);
   questionsAPI.postQuestion(req, res);
 })
 

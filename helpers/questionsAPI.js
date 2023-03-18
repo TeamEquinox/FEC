@@ -11,8 +11,8 @@ let getQuestions = (req, res) => {
       'Authorization': `${process.env.TOKEN}`
     },
     params: {
-      // product_id: 71701,
-      product_id: Number(req.query.productId),
+      product_id: 71698,
+      // product_id: Number(req.query.productId),
       page: 1,
       count: 5
     }
@@ -119,9 +119,9 @@ var postAnswer = (req, res) => {
 
   axios(options)
     .then((created) => {
-      res.send('you tried to post an answer! how sweet!')
+      res.send(created.data)
     })
-    .err((err) => {
+    .catch((err) => {
       console.log(`error posting answer to question ${req.query.questionId}`, err);
       res.send(err)
     })

@@ -227,6 +227,12 @@ END OF PRODUCT CSS
   width: 500px;
 }
 
+.answer {
+  bottom: 20px;
+  border-radius: 5px;
+  border: solid greenyellow;
+}
+
 /*
 Start Related CSS======================>
 */

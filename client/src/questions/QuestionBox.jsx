@@ -49,7 +49,7 @@ const QuestionBox = (props) => {
         {answers.map((ans) => {
           return <Answers answer={ans} key={ans.answer_id}/>
         })}
-      <AnswerModal show={showAnsModal} closeModal={changeWindow}/>
+      <AnswerModal show={showAnsModal} closeModal={changeWindow} productId={props.product_id} questionId={props.question.question_id} getAnswers={getAnswers}/>
       <button type="button" onClick={changeWindow}>Add Answer</button>
       </div>)}
     </div>

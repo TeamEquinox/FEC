@@ -52,7 +52,7 @@ const QuestionsList = (props) => {
           {/* map over retrieved question list and pass them to the individual question item */}
           {questions.map((q) => {
             // console.log('this is the individual question', q);
-            return <QuestionBox question={q} key={q.question_id}/>
+            return <QuestionBox question={q} key={q.question_id} />
           })}
           <button type="button" onClick={changeWindow}>Ask a Question!</button>
           <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id} getQuestions={getQuestions}/>

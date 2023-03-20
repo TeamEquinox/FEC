@@ -5,7 +5,7 @@ import Outfits from './Outfits.jsx';
 import Modal from './Modal.jsx';
 // import modal from '../../../helpers/relatedProductHelpers.js';
 
-const RelatedProducts = ({ relatedData, product, update, compare, setDataToCompare }) => {
+const RelatedProducts = ({ relatedData, product, update, compare}) => {
   const [showModal, setShowModal] = useState(false);
   // const [compares, setCompare] = useState([]);
   // setCompare([product[0], compare]);
@@ -15,7 +15,7 @@ const RelatedProducts = ({ relatedData, product, update, compare, setDataToCompa
   //returning components to index.jsx=======
   return (
     <div id="related_outfits_container">
-      {showModal ? <Modal setShowModal={setShowModal} setDataToCompare={setDataToCompare} compares={[product[0], compare]}/> : null}
+      {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]}/> : null}
       <Product relatedData={relatedData} setShowModal={setShowModal} updates={update}/> 
       <Outfits/>
     </div>

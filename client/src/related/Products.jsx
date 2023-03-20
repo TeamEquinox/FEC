@@ -71,7 +71,6 @@ const Products = ({ relatedData, setShowModal, updates }) => {
         }
         </div>
         <RxCaretRight onClick={slideRight} className="div_right_caret"/>
-        {/* <Modal /> */}
       </div>
       
     )

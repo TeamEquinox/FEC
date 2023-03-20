@@ -7,7 +7,7 @@ const axios = require('axios');
 
 const ProductBreakdown = ({ product }) => {
 
-  const [breakdown, setBreakdown] = useState(product[3]);
+  const [meta, setMeta] = useState(product[3]);
   const [reviews, setReviews] = useState(product[2]);
 
 
@@ -15,7 +15,7 @@ const ProductBreakdown = ({ product }) => {
   return (
     <>
       <div>This is from the ProductBreakdown</div>
-      <RatingBreakdown breakdown={breakdown} reviews={reviews}/>
+      <RatingBreakdown meta={meta} reviews={reviews}/>
       <SortOptions />
     </>
   )

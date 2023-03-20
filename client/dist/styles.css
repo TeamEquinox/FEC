@@ -454,6 +454,56 @@ START Review CSS======================^
   z-index: 1;
 }
 
+.individual-reviews {
+  display: block;
+  border-radius: 10px;
+  border: solid rgb(144, 144, 144);
+  position: relative;
+  margin-bottom: 2px;
+  width: 400px;
+}
+
+.individual-reviews-header {
+  font-weight: bolder;
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+.individual-reviews-recommend {
+  font-weight: lighter;
+  font-size: 12px;
+  position: relative;
+  top: -10px;
+  margin-left: 25px;
+}
+
+.individual-reviews-date {
+  font-size: 12px;
+  text-align: right;
+  float: right;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.individual-reviews-user {
+  margin-top: 0px;
+  margin-left: 15px;
+}
+
+.individual-reviews-body {
+  border-radius: 10px;
+  border: solid #909090;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.individual-reviews-helpfulness {
+  margin-left: 10px;
+  font-size: 10px;
+  font-weight: lighter;
+}
+
 .applied-filters {
   font-size: 12px;
 }
@@ -466,6 +516,7 @@ START Review CSS======================^
   text-decoration: underline;
   font-size: 10px;
 }
+
 /*
 END Review CSS======================^
 */

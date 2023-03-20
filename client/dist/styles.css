@@ -189,6 +189,10 @@ CARET CSS
 /*
 END OF PRODUCT CSS
 */
+
+/* question CSS home ~*~*~*~*~*~*~*~*~*~
+*/
+
 .list {
   display: block;
   border-radius: 5px;
@@ -203,6 +207,30 @@ END OF PRODUCT CSS
 
 .question {
   bottom: 20px;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  padding: 10px;
+  background-color: #fff;
+  width: 500px;
+}
+
+.answer {
+  bottom: 20px;
+  border-radius: 5px;
+  border: solid greenyellow;
 }
 
 /*
@@ -397,3 +425,4 @@ START Review CSS======================^
 /*
 END Review CSS======================^
 */
+

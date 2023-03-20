@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
-import RelatedProducts from '../client/src/related/RelatedProducts.jsx';
+import RelatedProducts from '../client/src/related/RelatedProducts.jsx'; 
 import product from './mochData.js';
 
 /*
@@ -46,7 +46,7 @@ test('use jsdom in this test file', () => {
 });
 
 test('renders component', () => {
-  const { getByText } = render(<RelatedProducts/>)
+  const { getByText } = render(<RelatedProducts product={product}/>)
   expect(getByText(/Name/)).not.toBeNull();
   // screen.debug();
 })
@@ -59,11 +59,11 @@ describe('RelatedProduct', () => {
     // screen.debug();
   })
 
-  it('renders component', () => {
+  it('renders component Name', () => {
     render(<RelatedProducts product={product}/>)
     expect(screen.getByText(/Name/)).toBeInTheDocument();
   })
-
+  
   it('renders component', () => {
     render(<RelatedProducts product={product}/>)
     expect(screen.getByText(/Price/)).toBeInTheDocument();

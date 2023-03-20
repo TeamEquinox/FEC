@@ -80,10 +80,57 @@ let relatedProductInfo = (related) => {
   .catch((err) => err);
 }
 
+let configRatings = (obj) => {
+  var oneStar = Number(obj['1']);
+  var twoStar = Number(obj['2']);
+  var threeStar = Number(obj['3']);
+  var fourStar = Number(obj['4']);
+  var fiveStar = Number(obj['5']);
+  var actualRating = ((oneStar * 1) + (twoStar * 2) + (threeStar * 3) + (fourStar * 4) + (fiveStar * 5));
+  var totalPossibleRating = ((oneStar + twoStar + threeStar + fourStar + fiveStar) * 5);
+  var result = Math.round((actualRating/totalPossibleRating * 5) * 10) / 10;
+  return result;
+}
 
-let modal = () => {
-  
+let convertToObj = (arr) => {
+  var result = {};
+  arr.forEach((obj) => {
+    result[obj.feature] = obj.value;
+  })
+  return result;
+}
+
+let modal = (currentProduct, relatedProduct) => {
+  var result = [
+    [currentProduct.name, 'Name', relatedProduct.name],
+    [currentProduct.category, 'Category', relatedProduct.category],
+    [currentProduct.description, 'Description', relatedProduct.description],
+  ];
+  var currentProductFeatures = currentProduct.features;
+  var relatedProductFeatures = relatedProduct.features;
+  var featureWithMoreItems = currentProductFeatures;
+  var usingCurrentProductFeature = true;
+  // if (relatedProductFeatures.length > currentProductFeatures.length) {
+  //   featureWithMoreItems = relatedProductFeatures;
+  //   usingCurrentProductFeature = false;
+  // }
+  // for (var i = 0; i < featureWithMoreItems.length; i++) {
+  //   var feature = featureWithMoreItems[i]feature;
+  //   var value = featureWithMoreItems[i].value;
+  //   var secondFeature;
+  //   var secondValue;
+  //   if (usingCurrentProductFeature) {
+  //     secondFeature = relatedProductFeatures[i].feature;
+  //     secondValue = relatedProductFeatures[i].value;
+  //   } else {
+  //     secondFeature = currentProductFeatures[i].feature;
+  //     secondValue = currentProductFeatures[i].value;
+  //   }
+
+  // }
 }
 //export helper function ====================
 module.exports.relatedProducts = relatedProducts;
 module.exports.relatedProductInfo = relatedProductInfo;
+module.exports.modal = modal;
+// module.exports.configRatings = configRatings;

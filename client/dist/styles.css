@@ -236,11 +236,15 @@ END OF PRODUCT CSS
 /*
 Start Related CSS======================>
 */
+
 #related_outfits_container {
-  border: 2px solid;
-}
-
-
+  border: 2px solid red;
+  /* position: fixed; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* /* justify-content: center; */
+  /* align-items: center; */
+} 
 .div_related_container {
   /* display:inline-block; */
   position: relative;
@@ -251,7 +255,6 @@ Start Related CSS======================>
 
 
 .div_realated_card {
-  display: inline-block;
   display: inline-block;
   /* border: 2px solid black; */
   width: 175px;
@@ -278,11 +281,14 @@ Start Related CSS======================>
 
 .icon_related_action {
   position: absolute;
-  background-color: black;
+  /* background-color: black; */
   color: white;
   border-radius: 10px;
   left: 85%;
   top: 12px;
+}
+.icon_related_action:hover {
+  background-color: blue;
 }
 
 .div_realated_info_container {
@@ -294,7 +300,6 @@ Start Related CSS======================>
 }
 
 .div_related_rating {
-  left: 5px;
   left: 5px;
   top: 85%;
 }
@@ -334,6 +339,45 @@ Start Related CSS======================>
   scroll-behavior: smooth;
 }
 
+.div_modal_container {
+  position: fixed;
+  /* position: absolute; */
+  /* position: relative; */
+  /* display: flex; */
+  
+  height: 250px;
+  width: 320px;
+  top: 0;
+  right:0;
+  left: 0;
+  bottom: 0;
+  background-color: antiquewhite;
+  overflow:auto;
+  z-index: 9999;
+}
+.div_modal_X_button {
+  position: absolute;
+  left:90%;
+  top: 5px;
+  border-radius: 10px;
+}
+.button_modal {
+  border: none;
+  background-color: antiquewhite;
+}
+.button_modal:hover {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+/* .div_modal_title {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+} */
+.div_modal_body {
+  /* overflow-y: scroll; */
+  /* white-space: nowrap; */
+}
 /*
 END Related CSS======================^
 <<<<<<< HEAD

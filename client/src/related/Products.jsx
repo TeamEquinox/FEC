@@ -1,10 +1,10 @@
 import React from 'react';
 import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
-import {AiFillCaretRight, AiFillCaretLeft} from 'react-icons/Ai'
-import StarRating from '../starRatings.jsx'
+import StarRating from '../starRatings.jsx';
+// import configRatings from '../../../../helpers/relatedProductHelpers.js';
 
 
-const Products = ({ relatedData }) => {
+const Products = ({ relatedData, setShowModal, updates }) => {
   // console.log('inside Products Component', relatedData);
 
   var configRatings = (obj) => {
@@ -29,10 +29,16 @@ const Products = ({ relatedData }) => {
     var slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft + 190
   }
+
+  const handleStarClick = (item) => {
+    setShowModal(true);
+    updates(item);
+    // console.log('eeeeeeee======-=-->>>', item);
+  }
   if (!relatedData) {
     return (
       <div>
-        Loading
+        Loading.....!
       </div>
     )
   } else {
@@ -49,7 +55,8 @@ const Products = ({ relatedData }) => {
             // console.log('ITEM=========>', item)
             return <div key={item.id} className="div_realated_card">
               <div className="div_related_image_action_container">
-                <RxStar className="icon_related_action"/>
+                <RxStar className="icon_related_action" onClick={ () => {
+                  handleStarClick(item.id)} }/>
                 <img className="img_related" src={item.photo}></img>
               </div>
               <div className="div_realated_info_container">
@@ -68,6 +75,6 @@ const Products = ({ relatedData }) => {
       
     )
   }
-  }
+}
 
 export default Products;

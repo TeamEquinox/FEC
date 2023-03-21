@@ -7,15 +7,19 @@ const axios = require('axios');
 
 const ProductBreakdown = ({ product }) => {
 
-  const [breakdown, setBreakdown] = useState(product[3]);
+  const [meta, setMeta] = useState(product[3]);
   const [reviews, setReviews] = useState(product[2]);
 
+  useEffect(() => {
+    setMeta(product[3])
+    setReviews(product[2])
+  }, [product])
 
   // console.log('In ProductBreakdown: ', product[2].results[2].rating)
   return (
     <>
       <div>This is from the ProductBreakdown</div>
-      <RatingBreakdown breakdown={breakdown} reviews={reviews}/>
+      <RatingBreakdown meta={meta} reviews={reviews}/>
       <SortOptions />
     </>
   )

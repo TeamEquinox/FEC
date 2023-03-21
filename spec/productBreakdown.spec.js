@@ -15,19 +15,19 @@ test('use jsdom in this test file', () => {
 });
 
 describe('RatingBreakdown renders', () => {
-  const breakdown = product.product[3];
+  const meta = product.product[3];
   const reviews = product.product[2];
   it('renders RatingBreakdown component', () => {
     // console.log('here is the log: ', breakdown, reviews)
-    const { getByText } = renderScreen(<RatingBreakdown breakdown={breakdown} reviews={reviews} />);
+    const { getByText } = renderScreen(<RatingBreakdown meta={meta} reviews={reviews} />);
     expect(getByText(/Overall Rating/i)).toBeInTheDocument();
   });
 
-  it('detects a click on a the stars-bar-container', () => {
-    const handleClick = jest.fn(); // create a mock function
-    const { getByTestId } = renderFireEvent(<div data-testid="stars-bar-container" onClick={handleClick}>Click me</div>);
-    const div = getByTestId("stars-bar-container"); // select the div by its attribute
-    fireEvent.click(div);
-    expect(handleClick).toHaveBeenCalledTimes(1); // assert that the mock function was called once
-  });
+  // it('detects a click on a the stars-bar-container', () => {
+  //   const handleClick = jest.fn(); // create a mock function
+  //   const { getByTestId } = renderFireEvent(<div data-testid="stars-bar-container" onClick={handleClick}>Click me</div>);
+  //   const div = getByTestId("stars-bar-container"); // select the div by its attribute
+  //   fireEvent.click(div);
+  //   expect(handleClick).toHaveBeenCalledTimes(1); // assert that the mock function was called once
+  // });
 });

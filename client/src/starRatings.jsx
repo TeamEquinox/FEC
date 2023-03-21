@@ -4,10 +4,12 @@ import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 
 /*
-*   Pass in a ranting and pixel size to create the stars
-*     <StarRating rating={3.8} pixels={15} />
+*   Pass in a ranting, pixel size, number of pixels shifted down, and number
+*   of pixels shifted right to create the stars
+*   Default for topMargin is -15px if nothing is passed in
+*     <StarRating rating={3.8} pixels={15} space={-5}/>
 */
-export const StarRating = ({ rating, pixels }) => {
+export const StarRating = ({ rating, pixels, topMargin = -15, leftMargin = 0 }) => {
   const wholeStars = Math.floor(rating)
   const percentFill = 100 - ((rating - wholeStars) * 100);
   let clipPathValue = 0;
@@ -26,7 +28,17 @@ export const StarRating = ({ rating, pixels }) => {
   }
 
   for (var i = 0; i < wholeStars; i++) {
-    stars.push(<FontAwesomeIcon key={i} icon={solidStar} style={{ position: 'absolute', left: i * 20, top: -15, color: '#757575' }} />);
+    stars.push(<FontAwesomeIcon
+      key={i}
+      icon={solidStar}
+      style={{
+        position: 'absolute',
+        left: i * 20 + leftMargin,
+        top: topMargin,
+        color: '#757575'
+      }}
+    />
+    );
   }
 
   for (let i = wholeStars; i < 5; i++) {
@@ -36,8 +48,8 @@ export const StarRating = ({ rating, pixels }) => {
         icon={i < rating ? solidStar : regularStar}
         style={{
           position: 'absolute',
-          left: i * 20,
-          top: -15,
+          left: i * 20 + leftMargin,
+          top: topMargin,
           clipPath: `inset(0 ${i < rating ? clipPathValue : 0}% 0 0)`,
           color: '#757575'
         }}
@@ -49,8 +61,8 @@ export const StarRating = ({ rating, pixels }) => {
         icon={regularStar}
         style={{
           position: 'absolute',
-          left: i * 20,
-          top: -15,
+          left: i * 20 + leftMargin,
+          top: topMargin,
           color: '#757575'
         }}
       />

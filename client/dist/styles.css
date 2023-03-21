@@ -303,7 +303,9 @@ Start Related CSS======================>
   left: 5px;
   top: 85%;
 }
-
+.span_salesPrice {
+  color: red;
+}
 
 .div_left_caret {
   /* border: 2px solid red; */
@@ -469,4 +471,3 @@ START Review CSS======================^
 /*
 END Review CSS======================^
 */
-

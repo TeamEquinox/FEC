@@ -50,6 +50,16 @@ const App = () => {
     .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err))
   }
 
+  const updateCurrentProduct = (id) => {
+    axios.get('/setCurrentProduct', { params: { data: id } })
+    .then((data) => {
+      // console.log('recieved data in the client updateCurrentProduct get request', data)
+      setProduct(data.data);
+      getRelatedProducts(id);
+    })
+    .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err))
+  }
+
   useEffect(() => {
     // console.log('pageload use effect')
     pageLoad();
@@ -65,7 +75,7 @@ const App = () => {
         <div className="div__banner"><h1><b>Equinox Apparel</b></h1></div>
         <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
         <ProductOverview product={product} />
-        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare}/>
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct}/>
         <ReviewList product={product} />
         <ProductBreakdown product={product} />
         <QuestionsList product_id={product[0]['id']}/>

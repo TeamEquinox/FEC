@@ -5,7 +5,7 @@ const Answers = (props) => {
   return (
     <div className='answer'>
       <span>{props.answer.answerer_name}</span>
-      <p>{props.answer.body}</p>
+      <p>A: {props.answer.body}</p>
       <p>{props.answer.date}</p>
       <span>Is this helpful?
         <button type="button">Yes!</button>

@@ -54,28 +54,56 @@ app.get('/relatedProducts', (req, res) => {
    return relatedHelpers.relatedProductInfo(data);
   })
   .then((data2) => {
-  //  console.log('related Products Data from successfull realatedProductsInfo call ', data2);
     res.status(200).send(data2);
  })
  .catch((err) => res.status(400).send(err));
 })
 
+app.get('/compare', (req, res) => {
+  helperAPI.getProductsById(req.query.data)
+  .then((data) => {
+       console.log('related Products Data from successfull compare call ', data);
+      res.status(200).send(data);
+    })
+    .catch((err) => res.status(400).send(err));
+})
+
+app.get('/setCurrentProduct', (req, res) => {
+  relatedHelpers.UpdateDetailsList(req.query.data)
+  .then((data) => {
+    console.log('related Products Data from successfull setCurrentProduct call ', data);
+   res.status(200).send(data);
+ })
+ .catch((err) => res.status(400).send(err));
+})
+
 app.get('/questions', (req, res) => {
-  // console.log('you are inside the questions get route', req.query);
+  console.log('you are inside the questions get route', req.query);
   // res.send('i made it into questions');
   // console.log('INSIDE /QUESTIONS ', req);
   questionsAPI.getQuestions(req, res);
 })
+
+
 
 app.get('/answers', (req, res) => {
   // console.log('you are in the answers route', req.query);
   questionsAPI.getAnswers(req, res);
 })
 
+app.post('/questions', (req, res) => {
+  console.log('this is the question to post', req.body);
+  questionsAPI.postQuestion(req, res);
+})
+
+app.post('/answers', (req, res) => {
+  questionsAPI.postAnswer(req, res);
+})
+
 app.post('/', (req, res) => {
   // console.log('hello from app.post')
 
-  console.log(req.body)
+  // console.log(req.body)
   res.send('Hello, World!');
 })
 

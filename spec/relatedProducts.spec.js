@@ -3,12 +3,12 @@
  */
 
 import * as React from 'react';
-import { render, screen } from '@testing-library/react'; 
+import { render, screen } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
-import RelatedProducts from './client/src/related/RelatedProducts.jsx'; 
+import RelatedProducts from '../client/src/related/RelatedProducts.jsx'; 
 import product from './mochData.js';
 
-/* 
+/*
 A "describe" block can be used to group together multiple tests
 which check the same nodule or function.
  */
@@ -24,7 +24,7 @@ describe("Example tests", function(){
     */
     expect(add(1,1)).toBe(2);
   });
-  
+
   // In addition to expected, "happy path", behaviour as above, you should also test your edge cases
   it("Should return Infinity for numbers of type Number which are very large", function(){
     expect(add(1.6E310, 1)).toBe(Infinity);
@@ -46,20 +46,20 @@ test('use jsdom in this test file', () => {
 });
 
 test('renders component', () => {
-  const { getByText } = render(<RelatedProducts/>)
+  const { getByText } = render(<RelatedProducts product={product}/>)
   expect(getByText(/Name/)).not.toBeNull();
   // screen.debug();
 })
 
 describe('RelatedProduct', () => {
-  
+
   it('Displays the related products component', () => {
     render(<RelatedProducts product={product}/>);
     expect(screen.getByText(/Category/)).toBeInTheDocument();
     // screen.debug();
   })
 
-  it('renders component', () => {
+  it('renders component Name', () => {
     render(<RelatedProducts product={product}/>)
     expect(screen.getByText(/Name/)).toBeInTheDocument();
   })

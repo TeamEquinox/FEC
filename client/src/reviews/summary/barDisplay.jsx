@@ -34,7 +34,7 @@ const VerticalLine = () => {
   )
 }
 
-export const MultiBarDisplay = ({ element, headerText }) => {
+export const MultiBarDisplay = ({ element = 0, headerText }) => {
   return (
     <>
       {element && (
@@ -69,7 +69,7 @@ export const MultiBarDisplay = ({ element, headerText }) => {
   );
 };
 
-export const SingleBarDisplay = ({ element, headerText, lowRating, highRating }) => {
+export const SingleBarDisplay = ({ element = 0, headerText, lowRating, highRating }) => {
   return (
     <>
       {element && (

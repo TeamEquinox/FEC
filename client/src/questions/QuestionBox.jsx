@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx'
 import axios from 'axios';
+import AnswerModal from './AnswerModal.jsx';
 
 
 const QuestionBox = (props) => {
 
   const [ answers, setAnswers ] = useState([]);
+  const [ showAnsModal, setShowAnsModal ] = useState(false);
   // make API call to answers endpoint using question id (passed as key)
   var getAnswers = (questionId) => {
     axios.get('/answers/', { params: { questionId } })
@@ -18,6 +20,12 @@ const QuestionBox = (props) => {
       });
   }
 
+  // control answer modal
+  var changeWindow = () => {
+    setShowAnsModal(!showAnsModal);
+  }
+
+  // set answers once questions have loaded
   useEffect(() => {
     // setAnswers(sampleAns.results);
     getAnswers(props.question.question_id);
@@ -26,7 +34,7 @@ const QuestionBox = (props) => {
   return (
     <div className='question'>
       <span>{props.question.asker_name}</span>
-      <h3>{props.question.question_body}</h3>
+      <h3>Q: {props.question.question_body}</h3>
       <p>{props.question.question_date}</p>
       <span>Is this helpful?
         <button type="button">Yes!</button>
@@ -41,7 +49,8 @@ const QuestionBox = (props) => {
         {answers.map((ans) => {
           return <Answers answer={ans} key={ans.answer_id}/>
         })}
-      <button type="button">Add Answer</button>
+      <AnswerModal show={showAnsModal} closeModal={changeWindow} productId={props.product_id} questionId={props.question.question_id} getAnswers={getAnswers}/>
+      <button type="button" onClick={changeWindow}>Add Answer</button>
       </div>)}
     </div>
   )

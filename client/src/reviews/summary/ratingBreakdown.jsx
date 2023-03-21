@@ -5,10 +5,10 @@ import { MultiBarDisplay } from './barDisplay'
 import IndividualReview from './individualReview.jsx'
 
 
-const RatingBreakdown = ({ breakdown, reviews }) => {
+const RatingBreakdown = ({ meta, reviews }) => {
 
   let reviewList = reviews.results;
-  // console.log('in RatingBreakdown reviewList: ', reviewList)
+  console.log('in RatingBreakdown meta: ', reviews)
 
   // default values
   // let comfort = null;
@@ -24,22 +24,22 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
   // let numOfStars = null;
 
   // assign values from product
-  // if (breakdown !== undefined) {
-  const [filteredReviews, setFilteredReviews] = useState([])
+  // if (meta !== undefined) {
+  const [filteredReviews, setFilteredReviews] = useState([]) // current filtered reviews if any
+  const [filters, setFilters] = useState([]); // stars clicked so far for filtering
   const [displayedReviews, setDisplayedReviews] = useState([]);
 
+  let comfort = meta.characteristics.Comfort ? (meta.characteristics.Comfort.value / 5 * 100) : null
+  let length = meta.characteristics.Length ? (meta.characteristics.Length.value / 5 * 100) : null
+  let width = meta.characteristics.Width ? (meta.characteristics.Width.value / 5 * 100) : null
+  let quality = meta.characteristics.Quality ? (meta.characteristics.Quality.value / 5 * 100) : null
+  let size = meta.characteristics.Size ? (meta.characteristics.Size.value / 5 * 100) : null
+  let fit = meta.characteristics.Fit ? (meta.characteristics.Fit.value / 5 * 100) : null
 
-  let comfort = breakdown.characteristics.Comfort ? (breakdown.characteristics.Comfort.value / 5 * 100) : null
-  let length = breakdown.characteristics.Length ? (breakdown.characteristics.Length.value / 5 * 100) : null
-  let width = breakdown.characteristics.Width ? (breakdown.characteristics.Width.value / 5 * 100) : null
-  let quality = breakdown.characteristics.Quality ? (breakdown.characteristics.Quality.value / 5 * 100) : null
-  let size = breakdown.characteristics.Size ? (breakdown.characteristics.Size.value / 5 * 100) : null
-  let fit = breakdown.characteristics.Fit ? (breakdown.characteristics.Fit.value / 5 * 100) : null
-
-  let rating = (Number(breakdown.ratings[1]) + Number(breakdown.ratings[2]) + Number(breakdown.ratings[3]) + Number(breakdown.ratings[4]) + Number(breakdown.ratings[5])) / 5;
-  let numOfReviews = Number(breakdown.ratings[1]) + Number(breakdown.ratings[2]) + Number(breakdown.ratings[3]) + Number(breakdown.ratings[4]) + Number(breakdown.ratings[5]);
-  let recommendCount = Number(breakdown.recommended['true'])
-  let notRecommendCount = Number(breakdown.recommended['false'])
+  let rating = (Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) + Number(meta.ratings[4]) + Number(meta.ratings[5])) / 5;
+  let numOfReviews = Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) + Number(meta.ratings[4]) + Number(meta.ratings[5]);
+  let recommendCount = Number(meta.recommended['true'])
+  let notRecommendCount = Number(meta.recommended['false'])
   let numOfStars = rating / 100 * 5;
 
   const bar5 = document.getElementById("5star");
@@ -49,30 +49,38 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
   const bar1 = document.getElementById("1star");
 
   if (bar5 || bar4 || bar3 || bar2 || bar1) {
-    bar5.style.width = `${Number(breakdown.ratings[5]) / numOfReviews * 100}%`;
-    bar4.style.width = `${Number(breakdown.ratings[4]) / numOfReviews * 100}%`;
-    bar3.style.width = `${Number(breakdown.ratings[3]) / numOfReviews * 100}%`;
-    bar2.style.width = `${Number(breakdown.ratings[2]) / numOfReviews * 100}%`;
-    bar1.style.width = `${Number(breakdown.ratings[1]) / numOfReviews * 100}%`;
+    bar5.style.width = `${Number(meta.ratings[5]) / numOfReviews * 100}%`;
+    bar4.style.width = `${Number(meta.ratings[4]) / numOfReviews * 100}%`;
+    bar3.style.width = `${Number(meta.ratings[3]) / numOfReviews * 100}%`;
+    bar2.style.width = `${Number(meta.ratings[2]) / numOfReviews * 100}%`;
+    bar1.style.width = `${Number(meta.ratings[1]) / numOfReviews * 100}%`;
   }
+
+  const ratingsFilter = new Set();
   // }
 
   const clickHandler = (stars) => {
     const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
+    console.log('User clicked: ', stars, Promise.resolve(filters.includes(stars)))
     let newDisplayedReviews;
-    if (displayedReviews.includes(...currentReviewCollection)) {
+    let newStars = [];
+    if (filters.includes(stars)) {
       newDisplayedReviews = displayedReviews.filter(review => !currentReviewCollection.includes(review));
+      newStars = filters.filter(star => star !== stars);
+      console.log('removing filters: ', newStars)
+      setFilters(newStars);
     } else {
       newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
+      console.log('adding filters: ', [...filters, stars])
+      setFilters([...filters, stars]);
     }
+
     if (newDisplayedReviews.length === 0) {
       setDisplayedReviews(reviewList);
     } else {
       setDisplayedReviews(newDisplayedReviews);
     }
   }
-
-
 
   useEffect(() => {
     setFilteredReviews([...new Set(displayedReviews)])
@@ -86,10 +94,10 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
     <>
       <div style={{ width: '300px' }}>
         <h3 id="overall-rating">Overall Rating: {numOfStars.toFixed(1)}</h3>
-        <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
-        <h5>Which means {(recommendCount / numOfReviews * 100).toFixed(0)}% of buyers recommend this! </h5>
+        <StarRating rating={numOfStars} pixels={20} />
+        <h5>{(recommendCount / numOfReviews * 100).toFixed(0)}% of reviews recommend this product! </h5>
 
-        <StarRating rating={numOfStars} pixels={15} style={{ marginTop: '-20px' }} />
+
 
         {/* displays the rating bars and handlers clicks to send which bar/rating is clicked to set state */}
         <table>
@@ -101,11 +109,30 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
                   <div className="filled-bar" id={`${stars}star`}></div>
                   <div className="empty-bar"></div>
                 </td>
-                <td className="reviews-text">{breakdown !== undefined ? Number(breakdown.ratings[stars]) + ' Reviews' : 'No reviews'}</td>
+                <td className="reviews-text">{meta !== undefined ? Number(meta.ratings[stars]) + ' Reviews' : 'No reviews'}</td>
               </tr>
             ))}
           </tbody>
         </table>
+
+        <>
+          {filters.length > 0 && (
+            <>
+              <div className="applied-filters" style={{ display: "inline" }}>Applied filters: </div>
+              <div style={{ display: "inline" }}>
+                {filters.map((star, index) => (
+                  <span key={star} className="applied-filters">
+                    {index > 0 && ", "}
+                    {star}
+                  </span>
+                ))}
+              </div>
+              <button onClick={() => setFilters([])} className="applied-filters-button" style={{ display: "inline" }}>Clear filters</button>
+            </>
+          )}
+        </>
+
+        <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
 
         {/* displays the Size, Width, Comfort, Quality, Length, and Fit IF they exist */}
         <SingleBarDisplay element={comfort} headerText={"Comfort"} lowRating={"Physical Pain"} highRating={"Nirvana"} />
@@ -118,6 +145,9 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
         <IndividualReview reviews={filteredReviews} />
 
       </div>
+      <br></br>
+      <br></br>
+      <IndividualReview reviews={filteredReviews} />
     </>
   );
 }

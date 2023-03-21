@@ -5,7 +5,6 @@ const SortOptions = () => {
 
   return (
     <>
-    <div>This is from the SortOptions</div>
     <br></br>
     <br></br>
     <br></br>

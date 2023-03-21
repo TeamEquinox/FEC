@@ -8,26 +8,13 @@ import IndividualReview from './individualReview.jsx'
 const RatingBreakdown = ({ meta, reviews }) => {
 
   let reviewList = reviews.results;
-  console.log('in RatingBreakdown meta: ', reviews)
+  // console.log('in RatingBreakdown reviews, meta: ', reviews, meta)
 
-  // default values
-  // let comfort = null;
-  // let length = null;
-  // let width = null;
-  // let quality = null;
-  // let size = null;
-  // let fit = null;
-  // let rating = null;
-  // let numOfReviews = null;
-  // let recommendCount = null;
-  // let notRecommendCount = null;
-  // let numOfStars = null;
-
-  // assign values from product
-  // if (meta !== undefined) {
   const [filteredReviews, setFilteredReviews] = useState([]) // current filtered reviews if any
   const [filters, setFilters] = useState([]); // stars clicked so far for filtering
   const [displayedReviews, setDisplayedReviews] = useState([]);
+  const [sort, setSort] = useState('');
+
 
   let comfort = meta.characteristics.Comfort ? (meta.characteristics.Comfort.value / 5 * 100) : null
   let length = meta.characteristics.Length ? (meta.characteristics.Length.value / 5 * 100) : null
@@ -42,11 +29,11 @@ const RatingBreakdown = ({ meta, reviews }) => {
   let notRecommendCount = Number(meta.recommended['false'])
   let numOfStars = rating / 100 * 5;
 
-  const bar5 = document.getElementById("5star");
-  const bar4 = document.getElementById("4star");
-  const bar3 = document.getElementById("3star");
-  const bar2 = document.getElementById("2star");
-  const bar1 = document.getElementById("1star");
+  const bar5 = document.getElementById("5star") ?? 0;
+  const bar4 = document.getElementById("4star") ?? 0;
+  const bar3 = document.getElementById("3star") ?? 0;
+  const bar2 = document.getElementById("2star") ?? 0;
+  const bar1 = document.getElementById("1star") ?? 0;
 
   if (bar5 || bar4 || bar3 || bar2 || bar1) {
     bar5.style.width = `${Number(meta.ratings[5]) / numOfReviews * 100}%`;
@@ -56,10 +43,7 @@ const RatingBreakdown = ({ meta, reviews }) => {
     bar1.style.width = `${Number(meta.ratings[1]) / numOfReviews * 100}%`;
   }
 
-  const ratingsFilter = new Set();
-  // }
-
-  const clickHandler = (stars) => {
+  const handleReviewFilter = (stars) => {
     const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
     console.log('User clicked: ', stars, Promise.resolve(filters.includes(stars)))
     let newDisplayedReviews;
@@ -82,6 +66,30 @@ const RatingBreakdown = ({ meta, reviews }) => {
     }
   }
 
+  const handleSortChange = (event) => {
+    console.log(`User selected ${event.target.value}`)
+    if (event.target.value === 'Helpfullness') {
+      let filteredHelpfullness = reviews.results.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      })
+    } else if (event.target.value === 'Newest') {
+      let filteredNewest = reviews.results.sort((a, b) => {
+        let da = new Date(a.date);
+        let db = new Date(b.date);
+        return db - da;
+      })
+    } else {
+      let filteredRelevance = reviews.results.sort((a, b) => {
+        let diffA = Date.now() - new Date(a.date).getTime();
+        let diffB = Date.now() - new Date(b.date).getTime();
+        let scoreA = a.helpfulness / Math.log10(diffA + 1);
+        let scoreB = b.helpfulness / Math.log10(diffB + 1);
+        return scoreB - scoreA;
+      })
+    }
+    setSort(event.target.value)
+  };
+
   useEffect(() => {
     setFilteredReviews([...new Set(displayedReviews)])
   }, [displayedReviews])
@@ -103,7 +111,7 @@ const RatingBreakdown = ({ meta, reviews }) => {
         <table>
           <tbody className="stars-container">
             {[5, 4, 3, 2, 1].map((stars) => (
-              <tr key={stars} className="stars-bar-container" onClick={() => clickHandler(stars)}>
+              <tr key={stars} className="stars-bar-container" onClick={() => handleReviewFilter(stars)}>
                 <td className="stars-text">{stars} Stars</td>
                 <td className="container-bar">
                   <div className="filled-bar" id={`${stars}star`}></div>
@@ -136,7 +144,7 @@ const RatingBreakdown = ({ meta, reviews }) => {
 
         {/* displays the Size, Width, Comfort, Quality, Length, and Fit IF they exist */}
         <SingleBarDisplay element={comfort} headerText={"Comfort"} lowRating={"Physical Pain"} highRating={"Nirvana"} />
-        <SingleBarDisplay element={length} headerText={"Length"} lowRating={"For Shorties"} highRating={"For Giants"} />
+        <SingleBarDisplay element={length} headerText={"Length"} lowRating={"Shorties"} highRating={"Giants"} />
         <MultiBarDisplay element={width} headerText={"Width"} />
         <MultiBarDisplay element={quality} headerText={"Quality"} />
         <MultiBarDisplay element={size} headerText={"Size"} />
@@ -147,6 +155,15 @@ const RatingBreakdown = ({ meta, reviews }) => {
       </div>
       <br></br>
       <br></br>
+
+      <label htmlFor="sort-order">Sort order:</label>
+      <select id="sort-order" value={sort} onChange={handleSortChange}>
+        <option value=""></option>
+        <option value="Relevance">Relevance</option>
+        <option value="Newest">Newest</option>
+        <option value="Helpfullness">Helpful</option>
+      </select>
+
       <IndividualReview reviews={filteredReviews} />
     </>
   );

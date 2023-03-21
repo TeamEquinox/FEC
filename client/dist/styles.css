@@ -616,10 +616,7 @@ START Review CSS======================^
 }
 
 .individual-reviews-container {
-
   display: block;
-  border-radius: 10px;
-  border: solid rgb(144, 144, 144);
   position: relative;
   margin-bottom: 2px;
   width: 100%;
@@ -684,7 +681,6 @@ START Review CSS======================^
 }
 
 .helpful-review-button {
-  /* color: rgb(211, 211, 211); */
   cursor: pointer;
   font-size: 12px;
   margin-left: 10px;

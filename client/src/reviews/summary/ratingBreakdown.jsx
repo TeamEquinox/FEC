@@ -93,9 +93,11 @@ const RatingBreakdown = ({ meta, reviews }) => {
   return (
     <>
       <div style={{ width: '300px' }}>
-        <h3>Overall Rating: {numOfStars.toFixed(1)}</h3>
+        <h3 id="overall-rating">Overall Rating: {numOfStars.toFixed(1)}</h3>
         <StarRating rating={numOfStars} pixels={20} />
         <h5>{(recommendCount / numOfReviews * 100).toFixed(0)}% of reviews recommend this product! </h5>
+
+
 
         {/* displays the rating bars and handlers clicks to send which bar/rating is clicked to set state */}
         <table>
@@ -139,6 +141,8 @@ const RatingBreakdown = ({ meta, reviews }) => {
         <MultiBarDisplay element={quality} headerText={"Quality"} />
         <MultiBarDisplay element={size} headerText={"Size"} />
         <MultiBarDisplay element={fit} headerText={"Fit"} />
+
+        <IndividualReview reviews={filteredReviews} />
 
       </div>
       <br></br>

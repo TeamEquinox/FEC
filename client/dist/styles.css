@@ -17,10 +17,15 @@ h1 {
 
 .section__announcement {
   position: absolute;
-  /* width: 60%; */
-  left: 650px;
+  left: 850px;
   top: 200px;
-  padding-bottom: 205px;
+}
+
+
+.section__product {
+  height: 1200px;
+  width: auto;
+  padding-bottom: 50px;
 }
 
 .div__product {
@@ -30,7 +35,7 @@ h1 {
   position: relative;
   /* border-radius: 5px;
   border: solid black; */
-  width: 40%;
+  width: 50%;
 }
 
 /*
@@ -38,10 +43,17 @@ IMAGE CSS
 */
 
 .div__image_container {
-  display: inline-block;
+  /* display: inline-block;
   position: relative;
   bottom: 375px;
-  width: 50%;
+  height: 100;
+  width: 60%; */
+  display: inline-block;
+  position: absolute;
+  top: 55px;
+  height: 90%;
+  width: 40%;
+  padding-bottom: 50px;
 }
 
 .img__gallery {
@@ -49,25 +61,30 @@ IMAGE CSS
   height: auto;
 }
 
-.img__gallery_small {
-  display: block;
-  position: relative;
-  right: 400px;
-  width: 80px;
-  height: 80px;
-}
 
 .div__large_image {
   width: 450px;
   height: auto;
   display: inline-block;
+  position: absolute;
+  left: 280px;
+  top: 300px
+}
+
+.img__gallery_small {
+  display: block;
   position: relative;
-  left: 280px
+  right: 40px;
+  width: 80px;
+  height: 80px;
 }
 
 .div__img_gallery_small {
+
   display: inline-block;
-  position: relative;
+  position: absolute;
+  left: 75px;
+  top: 450px
 }
 
 
@@ -83,44 +100,71 @@ IMAGE CSS
   border-radius: 50%;
 }
 
+.expandedview {
+  display: block;
+  position: fixed;
+  background: rgb(233, 13, 211);
+  width: 1000px;
+  height: 1000px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /*
 STYLE CSS
 */
 .div__thumbnails {
-  width: 65%;
-  height: 75%;
+  width: 55%;
+  height: 25%;
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 55px;
+  position: absolute;
 }
 
 .div__style_container {
   width: 25%;
   box-sizing: border-box;
   position: relative;
+  top: 50px
+}
+
+.div__size_quant {
+  height: 100%;
+  width: auto;
 }
 
 /*
 CART CSS
 */
 
-.select__size {
+
+.dropDown {
   border-radius: 0px;
   width: 150px;
   height: 45px;
   position: absolute;
   left: -10px;
-  top: 480px;
-
+  top: 600px;
 }
 
-.select__quantity {
+.dropDown2 {
+  border-radius: 0px;
+  width: 150px;
+  position: absolute;
+  left: -10px;
+  top: 600px;
+  z-index: 9;
+}
+
+#select__quantity {
   border-radius: 0px;
   position: absolute;
   width: 150px;
   height: 45px;
   left: 150px;
-  top: 480px;
+  top: 600px;
 }
 
 .button__cart {
@@ -128,7 +172,7 @@ CART CSS
   margin-right: 10px;
   position: absolute;
   left: -10px;
-  top: 555px;
+  top: 755px;
   width: 150px;
   height: 45px;
 }
@@ -137,9 +181,15 @@ CART CSS
   border-radius: 0px;
   position: absolute;
   left: 150px;
-  top: 555px;
+  top: 755px;
   width: 100px;
   height: 45px;
+}
+
+.p__message {
+  position: absolute;
+  color: red;
+  top: 730px
 }
 
 /*
@@ -147,16 +197,18 @@ DESCRIPTION CSS
 */
 .div__description {
   position: absolute;
-  top: 1050px;
+  top: 1130px;
   left: 40px;
-  width: 50%
+  width: 50%;
+  padding-bottom: 100px;
 }
 
 .div__feature {
   display: inline-block;
   position: absolute;
-  top: 1010px;
-  left: 1075px
+  top: 1090px;
+  left: 1075px;
+  padding-bottom: 100px;
 }
 
 /*
@@ -169,7 +221,7 @@ CARET CSS
   background-color: rgb(158, 158, 158);
   border-radius: 5px;
   position: absolute;
-  top: 320px;
+  top: 620px;
   /* left: -100px */
   left: 150px
 }
@@ -181,10 +233,38 @@ CARET CSS
   background-color: rgb(158, 158, 158);
   border-radius: 5px;
   position: absolute;
-  top: 320px;
+  top: 620px;
   /* left: 480px */
   left: 790px
 }
+
+.caret__up {
+  font-size: 35px;
+  position: absolute;
+  left: -20px;
+  top: -30px
+}
+
+.caret__down {
+  font-size: 35px;
+  position: absolute;
+  left: -20px;
+  top: 300
+}
+
+.check_circled {
+  position: absolute;
+  left: 70px;
+  display: none;
+}
+
+
+.check_circled2 {
+  position: absolute;
+  left: 70px;
+  display: block;
+}
+
 
 /*
 END OF PRODUCT CSS

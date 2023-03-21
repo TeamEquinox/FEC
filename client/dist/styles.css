@@ -244,7 +244,7 @@ Start Related CSS======================>
   /* flex-direction: column; */
   /* /* justify-content: center; */
   /* align-items: center; */
-} 
+}
 .div_related_container {
   /* display:inline-block; */
   position: relative;
@@ -344,7 +344,7 @@ Start Related CSS======================>
   /* position: absolute; */
   /* position: relative; */
   /* display: flex; */
-  
+
   height: 250px;
   width: 320px;
   top: 0;
@@ -454,13 +454,21 @@ START Review CSS======================^
   z-index: 1;
 }
 
-.individual-reviews {
+.individual-reviews-container {
+
   display: block;
   border-radius: 10px;
   border: solid rgb(144, 144, 144);
   position: relative;
   margin-bottom: 2px;
-  width: 400px;
+  width: 100%;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.individual-reviews {
+  border-bottom: solid #909090;
+  width: 100%;
 }
 
 .individual-reviews-header {
@@ -491,11 +499,8 @@ START Review CSS======================^
 }
 
 .individual-reviews-body {
-  border-radius: 10px;
-  border: solid #909090;
   margin-left: 10px;
   margin-right: 10px;
-  padding: 10px;
 }
 
 .individual-reviews-helpfulness {
@@ -515,6 +520,42 @@ START Review CSS======================^
   cursor: pointer;
   text-decoration: underline;
   font-size: 10px;
+}
+
+.helpful-review-button {
+  /* color: rgb(211, 211, 211); */
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.report-review-button {
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.more-reviews-button {
+  background: none;
+  border: none;
+  color: rgb(144, 144, 144);
+  font-size: 12px;
+}
+
+.more-reviews-button:hover {
+  cursor: pointer;
+  background-color: rgb(125, 125, 125);
+  color: white;
+}
+
+.submit-reviews-button {
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
 }
 
 /*

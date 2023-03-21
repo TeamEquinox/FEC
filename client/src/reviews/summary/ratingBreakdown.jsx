@@ -140,9 +140,10 @@ const RatingBreakdown = ({ meta, reviews }) => {
         <MultiBarDisplay element={size} headerText={"Size"} />
         <MultiBarDisplay element={fit} headerText={"Fit"} />
 
-        <IndividualReview reviews={filteredReviews} />
-
       </div>
+      <br></br>
+      <br></br>
+      <IndividualReview reviews={filteredReviews} />
     </>
   );
 }

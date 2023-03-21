@@ -6,7 +6,6 @@ import { CgLoadbar } from 'react-icons/cg';
 
 import StarRating from '../../starRatings'
 
-
 const IndividualReview = ({ reviews }) => {
 
   const [reviewCount, setReviewCount] = useState(2);

@@ -85,7 +85,7 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
   return (
     <>
       <div style={{ width: '300px' }}>
-        <h3>Overall Rating: {numOfStars.toFixed(1)}</h3>
+        <h3 id="overall-rating">Overall Rating: {numOfStars.toFixed(1)}</h3>
         <h5>{numOfReviews} Reviews with {recommendCount} Recommendations!</h5>
         <h5>Which means {(recommendCount / numOfReviews * 100).toFixed(0)}% of buyers recommend this! </h5>
 
@@ -115,7 +115,7 @@ const RatingBreakdown = ({ breakdown, reviews }) => {
         <MultiBarDisplay element={size} headerText={"Size"} />
         <MultiBarDisplay element={fit} headerText={"Fit"} />
 
-        <IndividualReview reviews={filteredReviews}/>
+        <IndividualReview reviews={filteredReviews} />
 
       </div>
     </>

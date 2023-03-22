@@ -68,39 +68,41 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct }) => {
     )
   } else {
     return (
-      <div className="div_card_container">
-        <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
-        <div id="slider" className="div_slider">
-        {
-          relatedData.map((item) => {
-            var price = item.original_price;
-            var salesPrice = null;
-            if (item.sale_price !== 'N/A') {
-              salesPrice = item.sale_price;
-            }
-            if (item.photo !== 'N/A') {
-            return <div key={item.id} className="div_related_card" >
-              <div className="div_image_action_container">
-                <RxStar className="icon_action" onClick={ () => {
-                  handleStarClick(item.id)} }/>
-                <img className="img_card" src={item.photo} onClick={() => {handleRelatedCardClick(item.id)}}></img>
+      <>
+        <h3>Related Products</h3>
+        <div className="div_card_container">
+          <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
+          <div id="slider" className="div_slider">
+          {
+            relatedData.map((item) => {
+              var price = item.original_price;
+              var salesPrice = null;
+              if (item.sale_price !== 'N/A') {
+                salesPrice = item.sale_price;
+              }
+              if (item.photo !== 'N/A') {
+              return <div key={item.id} className="div_related_card" >
+                <div className="div_image_action_container">
+                  <RxStar className="icon_action" onClick={ () => {
+                    handleStarClick(item.id)} }/>
+                  <img className="img_card" src={item.photo} onClick={() => {handleRelatedCardClick(item.id)}}></img>
+                </div>
+                <div className="div_info_container" onClick={() => {handleRelatedCardClick(item.id)}}>
+                  <div className="div_related_category related_card">Category: {item.category}</div>
+                  <div className="div_related_name related_card">Name: {item.name}</div>
+                  { salesPrice !== null ? <div className="div_related_price related_card"><span style={{color: 'red'}}>${salesPrice}</span> <span style={style}>${item.original_price}</span>
+                      </div> : <div className="div_related_price related_card"><span>${item.original_price}</span></div>}
+                  <br></br>
+                  <StarRating rating={configRatings(item.rating)} pixels={10} className="div_rating"/>
+                </div>
               </div>
-              <div className="div_info_container" onClick={() => {handleRelatedCardClick(item.id)}}>
-                <div className="div_related_category related_card">Category: {item.category}</div>
-                <div className="div_related_name related_card">Name: {item.name}</div>
-                { salesPrice !== null ? <div className="div_related_price related_card"><span style={{color: 'red'}}>${salesPrice}</span> <span style={style}>${item.original_price}</span>
-                    </div> : <div className="div_related_price related_card"><span>${item.original_price}</span></div>}
-                <br></br>
-                <StarRating rating={configRatings(item.rating)} pixels={10} className="div_rating"/>
-              </div>
-            </div>
-            }
-          })
-        }
+              }
+            })
+          }
+          </div>
+          <RxCaretRight onClick={slideRight} className="div_right_caret"/>
         </div>
-        <RxCaretRight onClick={slideRight} className="div_right_caret"/>
-      </div>
-      
+      </>
     )
   }
 }

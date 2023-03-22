@@ -382,22 +382,24 @@ Outfit List...........................
 .div_add_outfit_card {
   border: 2px solid black;
   display: inline-block;
+  background-color: aquamarine;
   width: 175px;
   height: 280px;
   margin: 3px;
 }
 .div_add_outfit_card *{
-  border: 2px solid greenyellow
+  /* border: 2px solid greenyellow */
 }
 .add_outfit_action {
   position: absolute;
-  left: 45%;
-  top: 50%;
+  left: 40%;
+  top: 45%;
   border: 1px solid black;
+  font-size: 30px;
 }
-.add_outfit_action:hover {
+/* .add_outfit_action:hover {
   background-color: blanchedalmond;
-}
+} */
 .add_outfit_action_header {
   display: flex;
   align-items: center;

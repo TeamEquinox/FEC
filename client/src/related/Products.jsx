@@ -8,6 +8,10 @@ import StarRating from '../starRatings.jsx';
 const Products = ({ relatedData, setShowModal, updates, updateProduct }) => {
   // console.log('inside Products Component', relatedData);
 
+  var style = {
+    textDecoration: "line-through"
+  };
+
   var configRatings = (obj) => {
     var oneStar = Number(obj['1']);
     if (!oneStar) {
@@ -64,31 +68,33 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct }) => {
     )
   } else {
     return (
-      <div className="div_related_container">
+      <div className="div_card_container">
         <RxCaretLeft onClick={slideLeft} className="div_left_caret"/>
         <div id="slider" className="div_slider">
         {
           relatedData.map((item) => {
             var price = item.original_price;
-            var salesPrice = item.sales_price;
-            // if (item.photo === 'N/A') {
-            //   item.photo = 'No Photo Avalable';
-            // }
-            // console.log('ITEM=========>', item.photo)
-            return <div key={item.id} className="div_realated_card" >
-              <div className="div_related_image_action_container">
-                <RxStar className="icon_related_action" onClick={ () => {
+            var salesPrice = null;
+            if (item.sale_price !== 'N/A') {
+              salesPrice = item.sale_price;
+            }
+            if (item.photo !== 'N/A') {
+            return <div key={item.id} className="div_related_card" >
+              <div className="div_image_action_container">
+                <RxStar className="icon_action" onClick={ () => {
                   handleStarClick(item.id)} }/>
-                <img className="img_related" src={item.photo} onClick={() => {handleRelatedCardClick(item.id)}}></img>
+                <img className="img_card" src={item.photo} onClick={() => {handleRelatedCardClick(item.id)}}></img>
               </div>
-              <div className="div_realated_info_container" onClick={() => {handleRelatedCardClick(item.id)}}>
+              <div className="div_info_container" onClick={() => {handleRelatedCardClick(item.id)}}>
                 <div className="div_related_category related_card">Category: {item.category}</div>
                 <div className="div_related_name related_card">Name: {item.name}</div>
-                <div className="div_related_price related_card"><span>Price: {price}</span> <span className="span_salesPrice" >Sale: {salesPrice}</span></div>
+                { salesPrice !== null ? <div className="div_related_price related_card"><span style={{color: 'red'}}>${salesPrice}</span> <span style={style}>${item.original_price}</span>
+                    </div> : <div className="div_related_price related_card"><span>${item.original_price}</span></div>}
                 <br></br>
-                <StarRating rating={configRatings(item.rating)} pixels={10} className="div_related_rating"/>
+                <StarRating rating={configRatings(item.rating)} pixels={10} className="div_rating"/>
               </div>
             </div>
+            }
           })
         }
         </div>

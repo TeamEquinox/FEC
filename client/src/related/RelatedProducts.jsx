@@ -14,7 +14,7 @@ const RelatedProducts = ({ relatedData, product, update, compare, updateProduct}
   
   //returning components to index.jsx=======
   return (
-    <div id="related_outfits_container">
+    <div id="related_products_container">
       {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]}/> : null}
       <Product relatedData={relatedData} setShowModal={setShowModal} updates={update} updateProduct={updateProduct}/> 
       <Outfits/>

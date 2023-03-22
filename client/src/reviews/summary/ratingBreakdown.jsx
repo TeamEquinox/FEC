@@ -22,11 +22,13 @@ const RatingBreakdown = ({ meta, reviews }) => {
   let size = meta.characteristics.Size ? (meta.characteristics.Size.value / 5 * 100) : null
   let fit = meta.characteristics.Fit ? (meta.characteristics.Fit.value / 5 * 100) : null
 
-  let rating = (Number(meta.ratings[1]) * 1) + (Number(meta.ratings[2]) * 2) + (Number(meta.ratings[3]) * 3) +
-    (Number(meta.ratings[4]) * 4) + (Number(meta.ratings[5]) * 5);
-  let totalPossibleRating = (Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) +
-    Number(meta.ratings[4]) + Number(meta.ratings[5])) * 5
-  let numOfReviews = Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) + Number(meta.ratings[4]) + Number(meta.ratings[5]);
+  let rating = (Number(meta.ratings[1] ?? 0) * 1) + (Number(meta.ratings[2] ?? 0) * 2) + (Number(meta.ratings[3] ?? 0) * 3) +
+    (Number(meta.ratings[4] ?? 0) * 4) + (Number(meta.ratings[5] ?? 0) * 5);
+  let totalPossibleRating = ((Number(meta.ratings[1] ?? 0) + Number(meta.ratings[2] ?? 0) + Number(meta.ratings[3] ?? 0) +
+    Number(meta.ratings[4] ?? 0) + Number(meta.ratings[5] ?? 0)) * 5);
+
+  let numOfReviews = Number(meta.ratings[1] ?? 0) + Number(meta.ratings[2] ?? 0) +
+    Number(meta.ratings[3] ?? 0) + Number(meta.ratings[4] ?? 0) + Number(meta.ratings[5] ?? 0);
   let numOfStars = rating / totalPossibleRating * 5;
   let recommendCount = Number(meta.recommended['true'])
   let notRecommendCount = Number(meta.recommended['false'])
@@ -38,11 +40,11 @@ const RatingBreakdown = ({ meta, reviews }) => {
   const bar1 = document.getElementById("1star") ?? 0;
 
   if (bar5 || bar4 || bar3 || bar2 || bar1) {
-    bar5.style.width = `${Number(meta.ratings[5]) / numOfReviews * 100}%`;
-    bar4.style.width = `${Number(meta.ratings[4]) / numOfReviews * 100}%`;
-    bar3.style.width = `${Number(meta.ratings[3]) / numOfReviews * 100}%`;
-    bar2.style.width = `${Number(meta.ratings[2]) / numOfReviews * 100}%`;
-    bar1.style.width = `${Number(meta.ratings[1]) / numOfReviews * 100}%`;
+    bar5.style.width = `${Number(meta.ratings[5] ?? 0) / numOfReviews * 100}%`;
+    bar4.style.width = `${Number(meta.ratings[4] ?? 0) / numOfReviews * 100}%`;
+    bar3.style.width = `${Number(meta.ratings[3] ?? 0) / numOfReviews * 100}%`;
+    bar2.style.width = `${Number(meta.ratings[2] ?? 0) / numOfReviews * 100}%`;
+    bar1.style.width = `${Number(meta.ratings[1] ?? 0) / numOfReviews * 100}%`;
   }
 
   const handleReviewFilter = (stars) => {
@@ -114,7 +116,7 @@ const RatingBreakdown = ({ meta, reviews }) => {
                   <div className="filled-bar" id={`${stars}star`}></div>
                   <div className="empty-bar"></div>
                 </td>
-                <td className="reviews-text">{meta !== undefined ? Number(meta.ratings[stars]) + ' Reviews' : 'No reviews'}</td>
+                <td className="reviews-text">{meta !== undefined ? Number(meta.ratings[stars] ?? 0) + ' Reviews' : 'No reviews'}</td>
               </tr>
             ))}
           </tbody>

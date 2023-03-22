@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionBox from './QuestionBox.jsx';
 import axios from 'axios';
 import QuestionModal from './QuestionModal.jsx';
-import calls from './calls.js';
+import { getQuestions } from './calls.js';
 
 
 const QuestionsList = (props) => {
@@ -21,7 +21,7 @@ const QuestionsList = (props) => {
   // retrieve questions once product id is available
   useEffect(() => {
     // console.log('should be product ID', props.product_id);
-    calls.getQuestions(props.product_id);
+    getQuestions(props.product_id);
   }, [props.product_id]);
 
   // render

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import calls from './calls.js';
+import { postAnswer } from './calls.js';
 
 const AnswerModal = (props) => {
 
@@ -22,7 +22,7 @@ const AnswerModal = (props) => {
   }
 
   const handleSubmit = (e) => {
-    calls.postAnswer({
+    postAnswer({
       body: answer,
       name: nickname,
       email: email,

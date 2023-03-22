@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx'
 import axios from 'axios';
 import AnswerModal from './AnswerModal.jsx';
-import calls from 'calls.js';
+import { getAnswers } from './calls.js';
 
 
 const QuestionBox = (props) => {
@@ -18,7 +18,7 @@ const QuestionBox = (props) => {
   // set answers once questions have loaded
   useEffect(() => {
     // setAnswers(sampleAns.results);
-    calls.getAnswers(props.question.question_id);
+    getAnswers(props.question.question_id);
   }, []);
 
   return (

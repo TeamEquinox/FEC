@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionBox from './QuestionBox.jsx';
 import axios from 'axios';
 import QuestionModal from './QuestionModal.jsx';
+import calls from './calls.js';
 
 
 const QuestionsList = (props) => {
@@ -11,17 +12,6 @@ const QuestionsList = (props) => {
   const [ displayQs, setDisplayQs ] = useState([]);
   const [ displayIndex, setDisplayIndex ] = useState(0);
   const [ showModal, setShowModal ] = useState(false);
-  // to retrieve questions, make API GET call to /qa/questions
-  var getQuestions = (productId) => {
-    axios.get('/questions/', { params: { productId } })
-      .then((qData) => {
-        console.log('this is questions', qData);
-        setQuestions(qData.data.results);
-      })
-      .catch((err) => {
-        console.log('error retrieving questions', err);
-      });
-  }
 
   // update show modal
   var changeWindow = () => {
@@ -31,7 +21,7 @@ const QuestionsList = (props) => {
   // retrieve questions once product id is available
   useEffect(() => {
     // console.log('should be product ID', props.product_id);
-    getQuestions(props.product_id);
+    calls.getQuestions(props.product_id);
   }, [props.product_id]);
 
   // render
@@ -40,8 +30,8 @@ const QuestionsList = (props) => {
       <div className="list">
         <h2>Questions</h2>
         No questions yet...
-        <button type="button" onClick={changeWindow}>Ask a Question!</button>
-        <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id} getQuestions={getQuestions}/>
+        <button name="askQuestion" type="button" onClick={changeWindow}>Ask a Question!</button>
+        <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id}/>
         </div>
     )
   } else {
@@ -55,7 +45,7 @@ const QuestionsList = (props) => {
             return <QuestionBox question={q} key={q.question_id} />
           })}
           <button type="button" onClick={changeWindow}>Ask a Question!</button>
-          <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id} getQuestions={getQuestions}/>
+          <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id}/>
           {questions.length > 2 && (<button type="button">More AnsweredQuestions</button>)}
         </div>
       </section>

@@ -219,6 +219,7 @@ END OF PRODUCT CSS
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 
 .form {
@@ -376,10 +377,10 @@ Start Related CSS======================>
   top: 5px;
   left: 2px;
 } */
-.div_modal_body {
-  /* overflow-y: scroll; */
-  /* white-space: nowrap; */
-}
+/* .div_modal_body {
+  overflow-y: scroll;
+  white-space: nowrap;
+} */
 /*
 END Related CSS======================^
 <<<<<<< HEAD

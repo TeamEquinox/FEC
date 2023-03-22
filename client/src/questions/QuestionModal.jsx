@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import calls from './calls.js'
 
 const QuestionModal = (props) => {
 
@@ -20,20 +21,12 @@ const QuestionModal = (props) => {
   }
 
   const handleSubmit = (e) => {
-    axios.post('/questions', {
-      qBody: question,
-      askerName: nickname,
+    calls.postQuestion({
+      body: question,
+      name: nickname,
       email: email,
       product_id: props.productId
-    })
-      .then((success) => {
-        console.log('return from posting question', success);
-        props.closeModal();
-        props.getQuestions(props.productId);
-      })
-      .catch((err) => {
-        console.log('error posting new question', err);
-      })
+    }, props.closeModal);
   }
 
   if (!props.show) {

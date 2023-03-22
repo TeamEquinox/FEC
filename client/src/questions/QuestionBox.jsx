@@ -2,23 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Answers from './Answers.jsx'
 import axios from 'axios';
 import AnswerModal from './AnswerModal.jsx';
+import calls from 'calls.js';
 
 
 const QuestionBox = (props) => {
 
   const [ answers, setAnswers ] = useState([]);
   const [ showAnsModal, setShowAnsModal ] = useState(false);
-  // make API call to answers endpoint using question id (passed as key)
-  var getAnswers = (questionId) => {
-    axios.get('/answers/', { params: { questionId } })
-      .then((aData) => {
-        console.log('this is answers', aData);
-        setAnswers(aData.data.results);
-      })
-      .catch((err) => {
-        console.log(`error retrieving answers for question ${props.question.question_id}`, err);
-      });
-  }
 
   // control answer modal
   var changeWindow = () => {
@@ -28,7 +18,7 @@ const QuestionBox = (props) => {
   // set answers once questions have loaded
   useEffect(() => {
     // setAnswers(sampleAns.results);
-    getAnswers(props.question.question_id);
+    calls.getAnswers(props.question.question_id);
   }, []);
 
   return (
@@ -49,7 +39,7 @@ const QuestionBox = (props) => {
         {answers.map((ans) => {
           return <Answers answer={ans} key={ans.answer_id}/>
         })}
-      <AnswerModal show={showAnsModal} closeModal={changeWindow} productId={props.product_id} questionId={props.question.question_id} getAnswers={getAnswers}/>
+      <AnswerModal show={showAnsModal} closeModal={changeWindow} productId={props.product_id} questionId={props.question.question_id}/>
       <button type="button" onClick={changeWindow}>Add Answer</button>
       </div>)}
     </div>

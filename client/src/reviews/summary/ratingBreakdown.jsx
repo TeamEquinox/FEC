@@ -15,7 +15,6 @@ const RatingBreakdown = ({ meta, reviews }) => {
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const [sort, setSort] = useState('');
 
-
   let comfort = meta.characteristics.Comfort ? (meta.characteristics.Comfort.value / 5 * 100) : null
   let length = meta.characteristics.Length ? (meta.characteristics.Length.value / 5 * 100) : null
   let width = meta.characteristics.Width ? (meta.characteristics.Width.value / 5 * 100) : null
@@ -23,11 +22,14 @@ const RatingBreakdown = ({ meta, reviews }) => {
   let size = meta.characteristics.Size ? (meta.characteristics.Size.value / 5 * 100) : null
   let fit = meta.characteristics.Fit ? (meta.characteristics.Fit.value / 5 * 100) : null
 
-  let rating = (Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) + Number(meta.ratings[4]) + Number(meta.ratings[5])) / 5;
+  let rating = (Number(meta.ratings[1]) * 1) + (Number(meta.ratings[2]) * 2) + (Number(meta.ratings[3]) * 3) +
+    (Number(meta.ratings[4]) * 4) + (Number(meta.ratings[5]) * 5);
+  let totalPossibleRating = (Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) +
+    Number(meta.ratings[4]) + Number(meta.ratings[5])) * 5
   let numOfReviews = Number(meta.ratings[1]) + Number(meta.ratings[2]) + Number(meta.ratings[3]) + Number(meta.ratings[4]) + Number(meta.ratings[5]);
+  let numOfStars = rating / totalPossibleRating * 5;
   let recommendCount = Number(meta.recommended['true'])
   let notRecommendCount = Number(meta.recommended['false'])
-  let numOfStars = rating / 100 * 5;
 
   const bar5 = document.getElementById("5star") ?? 0;
   const bar4 = document.getElementById("4star") ?? 0;
@@ -45,17 +47,14 @@ const RatingBreakdown = ({ meta, reviews }) => {
 
   const handleReviewFilter = (stars) => {
     const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
-    console.log('User clicked: ', stars, Promise.resolve(filters.includes(stars)))
     let newDisplayedReviews;
     let newStars = [];
     if (filters.includes(stars)) {
       newDisplayedReviews = displayedReviews.filter(review => !currentReviewCollection.includes(review));
       newStars = filters.filter(star => star !== stars);
-      console.log('removing filters: ', newStars)
       setFilters(newStars);
     } else {
       newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
-      console.log('adding filters: ', [...filters, stars])
       setFilters([...filters, stars]);
     }
 
@@ -105,8 +104,6 @@ const RatingBreakdown = ({ meta, reviews }) => {
         <StarRating rating={numOfStars} pixels={20} />
         <h5>{(recommendCount / numOfReviews * 100).toFixed(0)}% of reviews recommend this product! </h5>
 
-
-
         {/* displays the rating bars and handlers clicks to send which bar/rating is clicked to set state */}
         <table>
           <tbody className="stars-container">
@@ -149,9 +146,6 @@ const RatingBreakdown = ({ meta, reviews }) => {
         <MultiBarDisplay element={quality} headerText={"Quality"} />
         <MultiBarDisplay element={size} headerText={"Size"} />
         <MultiBarDisplay element={fit} headerText={"Fit"} />
-
-        <IndividualReview reviews={filteredReviews} />
-
       </div>
       <br></br>
       <br></br>

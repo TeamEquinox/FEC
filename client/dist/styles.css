@@ -347,9 +347,9 @@ END OF PRODUCT CSS
 Start Related CSS======================>
 */
 
-#related_products_container {
-  /* border: 2px solid black; */
-}
+/* #related_products_container {
+  border: 2px solid black;
+} */
 
 .h3_related_title{
   position: relative;
@@ -414,7 +414,7 @@ Outfit...........................
   margin: 3px;
 }
 .div_addOutfit_card {
-  background-color: #ccc;  
+  background-color: #ccc;
   border: 1px solid black;
   width: 175px;
   height: 280px;
@@ -425,7 +425,7 @@ Outfit...........................
   border: 4px solid black
 }
 .h3_add_outfit_action_header {
-  background: none;  
+  background: none;
   border-top: 1px solid black;
   height: 84px;
   width: 175;
@@ -433,7 +433,7 @@ Outfit...........................
   font-size: 20px;
 }
 .div_add_outfit_action{
-  background: none;  
+  background: none;
   position: relative;
   height: 196px;
   width: 175px;
@@ -537,8 +537,15 @@ Modal...........................
   border-radius: 5px;
   cursor: pointer;
 }
-
-
+/* .div_modal_title {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+} */
+/* .div_modal_body {
+  overflow-y: scroll;
+  white-space: nowrap;
+} */
 /*
 END Related CSS======================^
 <<<<<<< HEAD

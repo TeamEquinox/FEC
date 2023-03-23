@@ -5,10 +5,8 @@ import { RxCheckCircled } from 'react-icons/Rx';
 
 const StyleList = ({ style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage }) => {
 
-  // const [selected, setSelected] = useState(false)
-
   const checkStyle = (url) => {
-    if (largeImage) {
+    if (largeImage && document.getElementById(`check-${largeImage}`)) {
       document.getElementById(`check-${largeImage}`).classList.remove('check_circled2')
       document.getElementById(`check-${largeImage}`).classList.add('check_circled')
       setLargeImage(url);
@@ -27,6 +25,7 @@ const StyleList = ({ style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale,
   }
 
   console.log('largeimage', largeImage)
+
   return (
 
     < div className="div__style_container" onClick={(e) => {

@@ -505,7 +505,7 @@ Modal...........................
   top: 45%;
   border: 1px solid black;
   font-size: 30px;
-}
+} */
 .add_outfit_action:hover {
   cursor: pointer;
 }
@@ -513,6 +513,7 @@ Modal...........................
   display: flex;
   align-items: center;
 }
+
 /*
 END Related CSS======================^
 <<<<<<< HEAD

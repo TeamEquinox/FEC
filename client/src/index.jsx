@@ -35,7 +35,6 @@ const App = () => {
   const getRelatedProducts = (id) => {
     axios.get('/relatedProducts', { params: { data: id } })
       .then((data) => {
-        // console.log('recieved data in the client getRelatedProducts get request', data)
         setRelatedData(data.data);
       })
       .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err))
@@ -44,7 +43,6 @@ const App = () => {
   const getAndCompareCurrentProduct = (id) => {
     axios.get('/compare', { params: { data: id } })
       .then((data) => {
-        console.log('recieved data in the client getCurrentProduct get request', data)
         setDataToCompare(data.data);
       })
       .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err))
@@ -53,7 +51,6 @@ const App = () => {
   const updateCurrentProduct = (id) => {
     axios.get('/setCurrentProduct', { params: { data: id } })
       .then((data) => {
-        // console.log('recieved data in the client updateCurrentProduct get request', data)
         setProduct(data.data);
         getRelatedProducts(id);
       })

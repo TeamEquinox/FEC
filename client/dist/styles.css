@@ -337,45 +337,32 @@ END OF PRODUCT CSS
 Start Related CSS======================>
 */
 
-#related_outfits_container {
+#related_products_container {
   border: 2px solid red;
-  /* position: fixed; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* /* justify-content: center; */
-  /* align-items: center; */
 }
 
-.div_related_container {
-  /* display:inline-block; */
+.div_card_container {
+  border: 2px solid greenyellow;
   position: relative;
   display: flex;
   align-items: center;
-  /* border: 2px solid red; */
 }
 
-
-.div_realated_card {
+.div_related_card {
   display: inline-block;
-  /* border: 2px solid black; */
+  border: 2px solid black;
   width: 175px;
   height: 280px;
   margin: 3px;
 }
 
-.div_outfit_container * {
-  border: 2px solid greenyellow;
-  margin: 3px;
-}
-
-.div_related_image_action_container {
+.div_image_action_container {
   position: relative;
   height: 70%;
   width: 100%;
 }
 
-.img_related {
-
+.img_card {
   width: 100%;
   height: 100%;
 }
@@ -401,7 +388,7 @@ Start Related CSS======================>
   background-color: blanchedalmond;
 }
 
-.div_related_rating {
+.div_rating {
   left: 5px;
   top: 85%;
 }
@@ -410,24 +397,39 @@ Start Related CSS======================>
   color: red;
 }
 
+/*
+Icons...........................
+*/
+
+.icon_action {
+  position: absolute;
+  color: white;
+  border-radius: 10px;
+  left: 85%;
+  top: 12px;
+}
+
+.icon_action:hover {
+  background-color: blanchedalmond;
+}
+
+/*
+Carets/Slider...........................
+*/
+
 .div_left_caret {
-  /* border: 2px solid red; */
   font-size: 30px;
   opacity: 50%;
 }
-
 
 .div_left_caret:hover {
   opacity: 100%;
 }
 
-
 .div_right_caret {
-  /* border: 2px solid red; */
   font-size: 30px;
   opacity: 50%;
 }
-
 
 .div_right_caret:hover {
   opacity: 100%;
@@ -435,7 +437,6 @@ Start Related CSS======================>
 
 .div_slider {
   object-fit: cover;
-  /* border: 2px solid red; */
   height: 100%;
   width: 100%;
   overflow-x: scroll;
@@ -443,6 +444,10 @@ Start Related CSS======================>
   white-space: nowrap;
   scroll-behavior: smooth;
 }
+
+/*
+Modal...........................
+*/
 
 .div_modal_container {
   position: fixed;
@@ -480,12 +485,17 @@ Start Related CSS======================>
 
 /* .div_modal_title {
   position: absolute;
-  top: 5px;
-  left: 2px;
+  left: 40%;
+  top: 45%;
+  border: 1px solid black;
+  font-size: 30px;
+}
+/* .add_outfit_action:hover {
+  background-color: blanchedalmond;
 } */
-.div_modal_body {
-  /* overflow-y: scroll; */
-  /* white-space: nowrap; */
+.add_outfit_action_header {
+  display: flex;
+  align-items: center;
 }
 
 /*

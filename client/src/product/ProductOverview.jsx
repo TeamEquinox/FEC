@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import StarRating from '../starRatings.jsx'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-
+import Cart from './Cart.jsx'
 
 const ProductOverview = ({ product }) => {
   console.table('productOnLoad', product)
@@ -16,6 +16,7 @@ const ProductOverview = ({ product }) => {
   const [gallery, setGallery] = useState([])
   const [largeImage, setLargeImage] = useState(product[1].results[0].photos[0].url)
   const [reviews, setReviews] = useState(0)
+  const [cart, setCart] = useState(false)
 
   useEffect(() => {
     setLargeImage(product[1].results[0].photos[0].url)
@@ -52,7 +53,8 @@ const ProductOverview = ({ product }) => {
 
   return (
     <section className="section__product">
-      <FontAwesomeIcon icon={faCartShopping} className="shoppingCart" />
+      <FontAwesomeIcon icon={faCartShopping} className="shoppingCart" onClick={() => { setCart(true) }} />
+      {cart ? <Cart setCart={setCart} /> : null}
       <div className="div__product">
         <div><StarRating rating={configRatings(product[3].ratings)} pixels={10} />  </div>
         <p onClick={() => { window.location.replace("/#overall-rating") }}><u>Read all {reviews} reviews</u></p>

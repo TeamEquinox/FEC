@@ -6,8 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import $ from 'jquery'
 
+
+
 const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
-  // console.log('styles', styles)
+  console.log('styles', styles)
 
   const [currStyle, setCurrStyle] = useState(styles[0].name)
   const [currPrice, setCurrPrice] = useState(styles[0].original_price)
@@ -17,13 +19,17 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
   const [currSize, setCurrSize] = useState('')
   const [message, setMessage] = useState(false)
   const [value, setValue] = useState('Select Size')
+  const [sku, setSku] = useState('')
+  const [itemAdded, setItemAdded] = useState(false)
+
   let currQuant;
 
   const renderQuantity = (e) => {
     console.log('size', size)
     for (let sku in size) {
       if (size[sku].size === e.target.value) {
-        console.log(size[sku].quantity)
+        // console.log(size[sku].quantity)
+        setSku(sku)
         currQuant = size[sku].quantity
         if (currQuant <= 15) {
           for (var i = 1; i <= currQuant; i++) {
@@ -73,8 +79,21 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
     }
   }
 
+  const addItem = () => {
+    let cart = [];
+    let sizeSelector = document.getElementById("select__size").value
+    let quantitySelector = document.getElementById("select__quantity").value
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+    cart.push({ 'sku': sku, 'style': currStyle, 'quantity': quantitySelector, 'size': sizeSelector, 'price': currPrice });
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+
   return (
     < div className="div__size_quant">
+      {itemAdded ? <div className="div__item_added">1</div> : null}
       <div>{currPrice}</div>
       <div style={{
         textDecoration: onSale ? "line-through" : "none",
@@ -89,7 +108,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
         })}
       </div>
 
-      <select id="select__size" value={value} className="dropDown" onChange={(e) => { setValue(e.target.value); clearOptions(); renderQuantity(e); errorMessage(); setCurrSize(e.target.value); console.log('set size', currSize); }}>
+      <select id="select__size" value={value} className="dropDown" onChange={(e) => { setValue(e.target.value); clearOptions(); renderQuantity(e); errorMessage(); setCurrSize(e.target.value); }}>
 
         {/* onFocus={(e) => { e.target.size = styles.length; document.getElementById('select__size').classList.remove('dropDown'); document.getElementById('select__size').classList.add('dropDown2'); }} onBlur={(e) => { e.target.size = '0'; document.getElementById('select__size').classList.remove('dropDown2'); document.getElementById('select__size').classList.add('dropDown'); }} */}
         <option className="select__size" >Select Size</option>
@@ -107,7 +126,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
       <br></br>
       <br></br>
       <button className="button__cart" onClick={(e) => {
-        e.preventDefault(); errorMessage();
+        e.preventDefault(); errorMessage(); addItem(); setItemAdded(true)
       }}>Add to cart</button>
       <button className="button__star"><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>
     </div >

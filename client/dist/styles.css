@@ -120,13 +120,14 @@ IMAGE CSS
 
 .expandedview {
   display: block;
-  position: fixed;
-  background: rgb(233, 13, 211);
-  width: 1000px;
-  height: 1000px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  /* position: fixed; */
+  /* background: rgb(233, 13, 211); */
+  width: 2000px;
+  height: 2000px;
+  /* top: 50%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
 }
 
 /*
@@ -208,6 +209,14 @@ CART CSS
   position: absolute;
   color: red;
   top: 640px
+}
+
+.div__item_added {
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: -200px;
+  left: 675px
 }
 
 /*

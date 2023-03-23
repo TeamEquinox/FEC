@@ -114,9 +114,9 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
   if (gallery.length) {
     return (
 
-      <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} /> : null}{showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
+      <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft() }} /> : null}{showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
         <div className="div__large_image"><img id="img__gallery" src={largeImage} onClick={() => { console.log('clicked'); setShowModal(true); reSize() }}></img></div>
-        {showModal ? <ExpandedView /> : null}
+        {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} /> : null}
         <div className="div__img_gallery_small"><RxCaretUp className="caret__up" />
           {gallery.length ? gallery.map((photo) => {
             return (
@@ -130,10 +130,10 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
   } else {
     return (
 
-      <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} /> : null}
+      <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft() }} /> : null}
         {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
         <div className="div__large_image" > <img id="img__gallery" src={largeImage ? largeImage : photos[0].photos[0].url} onClick={() => { console.log('clicked'); setShowModal(true); reSize() }}></img>
-          {showModal ? <ExpandedView classname="expandedview" /> : null}
+          {showModal ? <ExpandedView classname="expandedview" setShowModal={setShowModal} largeImage={largeImage} /> : null}
         </div>
 
         <div className="div__img_gallery_small"> <RxCaretUp className="caret__up" />

@@ -7,19 +7,37 @@ import $ from 'jquery'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import StarRating from '../starRatings.jsx'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import Cart from './Cart.jsx'
 
 const ProductOverview = ({ product }) => {
   console.table('productOnLoad', product)
 
   const [gallery, setGallery] = useState([])
   const [largeImage, setLargeImage] = useState(product[1].results[0].photos[0].url)
+  const [reviews, setReviews] = useState(0)
+  const [cart, setCart] = useState(false)
 
   useEffect(() => {
-    if (largeImage) {
+    setLargeImage(product[1].results[0].photos[0].url)
+  }, [product])
+
+  useEffect(() => {
+    if (largeImage.length !== 0 && document.getElementById(`check-${largeImage}`) !== null) {
       document.getElementById(`check-${largeImage}`).classList.remove('check_circled')
       document.getElementById(`check-${largeImage}`).classList.add('check_circled2')
     }
-  }, [])
+  }, [gallery])
+
+  let counter = 0;
+  useEffect(() => {
+    let numReviews = Object.values(product[3].ratings)
+    numReviews.forEach((review) => {
+      counter += Number(review);
+    })
+    setReviews(counter)
+
+  }, [product])
 
   var configRatings = (obj) => {
     var oneStar = Number(obj['1']);
@@ -35,9 +53,11 @@ const ProductOverview = ({ product }) => {
 
   return (
     <section className="section__product">
+      <FontAwesomeIcon icon={faCartShopping} className="shoppingCart" onClick={() => { setCart(true) }} />
+      {cart ? <Cart setCart={setCart} /> : null}
       <div className="div__product">
         <div><StarRating rating={configRatings(product[3].ratings)} pixels={10} />  </div>
-        <p onClick={() => { window.location.replace("/#overall-rating") }}><u>Read all reviews</u></p>
+        <p onClick={() => { window.location.replace("/#overall-rating") }}><u>Read all {reviews} reviews</u></p>
         <h3>{product.length ? product[0].category : "Category"}</h3>
         <h2>{product.length ? product[0].name : "Name"}</h2>
         <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} />

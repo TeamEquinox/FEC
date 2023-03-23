@@ -11,8 +11,8 @@ let getQuestions = (req, res) => {
       'Authorization': `${process.env.TOKEN}`
     },
     params: {
-      product_id: 71698,
-      // product_id: Number(req.query.productId),
+      // product_id: 71706,
+      product_id: Number(req.query.productId),
       page: 1,
       count: 5
     }
@@ -79,18 +79,13 @@ var postQuestion = (req, res) => {
   //     res.send(err);
   //   })
 
-  axios.post(url, {
-    body: req.body.qBody,
-    name: req.body.askerName,
-    email: req.body.email,
-    product_id: Number(req.body.product_id)
-  }, {
+  axios.post(url, req.body, {
     headers: {
-      'Authorization': `${process.env.TOKEN}`
+      Authorization: `${process.env.TOKEN}`
     }
   })
     .then((success) => {
-      // console.log(success);
+      console.log('did it succeed? ', success);
       res.status(201).send(success.data);
     })
     .catch((err) => {
@@ -108,13 +103,7 @@ var postAnswer = (req, res) => {
     headers: {
       'Authorization': `${process.env.TOKEN}`
     },
-    data: {
-      body: req.body.aBody,
-      name: req.body.answererName,
-      email: req.body.email,
-      photos: req.body.photosUrls,
-      product_id: req.body.product_id
-    }
+    data: req.body
   }
 
   axios(options)

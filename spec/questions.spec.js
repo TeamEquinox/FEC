@@ -8,11 +8,16 @@ import { toBeInTheDocument } from '@testing-library/jest-dom';
 import QuestionsList from '../client/src/questions/QuestionsList.jsx';
 import product from './mochData.js';
 
-describe('Questions', () => {
-  test('renders Questions component', () => {
-    const { getByText } = render(<QuestionsList product_id={product.product[0]['id']} />);
-    expect(getByText(/Ask a question!/i)).toBeInTheDocument();
+describe('Questions List', () => {
 
-    // screen.debug();
+  test('renders Questions component', () => {
+    render(<QuestionsList />);
+    expect(screen.getByText('Questions')).toBeInTheDocument();
   });
+
+  test('renders ask a question button', () => {
+    // screen.debug();
+    render(<QuestionsList />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  })
 });

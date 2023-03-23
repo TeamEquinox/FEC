@@ -299,6 +299,7 @@ END OF PRODUCT CSS
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 
 .form {

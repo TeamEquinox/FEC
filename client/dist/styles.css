@@ -335,6 +335,9 @@ Start Related CSS======================>
   height: 280px;
   margin: 3px;
 }
+.div_related_card:hover {
+  cursor: pointer;
+}
 
 .div_image_action_container {
   position: relative;
@@ -390,6 +393,7 @@ Carets/Slider...........................
 
 .div_left_caret:hover {
   opacity: 100%;
+  cursor: pointer;
 }
 
 .div_right_caret {
@@ -399,6 +403,7 @@ Carets/Slider...........................
 
 .div_right_caret:hover {
   opacity: 100%;
+  cursor: pointer;
 }
 
 .div_slider {
@@ -446,6 +451,7 @@ Modal...........................
 .button_modal:hover {
   border: 2px solid black;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 /*
@@ -467,8 +473,9 @@ Outfit List...........................
   height: 280px;
   margin: 3px;
 }
-.div_add_outfit_card *{
+.div_add_outfit_card:hover {
   /* border: 2px solid greenyellow */
+  cursor: pointer;
 }
 .add_outfit_action {
   position: absolute;
@@ -477,12 +484,15 @@ Outfit List...........................
   border: 1px solid black;
   font-size: 30px;
 }
-/* .add_outfit_action:hover {
-  background-color: blanchedalmond;
-} */
+.add_outfit_action:hover {
+  cursor: pointer;
+}
 .add_outfit_action_header {
   display: flex;
   align-items: center;
+}
+.icon_action:hover {
+  cursor: pointer;
 }
 /*
 END Related CSS======================^

@@ -1,7 +1,7 @@
 import React from 'react';
 import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
-import helpers from '../clientSideHelpers.js';
 import StarRating from '../starRatings.jsx';
+import helpers from '../clientSideHelpers.js';
 
 
 
@@ -45,8 +45,8 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct }) => {
                 <div className="div_info_container" onClick={() => {handleRelatedCardClick(item.id)}}>
                   <div className="div_related_category related_card">Category: {item.category}</div>
                   <div className="div_related_name related_card">Name: {item.name}</div>
-                  { salesPrice !== null ? <div className="div_related_price related_card"><span style={{color: 'red'}}>${salesPrice}</span> <span style={helpers.style}>${item.original_price}</span>
-                      </div> : <div className="div_related_price related_card"><span>${item.original_price}</span></div>}
+                  { salesPrice !== null ? <div className="div_related_price related_card"><span style={{color: 'red'}}>${salesPrice}</span> <span style={helpers.style}>${price}</span>
+                      </div> : <div className="div_related_price related_card"><span>${price}</span></div>}
                   <br></br>
                   <StarRating rating={helpers.configRatings(item.rating)} pixels={10} className="div_rating"/>
                 </div>

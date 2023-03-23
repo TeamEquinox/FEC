@@ -1,5 +1,12 @@
 {
   /*
+      umabiguous" tells Babel to automatically detect if it's transforming a 
+      CJS or ESM file, so that it doesn't inject import statements in CJS dependencies.
+      This allows me to use "module.exports" in the clientSideHelper.js and then use 
+      "import helpers from ./clientSideHelpers.js" to import all the functions
+  */
+  "sourceType": "unambiguous",
+  /*
       a preset is a set of plugins used to support particular language features.
       The two presets Babel uses by default: es2015, react
   */
@@ -8,9 +15,11 @@
     "@babel/react" //for react
   ],
   /*
-      Babel's code transformations are enabled by applying plugins (or presets) to your configuration file.
+      Babel's code transformations are enabled by applying plugins 
+      (or presets) to your configuration file.
   */
   "plugins": [
     "@babel/plugin-transform-runtime"
   ]
+  
 }

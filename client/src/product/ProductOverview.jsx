@@ -8,16 +8,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import StarRating from '../starRatings.jsx'
 
-
 const ProductOverview = ({ product }) => {
   console.table('productOnLoad', product)
 
   const [gallery, setGallery] = useState([])
-  const [largeImage, setLargeImage] = useState('')
+  const [largeImage, setLargeImage] = useState(product[1].results[0].photos[0].url)
 
-  // useEffect(() => {
-  //   console.log('new gallery')
-  // }, [gallery])
+  useEffect(() => {
+    if (largeImage) {
+      document.getElementById(`check-${largeImage}`).classList.remove('check_circled')
+      document.getElementById(`check-${largeImage}`).classList.add('check_circled2')
+    }
+  }, [])
+
   var configRatings = (obj) => {
     var oneStar = Number(obj['1']);
     var twoStar = Number(obj['2']);
@@ -34,10 +37,10 @@ const ProductOverview = ({ product }) => {
     <section className="section__product">
       <div className="div__product">
         <div><StarRating rating={configRatings(product[3].ratings)} pixels={10} />  </div>
-        <p><u>Read all reviews</u></p>
+        <p onClick={() => { window.location.replace("/#overall-rating") }}><u>Read all reviews</u></p>
         <h3>{product.length ? product[0].category : "Category"}</h3>
         <h2>{product.length ? product[0].name : "Name"}</h2>
-        <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} />
+        <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} />
       </div>
       <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} />
       <div className="div__description">{product.length ? product[0].description : "Description"}</div>
@@ -48,7 +51,6 @@ const ProductOverview = ({ product }) => {
           </ul>
         )
       })
-
         : null}</div>
 
     </section>

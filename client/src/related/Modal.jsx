@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HiCheck } from 'react-icons/Hi';
+
 const Modal = ({ setShowModal, compares}) => {
   console.log('COMPARE--------------->', compares);
  

@@ -14,8 +14,8 @@ const App = () => {
 
   const [product, setProduct] = useState([])
   const [relatedData, setRelatedData] = useState([]);
-  const [dataToCompare, setDataToCompare] =  useState ({});
-  
+  const [dataToCompare, setDataToCompare] = useState({});
+
 
   const pageLoad = () => {
     $.ajax({
@@ -42,19 +42,19 @@ const App = () => {
 
   const getAndCompareCurrentProduct = (id) => {
     axios.get('/compare', { params: { data: id } })
-    .then((data) => {
-      setDataToCompare(data.data);
-    })
-    .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err))
+      .then((data) => {
+        setDataToCompare(data.data);
+      })
+      .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err))
   }
 
   const updateCurrentProduct = (id) => {
     axios.get('/setCurrentProduct', { params: { data: id } })
-    .then((data) => {
-      setProduct(data.data);
-      getRelatedProducts(id);
-    })
-    .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err))
+      .then((data) => {
+        setProduct(data.data);
+        getRelatedProducts(id);
+      })
+      .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err))
   }
 
   useEffect(() => {
@@ -63,19 +63,19 @@ const App = () => {
   }, [])
 
   // useEffect(() => {
-    // console.log('productAfterUseEffect', product)
+  // console.log('productAfterUseEffect', product)
   // }, [product])
 
   if (product.length) {
     return (
       <div>
-        <div className="div__banner"><h1><b>Equinox Apparel</b></h1></div>
+        <div className="div__banner"><h1><b>Equinox Apparel</b></h1> </div>
         <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
         <ProductOverview product={product} />
-        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct}/>
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct} />
         <ReviewList product={product} />
         <ProductBreakdown product={product} />
-        <QuestionsList product_id={product[0]['id']}/>
+        <QuestionsList product_id={product[0]['id']} />
       </div >
     )
   } else {

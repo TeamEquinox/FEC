@@ -19,7 +19,7 @@ const ProductBreakdown = ({ product }) => {
   return (
     <>
       <div>This is from the ProductBreakdown</div>
-      <RatingBreakdown meta={meta} reviews={reviews}/>
+      <RatingBreakdown meta={meta} reviews={reviews} />
       <SortOptions />
     </>
   )

@@ -15,6 +15,14 @@ h1 {
   height: 130px;
 }
 
+.shoppingCart {
+  font-size: 35px;
+  color: white;
+  position: absolute;
+  top: 60px;
+  right: 60px
+}
+
 .section__announcement {
   position: absolute;
   left: 850px;
@@ -25,12 +33,12 @@ h1 {
 .section__product {
   height: 1200px;
   width: auto;
-  padding-bottom: 50px;
+  padding-bottom: 200px;
 }
 
 .div__product {
   display: block;
-  left: 1100px;
+  left: 1400px;
   top: 150px;
   position: relative;
   /* border-radius: 5px;
@@ -50,25 +58,34 @@ IMAGE CSS
   width: 60%; */
   display: inline-block;
   position: absolute;
-  top: 55px;
-  height: 90%;
-  width: 40%;
+  top: 15px;
+  height: 50%;
+  width: 50%;
+  left: 100px;
   padding-bottom: 50px;
 }
 
-.img__gallery {
-  width: 450px;
-  height: auto;
+#img__gallery {
+  /* width: 450px;
+  height: auto; */
+  /* object-fit: cover; */
+  max-width: 90%;
+  max-height: 60%;
+  /* margin: auto; */
+
 }
 
 
 .div__large_image {
-  width: 450px;
-  height: auto;
+  /* width: 650px;
+  height: auto; */
   display: inline-block;
   position: absolute;
   left: 280px;
-  top: 300px
+  top: 280px;
+  max-width: 90%;
+  max-height: 60%;
+  /* object-fit: cover; */
 }
 
 .img__gallery_small {
@@ -77,6 +94,7 @@ IMAGE CSS
   right: 40px;
   width: 80px;
   height: 80px;
+
 }
 
 .div__img_gallery_small {
@@ -102,13 +120,14 @@ IMAGE CSS
 
 .expandedview {
   display: block;
-  position: fixed;
-  background: rgb(233, 13, 211);
-  width: 1000px;
-  height: 1000px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  /* position: fixed; */
+  /* background: rgb(233, 13, 211); */
+  width: 2000px;
+  height: 2000px;
+  /* top: 50%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
 }
 
 /*
@@ -146,7 +165,7 @@ CART CSS
   height: 45px;
   position: absolute;
   left: -10px;
-  top: 600px;
+  top: 700px;
 }
 
 .dropDown2 {
@@ -154,7 +173,7 @@ CART CSS
   width: 150px;
   position: absolute;
   left: -10px;
-  top: 600px;
+  top: 700px;
   z-index: 9;
 }
 
@@ -164,7 +183,7 @@ CART CSS
   width: 150px;
   height: 45px;
   left: 150px;
-  top: 600px;
+  top: 700px;
 }
 
 .button__cart {
@@ -172,7 +191,7 @@ CART CSS
   margin-right: 10px;
   position: absolute;
   left: -10px;
-  top: 755px;
+  top: 805px;
   width: 150px;
   height: 45px;
 }
@@ -181,7 +200,7 @@ CART CSS
   border-radius: 0px;
   position: absolute;
   left: 150px;
-  top: 755px;
+  top: 805px;
   width: 100px;
   height: 45px;
 }
@@ -189,25 +208,35 @@ CART CSS
 .p__message {
   position: absolute;
   color: red;
-  top: 730px
+  top: 640px
+}
+
+.div__item_added {
+  font-weight: bolder;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: -200px;
+  left: 675px
 }
 
 /*
 DESCRIPTION CSS
 */
 .div__description {
+  font-size: 20px;
   position: absolute;
-  top: 1130px;
+  top: 1430px;
   left: 40px;
   width: 50%;
-  padding-bottom: 100px;
+  padding-bottom: 200px;
 }
 
 .div__feature {
+  font-size: 20px;
   display: inline-block;
   position: absolute;
-  top: 1090px;
-  left: 1075px;
+  top: 1390px;
+  left: 1370px;
   padding-bottom: 100px;
 }
 
@@ -235,7 +264,7 @@ CARET CSS
   position: absolute;
   top: 620px;
   /* left: 480px */
-  left: 790px
+  left: 1050px
 }
 
 .caret__up {
@@ -348,7 +377,20 @@ Start Related CSS======================>
   height: 100%;
 }
 
-.div_info_container {
+.icon_related_action {
+  position: absolute;
+  /* background-color: black; */
+  color: white;
+  border-radius: 10px;
+  left: 85%;
+  top: 12px;
+}
+
+.icon_related_action:hover {
+  background-color: blue;
+}
+
+.div_realated_info_container {
   position: relative;
   height: 30%;
   width: 100%;
@@ -376,6 +418,7 @@ Icons...........................
   left: 85%;
   top: 12px;
 }
+
 .icon_action:hover {
   background-color: blanchedalmond;
 }
@@ -425,17 +468,17 @@ Modal...........................
   height: 250px;
   width: 320px;
   top: 0;
-  right:0;
+  right: 0;
   left: 0;
   bottom: 0;
   background-color: antiquewhite;
-  overflow:auto;
+  overflow: auto;
   z-index: 9999;
 }
 
 .div_modal_X_button {
   position: absolute;
-  left:90%;
+  left: 90%;
   top: 5px;
   border-radius: 10px;
 }
@@ -444,34 +487,13 @@ Modal...........................
   border: none;
   background-color: antiquewhite;
 }
+
 .button_modal:hover {
   border: 2px solid black;
   border-radius: 5px;
 }
 
-/*
-Outfit List...........................
-*/
-
-.div_outfit_card {
-  display: inline-block;
-  border: 2px solid black;
-  width: 175px;
-  height: 280px;
-  margin: 3px;
-}
-.div_add_outfit_card {
-  border: 2px solid black;
-  display: inline-block;
-  background-color: aquamarine;
-  width: 175px;
-  height: 280px;
-  margin: 3px;
-}
-.div_add_outfit_card *{
-  /* border: 2px solid greenyellow */
-}
-.add_outfit_action {
+/* .div_modal_title {
   position: absolute;
   left: 40%;
   top: 45%;
@@ -485,6 +507,7 @@ Outfit List...........................
   display: flex;
   align-items: center;
 }
+
 /*
 END Related CSS======================^
 <<<<<<< HEAD

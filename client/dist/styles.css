@@ -348,22 +348,28 @@ Start Related CSS======================>
 */
 
 #related_products_container {
-  border: 2px solid red;
+  /* border: 2px solid black; */
 }
 
-.div_card_container {
-  border: 2px solid greenyellow;
+.h3_related_title{
   position: relative;
+  left:30px
+}
+.div_card_container  {
+  /* border: 2px solid greenyellow; */
   display: flex;
   align-items: center;
 }
 
-.div_related_card {
+.div_card {
   display: inline-block;
   border: 2px solid black;
   width: 175px;
   height: 280px;
   margin: 3px;
+}
+.div_card:hover {
+  cursor: pointer;
 }
 
 .div_image_action_container {
@@ -377,25 +383,10 @@ Start Related CSS======================>
   height: 100%;
 }
 
-.icon_related_action {
-  position: absolute;
-  /* background-color: black; */
-  color: white;
-  border-radius: 10px;
-  left: 85%;
-  top: 12px;
-}
-
-.icon_related_action:hover {
-  background-color: blue;
-}
-
-.div_realated_info_container {
-  position: relative;
-  height: 30%;
-  width: 100%;
+.div_info_container {
+  height: 84px;
+  width: 175;
   font-size: 12px;
-  background-color: blanchedalmond;
 }
 
 .div_rating {
@@ -405,6 +396,55 @@ Start Related CSS======================>
 
 .span_salesPrice {
   color: red;
+}
+
+/*
+Outfit...........................
+*/
+
+.h3_outfit_title{
+  position: relative;
+  left:30px
+}
+.div_outfit_card {
+  display: inline-block;
+  border: 1px solid black;
+  width: 175px;
+  height: 280px;
+  margin: 3px;
+}
+.div_addOutfit_card {
+  background-color: #ccc;  
+  border: 1px solid black;
+  width: 175px;
+  height: 280px;
+  margin: 3px;
+}
+.div_addOutfit_card:hover {
+  cursor: pointer;
+  border: 4px solid black
+}
+.h3_add_outfit_action_header {
+  background: none;  
+  border-top: 1px solid black;
+  height: 84px;
+  width: 175;
+  text-align: center;
+  font-size: 20px;
+}
+.div_add_outfit_action{
+  background: none;  
+  position: relative;
+  height: 196px;
+  width: 175px;
+}
+.add_outfit_action {
+  background: none;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: 67px;
+  top: 85px;
 }
 
 /*
@@ -420,7 +460,9 @@ Icons...........................
 }
 
 .icon_action:hover {
-  background-color: blanchedalmond;
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }
 
 /*
@@ -433,7 +475,9 @@ Carets/Slider...........................
 }
 
 .div_left_caret:hover {
+  font-size: 40px;
   opacity: 100%;
+  cursor: pointer;
 }
 
 .div_right_caret {
@@ -442,7 +486,9 @@ Carets/Slider...........................
 }
 
 .div_right_caret:hover {
+  font-size: 40px;
   opacity: 100%;
+  cursor: pointer;
 }
 
 .div_slider {
@@ -453,6 +499,8 @@ Carets/Slider...........................
   overflow: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
+  display: flex;
+  align-items: center;
 }
 
 /*
@@ -461,10 +509,6 @@ Modal...........................
 
 .div_modal_container {
   position: fixed;
-  /* position: absolute; */
-  /* position: relative; */
-  /* display: flex; */
-
   height: 250px;
   width: 320px;
   top: 0;
@@ -489,24 +533,11 @@ Modal...........................
 }
 
 .button_modal:hover {
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-/* .div_modal_title {
-  position: absolute;
-  left: 40%;
-  top: 45%;
-  border: 1px solid black;
-  font-size: 30px;
-}
-/* .add_outfit_action:hover {
-  background-color: blanchedalmond;
-} */
-.add_outfit_action_header {
-  display: flex;
-  align-items: center;
-}
 
 /*
 END Related CSS======================^

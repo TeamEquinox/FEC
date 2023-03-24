@@ -15,10 +15,22 @@ const QuestionBox = (props) => {
     setShowAnsModal(!showAnsModal);
   }
 
+  // function to pass to answer modal
+  var updateAnswers = (data) => {
+    setAnswers(data);
+    changeWindow();
+  }
+
   // set answers once questions have loaded
   useEffect(() => {
     // setAnswers(sampleAns.results);
-    getAnswers(props.question.question_id);
+    getAnswers(props.question.question_id)
+      .then((ans) => {
+        setAnswers(ans);
+      })
+      .catch((err) => {
+        console.log('error getting answers on load', err);
+      })
   }, []);
 
   return (
@@ -39,7 +51,7 @@ const QuestionBox = (props) => {
         {answers.map((ans) => {
           return <Answers answer={ans} key={ans.answer_id}/>
         })}
-      <AnswerModal show={showAnsModal} closeModal={changeWindow} productId={props.product_id} questionId={props.question.question_id}/>
+      <AnswerModal show={showAnsModal} updateAnswers={updateAnswers} productId={props.product_id} questionId={props.question.question_id}/>
       <button type="button" onClick={changeWindow}>Add Answer</button>
       </div>)}
     </div>

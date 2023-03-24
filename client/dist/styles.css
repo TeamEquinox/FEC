@@ -348,12 +348,15 @@ Start Related CSS======================>
 */
 
 #related_products_container {
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
-.div_card_container {
-  /* border: 2px solid greenyellow; */
+.h3_related_title{
   position: relative;
+  left:30px
+}
+.div_card_container  {
+  /* border: 2px solid greenyellow; */
   display: flex;
   align-items: center;
 }
@@ -381,9 +384,8 @@ Start Related CSS======================>
 }
 
 .div_info_container {
-  /* position: relative; */
-  height: 30%;
-  width: 100%;
+  height: 84px;
+  width: 175;
   font-size: 12px;
 }
 
@@ -394,6 +396,55 @@ Start Related CSS======================>
 
 .span_salesPrice {
   color: red;
+}
+
+/*
+Outfit...........................
+*/
+
+.h3_outfit_title{
+  position: relative;
+  left:30px
+}
+.div_outfit_card {
+  display: inline-block;
+  border: 1px solid black;
+  width: 175px;
+  height: 280px;
+  margin: 3px;
+}
+.div_addOutfit_card {
+  background-color: #ccc;  
+  border: 1px solid black;
+  width: 175px;
+  height: 280px;
+  margin: 3px;
+}
+.div_addOutfit_card:hover {
+  cursor: pointer;
+  border: 4px solid black
+}
+.h3_add_outfit_action_header {
+  background: none;  
+  border-top: 1px solid black;
+  height: 84px;
+  width: 175;
+  text-align: center;
+  font-size: 20px;
+}
+.div_add_outfit_action{
+  background: none;  
+  position: relative;
+  height: 196px;
+  width: 175px;
+}
+.add_outfit_action {
+  background: none;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: 67px;
+  top: 85px;
 }
 
 /*
@@ -409,6 +460,7 @@ Icons...........................
 }
 
 .icon_action:hover {
+  cursor: pointer;
   background-color: white;
   color: black;
 }
@@ -423,6 +475,7 @@ Carets/Slider...........................
 }
 
 .div_left_caret:hover {
+  font-size: 40px;
   opacity: 100%;
   cursor: pointer;
 }
@@ -433,6 +486,7 @@ Carets/Slider...........................
 }
 
 .div_right_caret:hover {
+  font-size: 40px;
   opacity: 100%;
   cursor: pointer;
 }
@@ -445,6 +499,8 @@ Carets/Slider...........................
   overflow: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
+  display: flex;
+  align-items: center;
 }
 
 /*
@@ -477,36 +533,11 @@ Modal...........................
 }
 
 .button_modal:hover {
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/*
-Outfit...........................
-*/
-.div_outfit_card {
-  display: inline-block;
-  border: 2px solid black;
-  width: 175px;
-  height: 280px;
-  margin: 3px;
-}
-.add_outfit_action {
-  position: absolute;
-  left: 70px;
-  top: 80px;
-  font-size: 30px;
-  border: 1px solid black;
-}
-
-.add_outfit_action:hover {
-  cursor: pointer;
-  background-color: blanchedalmond;
-}
-.icon_action:hover {
-  cursor: pointer;
-}
 
 /*
 END Related CSS======================^

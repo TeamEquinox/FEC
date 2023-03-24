@@ -348,24 +348,24 @@ Start Related CSS======================>
 */
 
 #related_products_container {
-  border: 2px solid red;
+  border: 2px solid black;
 }
 
 .div_card_container {
-  border: 2px solid greenyellow;
+  /* border: 2px solid greenyellow; */
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.div_related_card {
+.div_card {
   display: inline-block;
   border: 2px solid black;
   width: 175px;
   height: 280px;
   margin: 3px;
 }
-.div_related_card:hover {
+.div_card:hover {
   cursor: pointer;
 }
 
@@ -380,25 +380,11 @@ Start Related CSS======================>
   height: 100%;
 }
 
-.icon_related_action {
-  position: absolute;
-  /* background-color: black; */
-  color: white;
-  border-radius: 10px;
-  left: 85%;
-  top: 12px;
-}
-
-.icon_related_action:hover {
-  background-color: blue;
-}
-
-.div_realated_info_container {
-  position: relative;
+.div_info_container {
+  /* position: relative; */
   height: 30%;
   width: 100%;
   font-size: 12px;
-  background-color: blanchedalmond;
 }
 
 .div_rating {
@@ -423,7 +409,8 @@ Icons...........................
 }
 
 .icon_action:hover {
-  background-color: blanchedalmond;
+  background-color: white;
+  color: black;
 }
 
 /*
@@ -466,10 +453,6 @@ Modal...........................
 
 .div_modal_container {
   position: fixed;
-  /* position: absolute; */
-  /* position: relative; */
-  /* display: flex; */
-
   height: 250px;
   width: 320px;
   top: 0;
@@ -499,20 +482,26 @@ Modal...........................
   cursor: pointer;
 }
 
-/* .div_modal_title {
+/*
+Outfit...........................
+*/
+
+.add_outfit_action {
   position: absolute;
-  left: 40%;
-  top: 45%;
-  border: 1px solid black;
+  left: 70px;
+  top: 80px;
   font-size: 30px;
-} */
+  border: 1px solid black;
+}
+
 .add_outfit_action:hover {
   cursor: pointer;
+  background-color: blanchedalmond;
 }
-.add_outfit_action_header {
-  display: flex;
-  align-items: center;
-}
+/* .add_outfit_action_header {
+  position: fixed; 
+  left: 33px;
+} */
 
 /*
 END Related CSS======================^

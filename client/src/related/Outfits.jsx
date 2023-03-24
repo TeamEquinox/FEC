@@ -29,12 +29,12 @@ const Outfits = ({ data, product, setoutfit }) => {
     <div className="div_card_container">
       <RxCaretLeft onClick={() => helpers.slideLeft('outfitSlider')} className="div_left_caret"/>
       <div id="outfitSlider" className="div_slider">
-        <div className="div_add_outfit_card" onClick={handlerAddClick}>
+        <div className="div_card" onClick={handlerAddClick}>
           <div className="div_image_action_container" >
           <RxPlus className="add_outfit_action" />
           </div>
           <div className="div_info_container" onClick={handlerAddClick}>
-          <h3 className="add_outfit_action_header">Add to Outfit</h3>
+          <div className="add_outfit_action_header"><h3 className="add_outfit_action_header">Add to Outfit</h3></div>
           </div>
         </div>
       </div>
@@ -49,12 +49,12 @@ const Outfits = ({ data, product, setoutfit }) => {
        <div className="div_card_container">
          <RxCaretLeft onClick={() => helpers.slideLeft('outfitSlider')} className="div_left_caret"/>
          <div id="outfitSlider" className="div_slider">
-           <div className="div_add_outfit_card" onClick={handlerAddClick}>
+           <div className="div_card" onClick={handlerAddClick}>
              <div className="div_image_action_container" >
              <RxPlus className="add_outfit_action" />
              </div>
-             <div className="div_info_container" onClick={handlerAddClick}>
-             <h3 className="add_outfit_action_header">Add to Outfit</h3>
+             <div className=".div_realated_info_container" onClick={handlerAddClick}>
+             <div className="add_outfit_action_header"><h3 className="add_outfit_action_header">Add to Outfit</h3></div>
              </div>
            </div>
              {
@@ -65,7 +65,7 @@ const Outfits = ({ data, product, setoutfit }) => {
                    salesPrice = item.sale_price;
                  }
            
-                 return <div key={item.id} className="div_outfit_card" >
+                 return <div key={item.id} className="div_card" >
                    <div className="div_image_action_container">
                      <RxCrossCircled className="icon_action" onClick={() => handlerRemoveClick(item.id)}/>
                      <img className="img_card" src={item.image}></img>

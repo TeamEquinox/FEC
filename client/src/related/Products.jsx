@@ -5,7 +5,7 @@ import helpers from '../clientSideHelpers.js';
 
 
 
-const Products = ({ relatedData, setShowModal, updates, updateProduct }) => {
+const Products = ({ relatedData, setShowModal, updates, updateProduct, product }) => {
 
   const handleStarClick = (item) => {
     setShowModal(true);
@@ -36,7 +36,7 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct }) => {
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                if (item.photo !== 'N/A') {
+                if (item.photo !== 'N/A' && product[1].id !== item.id) {
                 return <div key={item.id} className="div_card" >
                   <div className="div_image_action_container">
                     <RxStar className="icon_action" onClick={ () => {

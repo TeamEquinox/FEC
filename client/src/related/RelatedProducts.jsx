@@ -11,7 +11,7 @@ const RelatedProducts = ({ relatedData, product, update, compare, updateProduct,
   return (
     <div id="related_products_container">
       {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]}/> : null}
-      <Product relatedData={relatedData} setShowModal={setShowModal} updates={update} updateProduct={updateProduct}/> 
+      <Product relatedData={relatedData} setShowModal={setShowModal} updates={update} updateProduct={updateProduct} product={product}/> 
       <Outfits data={outfit} product={product} setoutfit={setoutfit}/>
     </div>
   )

@@ -36,7 +36,9 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct, product }
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                if (item.photo !== 'N/A' && product[1].id !== item.id) {
+                console.log('PRODUCT----->', product[0].id);
+                console.log('ITEM----->', item.id);
+                if (item.photo !== 'N/A' && product[0].id !== item.id) {
                 return <div key={item.id} className="div_card" >
                   <div className="div_image_action_container">
                     <RxStar className="icon_action" onClick={ () => {

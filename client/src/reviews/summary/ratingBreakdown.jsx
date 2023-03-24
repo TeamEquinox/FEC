@@ -26,7 +26,6 @@ const RatingBreakdown = ({ meta, reviews }) => {
     (Number(meta.ratings[4] ?? 0) * 4) + (Number(meta.ratings[5] ?? 0) * 5);
   let totalPossibleRating = ((Number(meta.ratings[1] ?? 0) + Number(meta.ratings[2] ?? 0) + Number(meta.ratings[3] ?? 0) +
     Number(meta.ratings[4] ?? 0) + Number(meta.ratings[5] ?? 0)) * 5);
-
   let numOfReviews = Number(meta.ratings[1] ?? 0) + Number(meta.ratings[2] ?? 0) +
     Number(meta.ratings[3] ?? 0) + Number(meta.ratings[4] ?? 0) + Number(meta.ratings[5] ?? 0);
   let numOfStars = rating / totalPossibleRating * 5;

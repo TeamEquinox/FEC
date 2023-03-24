@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RatingBreakdown from './ratingBreakdown.jsx'
+import RatingBreakdown from './ratingBreakdown.jsx';
 
 const axios = require('axios');
 

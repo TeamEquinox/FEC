@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { postQuestion } from './calls.js'
+import { postQuestion, getQuestions } from './calls.js'
 
 const QuestionModal = (props) => {
 
@@ -26,7 +26,21 @@ const QuestionModal = (props) => {
       name: nickname,
       email: email,
       product_id: props.productId
-    }, props.closeModal);
+    })
+      .then((success) => {
+        // console.log('made it back into questions modal')
+        getQuestions(props.productId)
+          .then((questions) => {
+            console.log('questions from posting', questions);
+            props.updateQuestions(questions);
+          })
+          .catch((err) => {
+            console.log('error updating questions in modal', err);
+          })
+      })
+      .catch((err)=> {
+        console.log('error posting new question', err);
+      })
   }
 
   if (!props.show) {

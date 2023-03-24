@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { postAnswer } from './calls.js';
+import { postAnswer, getAnswers } from './calls.js';
 
 const AnswerModal = (props) => {
 
@@ -28,7 +28,19 @@ const AnswerModal = (props) => {
       email: email,
       photos: photos,
       product_id: props.productId
-    }, props.questionId, props.closeModal);
+    }, props.questionId)
+      .then((success) => {
+        getAnswers(props.questionId)
+          .then((ans) => {
+            props.updateAnswers(ans);
+          })
+          .catch((err) => {
+            console.log('error refreshing answers', err);
+          })
+      })
+      .catch((err) => {
+        console.log('error submitting answer', err);
+      })
   }
 
   if (!props.show) {

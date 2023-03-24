@@ -485,7 +485,13 @@ Modal...........................
 /*
 Outfit...........................
 */
-
+.div_outfit_card {
+  display: inline-block;
+  border: 2px solid black;
+  width: 175px;
+  height: 280px;
+  margin: 3px;
+}
 .add_outfit_action {
   position: absolute;
   left: 70px;
@@ -498,10 +504,9 @@ Outfit...........................
   cursor: pointer;
   background-color: blanchedalmond;
 }
-/* .add_outfit_action_header {
-  position: fixed; 
-  left: 33px;
-} */
+.icon_action:hover {
+  cursor: pointer;
+}
 
 /*
 END Related CSS======================^

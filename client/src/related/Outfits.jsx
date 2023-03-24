@@ -65,7 +65,7 @@ const Outfits = ({ data, product, setoutfit }) => {
                    salesPrice = item.sale_price;
                  }
            
-                 return <div key={item.id} className="div_card" >
+                 return <div key={item.id} className="div_outfit_card" >
                    <div className="div_image_action_container">
                      <RxCrossCircled className="icon_action" onClick={() => handlerRemoveClick(item.id)}/>
                      <img className="img_card" src={item.image}></img>

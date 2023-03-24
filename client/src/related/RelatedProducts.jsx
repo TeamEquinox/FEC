@@ -7,14 +7,10 @@ import Modal from './Modal.jsx';
 
 const RelatedProducts = ({ relatedData, product, update, compare, updateProduct}) => {
   const [showModal, setShowModal] = useState(false);
-  // const [compares, setCompare] = useState([]);
-  // setCompare([product[0], compare]);
-
-
+  console.log('PRODUCT---------->', product);
   
-  //returning components to index.jsx=======
   return (
-    <div id="related_outfits_container">
+    <div id="related_products_container">
       {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]}/> : null}
       <Product relatedData={relatedData} setShowModal={setShowModal} updates={update} updateProduct={updateProduct}/> 
       <Outfits/>

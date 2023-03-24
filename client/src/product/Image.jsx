@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { useState, useEffect } from 'react';
-import { RxCaretLeft, RxCaretRight } from 'react-icons/Rx';
+import { RxCaretLeft, RxCaretRight, RxCaretUp, RxCaretDown } from 'react-icons/Rx';
+import ExpandedView from './ExpandedView.jsx'
 
 
 const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
@@ -9,20 +10,36 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
 
   const [showLeftCaret, setShowLeftCaret] = useState(true)
   const [showRightCaret, setShowRightCaret] = useState(true)
+  const [showModal, setShowModal] = useState(false)
+
+
+  useEffect(() => {
+    // console.log('UE running')
+    if (photos.length === 1) {
+      setShowLeftCaret(false)
+      setShowRightCaret(false)
+    }
+    if (gallery.length === 1) {
+      setShowRightCaret(false)
+      setShowLeftCaret(false)
+    }
+    if (gallery.length >= 2) {
+      setShowLeftCaret(false)
+      setShowRightCaret(true)
+    }
+  }, [gallery])
 
   let nextIndex;
   let nextPhoto;
 
   const caretRight = () => {
-    let currLargeImage = document.getElementsByClassName("img__gallery")[0].src
-    // console.log('curr', currLargeImage)
     if (!gallery.length) {
       if (photos[0].photos) {
         if (showLeftCaret === false) {
           setShowLeftCaret(true)
         }
         photos[0].photos.forEach((photo, index) => {
-          if (photo.url === currLargeImage) {
+          if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
             if (index === photos[0].photos.length - 2) {
               setShowRightCaret(!showRightCaret)
             }
@@ -37,28 +54,27 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
         setShowLeftCaret(true)
       }
       gallery.forEach((photo, index) => {
-        if (photo.url === currLargeImage) {
+        if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
           if (index === gallery.length - 2) {
-            setShowRightCaret(!showRightCaret)
+            setShowRightCaret(false)
           }
-
           nextIndex = index + 1;
           nextPhoto = gallery[nextIndex].url;
           setLargeImage(gallery[nextIndex].url)
+          console.log('large image is set')
         }
       })
     }
   }
 
   const caretLeft = () => {
-    let currLargeImage = document.getElementsByClassName("img__gallery")[0].src
     if (!gallery.length) {
       if (photos[0].photos) {
         if (showRightCaret === false) {
           setShowRightCaret(true)
         }
         photos[0].photos.forEach((photo, index) => {
-          if (photo.url === currLargeImage) {
+          if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
             if (index === 1) {
               setShowLeftCaret(!showLeftCaret)
             }
@@ -68,37 +84,46 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
           }
         })
       }
-    } else if (gallery.length > 0) {
+    } else if (gallery.length > 1) {
       if (showRightCaret === false) {
         setShowRightCaret(true)
       }
       gallery.forEach((photo, index) => {
-        if (photo.url === currLargeImage) {
+        if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
+          console.log('arge', largeImage)
+          console.log('url', photo.url)
           if (index === 1) {
             setShowLeftCaret(!showLeftCaret)
           }
           nextIndex = index - 1;
           nextPhoto = gallery[nextIndex].url;
           setLargeImage(gallery[nextIndex].url)
+          console.log('large image is set')
         }
       })
     }
-    console.log('arge', largeImage)
 
   }
+
+  const reSize = () => {
+    let img = document.getElementById("img__gallery").width
+    console.log('img', img)
+  }
   // console.log('galleryHERE', gallery)
+
   if (gallery.length) {
     return (
 
-      <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft() }} /> : null}{showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight() }} /> : null}
-        <div className="div__large_image"><img className="img__gallery" src={largeImage}></img></div>
-        <div className="div__img_gallery_small">
+      <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft() }} /> : null}{showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
+        <div className="div__large_image"><img id="img__gallery" src={largeImage} onClick={() => { console.log('clicked'); setShowModal(true); reSize() }}></img></div>
+        {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} /> : null}
+        <div className="div__img_gallery_small"><RxCaretUp className="caret__up" />
           {gallery.length ? gallery.map((photo) => {
             return (
-              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url) }} key={photo.thumbnail_url}></img>
+              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)) }} key={photo.thumbnail_url}></img>
             )
           }) : null}
-
+          <RxCaretDown className="caret__down" />
         </div>
       </div >
     )
@@ -106,18 +131,19 @@ const Image = ({ photos, gallery, largeImage, setLargeImage }) => {
     return (
 
       <div className="div__image_container">{showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft() }} /> : null}
-        {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); setLargeImage(nextPhoto) }} /> : null}
-        <div className="div__large_image"> <img className="img__gallery" src={largeImage ? largeImage : photos[0].photos[0].url}></img>
+        {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
+        <div className="div__large_image" > <img id="img__gallery" src={largeImage ? largeImage : photos[0].photos[0].url} onClick={() => { console.log('clicked'); setShowModal(true); reSize() }}></img>
+          {showModal ? <ExpandedView classname="expandedview" setShowModal={setShowModal} largeImage={largeImage} /> : null}
         </div>
 
+        <div className="div__img_gallery_small"> <RxCaretUp className="caret__up" />
 
-        <div className="div__img_gallery_small">
           {photos[0].photos ? photos[0].photos.map((photo) => {
             return (
-              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url) }} key={photo.thumbnail_url}></img>
+              <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)) }} key={photo.thumbnail_url}></img>
             )
           }) : null}
-
+          <RxCaretDown className="caret__down" />
         </div>
       </div >
 

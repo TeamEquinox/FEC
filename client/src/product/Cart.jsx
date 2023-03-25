@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 
 const Cart = ({ setCart }) => {
   return (
-    <div className="expandedview">hi
+    <div className="div__cart_view">
       <button onClick={() => { setCart(false) }}>close</button>
-      {localStorage.getItem('cart')}
+      {localStorage.getItem('cart')
+
+      }
     </div>
   )
 }

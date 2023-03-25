@@ -80,6 +80,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
   }
 
   const addItem = () => {
+    localStorage.removeItem('cart')
     let cart = [];
     let sizeSelector = document.getElementById("select__size").value
     let quantitySelector = document.getElementById("select__quantity").value

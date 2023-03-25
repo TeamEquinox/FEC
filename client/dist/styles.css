@@ -219,6 +219,17 @@ CART CSS
   left: 675px
 }
 
+.div__cart_view {
+  border: rgb(0, 0, 0) solid;
+  position: fixed;
+  background: rgb(255, 255, 255);
+  width: 20%;
+  height: 350px;
+  top: 315px;
+  left: 1910px;
+  transform: translate(-50%, -50%);
+}
+
 /*
 DESCRIPTION CSS
 */

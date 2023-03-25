@@ -6,14 +6,11 @@ import { CgLoadbar } from 'react-icons/cg';
 
 import StarRating from '../../starRatings'
 
-
-const IndividualReview = ({ reviews }) => {
-
+const ReviewList = ({ reviews }) => {
   const [reviewCount, setReviewCount] = useState(2);
 
-  // console.log('reviews in individualReviews: ', reviews)
   let reviewArr = []
-  if (reviews !== undefined) {
+  if (Array.isArray(reviews)) {
     reviewArr = reviews;
   }
 
@@ -79,4 +76,4 @@ const IndividualReview = ({ reviews }) => {
 
 };
 
-export default IndividualReview;
+export default ReviewList

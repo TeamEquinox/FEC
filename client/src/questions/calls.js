@@ -1,10 +1,10 @@
 let axios = require('axios');
 
 export const getQuestions = (productId) => {
-  axios.get('/questions/', { params: { productId } })
+  return axios.get('/questions/', { params: { productId } })
     .then((qData) => {
       console.log('this is questions', qData);
-      setQuestions(qData.data.results);
+      return qData.data.results;
     })
     .catch((err) => {
       console.log('error retrieving questions', err);
@@ -12,35 +12,33 @@ export const getQuestions = (productId) => {
 }
 
 export const getAnswers = (questionId) => {
-  axios.get('/answers/', { params: { questionId } })
+  return axios.get('/answers/', { params: { questionId } })
     .then((aData) => {
       console.log('this is answers', aData);
-      setAnswers(aData.data.results);
+      return aData.data.results;
     })
     .catch((err) => {
-      console.log(`error retrieving answers for question ${props.question.question_id}`, err);
+      console.log(`error retrieving answers for question ${questionId}`, err);
     });
 }
 
-export const postQuestion = (questionData, callback) => {
+export const postQuestion = (questionData) => {
   let options = {
     method: 'post',
     url: '/questions',
     data: questionData
   }
 
-  axios(options)
+  return axios(options)
     .then((data) => {
       console.log('return from posting question', data);
-      getQuestions(questionData.product_id);
-      callback();
     })
     .catch((err) => {
       console.log('error posting new question', err);
     });
 }
 
-export const postAnswer = (answerData, questionId, callback) => {
+export const postAnswer = (answerData, questionId) => {
   let options = {
     method: 'post',
     url: '/answers',
@@ -48,11 +46,9 @@ export const postAnswer = (answerData, questionId, callback) => {
     params: { questionId }
   }
 
-  axios(options)
+  return axios(options)
     .then((data) => {
       console.log('return from posting answer', data);
-      getAnswers(props.questionId);
-      callback();
     })
     .catch((err) => {
       console.log('error posting new question', err);

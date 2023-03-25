@@ -347,9 +347,9 @@ END OF PRODUCT CSS
 Start Related CSS======================>
 */
 
-#related_products_container {
-  /* border: 2px solid black; */
-}
+/* #related_products_container {
+  border: 2px solid black;
+} */
 
 .h3_related_title{
   position: relative;
@@ -414,7 +414,7 @@ Outfit...........................
   margin: 3px;
 }
 .div_addOutfit_card {
-  background-color: #ccc;  
+  background-color: #ccc;
   border: 1px solid black;
   width: 175px;
   height: 280px;
@@ -425,7 +425,7 @@ Outfit...........................
   border: 4px solid black
 }
 .h3_add_outfit_action_header {
-  background: none;  
+  background: none;
   border-top: 1px solid black;
   height: 84px;
   width: 175;
@@ -433,7 +433,7 @@ Outfit...........................
   font-size: 20px;
 }
 .div_add_outfit_action{
-  background: none;  
+  background: none;
   position: relative;
   height: 196px;
   width: 175px;
@@ -543,8 +543,15 @@ Modal...........................
   border-radius: 5px;
   cursor: pointer;
 }
-
-
+/* .div_modal_title {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+} */
+/* .div_modal_body {
+  overflow-y: scroll;
+  white-space: nowrap;
+} */
 /*
 END Related CSS======================^
 <<<<<<< HEAD
@@ -622,10 +629,7 @@ START Review CSS======================^
 }
 
 .individual-reviews-container {
-
   display: block;
-  border-radius: 10px;
-  border: solid rgb(144, 144, 144);
   position: relative;
   margin-bottom: 2px;
   width: 100%;
@@ -690,7 +694,6 @@ START Review CSS======================^
 }
 
 .helpful-review-button {
-  /* color: rgb(211, 211, 211); */
   cursor: pointer;
   font-size: 12px;
   margin-left: 10px;

@@ -1,26 +1,26 @@
-/* eslint-disable no-plusplus */
 const productAPI = require('./helperAPIs');
 
-// helper==============================
-const findDefault = (arr) => {
-  let result = {};
-  let hasPhotos = {};
-  let count = 0;
-  arr.forEach((style) => {
-    if (style['default?']) {
-      result = style;
-    }
-    if (style.photos[0].url !== null && count === 0) {
-      hasPhotos = style;
-      count++;
-    }
-  });
-  if (Object.keys(result).length === 0) {
-    // result = hasPhotos;
-    result = arr[0];
-  }
-  return result;
-};
+//  helper==============================
+
+// const findDefault = (arr) => {
+//   let result = {};
+//   let hasPhotos = {};
+//   let count = 0;
+//   arr.forEach((style) => {
+//     if (style['default?']) {
+//       result = style;
+//     }
+//     if (style.photos[0].url !== null && count === 0) {
+//       hasPhotos = style;
+//       count++;
+//     }
+//   });
+//   if (Object.keys(result).length === 0) {
+//     // result = hasPhotos;
+//     result = arr[0];
+//   }
+//   return result;
+// };
 
 // get related products==================
 const relatedProducts = (id) => productAPI.getRelatedProducts(id)

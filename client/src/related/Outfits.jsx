@@ -4,10 +4,10 @@ import StarRating from '../starRatings.jsx';
 import helpers from '../clientSideHelpers.js';
 
 
-const Outfits = ({ data, product, setoutfit }) => {
+const Outfits = ({ data = [], product, setoutfit }) => {
 
   // console.log('INSIDE OUTFITS PRODUCT IS', data);
-  
+
   useEffect(() => {
     helpers.getOutfit(setoutfit);
   }, []);
@@ -79,12 +79,12 @@ const Outfits = ({ data, product, setoutfit }) => {
                       <div className="div_related_name">Name: {item.name}</div>
                       { salesPrice !== null ? <div className="div_related_price"><span style={{color: 'red'}}>${salesPrice}</span> <span style={helpers.style}>${price}</span>
                       </div> : <div className="div_related_price"><span>${price}</span></div>}
-                      
+
                       <br></br>
                       <StarRating rating={helpers.configRatings(item.rating)} pixels={10} className="div_rating"/>
                     </div>
                   </div>
-                }) 
+                })
               }
             </div>
           </div>
@@ -92,7 +92,7 @@ const Outfits = ({ data, product, setoutfit }) => {
         </div>
       </>
     )
-  } 
+  }
 };
 
 export default Outfits;

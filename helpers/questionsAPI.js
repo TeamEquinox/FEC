@@ -56,28 +56,6 @@ let getAnswers = (req, res) => {
 
 var postQuestion = (req, res) => {
   var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
-  let options = {
-    method: 'post',
-    url: url,
-    headers: {
-      'Authorization': `${process.env.TOKEN}`
-    },
-    data: {
-      body: req.body.qBody,
-      name: req.body.askerName,
-      email: req.body.email,
-      product_id: req.body.product_id
-    }
-  }
-
-  // axios(options)
-  //   .then((created) => {
-  //     res.send('you tried to post a question. how cute!')
-  //   })
-  //   .err((err) => {
-  //     console.log(`error posting new question about product ${req.body.product_id}`, err)
-  //     res.send(err);
-  //   })
 
   axios.post(url, req.body, {
     headers: {
@@ -85,7 +63,7 @@ var postQuestion = (req, res) => {
     }
   })
     .then((success) => {
-      console.log('did it succeed? ', success);
+      // console.log('did it succeed? ', success);
       res.status(201).send(success.data);
     })
     .catch((err) => {

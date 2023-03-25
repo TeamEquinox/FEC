@@ -18,10 +18,22 @@ const QuestionsList = (props) => {
     setShowModal(!showModal);
   }
 
+  //set questions to pass through state
+  var updateQuestions = (updated) => {
+    setQuestions(updated);
+    changeWindow();
+  }
+
   // retrieve questions once product id is available
   useEffect(() => {
     // console.log('should be product ID', props.product_id);
-    getQuestions(props.product_id);
+    getQuestions(props.product_id)
+      .then((questions) => {
+        setQuestions(questions);
+      })
+      .catch((err) => {
+        console.log('error getting questions on load', err);
+      })
   }, [props.product_id]);
 
   // render
@@ -31,7 +43,7 @@ const QuestionsList = (props) => {
         <h2>Questions</h2>
         No questions yet...
         <button name="askQuestion" type="button" onClick={changeWindow}>Ask a Question!</button>
-        <QuestionModal show={showModal} closeModal={changeWindow} productId={props.product_id}/>
+        <QuestionModal show={showModal} productId={props.product_id} updateQuestions={updateQuestions}/>
         </div>
     )
   } else {

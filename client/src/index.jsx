@@ -83,7 +83,7 @@ const App = () => {
 
   if (product.length) {
     return (
-          <div>
+      <div>
         <div className="div__banner">
           <h1>
             <b>Equinox Apparel</b>

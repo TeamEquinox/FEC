@@ -18,8 +18,9 @@ const ProductOverview = ({ product }) => {
   const [reviews, setReviews] = useState(0)
   const [cart, setCart] = useState(false)
 
-  // useEffect(() => {
-  // }, [product])
+  useEffect(() => {
+    setLargeImage(product[1].results[0].photos[0].url)
+  }, [product])
 
   useEffect(() => {
     if (largeImage.length !== 0 && document.getElementById(`check-${largeImage}`) !== null) {
@@ -35,7 +36,6 @@ const ProductOverview = ({ product }) => {
       counter += Number(review);
     })
     setReviews(counter)
-    setLargeImage(product[1].results[0].photos[0].url)
 
   }, [product])
 

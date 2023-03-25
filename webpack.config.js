@@ -3,7 +3,7 @@ var SRC_DIR = path.join(__dirname, "/client/src");
 var DIST_DIR = path.join(__dirname, "/client/dist/compiled");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: `${SRC_DIR}/index.jsx`,
   output: {
     filename: "bundle.js",

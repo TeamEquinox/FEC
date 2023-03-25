@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
 import StarRating from '../starRatings.jsx';
 import helpers from '../clientSideHelpers.js';
@@ -6,6 +6,29 @@ import helpers from '../clientSideHelpers.js';
 
 
 const Products = ({ relatedData, setShowModal, updates, updateProduct, product }) => {
+
+  const [caretDisplay, setCaretDisplay] = useState(0);
+  const [rightCaretDisplay, setRightCaretDisplay] = useState("hi");
+
+  var check = 0;
+  const handleRightClick = (elem) => {
+    var slideRight = helpers.slideRight(elem);
+    // var nextSlideRight = helpers.slideRight(elem);
+    if (caretDisplay === slideRight && check === 0) {
+      setRightCaretDisplay(caretDisplay);
+      check++;
+      return;
+    }
+    setCaretDisplay(slideRight);
+  }
+
+  const handleLeftClick = (elem) => {
+    var slideLeft = helpers.slideLeft(elem);
+   
+    setCaretDisplay(slideLeft);
+  }
+  console.log('rightCaretDisplay', rightCaretDisplay);
+  console.log('caretDisplay', caretDisplay);
 
   const handleStarClick = (item) => {
     setShowModal(true);
@@ -26,7 +49,8 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct, product }
       <>
         <h3 className="h3_related_title">Related Products</h3>
         <div className="div_card_container">
-          <RxCaretLeft onClick={() => helpers.slideLeft('slider')} className="div_left_caret"/>
+          {caretDisplay <= 0 ? <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret_noShow"/> :
+          <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret"/>}
           <div id="slider" className="div_slider">
             <div>
             {
@@ -36,8 +60,8 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct, product }
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                console.log('PRODUCT----->', product[0].id);
-                console.log('ITEM----->', item.id);
+                // console.log('PRODUCT----->', product[0].id);
+                // console.log('ITEM----->', item.id);
                 if (item.photo !== 'N/A' && product[0].id !== item.id) {
                 return <div key={item.id} className="div_card" >
                   <div className="div_image_action_container">
@@ -59,7 +83,8 @@ const Products = ({ relatedData, setShowModal, updates, updateProduct, product }
             }
             </div>
           </div>
-          <RxCaretRight onClick={() => helpers.slideRight('slider')} className="div_right_caret"/>
+          {caretDisplay === rightCaretDisplay ? <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret_noShow"/> :
+          <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret"/>}
         </div>
       </>
     )

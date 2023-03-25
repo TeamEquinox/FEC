@@ -479,6 +479,9 @@ Carets/Slider...........................
   opacity: 100%;
   cursor: pointer;
 }
+.div_left_caret_noShow {
+  opacity: 0;
+}
 
 .div_right_caret {
   font-size: 30px;
@@ -489,6 +492,9 @@ Carets/Slider...........................
   font-size: 40px;
   opacity: 100%;
   cursor: pointer;
+}
+.div_right_caret_noShow {
+  opacity: 0;
 }
 
 .div_slider {

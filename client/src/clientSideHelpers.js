@@ -28,13 +28,20 @@ module.exports = {
   },
 
   slideLeft: (elem) => {
-    var slider = document.getElementById(elem);
-    slider.scrollLeft = slider.scrollLeft - 190;
+    let slider = document.getElementById(elem);
+    // console.log('Before=======>', slider.scrollLeft);
+    let newSlider = slider.scrollLeft = slider.scrollLeft - 190
+    // console.log('After=======>', newSlider);
+    return newSlider;
   },
 
+
   slideRight: (elem) => {
-    var slider = document.getElementById(elem);
-    slider.scrollLeft = slider.scrollLeft + 190
+    let slider = document.getElementById(elem);
+    // console.log('Before=======>', slider.scrollLeft);
+    let newSlider = slider.scrollLeft = slider.scrollLeft + 190
+    // console.log('After=======>', newSlider);
+    return newSlider;
   },
 
   style: {
@@ -98,6 +105,9 @@ module.exports = {
     module.exports.getOutfit(setOutfit);
   }, 
 
+  caretDisplay: () => {
+
+  }
   // mochData: [
   //   {
   //     id: 1,

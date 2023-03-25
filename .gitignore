@@ -4,3 +4,4 @@ MLconfig.js
 client/dist/compiled
 ./coverage
 coverage
+/coverage

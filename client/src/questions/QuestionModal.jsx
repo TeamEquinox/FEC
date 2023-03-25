@@ -1,69 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { postQuestion, getQuestions } from './calls.js'
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
+import React, { useState } from 'react';
+import { postQuestion, getQuestions } from './calls';
 
-const QuestionModal = (props) => {
-
+function QuestionModal({
+  product_id, show, updateQuestions, changeWindow,
+}) {
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
   const handleQuestion = (e) => {
     setQuestion(e.target.value);
-  }
+  };
 
   const handleNickname = (e) => {
     setNickname(e.target.value);
-  }
+  };
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     postQuestion({
       body: question,
       name: nickname,
-      email: email,
-      product_id: props.productId
+      email,
+      product_id,
     })
-      .then((success) => {
+      .then(() => {
         // console.log('made it back into questions modal')
-        getQuestions(props.productId)
+        getQuestions(product_id)
           .then((questions) => {
             console.log('questions from posting', questions);
-            props.updateQuestions(questions);
+            updateQuestions(questions);
           })
           .catch((err) => {
             console.log('error updating questions in modal', err);
-          })
+          });
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log('error posting new question', err);
-      })
-  }
+      });
+  };
 
-  if (!props.show) {
-    return null
-  } else {
-    return (
-      <div className='modal questionModal modal--open'>
-        <form className="form questionForm">
-        <button type="button" onClick={props.closeModal}>Close</button>
-          <label>Question:
-            <textarea name="qBody" rows="5" cols="30" value={question} onChange={handleQuestion}></textarea>
-          </label>
-          <label>Nickname:
-            <input name="askerName" value={nickname} onChange={handleNickname}></input>
-          </label>
-          <label>Email:
-            <input name="email" value={email} onChange={handleEmail}></input>
-          </label>
-        <button type="button" onClick={handleSubmit}>Submit Question</button>
-        </form>
-      </div>
-    )
+  if (!show) {
+    return null;
   }
+  return (
+    <div className="modal questionModal modal--open">
+      <form className="form questionForm">
+        <button type="button" onClick={changeWindow}>Close</button>
+        <label htmlFor="body">
+          Question:
+          <textarea name="body" rows="5" cols="30" value={question} onChange={handleQuestion} />
+        </label>
+        <label htmlFor="name">
+          Nickname:
+          <input name="name" value={nickname} onChange={handleNickname} />
+        </label>
+        <label htmlFor="email">
+          Email:
+          <input name="email" value={email} onChange={handleEmail} />
+        </label>
+        <button type="button" onClick={handleSubmit}>Submit Question</button>
+      </form>
+    </div>
+  );
 }
 
 export default QuestionModal;

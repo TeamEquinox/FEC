@@ -1,11 +1,20 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
-import axios from 'axios';
-import { postAnswer, getAnswers } from './calls.js';
+import { postAnswer, getAnswers } from './calls';
 
-function AnswerModal(props) {
+function AnswerModal({
+  show,
+  updateAnswers,
+  product_id,
+  question_id,
+  changeWindow,
+}) {
   const [answer, setAnswer] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [photos, setPhotos] = useState([]);
 
   const handleAnswer = (e) => {
@@ -20,18 +29,18 @@ function AnswerModal(props) {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     postAnswer({
       body: answer,
       name: nickname,
       email,
       photos,
-      product_id: props.productId,
-    }, props.questionId)
-      .then((success) => {
-        getAnswers(props.questionId)
+      product_id,
+    }, question_id)
+      .then(() => {
+        getAnswers(question_id)
           .then((ans) => {
-            props.updateAnswers(ans);
+            updateAnswers(ans);
           })
           .catch((err) => {
             console.log('error refreshing answers', err);
@@ -42,27 +51,27 @@ function AnswerModal(props) {
       });
   };
 
-  if (!props.show) {
+  if (show) {
     return null;
   }
   return (
     <div className="modal answerModal">
       <form className="form answerForm">
-        <button type="button" onClick={props.closeModal}>Close</button>
-        <label>
+        <button type="button" onClick={changeWindow}>Close</button>
+        <label htmlFor="body">
           Answer:
-          <textarea name="aBody" rows="5" cols="30" value={answer} onChange={handleAnswer} />
+          <textarea name="body" rows="5" cols="30" value={answer} onChange={handleAnswer} />
         </label>
-        <label>
+        <label htmlFor="name">
           Nickname:
-          <input name="answererName" value={nickname} onChange={handleNickname} />
+          <input name="name" value={nickname} onChange={handleNickname} />
         </label>
-        <label>
+        <label htmlFor="email">
           Email:
           <input name="email" value={email} onChange={handleEmail} />
         </label>
         {/* photos will require more examination to actually implement */}
-        <label>
+        <label htmlFor="photos">
           Photos:
           <input name="photos" />
         </label>

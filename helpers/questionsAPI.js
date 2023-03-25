@@ -1,11 +1,13 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const axios = require('axios');
 
 const getQuestions = (req, res) => {
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
   // set options
   const options = {
     method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
+    url,
     headers: {
       Authorization: `${process.env.TOKEN}`,
     },

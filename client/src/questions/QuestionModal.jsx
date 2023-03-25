@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { postQuestion, getQuestions } from './calls.js'
 
 const QuestionModal = (props) => {
 
@@ -20,18 +21,24 @@ const QuestionModal = (props) => {
   }
 
   const handleSubmit = (e) => {
-    axios.post('/questions', {
-      qBody: question,
-      askerName: nickname,
+    postQuestion({
+      body: question,
+      name: nickname,
       email: email,
       product_id: props.productId
     })
       .then((success) => {
-        console.log('return from posting question', success);
-        props.closeModal();
-        props.getQuestions(props.productId);
+        // console.log('made it back into questions modal')
+        getQuestions(props.productId)
+          .then((questions) => {
+            console.log('questions from posting', questions);
+            props.updateQuestions(questions);
+          })
+          .catch((err) => {
+            console.log('error updating questions in modal', err);
+          })
       })
-      .catch((err) => {
+      .catch((err)=> {
         console.log('error posting new question', err);
       })
   }

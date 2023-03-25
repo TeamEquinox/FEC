@@ -79,7 +79,7 @@ app.get('/setCurrentProduct', (req, res) => {
 })
 
 app.get('/questions', (req, res) => {
-  console.log('you are inside the questions get route', req.query);
+  // console.log('you are inside the questions get route', req.query);
   // res.send('i made it into questions');
   // console.log('INSIDE /QUESTIONS ', req);
   questionsAPI.getQuestions(req, res);
@@ -93,7 +93,7 @@ app.get('/answers', (req, res) => {
 })
 
 app.post('/questions', (req, res) => {
-  console.log('this is the question to post', req.body);
+  // console.log('this is the question to post', req.body);
   questionsAPI.postQuestion(req, res);
 })
 

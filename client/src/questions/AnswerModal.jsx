@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { postAnswer, getAnswers } from './calls.js';
 
 const AnswerModal = (props) => {
 
@@ -21,43 +22,24 @@ const AnswerModal = (props) => {
   }
 
   const handleSubmit = (e) => {
-    // axios.post('/answers', {
-    //   aBody: answer,
-    //   answererName: nickname,
-    //   email: email,
-    //   photos: photos,
-    //   product_id: props.productId
-    // })
-    //   .then((success) => {
-    //     console.log('return from posting question', success);
-    //     props.closeModal();
-    //     props.getQuestions(props.productId);
-    //   })
-    //   .catch((err) => {
-    //     console.log('error posting new question', err);
-    //   });
-
-    let options = {
-      method: 'post',
-      url: '/answers',
-      data: {
-        aBody: answer,
-        answererName: nickname,
-        email: email,
-        photos: photos,
-        product_id: props.productId
-      },
-      params: { questionId: props.questionId }
-    }
-
-    axios(options)
-      .then((data) => {
-        console.log('return from posting answer', data);
-        props.closeModal();
-        props.getAnswers(props.questionId);
+    postAnswer({
+      body: answer,
+      name: nickname,
+      email: email,
+      photos: photos,
+      product_id: props.productId
+    }, props.questionId)
+      .then((success) => {
+        getAnswers(props.questionId)
+          .then((ans) => {
+            props.updateAnswers(ans);
+          })
+          .catch((err) => {
+            console.log('error refreshing answers', err);
+          })
       })
       .catch((err) => {
-        console.log('error posting new question', err);
+        console.log('error submitting answer', err);
       })
   }
 
@@ -79,7 +61,7 @@ const AnswerModal = (props) => {
           </label>
           {/* photos will require more examination to actually implement */}
           <label>Photos:
-            <input name="photos" value={photos}></input>
+            <input name="photos"></input>
           </label>
         <button type="button" onClick={handleSubmit}>Submit answer</button>
         </form>

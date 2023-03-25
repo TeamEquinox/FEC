@@ -15,15 +15,15 @@ function ReviewList({ reviews }) {
   };
 
   const helpfulReview = () => {
-    console.log('user clicked helpfulReview!');
+    // console.log('user clicked helpfulReview!');
   };
 
   const reportReview = () => {
-    console.log('user clicked reportReview!');
+    // console.log('user clicked reportReview!');
   };
 
   const submitReview = () => {
-    console.log('user clicked submitReview!');
+    // console.log('user clicked submitReview!');
   };
 
   return (

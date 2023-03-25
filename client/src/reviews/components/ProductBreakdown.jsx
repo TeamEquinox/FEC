@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { SingleBarDisplay } from '../summary/barDisplay'
-import { MultiBarDisplay } from '../summary/barDisplay'
+import { SingleBarDisplay } from '../helpers/barDisplay'
+import { MultiBarDisplay } from '../helpers/barDisplay'
 
 const ProductBreakdown = ({ meta }) => {
 

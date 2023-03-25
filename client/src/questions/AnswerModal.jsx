@@ -20,13 +20,16 @@ function AnswerModal({
   const handleAnswer = (e) => {
     setAnswer(e.target.value);
   };
+  };
 
   const handleNickname = (e) => {
     setNickname(e.target.value);
   };
+  };
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
+  };
   };
 
   const handleSubmit = () => {
@@ -45,9 +48,12 @@ function AnswerModal({
           .catch((err) => {
             console.log('error refreshing answers', err);
           });
+          });
       })
       .catch((err) => {
         console.log('error submitting answer', err);
+      });
+  };
       });
   };
 
@@ -76,6 +82,9 @@ function AnswerModal({
           <input name="photos" />
         </label>
         <button type="button" onClick={handleSubmit}>Submit answer</button>
+      </form>
+    </div>
+  );
       </form>
     </div>
   );

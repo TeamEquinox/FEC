@@ -7,10 +7,8 @@ import { CgLoadbar } from 'react-icons/cg';
 import StarRating from '../../starRatings'
 
 const ReviewList = ({ reviews }) => {
-
   const [reviewCount, setReviewCount] = useState(2);
 
-  console.log('reviews in individualReviews: ', reviews)
   let reviewArr = []
   if (Array.isArray(reviews)) {
     reviewArr = reviews;

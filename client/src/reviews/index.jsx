@@ -7,24 +7,27 @@ import ReviewList from './components/ReviewList.jsx'
 import SearchBar from './components/SearchBar.jsx'
 
 const RatingsAndReviews = ({ product }) => {
-
   const [meta, setMeta] = useState(product[3]);
   const [reviews, setReviews] = useState(product[2]);
-  const [filteredReviews, setFilteredReviews] = useState([]) // current filtered reviews if any
+  const [sorted, setSorted] = useState([]) // current filtered reviews if any
+  const [displayedReviews, setDisplayedReviews] = useState(reviews.results);
 
   useEffect(() => {
     setMeta(product[3])
     setReviews(product[2])
   }, [product])
 
-  // console.log('meta, reviews', meta, reviews)
+  useEffect(() => {
+    setSorted([...new Set(displayedReviews)])
+  }, [displayedReviews])
+
   return (
     <>
       <OverallReview meta={meta} />
-      <RatingBreakdownBars meta={meta} setFilteredReviews={setFilteredReviews} reviews={reviews}/>
+      <RatingBreakdownBars meta={meta} reviews={reviews} setSorted={setSorted} displayedReviews={displayedReviews} setDisplayedReviews={setDisplayedReviews}/>
       <ProductBreakdown meta={meta} />
-      <SortFilters reviews={reviews} />
-      {/* <ReviewList reviews={filteredReviews} /> */}
+      <SortFilters reviews={sorted} setSorted={setSorted} setReviews={setReviews}/>
+      <ReviewList reviews={sorted} />
       {/* <SearchBar /> */}
     </>
   )

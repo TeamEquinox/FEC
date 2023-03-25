@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 // displays the rating bars and handlers clicks to send which bar/rating is clicked to set state
-const RatingBreakdownBars = ({ meta, setFilteredReviews, reviews }) => {
+const RatingBreakdownBars = ({ meta, reviews, setSorted, displayedReviews, setDisplayedReviews }) => {
+  const [barFilters, setBarFilters] = useState([]); // stars clicked so far for filtering
 
-  console.log(meta)
-  let reviewList = reviews.results;
-
-  const [filters, setFilters] = useState([]); // stars clicked so far for filtering
-  const [displayedReviews, setDisplayedReviews] = useState([]);
-
-  useEffect(() => {
-    setFilteredReviews([...new Set(displayedReviews)])
-  }, [displayedReviews])
-
-  useEffect(() => {
-    setFilteredReviews(reviewList);
-  }, [reviewList]);
-
+  const reviewList = reviews.results;
+  const reviewListCopy = reviews.results;
   let numOfReviews = Number(meta.ratings[1] ?? 0) + Number(meta.ratings[2] ?? 0) +
     Number(meta.ratings[3] ?? 0) + Number(meta.ratings[4] ?? 0) + Number(meta.ratings[5] ?? 0);
 
@@ -34,24 +23,24 @@ const RatingBreakdownBars = ({ meta, setFilteredReviews, reviews }) => {
     bar1.style.width = `${Number(meta.ratings[1] ?? 0) / numOfReviews * 100}%`;
   }
 
-  const handleReviewFilter = (stars) => {
-    const currentReviewCollection = reviews.results.filter((review) => review.rating === stars);
+  useEffect(() => {
     let newDisplayedReviews;
-    let newStars = [];
-    if (filters.includes(stars)) {
-      newDisplayedReviews = displayedReviews.filter(review => !currentReviewCollection.includes(review));
-      newStars = filters.filter(star => star !== stars);
-      setFilters(newStars);
+    if (barFilters.length === 0) {
+      newDisplayedReviews = reviewListCopy;
     } else {
-      newDisplayedReviews = [...currentReviewCollection, ...displayedReviews];
-      setFilters([...filters, stars]);
+      newDisplayedReviews = reviewList.filter(review => barFilters.includes(review.rating));
     }
+    setDisplayedReviews(newDisplayedReviews);
+  }, [reviews, barFilters]);
 
-    if (newDisplayedReviews.length === 0) {
-      setDisplayedReviews(reviewList);
+  const handleReviewFilter = (stars) => {
+    let newStars = [];
+    if (barFilters.includes(stars)) {
+      newStars = barFilters.filter(star => star !== stars);
     } else {
-      setDisplayedReviews(newDisplayedReviews);
+      newStars = [...barFilters, stars];
     }
+    setBarFilters(newStars);
   }
 
   return (
@@ -74,21 +63,24 @@ const RatingBreakdownBars = ({ meta, setFilteredReviews, reviews }) => {
       </div>
 
       <>
-          {filters.length > 0 && (
-            <>
-              <div className="applied-filters" style={{ display: "inline" }}>Applied filters: </div>
-              <div style={{ display: "inline" }}>
-                {filters.map((star, index) => (
-                  <span key={star} className="applied-filters">
-                    {index > 0 && ", "}
-                    {star}
-                  </span>
-                ))}
-              </div>
-              <button onClick={() => setFilters([])} className="applied-filters-button" style={{ display: "inline" }}>Clear filters</button>
-            </>
-          )}
-        </>
+        {barFilters.length > 0 && (
+          <>
+            <div className="applied-filters" style={{ display: "inline" }}>Applied filters: </div>
+            <div style={{ display: "inline" }}>
+              {barFilters.map((star, index) => (
+                <span key={star} className="applied-filters">
+                  {index > 0 && ", "}
+                  {star}
+                </span>
+              ))}
+            </div>
+            <button onClick={() => {
+              setBarFilters([]);
+              setDisplayedReviews(reviewListCopy);
+            }} className="applied-filters-button" style={{ display: "inline" }}>Clear filters</button>
+          </>
+        )}
+      </>
     </>
   )
 }

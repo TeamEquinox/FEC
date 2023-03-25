@@ -60,8 +60,9 @@ function QuestionBox({ question, product_id }) {
         <AnswerModal
           show={showAnsModal}
           updateAnswers={updateAnswers}
-          productId={product_id}
-          questionId={question.question_id}
+          product_id={product_id}
+          question_id={question.question_id}
+          changeWindow={changeWindow}
         />
         <button type="button" onClick={changeWindow}>Add Answer</button>
       </div>

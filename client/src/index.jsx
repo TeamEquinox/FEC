@@ -14,6 +14,15 @@ function App() {
   const [dataToCompare, setDataToCompare] = useState({});
   const [outfit, setOutfit] = useState([]);
 
+  const getRelatedProducts = (id) => {
+    axios
+      .get('/relatedProducts', { params: { data: id } })
+      .then((data) => {
+        setRelatedData(data.data);
+      })
+      .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err));
+  };
+
   const pageLoad = () => {
     $.ajax({
       url: '/products',
@@ -21,7 +30,7 @@ function App() {
       success: (data) => {
         // console.log('success from get', data)
         setProduct(data);
-        getRelatedProducts(data[1]['product_id']);
+        getRelatedProducts(data[1].product_id);
       },
       error: (err) => {
         console.log('error getting data', err);
@@ -33,15 +42,6 @@ function App() {
     // console.log('pageload use effect')
     pageLoad();
   }, []);
-
-  const getRelatedProducts = (id) => {
-    axios
-      .get('/relatedProducts', { params: { data: id } })
-      .then((data) => {
-        setRelatedData(data.data);
-      })
-      .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err));
-  };
 
   const getAndCompareCurrentProduct = (id) => {
     axios

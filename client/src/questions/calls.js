@@ -1,4 +1,6 @@
-let axios = require('axios');
+/* eslint-disable no-console */
+/* eslint-disable arrow-body-style */
+import axios from 'axios';
 
 export const getQuestions = (productId) => {
   return axios.get('/questions/', { params: { productId } })
@@ -9,7 +11,7 @@ export const getQuestions = (productId) => {
     .catch((err) => {
       console.log('error retrieving questions', err);
     });
-}
+};
 
 export const getAnswers = (questionId) => {
   return axios.get('/answers/', { params: { questionId } })
@@ -20,14 +22,14 @@ export const getAnswers = (questionId) => {
     .catch((err) => {
       console.log(`error retrieving answers for question ${questionId}`, err);
     });
-}
+};
 
 export const postQuestion = (questionData) => {
-  let options = {
+  const options = {
     method: 'post',
     url: '/questions',
-    data: questionData
-  }
+    data: questionData,
+  };
 
   return axios(options)
     .then((data) => {
@@ -36,15 +38,15 @@ export const postQuestion = (questionData) => {
     .catch((err) => {
       console.log('error posting new question', err);
     });
-}
+};
 
 export const postAnswer = (answerData, questionId) => {
-  let options = {
+  const options = {
     method: 'post',
     url: '/answers',
     data: answerData,
-    params: { questionId }
-  }
+    params: { questionId },
+  };
 
   return axios(options)
     .then((data) => {
@@ -52,7 +54,5 @@ export const postAnswer = (answerData, questionId) => {
     })
     .catch((err) => {
       console.log('error posting new question', err);
-    })
-}
-
-
+    });
+};

@@ -72,7 +72,7 @@ const App = () => {
         <div className="div__banner"><h1><b>Equinox Apparel</b></h1> </div>
         <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
         <ProductOverview product={product} />
-        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct}/>
+        <RelatedProducts product={product} outfit={outfit} setoutfit={setOutfit} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct}/>
         <RatingsAndReviews product={product} />
         <QuestionsList product_id={product[0]['id']}/>
       </div >

@@ -1,22 +1,23 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const axios = require('axios');
 
-let getQuestions = (req, res) => {
-  var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
+const getQuestions = (req, res) => {
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
   // set options
-  let options = {
+  const options = {
     method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
+    url,
     headers: {
-      Authorization: `${process.env.TOKEN}`
+      Authorization: `${process.env.TOKEN}`,
     },
     params: {
       // product_id: 71706,
       product_id: Number(req.query.productId),
       page: 1,
-      count: 5
-    }
-  }
+      count: 5,
+    },
+  };
 
   // make get req to questions with axios/options
   axios(options)
@@ -29,17 +30,17 @@ let getQuestions = (req, res) => {
       console.log('error getting questions', err);
       res.send(err);
     });
-}
+};
 
-let getAnswers = (req, res) => {
-  let options = {
+const getAnswers = (req, res) => {
+  const options = {
     method: 'get',
     // look up url params :question_id
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/answers`,
     headers: {
-      'Authorization': `${process.env.TOKEN}`
-    }
-  }
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
 
   // make get req to answers with axios/options
   axios(options)
@@ -52,15 +53,15 @@ let getAnswers = (req, res) => {
       console.log(`error getting answers for question ${req.query.questionId}`, err);
       res.send(err);
     });
-}
+};
 
-var postQuestion = (req, res) => {
-  var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
+const postQuestion = (req, res) => {
+  const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions';
 
   axios.post(url, req.body, {
     headers: {
-      Authorization: `${process.env.TOKEN}`
-    }
+      Authorization: `${process.env.TOKEN}`,
+    },
   })
     .then((success) => {
       // console.log('did it succeed? ', success);
@@ -69,30 +70,29 @@ var postQuestion = (req, res) => {
     .catch((err) => {
       console.log('error posting question in server', err);
       res.send(err);
-    })
+    });
+};
 
-}
-
-var postAnswer = (req, res) => {
-  var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/answers`;
-  let options = {
+const postAnswer = (req, res) => {
+  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/answers`;
+  const options = {
     method: 'post',
-    url: url,
+    url,
     headers: {
-      'Authorization': `${process.env.TOKEN}`
+      Authorization: `${process.env.TOKEN}`,
     },
-    data: req.body
-  }
+    data: req.body,
+  };
 
   axios(options)
     .then((created) => {
-      res.send(created.data)
+      res.send(created.data);
     })
     .catch((err) => {
       console.log(`error posting answer to question ${req.query.questionId}`, err);
-      res.send(err)
-    })
-}
+      res.send(err);
+    });
+};
 
 module.exports.getQuestions = getQuestions;
 module.exports.getAnswers = getAnswers;

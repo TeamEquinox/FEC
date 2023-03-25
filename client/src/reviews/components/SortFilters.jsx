@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 
-const SortFilters = ({ reviews, setSorted }) => {
+function SortFilters({ reviews, setSorted }) {
   const [sortDropdown, setSortDropdown] = useState('');
 
   const handleSortChange = (event) => {
@@ -8,24 +11,21 @@ const SortFilters = ({ reviews, setSorted }) => {
       setSortDropdown(event.target.value);
       return;
     }
-    console.log(`User selected ${event.target.value}`);
     let sortedReviews = [];
     if (event.target.value === 'Helpfullness') {
-      sortedReviews = [...reviews].sort((a, b) => {
-        return b.helpfulness - a.helpfulness;
-      });
+      sortedReviews = [...reviews].sort((a, b) => b.helpfulness - a.helpfulness);
     } else if (event.target.value === 'Newest') {
       sortedReviews = [...reviews].sort((a, b) => {
-        let da = new Date(a.date);
-        let db = new Date(b.date);
+        const da = new Date(a.date);
+        const db = new Date(b.date);
         return db - da;
       });
     } else {
       sortedReviews = [...reviews].sort((a, b) => {
-        let diffA = Date.now() - new Date(a.date).getTime();
-        let diffB = Date.now() - new Date(b.date).getTime();
-        let scoreA = a.helpfulness / Math.log10(diffA + 1);
-        let scoreB = b.helpfulness / Math.log10(diffB + 1);
+        const diffA = Date.now() - new Date(a.date).getTime();
+        const diffB = Date.now() - new Date(b.date).getTime();
+        const scoreA = a.helpfulness / Math.log10(diffA + 1);
+        const scoreB = b.helpfulness / Math.log10(diffB + 1);
         return scoreB - scoreA;
       });
     }
@@ -37,13 +37,13 @@ const SortFilters = ({ reviews, setSorted }) => {
     <div>
       <label htmlFor="sort-order">Sort order:</label>
       <select id="sort-order" value={sortDropdown} onChange={handleSortChange}>
-        <option value=""></option>
+        <option value="" />
         <option value="Relevance">Relevance</option>
         <option value="Newest">Newest</option>
         <option value="Helpfullness">Helpful</option>
       </select>
     </div>
-  )
+  );
 }
 
-export default SortFilters
+export default SortFilters;

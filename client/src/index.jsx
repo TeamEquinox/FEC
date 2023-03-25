@@ -83,7 +83,7 @@ function App() {
         <ProductOverview product={product} />
         <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct} />
         <RatingsAndReviews product={product} />
-        <QuestionsList productId={product[0].id} />
+        <QuestionsList product_id={product[0].id} />
       </div>
     );
   }

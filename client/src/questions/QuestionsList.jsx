@@ -1,8 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import PropTypes from 'prop-types';
 import QuestionBox from './QuestionBox';
 import QuestionModal from './QuestionModal';
 import { getQuestions } from './calls';
@@ -57,7 +56,13 @@ function QuestionsList({ product_id }) {
       <h2>Questions</h2>
       <div>
         {/* map over retrieved question list and pass them to the individual question item */}
-        {questions.map((q) => <QuestionBox question={q} key={q.question_id} />)}
+        {questions.map((q) => (
+          <QuestionBox
+            question={q}
+            product_id={product_id}
+            key={q.question_id}
+          />
+        ))}
         <button type="button" onClick={changeWindow}>Ask a Question!</button>
         <QuestionModal show={showModal} closeModal={changeWindow} productId={product_id} />
         {questions.length > 2 && (<button type="button">More AnsweredQuestions</button>)}
@@ -65,10 +70,6 @@ function QuestionsList({ product_id }) {
     </section>
   );
 }
-
-QuestionsList.propTypes = {
-  product_id: PropTypes.number.isRequired,
-};
 
 export default QuestionsList;
 // working on displaying 2 to start

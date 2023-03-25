@@ -1,11 +1,11 @@
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import PropTypes from 'prop-types';
 import Answers from './Answers';
 import AnswerModal from './AnswerModal';
 import { getAnswers } from './calls';
 
-function QuestionBox({ question }) {
+function QuestionBox({ question, product_id }) {
   const [answers, setAnswers] = useState([]);
   const [showAnsModal, setShowAnsModal] = useState(false);
 
@@ -41,28 +41,33 @@ function QuestionBox({ question }) {
         {question.question_body}
       </h3>
       <p>{question.question_date}</p>
-      <span>Is this helpful?
+      <span>
+        Is this helpful?
         <button type="button">Yes!</button>
-        {props.question.question_helpfulness}
+        {question.question_helpfulness}
       </span>
       <button type="button" className="report">Report</button>
-      {answers.length === 0 && (<div>No answers yet!
-        <button type="button">Add Answer</button>
-      </div>)}
-      {answers.length > 0 && (<div className="list answersList">
-      {/* map over results array from answers and pass to answer */}
-        {answers.map((ans) => {
-          return <Answers answer={ans} key={ans.answer_id}/>
-        })}
-      <AnswerModal show={showAnsModal} updateAnswers={updateAnswers} productId={props.product_id} questionId={props.question.question_id}/>
-      <button type="button" onClick={changeWindow}>Add Answer</button>
-      </div>)}
+      {answers.length === 0 && (
+        <div>
+          No answers yet!
+          <button type="button">Add Answer</button>
+        </div>
+      )}
+      {answers.length > 0 && (
+      <div className="list answersList">
+        {/* map over results array from answers and pass to answer */}
+        {answers.map((ans) => <Answers answer={ans} key={ans.answer_id} />)}
+        <AnswerModal
+          show={showAnsModal}
+          updateAnswers={updateAnswers}
+          productId={product_id}
+          questionId={question.question_id}
+        />
+        <button type="button" onClick={changeWindow}>Add Answer</button>
+      </div>
+      )}
     </div>
   );
 }
-
-QuestionBox.propTypes = {
-  product_id: PropTypes.number.isRequired,
-};
 
 export default QuestionBox;

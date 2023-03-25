@@ -8,7 +8,7 @@ let getQuestions = (req, res) => {
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
     headers: {
-      'Authorization': `${process.env.TOKEN}`
+      Authorization: `${process.env.TOKEN}`
     },
     params: {
       // product_id: 71706,

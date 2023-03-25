@@ -45,8 +45,9 @@ function QuestionsList({ product_id }) {
         <button name="askQuestion" type="button" onClick={changeWindow}>Ask a Question!</button>
         <QuestionModal
           show={showModal}
-          productId={product_id}
+          product_id={product_id}
           updateQuestions={updateQuestions}
+          changeWindow={changeWindow}
         />
       </div>
     );

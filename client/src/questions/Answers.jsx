@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 
 // note that these will be many answers for ONE QUESTION
-const Answers = (props) => {
+function Answers({ answer }) {
   return (
-    <div className='answer'>
-      <span>{props.answer.answerer_name}</span>
-      <p>A: {props.answer.body}</p>
-      <p>{props.answer.date}</p>
-      <span>Is this helpful?
+    <div className="answer">
+      <span>{answer.answerer_name}</span>
+      <p>
+        A:
+        {answer.body}
+      </p>
+      <p>{answer.date}</p>
+      <span>
+        Is this helpful?
         <button type="button">Yes!</button>
-        {props.answer.helpfulness}
+        {answer.helpfulness}
       </span>
       <button type="button" className="report">Report</button>
     </div>
-  )
+  );
 }
 
 export default Answers;

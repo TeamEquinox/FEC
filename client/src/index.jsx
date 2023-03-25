@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useState, useEffect } from 'react';
 import ProductOverview from './product/ProductOverview.jsx';
-import ReviewList from './reviews/body/reviewList.jsx';
-import ProductBreakdown from './reviews/summary/productBreakdown.jsx';
+import RatingsAndReviews from './reviews/index.jsx';
 import RelatedProducts from './related/RelatedProducts.jsx';
 import $ from 'jquery';
 import axios from 'axios';
@@ -73,10 +72,9 @@ const App = () => {
         <div className="div__banner"><h1><b>Equinox Apparel</b></h1> </div>
         <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
         <ProductOverview product={product} />
-        <RelatedProducts product={product} outfit={outfit} setoutfit={setOutfit} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct}/>
-        <ReviewList product={product} />
-        <ProductBreakdown product={product} />
-        <QuestionsList product_id={product[0]['id']} />
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct}/>
+        <RatingsAndReviews product={product} />
+        <QuestionsList product_id={product[0]['id']}/>
       </div >
     )
   } else {

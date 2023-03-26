@@ -65,8 +65,9 @@ function ReviewList({ reviews }) {
       </div>
 
       <button type="button" onClick={() => submitReview()} className="submit-reviews-button">Submit Review</button>
+      <span style={{ marginLeft: '10px' }}>|</span>
       {reviewCount <= reviewArr.length && (
-        <button type="button" onClick={() => moreReviews()} className="more-reviews-button">Show more reviews...</button>
+        <button type="button" onClick={() => moreReviews()} className="more-reviews-button">More reviews...</button>
       )}
     </>
   );

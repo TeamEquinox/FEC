@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const helperAPI = require('../helpers/helperAPIs');
 const relatedHelpers = require('../helpers/relatedProductHelpers');
 const questionsAPI = require('../helpers/questionsAPI');
 
 const app = express();
+app.use(compression());
 
 // middleware used before each request is handled==========
 app.use(express.static(path.join(__dirname, '../client/dist')));

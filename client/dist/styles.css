@@ -870,16 +870,11 @@ START Review CSS======================^
 }
 
 .more-reviews-button {
-  background: none;
-  border: none;
-  color: rgb(144, 144, 144);
-  font-size: 12px;
-}
-
-.more-reviews-button:hover {
   cursor: pointer;
-  background-color: rgb(125, 125, 125);
-  color: white;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
 }
 
 .submit-reviews-button {

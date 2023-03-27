@@ -137,6 +137,9 @@ app.get('/cart', (req, res) => {
     console.log('data from CART', data)
     res.send(data)
   })
+  .catch((err) => {
+    console.log(err)
+  })
   // console.log('req', req.body)
 })
 

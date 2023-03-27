@@ -9,7 +9,7 @@ import $ from 'jquery'
 
 
 const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
-  console.log('styles', styles)
+  // console.log('styles', styles)
 
   const [currStyle, setCurrStyle] = useState(styles[0].name)
   const [currPrice, setCurrPrice] = useState(styles[0].original_price)
@@ -25,7 +25,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
   let currQuant;
 
   const renderQuantity = (e) => {
-    console.log('size', size)
+    // console.log('size', size)
     for (let sku in size) {
       if (size[sku].size === e.target.value) {
         // console.log(size[sku].quantity)
@@ -110,7 +110,6 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
       </div>
 
       <select id="select__size" value={value} className="dropDown" onChange={(e) => { setValue(e.target.value); clearOptions(); renderQuantity(e); errorMessage(); setCurrSize(e.target.value); }}>
-
         {/* onFocus={(e) => { e.target.size = styles.length; document.getElementById('select__size').classList.remove('dropDown'); document.getElementById('select__size').classList.add('dropDown2'); }} onBlur={(e) => { e.target.size = '0'; document.getElementById('select__size').classList.remove('dropDown2'); document.getElementById('select__size').classList.add('dropDown'); }} */}
         <option className="select__size" >Select Size</option>
         {Object.values(size).map((value) => {
@@ -131,8 +130,9 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
       }}>Add to cart</button>
       <button className="button__star"><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>
     </div >
-  )
 
+  )
 }
+
 
 export default Style;

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const SearchBar = () => {
-
+function SearchBar() {
   return (
     <div>SearchBar</div>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;

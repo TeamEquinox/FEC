@@ -1,69 +1,129 @@
-import React from 'react';
-import {RxStar, RxCaretLeft, RxCaretRight} from 'react-icons/Rx';
-import StarRating from '../starRatings.jsx';
-import helpers from '../clientSideHelpers.js';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
+// eslint-disable-next-line import/no-unresolved
+import { RxStar, RxCaretLeft, RxCaretRight } from 'react-icons/Rx';
+import { StarRating } from '../starRatings';
+import helpers from '../clientSideHelpers';
 
+function Products({
+  relatedData, setShowModal, updates, updateProduct, product,
+}) {
+  const [caretDisplay, setCaretDisplay] = useState(0);
+  const [rightCaretDisplay, setRightCaretDisplay] = useState('hi');
 
+  let check = 0;
+  const handleRightClick = (elem) => {
+    const slideRight = helpers.slideRight(elem);
+    // var nextSlideRight = helpers.slideRight(elem);
+    if (caretDisplay === slideRight && check === 0) {
+      setRightCaretDisplay(caretDisplay);
+      check += 1;
+      return;
+    }
+    setCaretDisplay(slideRight);
+  };
 
-const Products = ({ relatedData, setShowModal, updates, updateProduct, product }) => {
+  const handleLeftClick = (elem) => {
+    const slideLeft = helpers.slideLeft(elem);
+
+    setCaretDisplay(slideLeft);
+  };
+  // console.log('rightCaretDisplay', rightCaretDisplay);
+  // console.log('caretDisplay', caretDisplay);
 
   const handleStarClick = (item) => {
     setShowModal(true);
     updates(item);
-  }
+  };
   const handleRelatedCardClick = (id) => {
     updateProduct(id);
-  }
+  };
 
   if (!relatedData) {
     return (
       <div>
         Loading.....!
       </div>
-    )
-  } else {
-    return (
-      <>
-        <h3 className="h3_related_title">Related Products</h3>
-        <div className="div_card_container">
-          <RxCaretLeft onClick={() => helpers.slideLeft('slider')} className="div_left_caret"/>
-          <div id="slider" className="div_slider">
-            <div>
+    );
+  }
+  return (
+    <>
+      <h3 className="h3_related_title">Related Products</h3>
+      <div className="div_card_container">
+        {caretDisplay <= 0 ? <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret_noShow" />
+          : <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret" />}
+        <div id="slider" className="div_slider">
+          <div>
             {
+              // eslint-disable-next-line array-callback-return, consistent-return
               relatedData.map((item) => {
-                var price = item.original_price;
-                var salesPrice = null;
+                const price = item.original_price;
+                let salesPrice = null;
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                console.log('PRODUCT----->', product[0].id);
-                console.log('ITEM----->', item.id);
+                // console.log('PRODUCT----->', product[0].id);
+                // console.log('ITEM----->', item.id);
                 if (item.photo !== 'N/A' && product[0].id !== item.id) {
-                return <div key={item.id} className="div_card" >
-                  <div className="div_image_action_container">
-                    <RxStar className="icon_action" onClick={ () => {
-                      handleStarClick(item.id)} }/>
-                    <img className="img_card" src={item.photo} onClick={() => {handleRelatedCardClick(item.id)}}></img>
-                  </div>
-                  <div className="div_info_container" onClick={() => {handleRelatedCardClick(item.id)}}>
-                    <div className="div_related_category related_card">Category: {item.category}</div>
-                    <div className="div_related_name related_card">Name: {item.name}</div>
-                    { salesPrice !== null ? <div className="div_related_price related_card"><span style={{color: 'red'}}>${salesPrice}</span> <span style={helpers.style}>${price}</span>
-                        </div> : <div className="div_related_price related_card"><span>${price}</span></div>}
-                    <br></br>
-                    <StarRating rating={helpers.configRatings(item.rating)} pixels={10} className="div_rating"/>
-                  </div>
-                </div>
+                  return (
+                    <div key={item.id} className="div_card">
+                      <div className="div_image_action_container">
+                        <RxStar
+                          className="icon_action"
+                          onClick={() => {
+                            handleStarClick(item.id);
+                          }}
+                        />
+                        {/* eslint-disable-next-line max-len */}
+                        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+                        <img className="img_card" src={item.photo} alt="" onClick={() => { handleRelatedCardClick(item.id); }} />
+                      </div>
+                      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                      <div className="div_info_container" onClick={() => { handleRelatedCardClick(item.id); }}>
+                        <div className="div_related_category related_card">
+                          Category:
+                          {item.category}
+                        </div>
+                        <div className="div_related_name related_card">
+                          Name:
+                          {item.name}
+                        </div>
+                        { salesPrice !== null ? (
+                          <div className="div_related_price related_card">
+                            <span style={{ color: 'red' }}>
+                              $
+                              {salesPrice}
+                            </span>
+                            {' '}
+                            <span style={helpers.style}>
+                              $
+                              {price}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="div_related_price related_card">
+                            <span>
+                              $
+                              {price}
+                            </span>
+                          </div>
+                        )}
+                        <br />
+                        <StarRating rating={helpers.configRatings(item.rating)} pixels={10} className="div_rating" />
+                      </div>
+                    </div>
+                  );
                 }
               })
             }
-            </div>
           </div>
-          <RxCaretRight onClick={() => helpers.slideRight('slider')} className="div_right_caret"/>
         </div>
-      </>
-    )
-  }
+        {caretDisplay === rightCaretDisplay ? <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret_noShow" />
+          : <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret" />}
+      </div>
+    </>
+  );
 }
 
 export default Products;

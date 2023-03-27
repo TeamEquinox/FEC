@@ -24,10 +24,11 @@ function Modal({ setShowModal, compares }) {
 
     const findLongest = (obj) => Object.keys(obj).length;
 
-    for (const key in obj1) {
+    const obj1Keys = Object.keys(obj1);
+    obj1Keys.forEach((key) => {
       let bool1 = obj1[key];
       let bool2 = obj2[key];
-      if (obj2[key]) {
+      if (bool2) {
         if (bool1 === true) {
           bool1 = <HiCheck />;
         }
@@ -38,25 +39,27 @@ function Modal({ setShowModal, compares }) {
           bool2 = <HiCheck />;
         }
         if (bool2 === false) {
-          bool1 = '';
+          bool2 = '';
         }
         foundInBoth.push([bool1, key, bool2]);
+        // eslint-disable-next-line no-param-reassign
         delete obj2[key];
       } else {
         foundInFirst.push([bool1, key, '']);
       }
-    }
+    });
     if (findLongest(obj2) > 0) {
-      for (const key in obj2) {
+      const obj2Keys = Object.keys(obj1);
+      obj2Keys.forEach((key) => {
         let bool2 = obj2[key];
         if (bool2 === true) {
           bool2 = <HiCheck />;
         }
         if (bool2 === false) {
-          bool1 = '';
+          bool2 = '';
         }
         foundInSecond.push(['', key, bool2]);
-      }
+      });
     }
     return [...foundInBoth, ...foundInFirst, ...foundInSecond];
   };

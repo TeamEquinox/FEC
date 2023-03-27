@@ -9,7 +9,7 @@ import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 
 function Outfits({ data = [], product, setoutfit }) {
-  // console.log('INSIDE OUTFITS PRODUCT IS', data);
+  // console.log('INSIDE handlerAddClick IS', data);
   useEffect(() => {
     helpers.getOutfit(setoutfit);
   }, []);
@@ -55,7 +55,7 @@ function Outfits({ data = [], product, setoutfit }) {
         <div id="outfitSlider" className="div_slider">
           <div>
             {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-            <div className="div_addOutfit_card" onClick={handlerAddClick}>
+            <div className="div_addOutfit_card" onClick={() => handlerAddClick()}>
               <div className="div_add_outfit_action">
                 <RxPlus className="add_outfit_action" />
               </div>

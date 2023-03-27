@@ -64,6 +64,11 @@ module.exports = {
 
   getOutfit: (setOutfit) => {
     const outfit = localStorage.getItem('outfit');
+    // console.log('TRYING  TO GET OUTFIT DATA', outfit);
+    if (outfit === null) {
+      setOutfit([]);
+      return;
+    }
     const parseOutfit = JSON.parse(outfit);
     setOutfit(parseOutfit);
   },

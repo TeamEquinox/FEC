@@ -51,7 +51,7 @@ function AnswerModal({
       });
   };
 
-  if (show) {
+  if (!show) {
     return null;
   }
   return (

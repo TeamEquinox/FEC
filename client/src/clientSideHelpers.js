@@ -64,6 +64,11 @@ module.exports = {
 
   getOutfit: (setOutfit) => {
     const outfit = localStorage.getItem('outfit');
+    // console.log('TRYING  TO GET OUTFIT DATA', outfit);
+    if (outfit === null) {
+      setOutfit([]);
+      return;
+    }
     const parseOutfit = JSON.parse(outfit);
     setOutfit(parseOutfit);
   },
@@ -77,7 +82,7 @@ module.exports = {
     } else {
       outfit = JSON.parse(outfit);
       let itemAlreadyExists = false;
-      for (let i = 0; i < outfit.length; i + 1) {
+      for (let i = 0; i < outfit.length; i++) {
         const outfitItem = outfit[i];
         if (outfitItem.id === obj.id) {
           itemAlreadyExists = true;
@@ -89,11 +94,32 @@ module.exports = {
       }
     }
   },
+  // saveItemToOutfit: (obj, setOutfit) => {
+  //   let outfit = localStorage.getItem('outfit');
+  //   if (!outfit) {
+  //     outfit = [obj];
+  //     localStorage.setItem('outfit', JSON.stringify(outfit));
+  //     module.exports.getOutfit(setOutfit);
+  //   } else {
+  //     outfit = JSON.parse(outfit);
+  //     let itemAlreadyExists = false;
+  //     for (let i = 0; i < outfit.length; i + 1) {
+  //       const outfitItem = outfit[i];
+  //       if (outfitItem.id === obj.id) {
+  //         itemAlreadyExists = true;
+  //       }
+  //     }
+  //     if (!itemAlreadyExists) {
+  //       localStorage.setItem('outfit', JSON.stringify([...outfit, obj]));
+  //       module.exports.getOutfit(setOutfit);
+  //     }
+  //   }
+  // },
 
   removeItemFromOutfit: (id, setOutfit) => {
     let outfit = localStorage.getItem('outfit');
     outfit = JSON.parse(outfit);
-    for (let i = 0; i < outfit.length; i + 1) {
+    for (let i = 0; i < outfit.length; i++) {
       const outfitItem = outfit[i];
       if (outfitItem.id === id) {
         outfit.splice(i, 1);

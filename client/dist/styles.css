@@ -457,6 +457,7 @@ Icons...........................
   border-radius: 10px;
   left: 85%;
   top: 12px;
+  z-index: 2;
 }
 
 .icon_action:hover {

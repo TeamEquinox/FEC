@@ -56,7 +56,6 @@ function Products({
         <div id="slider" className="div_slider">
           <div>
             {
-              // eslint-disable-next-line array-callback-return, consistent-return
               relatedData.map((item) => {
                 const price = item.original_price;
                 let salesPrice = null;

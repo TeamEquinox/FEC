@@ -1,3 +1,4 @@
+/* eslint-disable operator-assignment */
 module.exports = {
 
   configRatings: (obj) => {
@@ -30,20 +31,13 @@ module.exports = {
 
   slideLeft: (elem) => {
     const slider = document.getElementById(elem);
-    // console.log('Before=======>', slider.scrollLeft);
-    let newSlider = 0;
-    newSlider -= slider.scrollLeft - 190;
-    // console.log('After=======>', newSlider);
-    return newSlider;
+    slider.scrollLeft = slider.scrollLeft - 181;
   },
 
   slideRight: (elem) => {
     const slider = document.getElementById(elem);
-    // console.log('Before=======>', slider.scrollLeft);
-    let newSlider = 0;
-    newSlider += slider.scrollLeft + 190;
-    // console.log('After=======>', newSlider);
-    return newSlider;
+    slider.scrollLeft = slider.scrollLeft + 181;
+    return slider;
   },
 
   style: {
@@ -82,6 +76,7 @@ module.exports = {
     } else {
       outfit = JSON.parse(outfit);
       let itemAlreadyExists = false;
+      // eslint-disable-next-line no-plusplus
       for (let i = 0; i < outfit.length; i++) {
         const outfitItem = outfit[i];
         if (outfitItem.id === obj.id) {
@@ -94,31 +89,11 @@ module.exports = {
       }
     }
   },
-  // saveItemToOutfit: (obj, setOutfit) => {
-  //   let outfit = localStorage.getItem('outfit');
-  //   if (!outfit) {
-  //     outfit = [obj];
-  //     localStorage.setItem('outfit', JSON.stringify(outfit));
-  //     module.exports.getOutfit(setOutfit);
-  //   } else {
-  //     outfit = JSON.parse(outfit);
-  //     let itemAlreadyExists = false;
-  //     for (let i = 0; i < outfit.length; i + 1) {
-  //       const outfitItem = outfit[i];
-  //       if (outfitItem.id === obj.id) {
-  //         itemAlreadyExists = true;
-  //       }
-  //     }
-  //     if (!itemAlreadyExists) {
-  //       localStorage.setItem('outfit', JSON.stringify([...outfit, obj]));
-  //       module.exports.getOutfit(setOutfit);
-  //     }
-  //   }
-  // },
 
   removeItemFromOutfit: (id, setOutfit) => {
     let outfit = localStorage.getItem('outfit');
     outfit = JSON.parse(outfit);
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < outfit.length; i++) {
       const outfitItem = outfit[i];
       if (outfitItem.id === id) {

@@ -8,9 +8,20 @@ function RelatedProducts({
   relatedData, product, update, compare, updateProduct, outfit, setoutfit,
 }) {
   const [showModal, setShowModal] = useState(false);
+  const combine = { ...compare[0], ...compare[1] };
+  // console.log('CHECKING COMBINE', combine);
+  const combineProduct = { ...product[0], ...product[3] };
+  // console.log('PRODUCT=====>', product);
+  // console.log('COMPARE+===+=+=>', combineProduct);
+  // if (compare.length > 0) {
+  //   combine = { ...compare[0], ...compare[1] };
+  //   console.log('CHECKING COMBINE', combine);
+  //   combineProduct = { ...product[0], ...product[3] };
+  // }
   return (
     <div id="related_products_container">
-      {showModal ? <Modal setShowModal={setShowModal} compares={[product[0], compare]} /> : null}
+      {showModal ? <Modal setShowModal={setShowModal} compares={[combineProduct, combine]} />
+        : null}
       <Product
         relatedData={relatedData}
         setShowModal={setShowModal}

@@ -9,6 +9,7 @@ import helpers from '../clientSideHelpers';
 function Products({
   relatedData, setShowModal, updates, updateProduct, product,
 }) {
+  // console.log('MOCHDATA=====>', relatedData);
   const [caretDisplay, setCaretDisplay] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
 

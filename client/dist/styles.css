@@ -515,28 +515,42 @@ Modal...........................
 */
 
 .div_modal_container {
-  position: fixed;
-  height: 250px;
-  width: 320px;
-  top: 0;
+  /* position: absolute; */
+  /* height: 350px;
+  width: 420px; */
+  /* top: 0;
   right: 0;
   left: 0;
+  bottom: 0; */
+  /* background-color: antiquewhite; */
+  /* overflow: auto; */
+  /* z-index: 3;  */
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
   bottom: 0;
-  background-color: antiquewhite;
-  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
-.div_modal_X_button {
-  position: absolute;
+/* .div_modal_X_button {
+  position: relative;
   left: 90%;
   top: 5px;
   border-radius: 10px;
-}
+} */
 
 .button_modal {
   border: none;
-  background-color: antiquewhite;
+  position: relative;
+  left: 75%;
+  top: 1px;
+  border-radius: 10px;
+  /* background-color: antiquewhite; */
 }
 
 .button_modal:hover {
@@ -544,15 +558,40 @@ Modal...........................
   border-radius: 5px;
   cursor: pointer;
 }
-/* .div_modal_title {
-  position: absolute;
-  top: 5px;
-  left: 2px;
-} */
-/* .div_modal_body {
-  overflow-y: scroll;
-  white-space: nowrap;
-} */
+
+.table * {
+  border: 1px solid black;
+  text-align: center;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.test {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 250px;
+  width: 420px;
+}
+.div_modal_body {
+  overflow-y: auto;
+  /* border: 1px solid red; */
+  height: 187px;
+  width: 420px;
+}
+.span_relatedProduct {
+  position: relative;
+  display: inline-block;
+  left: 200px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.span_currentProduct {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
 /*
 END Related CSS======================^
 <<<<<<< HEAD

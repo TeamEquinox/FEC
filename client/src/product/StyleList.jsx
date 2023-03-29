@@ -1,45 +1,67 @@
-import React from "react";
-import ReactDom from "react-dom";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactDom from 'react-dom';
 import { RxCheckCircled } from 'react-icons/Rx';
 
-const StyleList = ({ style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage }) => {
-
+function StyleList({
+  style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage, setOriginalGallery, originalGallery
+}) {
   const checkStyle = (url) => {
     if (largeImage && document.getElementById(`check-${largeImage}`)) {
-      document.getElementById(`check-${largeImage}`).classList.remove('check_circled2')
-      document.getElementById(`check-${largeImage}`).classList.add('check_circled')
-      setLargeImage(url);
-      document.getElementById(`check-${url}`).classList.remove('check_circled')
-      document.getElementById(`check-${url}`).classList.add('check_circled2')
+      document.getElementById(`check-${largeImage}`).classList.remove('check_circled2');
+      document.getElementById(`check-${largeImage}`).classList.add('check_circled');
+      // setLargeImage(url);
+      document.getElementById(`check-${url}`).classList.remove('check_circled');
+      document.getElementById(`check-${url}`).classList.add('check_circled2');
     }
-  }
+
+    if (document.getElementById(`check-${largeImage}`) === null) {
+      const array = document.getElementsByClassName('check_circled2');
+      for (let i = 0; i < array.length; i++) {
+        // console.log('rei', array[i])
+        // console.log('rei2', document.getElementById(`check-${url}`).id)
+        // console.log('rei3', array[i].id)
+        // console.log('rei4', document.getElementById(`${array[i].id}`))
+        if (array[i].id !== document.getElementById(`check-${url}`).id) {
+          // array[i].class = 'check_circled';
+          document.getElementById(`${array[i].id}`).remove('check_circled2');
+          document.getElementById(`${array[i].id}`).add('check_circled')
+          console.log('removed');
+          document.getElementById(`check-${url}`).classList.remove('check_circled');
+          document.getElementById(`check-${url}`).classList.add('check_circled2');
+        }
+      }
+    }
+  };
 
   const saleChecker = () => {
     if (style.sale_price !== null) {
-      setSalePrice(style.sale_price)
-      setOnSale(true)
+      setSalePrice(style.sale_price);
+      setOnSale(true);
     } else {
-      setSalePrice('')
+      setSalePrice('');
     }
-  }
+  };
 
-  console.log('largeimage', largeImage)
+  console.log('largeimage', largeImage);
 
   return (
 
-    < div className="div__style_container" onClick={(e) => {
-      e.preventDefault(); console.log('e', e.target.currentSrc
-      ); setCurrStyle(style.name); saleChecker(); setCurrPrice(style.original_price); setLargeImage(style.photos[0].url); setGallery(style.photos); setSize(style.skus); checkStyle(style.photos[0].url)
-    }}>  <RxCheckCircled id={`check-${style.photos[0].url}`} className="check_circled" />
-      <img className="img__style" src={style ? style.photos[0].thumbnail_url : null} ></img>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-    </div >
+    <div
+      className="div__style_container"
+      onClick={(e) => {
+        e.preventDefault(); setCurrStyle(style.name); saleChecker(); setCurrPrice(style.original_price); setLargeImage(style.photos[0].url); setOriginalGallery(style.photos); setSize(style.skus); checkStyle(style.photos[0].url);
+      }}
+    >
+      {' '}
+      <RxCheckCircled id={`check-${style.photos[0].url}`} className="check_circled" />
+      <img className="img__style" src={style ? style.photos[0].thumbnail_url : null} />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
 
-  )
+  );
 }
 
 export default StyleList;

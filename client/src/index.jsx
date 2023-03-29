@@ -65,41 +65,66 @@ function App() {
   // useEffect(() => {
   // console.log('productAfterUseEffect', product)
   // }, [product])
+  // };
+
+  // const getFromCart = () => {
+  //   axios.get('/cart')
+  //     .then((data) => {
+  //       console.log('data from cart', data)
+  //     })
+  //     .catch((err) => console.log('There was an error in the cart get request: ', err));
+  // };
+
+  // const getFromCart = () => {
+  //   $.ajax({
+  //     url: '/cart',
+  //     method: 'GET',
+  //     success: (data) => {
+  //       // console.log('success from get', data)
+  //       // console.log('successful GET', data);
+  //     },
+  //     error: (err) => {
+  //       // console.log('error GETTING data', err);
+  //     },
+  //   });
+  // };
+
+  // const addToCart = () => {
+  //   $.ajax({
+  //     url: '/cart',
+  //     method: 'POST',
+  //     data: {
+  //       sku_id: 2580528,
+  //       count: 2,
+  //     },
+  //     success: (data) => {
+  //       // console.log('success from get', data)
+  //       getFromCart();
+  //       // console.log('successful POST');
+  //     },
+  //     error: (err) => {
+  //       // console.log('error POSTING data', err);
+  //     },
+  //   });
+  // };
+
+
 
   if (product.length) {
     return (
       <div>
-        <div className="div__banner">
-          <h1>
-            <b>Equinox Apparel</b>
-          </h1>
-          {' '}
-        </div>
-        <section className="section__announcement">
-          <i>SITE-WIDE ANNOUCEMENT!</i>
-          SALE/DISCOUNT
-          <b>OFFER</b>
-          -
-          {' '}
-          <u>NEW PRODUCT HIGHLIGHT</u>
-        </section>
-        <ProductOverview product={product} />
-        <RelatedProducts
-          product={product}
-          setRelatedData={setRelatedData}
-          relatedData={relatedData}
-          update={getAndCompareCurrentProduct}
-          compare={dataToCompare}
-          updateProduct={updateCurrentProduct}
-          setoutfit={setOutfit}
-          outfit={outfit}
-        />
+        <div className="div__banner"><h1><b>Equinox Apparel</b></h1> </div>
+        <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
+        <ProductOverview product={product} setOutfit={setOutfit} />
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct} setoutfit={setOutfit} outfit={outfit}/>
         <RatingsAndReviews product={product} />
-        <QuestionsList product_id={product[0].id} />
-      </div>
-    );
+        <QuestionsList product_id={product[0]['id']}/>
+      </div >
+    )
+  } else {
+    return (
+      <div>Loading..</div>
+    )
   }
-  return <div>Loading..</div>;
 }
-
 ReactDOM.render(<App />, document.getElementById('root'));

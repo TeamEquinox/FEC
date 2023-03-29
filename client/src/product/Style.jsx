@@ -5,16 +5,17 @@ import StyleList from "./StyleList.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import $ from 'jquery'
+import helpers from '../clientSideHelpers';
 
 
 
-const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
-  console.log('styles', styles)
+const Style = ({ styles, setGallery, setLargeImage, largeImage, product, setOutfit, setOriginalGallery, originalGallery }) => {
+  // console.log('styles', styles)
 
   const [currStyle, setCurrStyle] = useState(styles[0].name)
   const [currPrice, setCurrPrice] = useState(styles[0].original_price)
   const [salePrice, setSalePrice] = useState('')
-  const [onSale, setOnSale] = useState(true)
+  const [onSale, setOnSale] = useState(false)
   const [size, setSize] = useState(styles[0].skus)
   const [currSize, setCurrSize] = useState('')
   const [message, setMessage] = useState(false)
@@ -22,10 +23,16 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
   const [sku, setSku] = useState('')
   const [itemAdded, setItemAdded] = useState(false)
 
+  useEffect(() => {
+    if (salePrice === '') {
+      setOnSale(false)
+    }
+  }, [largeImage])
+
   let currQuant;
 
   const renderQuantity = (e) => {
-    console.log('size', size)
+    // console.log('size', size)
     for (let sku in size) {
       if (size[sku].size === e.target.value) {
         // console.log(size[sku].quantity)
@@ -80,6 +87,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
   }
 
   const addItem = () => {
+    localStorage.removeItem('cart')
     let cart = [];
     let sizeSelector = document.getElementById("select__size").value
     let quantitySelector = document.getElementById("select__quantity").value
@@ -90,26 +98,31 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
+  const handlerAddClick = () => {
+    var newOutfit = helpers.extractOutfitData(product);
+    helpers.saveItemToOutfit(newOutfit, setOutfit);
+  }
 
   return (
     < div className="div__size_quant">
       {itemAdded ? <div className="div__item_added">1</div> : null}
-      <div>{currPrice}</div>
       <div style={{
-        textDecoration: onSale ? "line-through" : "none",
         color: onSale ? "red" : "black"
-      }}>{salePrice}</div>
+      }}>{salePrice}
+      </div>
+       <div style={{
+        textDecoration: onSale ? "line-through" : "none",
+      }}>{currPrice}</div>
       <p>Style > {currStyle}</p>
       <div className="div__thumbnails">
         {styles.map((style) => {
           return (
-            <StyleList style={style} setCurrStyle={setCurrStyle} setCurrPrice={setCurrPrice} setSalePrice={setSalePrice} setOnSale={setOnSale} setGallery={setGallery} setLargeImage={setLargeImage} key={style.style_id} setSize={setSize} largeImage={largeImage} />
+            <StyleList style={style} setCurrStyle={setCurrStyle} setCurrPrice={setCurrPrice} setSalePrice={setSalePrice} setOnSale={setOnSale} setGallery={setGallery} setLargeImage={setLargeImage} key={style.style_id} setSize={setSize} largeImage={largeImage} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/>
           )
         })}
       </div>
 
       <select id="select__size" value={value} className="dropDown" onChange={(e) => { setValue(e.target.value); clearOptions(); renderQuantity(e); errorMessage(); setCurrSize(e.target.value); }}>
-
         {/* onFocus={(e) => { e.target.size = styles.length; document.getElementById('select__size').classList.remove('dropDown'); document.getElementById('select__size').classList.add('dropDown2'); }} onBlur={(e) => { e.target.size = '0'; document.getElementById('select__size').classList.remove('dropDown2'); document.getElementById('select__size').classList.add('dropDown'); }} */}
         <option className="select__size" >Select Size</option>
         {Object.values(size).map((value) => {
@@ -125,13 +138,14 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage }) => {
 
       <br></br>
       <br></br>
-      <button className="button__cart" onClick={(e) => {
-        e.preventDefault(); errorMessage(); addItem(); setItemAdded(true)
+      <button className="button__cart" onClick={() => {
+      errorMessage(); addItem(); setItemAdded(true); console.log('settt', itemAdded)
       }}>Add to cart</button>
-      <button className="button__star"><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>
+      <button className="button__star" onClick={()=>{handlerAddClick();}}><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>
     </div >
-  )
 
+  )
 }
+
 
 export default Style;

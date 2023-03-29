@@ -6,6 +6,8 @@ import * as React from 'react';
 import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import product from './mochData.js';
+import { toBeInTheDocument } from '@testing-library/jest-dom';
+
 
 import ProductOverview from '../client/src/product/ProductOverview.jsx';
 
@@ -14,11 +16,33 @@ test('use jsdom in this test file', () => {
   expect(element).not.toBeNull();
 });
 
-describe('ProductOverview', () => {
-  test('renders ProductOverview component', () => {
-    const { getByText } = render(<ProductOverview product={product.product} />);
-    expect(screen.getByText(/Read all reviews/i)).toBeInTheDocument();
+test('renders reviews in ProductOverview component', () => {
+  const { getByText } = render(<ProductOverview product={product.product} />);
+  expect(screen.getByText(/Read all/i)).not.toBeNull();
+  // screen.debug();
+});
 
-    // screen.debug();
-  });
+describe('ProductOverview', () => {
+  // it('renders ProductOverview component', () => {
+  //   const { getByText } = render(<ProductOverview product={product.product} />);
+  //   expect(screen.getByText(/Read all reviews/i)).toBeInTheDocument();
+  //   // screen.debug();
+  // });
+  it('renders style', () => {
+    render(<ProductOverview product={product.product}/>)
+    expect(screen.getByText(/Style/i)).toBeInTheDocument();
+  })
+  it('renders add to cart button', () => {
+    render(<ProductOverview product={product.product}/>)
+    expect(screen.getByText(/Add to cart/i)).toBeInTheDocument();
+  })
+  it('renders the size selector', () => {
+    render(<ProductOverview product={product.product}/>)
+    expect(screen.getByText(/Select Size/i)).toBeInTheDocument();
+  })
+  it('renders the quantity selector', () => {
+    render(<ProductOverview product={product.product}/>)
+    expect(screen.getByText(/Quantity/i)).toBeInTheDocument();
+  })
+
 });

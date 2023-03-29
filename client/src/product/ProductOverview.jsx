@@ -8,17 +8,21 @@ import StarRating from '../starRatings.jsx';
 import Image from './Image';
 import Style from './Style';
 import Cart from './Cart.jsx';
+import {RxCheck} from 'react-icons/Rx';
 
-function ProductOverview({ product }) {
-  console.table('productOnLoad', product);
+function ProductOverview({ product, setOutfit }) {
+  // console.table('productOnLoad', product);
 
   const [gallery, setGallery] = useState(product[1].results[0].photos);
+  const [originalGallery, setOriginalGallery] = useState(gallery.slice(0,7));
   const [largeImage, setLargeImage] = useState(product[1].results[0].photos[0].url);
   const [reviews, setReviews] = useState(0);
   const [cart, setCart] = useState(false);
 
   useEffect(() => {
     setLargeImage(product[1].results[0].photos[0].url);
+    setGallery(product[1].results[0].photos)
+    setOriginalGallery(product[1].results[0].photos)
   }, [product]);
 
   useEffect(() => {
@@ -26,7 +30,6 @@ function ProductOverview({ product }) {
       document.getElementById(`check-${largeImage}`).classList.remove('check_circled');
       document.getElementById(`check-${largeImage}`).classList.add('check_circled2');
     }
-    // setGallery(product[1].results[0].photos)
   }, [largeImage]);
 
   let counter = 0;
@@ -55,30 +58,25 @@ function ProductOverview({ product }) {
       <FontAwesomeIcon icon={faCartShopping} className="shoppingCart" onClick={() => { setCart(true); }} />
       {cart ? <Cart setCart={setCart} /> : null}
       <div className="div__product">
-        <div>
-          <StarRating rating={configRatings(product[3].ratings)} pixels={10} />
-          {' '}
+        <div className="div__reviews" onClick={() => { window.location.replace('/#overall-rating'); }}>
+        <u>Read all {reviews}{' '}reviews</u>
         </div>
-        <p onClick={() => { window.location.replace('/#overall-rating'); }}>
-          <u>
-            Read all {reviews}{' '}reviews
-          </u>
-        </p>
+          <div className="div__starRating"><StarRating rating={configRatings(product[3].ratings)} pixels={10} /></div>
+
         <h3>{product.length ? product[0].category : 'Category'}</h3>
         <h2>{product.length ? product[0].name : 'Name'}</h2>
-        <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} />
+        <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/>
       </div>
-      <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} />
+      <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/>
+      <h2 className="h2__slogan">{product[0].slogan}</h2>
       <div className="div__description">{product.length ? product[0].description : 'Description'}</div>
+      <div className="div__verticalLine"></div>
       <div className="div__feature">
         {product.length ? product[0].features.map((feature) => (
           <ul key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>
-            <li key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>
-              {feature.feature}
-              :
-              {' '}
-              {feature.value}
-            </li>
+            <RxCheck className="rxCheck" key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}/>
+              {feature.feature} : {feature.value}
+
           </ul>
         ))
           : null}

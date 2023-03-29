@@ -6,23 +6,29 @@ import {
 import ExpandedView from './ExpandedView.jsx';
 
 function Image({
-  photos, gallery, largeImage, setLargeImage, setGallery,
+  photos, gallery, largeImage, setLargeImage, setOriginalGallery, originalGallery
 }) {
-  console.log('galleryHERE', gallery);
+
 
   const [showLeftCaret, setShowLeftCaret] = useState(true);
   const [showRightCaret, setShowRightCaret] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showBar, setShowBar] = useState(false);
-
-  let originalGallery;
-
+  // const [originalGallery, setOriginalGallery] = useState(gallery.slice(0,7));
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  // console.log('galleryHERE', gallery);
+  // console.log('ogee', originalGallery)
+  useEffect(() => {
+    // console.log('clicked is', clicked);
+    setOriginalGallery(gallery.slice(galleryIndex, galleryIndex + 7));
+    // console.log('when this runs', originalGallery);
+    // console.log('product is', product)
+  }, [galleryIndex]);
+// console.log('afterrrrr', originalGallery)
   useEffect(() => {
     if (largeImage === photos[0].photos[0].url) {
       setShowLeftCaret(false);
     }
-    originalGallery = gallery;
-    console.log('og', originalGallery)
   }, [gallery]);
 
   useEffect(() => {
@@ -44,7 +50,7 @@ function Image({
   let nextPhoto;
 
   const caretRight = () => {
-    if (!gallery.length) {
+    if (!originalGallery.length) {
       if (photos[0].photos) {
         if (showLeftCaret === false) {
           setShowLeftCaret(true);
@@ -60,18 +66,18 @@ function Image({
           }
         });
       }
-    } else if (gallery.length > 0) {
+    } else if (originalGallery.length > 0) {
       if (showLeftCaret === false) {
         setShowLeftCaret(true);
       }
-      gallery.forEach((photo, index) => {
+      originalGallery.forEach((photo, index) => {
         if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
-          if (index === gallery.length - 2) {
+          if (index === originalGallery.length - 2) {
             setShowRightCaret(false);
           }
           nextIndex = index + 1;
-          nextPhoto = gallery[nextIndex].url;
-          setLargeImage(gallery[nextIndex].url);
+          nextPhoto = originalGallery[nextIndex].url;
+          setLargeImage(originalGallery[nextIndex].url);
           console.log('large image is set');
         }
       });
@@ -79,7 +85,7 @@ function Image({
   };
 
   const caretLeft = () => {
-    if (!gallery.length) {
+    if (!originalGallery.length) {
       if (photos[0].photos) {
         if (showRightCaret === false) {
           setShowRightCaret(true);
@@ -99,7 +105,7 @@ function Image({
       if (showRightCaret === false) {
         setShowRightCaret(true);
       }
-      gallery.forEach((photo, index) => {
+      originalGallery.forEach((photo, index) => {
         if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
           console.log('arge', largeImage);
           console.log('url', photo.url);
@@ -119,20 +125,35 @@ function Image({
     const img = document.getElementById('img__gallery').width;
     console.log('img', img);
   };
-  // console.log('galleryHERE', gallery)
 
   const caretUp = () => {
-    console.log('gal from here', gallery);
-    if (gallery.length > 7 && gallery.length !== 0) {
-      const copyGallery = gallery.slice();
-      setGallery(copyGallery.slice(1, 8));
-      //create new state for new array
+    if (originalGallery.length >= 7) {
+      setGalleryIndex(galleryIndex + 1);
     }
   };
 
+
   const caretDown = () => {
-console.log('ggggg', originalGallery)
+    setGalleryIndex(galleryIndex - 1);
   };
+
+  const checkSmallImage = (photo) => {
+    let imgArray = document.getElementsByClassName(`img__gallery_small`);
+    console.log('img HERE', imgArray )
+    for (var i = 0; i < imgArray.length; i ++) {
+      console.log('iiiii', imgArray[i])
+      if (imgArray[i].id !== photo) {
+        document.getElementsByClassName('img__gallery_small')[i].className = "img__gallery_small";
+      } else {
+        document.getElementsByClassName('img__gallery_small')[i].className = "img__gallery_small2";
+
+      }
+
+    }
+
+  }
+
+
 
   return (
     <div className="div__image_container">
@@ -142,49 +163,19 @@ console.log('ggggg', originalGallery)
       {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} /> : null}
       <div className="div__img_gallery_small">
 
-        <RxCaretUp className="caret__up" onClick={() => { caretUp(); }} />
-        {gallery.slice(0, 7).map((photo) => (
+        <RxCaretUp className="caret__up" onClick={(e) => { e.preventDefault(); caretUp()}} />
+        {originalGallery.slice(0,7).map((photo) => (
           <>
+            <img className="img__gallery_small" id={`${photo.thumbnail_url}`} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url) }} key={photo.thumbnail_url} />
+
             {showBar ? <RxDividerHorizontal className="divider_horizontal" /> : null}
-            <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); }} key={photo.thumbnail_url} />
-
           </>
-
         ))}
         <RxCaretDown className="caret__down" onClick={() => { caretDown(); }} />
 
       </div>
     </div>
   );
-
-  // return (
-
-  //   <div className="div__image_container">
-  //     {showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} /> : null}
-  //     {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
-  //     <div className="div__large_image">
-
-  //       <img id="img__gallery" src={largeImage || photos[0].photos[0].url} onClick={() => { console.log('clicked'); setShowModal(true); reSize();checkStyle() }} />
-  //       {showModal ? <ExpandedView classname="expandedview" setShowModal={setShowModal} largeImage={largeImage} /> : null}
-  //     </div>
-
-  //     <div className="div__img_gallery_small">
-
-  //       <RxCaretUp className="caret__up" />
-
-  //       {photos[0].photos ? photos[0].photos.slice(0,7).map((photo) => (
-  //         <>
-  //               {showBar ? <RxDividerHorizontal className="divider_horizontal" /> : null}
-  //           <img className="img__gallery_small" src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60))}} key={photo.thumbnail_url} />
-
-  //         </>
-
-  //       )) : null}
-  //       <RxCaretDown className="caret__down" />
-  //     </div>
-  //   </div>
-
-  // );
 }
 
 export default Image;

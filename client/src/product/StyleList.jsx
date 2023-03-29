@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { RxCheckCircled } from 'react-icons/Rx';
 
 function StyleList({
-  style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage,
+  style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage, setOriginalGallery, originalGallery
 }) {
   const checkStyle = (url) => {
     if (largeImage && document.getElementById(`check-${largeImage}`)) {
@@ -49,7 +49,7 @@ function StyleList({
     <div
       className="div__style_container"
       onClick={(e) => {
-        e.preventDefault(); setCurrStyle(style.name); saleChecker(); setCurrPrice(style.original_price); setLargeImage(style.photos[0].url); setGallery(style.photos); setSize(style.skus); checkStyle(style.photos[0].url);
+        e.preventDefault(); setCurrStyle(style.name); saleChecker(); setCurrPrice(style.original_price); setLargeImage(style.photos[0].url); setOriginalGallery(style.photos); setSize(style.skus); checkStyle(style.photos[0].url);
       }}
     >
       {' '}

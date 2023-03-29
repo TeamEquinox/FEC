@@ -79,7 +79,7 @@ function Products({
                         />
                         {/* eslint-disable-next-line max-len */}
                         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-                        <img className="img_card" src={item.photo} alt="" onClick={() => { handleRelatedCardClick(item.id); }} />
+                        <img className="img_card" src={item.photo} alt="RelatedImage" onClick={() => { handleRelatedCardClick(item.id); }} />
                       </div>
                       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                       <div className="div_info_container" onClick={() => { handleRelatedCardClick(item.id); }}>

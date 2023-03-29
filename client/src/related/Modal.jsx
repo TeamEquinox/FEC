@@ -9,9 +9,7 @@ import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 
 function Modal({ setShowModal, compares }) {
-  console.log('COMPARE--------------->', compares);
-  // const [productName, setProductName] = useState('');
-  // const [relatedProductName, setRelatedProductName] = useState('');
+  // console.log('COMPARE--------------->', compares);
 
   const handleCancelClick = () => {
     setShowModal(false);
@@ -102,7 +100,7 @@ function Modal({ setShowModal, compares }) {
     result = modal(compares[0], compares[1]);
   }
 
-  console.log('inside modal function result!!!!!!!!!!!', result);
+  // console.log('inside modal function result!!!!!!!!!!!', result);
   if (!result) {
     return (
       <div>

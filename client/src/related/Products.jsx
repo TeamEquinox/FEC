@@ -67,8 +67,6 @@ function Products({
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                // console.log('PRODUCT----->', product[0].id);
-                // console.log('ITEM----->', item.id);
                 if (item.photo !== 'N/A' && product[0].id !== item.id) {
                   return (
                     <div key={item.id} className="div_card">

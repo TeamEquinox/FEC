@@ -10,9 +10,9 @@ import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 
 function Outfits({ data = [], product, setoutfit }) {
-  // console.log('INSIDE handlerAddClick IS', data);
   const [caretDisplay, setCaretDisplay] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
+
   useEffect(() => {
     helpers.getOutfit(setoutfit);
   }, []);

@@ -14,8 +14,8 @@ const getQuestions = (req, res) => {
     params: {
       // product_id: 71706,
       product_id: Number(req.query.productId),
-      page: 1,
-      count: 5,
+      page: 2,
+      count: 100,
     },
   };
 

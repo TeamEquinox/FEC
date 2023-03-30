@@ -13,7 +13,7 @@ app.use(compression());
 // middleware used before each request is handled==========
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   console.log(`the incoming request type is a ${req.method} request`);
   console.log(`the incoming request url is ${req.url}`);
@@ -130,28 +130,32 @@ app.get('/reviews/:id', () => {
   helperAPI.getReviews();
 });
 
+app.post('/clickTrack', (req, res) => {
+  helperAPI.sendClickTrack(req, res);
+});
+
 app.post('/cart', (req, res) => {
   // console.log('is post being run????')
   helperAPI.addCart();
-  console.log('req', req.body)
-req.body.sku_id = Number(req.body.sku_id)
-req.body.count= Number(req.body.count)
-console.log('req2', req.body)
-  res.send('successfully added to cart')
-})
+  // console.log('req', req.body)
+  req.body.sku_id = Number(req.body.sku_id);
+  req.body.count = Number(req.body.count);
+  console.log('req2', req.body);
+  res.send('successfully added to cart');
+});
 
 app.get('/cart', (req, res) => {
-  console.log('how about this one???')
+  console.log('how about this one???');
   helperAPI.getCart()
-  .then((data) => {
-    console.log('data from CART', data)
-    res.send(data)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+    .then((data) => {
+      // console.log('data from CART', data)
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   // console.log('req', req.body)
-})
+});
 
 app.listen(process.env.PORT, (() => {
   console.log(`The server is listening on port ${process.env.PORT}`);

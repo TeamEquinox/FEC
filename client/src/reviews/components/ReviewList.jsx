@@ -6,7 +6,7 @@ import { postHelpfulReview } from '../helpers/userRequests';
 import ReviewModal from '../helpers/ReviewModal';
 
 function ReviewList({ reviews, productId, prodCharacteristics }) {
-  console.log(prodCharacteristics[0]);
+  // console.log(prodCharacteristics[0]);
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [reviewFormData, setReviewFormData] = useState({
@@ -31,14 +31,16 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
   }
 
   useEffect(() => {
-    reviewFormData.characteristics.Fit.id = prodCharacteristics[0].Fit.id;
-    reviewFormData.characteristics.Length.id = prodCharacteristics[0].Length.id;
-    reviewFormData.characteristics.Comfort.id = prodCharacteristics[0].Comfort.id;
-    reviewFormData.characteristics.Quality.id = prodCharacteristics[0].Quality.id;
-    reviewFormData.characteristics.Fit.value = '';
-    reviewFormData.characteristics.Length.value = '';
-    reviewFormData.characteristics.Comfort.value = '';
-    reviewFormData.characteristics.Quality.value = '';
+    if (prodCharacteristics.length) {
+      reviewFormData.characteristics.Fit.id = prodCharacteristics[0]?.Fit?.id;
+      reviewFormData.characteristics.Length.id = prodCharacteristics[0]?.Length?.id;
+      reviewFormData.characteristics.Comfort.id = prodCharacteristics[0]?.Comfort?.id;
+      reviewFormData.characteristics.Quality.id = prodCharacteristics[0]?.Quality?.id;
+      reviewFormData.characteristics.Fit.value = '';
+      reviewFormData.characteristics.Length.value = '';
+      reviewFormData.characteristics.Comfort.value = '';
+      reviewFormData.characteristics.Quality.value = '';
+    }
   }, [prodCharacteristics]);
 
   const moreReviews = () => {
@@ -61,7 +63,6 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
   };
 
   const handleShowModal = () => {
-    console.log('user clicked submitReview!');
     setShowModal(true);
   };
 
@@ -78,7 +79,6 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
 
   const handleInputChange = (event, element) => {
     const { name, value, type } = event.target;
-    console.log(name);
     if (type === 'radio' && name !== 'recommend') {
       setReviewFormData((prevState) => ({
         ...prevState,

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import Product from './Products';
 import Outfits from './Outfits';
 import Modal from './Modal';

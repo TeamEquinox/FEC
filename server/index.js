@@ -59,10 +59,19 @@ app.get('/relatedProducts', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
+// app.get('/compare', (req, res) => {
+//   helperAPI.getProductsById(req.query.data)
+//     .then((data) => {
+//       console.log('related Products Data from successfull compare call ', data);
+//       res.status(200).send(data);
+//     })
+//     .catch((err) => res.status(400).send(err));
+// });
+
 app.get('/compare', (req, res) => {
-  helperAPI.getProductsById(req.query.data)
+  relatedHelpers.CompareDetailsList(req.query.data)
     .then((data) => {
-      console.log('related Products Data from successfull compare call ', data);
+      // console.log('related Products Data from successfull compare call ', data);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));
@@ -71,7 +80,7 @@ app.get('/compare', (req, res) => {
 app.get('/setCurrentProduct', (req, res) => {
   relatedHelpers.UpdateDetailsList(req.query.data)
     .then((data) => {
-      console.log('related Products Data from successfull setCurrentProduct call ', data);
+      // console.log('related Products Data from successfull setCurrentProduct call ', data);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));

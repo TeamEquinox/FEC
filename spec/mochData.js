@@ -537,5 +537,67 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  relatedData: [
+    {
+        "id": 71698,
+        "name": "Bright Future Sunglasses",
+        "category": "Accessories",
+        "original_price": "69.00",
+        "sale_price": "N/A",
+        "photo": "N/A",
+        "rating": {
+            "1": "3",
+            "2": "8",
+            "3": "4",
+            "4": "4",
+            "5": "18"
+        }
+    },
+    {
+        "id": 71699,
+        "name": "Morning Joggers",
+        "category": "Pants",
+        "original_price": "40.00",
+        "sale_price": "N/A",
+        "photo": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
+        "rating": {
+            "1": "10",
+            "2": "9",
+            "3": "12",
+            "4": "19",
+            "5": "44"
+        }
+    },
+    {
+        "id": 71704,
+        "name": "YEasy 350",
+        "category": "Kicks",
+        "original_price": "900.00",
+        "sale_price": "N/A",
+        "photo": "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+        "rating": {
+            "1": "16",
+            "2": "8",
+            "3": "6",
+            "4": "6",
+            "5": "20"
+        }
+    },
+    {
+        "id": 71703,
+        "name": "Blues Suede Shoes",
+        "category": "Dress Shoes",
+        "original_price": "120.00",
+        "sale_price": "N/A",
+        "photo": "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
+        "rating": {
+            "1": "3",
+            "2": "1",
+            "3": "1",
+            "4": "2",
+            "5": "8"
+        }
+    }
+]
 }

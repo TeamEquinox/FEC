@@ -11,7 +11,7 @@ import QuestionsList from './questions/QuestionsList';
 function App() {
   const [product, setProduct] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
-  const [dataToCompare, setDataToCompare] = useState({});
+  const [dataToCompare, setDataToCompare] = useState([]);
   const [outfit, setOutfit] = useState([]);
 
   const getRelatedProducts = (id) => {
@@ -28,7 +28,7 @@ function App() {
       url: '/products',
       method: 'GET',
       success: (data) => {
-        // console.log('success from get', data)
+        // console.log('success from get', data);
         setProduct(data);
         getRelatedProducts(data[1].product_id);
       },

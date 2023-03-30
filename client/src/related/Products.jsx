@@ -9,6 +9,7 @@ import helpers from '../clientSideHelpers';
 function Products({
   relatedData, setShowModal, updates, updateProduct, product,
 }) {
+  // console.log('MOCHDATA=====>', relatedData);
   const [caretDisplay, setCaretDisplay] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
 
@@ -66,8 +67,6 @@ function Products({
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                // console.log('PRODUCT----->', product[0].id);
-                // console.log('ITEM----->', item.id);
                 if (item.photo !== 'N/A' && product[0].id !== item.id) {
                   return (
                     <div key={item.id} className="div_card">
@@ -80,7 +79,7 @@ function Products({
                         />
                         {/* eslint-disable-next-line max-len */}
                         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-                        <img className="img_card" src={item.photo} alt="" onClick={() => { handleRelatedCardClick(item.id); }} />
+                        <img className="img_card" src={item.photo} alt="RelatedImage" onClick={() => { handleRelatedCardClick(item.id); }} />
                       </div>
                       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                       <div className="div_info_container" onClick={() => { handleRelatedCardClick(item.id); }}>

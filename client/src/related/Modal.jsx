@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { HiCheck } from 'react-icons/Hi';
+import { StarRating } from '../starRatings';
+import helpers from '../clientSideHelpers';
 
 function Modal({ setShowModal, compares }) {
   // console.log('COMPARE--------------->', compares);
@@ -65,12 +68,23 @@ function Modal({ setShowModal, compares }) {
     }
     return [...foundInBoth, ...foundInFirst, ...foundInSecond];
   };
-
+  let productName = '';
+  let relatedProductName = '';
   const modal = (currentProduct, relatedProduct) => {
+    productName = currentProduct.name;
+    relatedProductName = relatedProduct.name;
     let result = [
-      [currentProduct.name, 'Name', relatedProduct.name],
+      [currentProduct.name, '', relatedProduct.name],
+      [currentProduct.slogan, 'Slogan', relatedProduct.slogan],
       [currentProduct.category, 'Category', relatedProduct.category],
       [currentProduct.description, 'Description', relatedProduct.description],
+      [currentProduct.default_price, 'Price', relatedProduct.default_price],
+      [currentProduct.recommended.true, 'Recommended Yes', relatedProduct.recommended.true],
+      [currentProduct.recommended.false, 'Recommended No', relatedProduct.recommended.false],
+      [helpers.configRatings(currentProduct.ratings),
+        'Overall Ratings',
+        helpers.configRatings(relatedProduct.ratings),
+      ],
     ];
     const currentProductFeatures = convertToObj(currentProduct.features);
     const relatedProductFeatures = convertToObj(relatedProduct.features);
@@ -86,7 +100,7 @@ function Modal({ setShowModal, compares }) {
     result = modal(compares[0], compares[1]);
   }
 
-  console.log('inside modal function result!!!!!!!!!!!', result);
+  // console.log('inside modal function result!!!!!!!!!!!', result);
   if (!result) {
     return (
       <div>
@@ -97,22 +111,31 @@ function Modal({ setShowModal, compares }) {
   return (
 
     <div className="div_modal_container">
-      <div className="div_modal_title"><h5>Compare</h5></div>
-      <div className="div_modal_X_button">
-        <button type="button" className="button_modal" onClick={handleCancelClick}> X </button>
-      </div>
-      <div className="div_modal_body">
-        <table>
-          <tbody>
-            {result.map((element) => (
-              <tr key={element[1]}>
-                <td>{element[0]}</td>
-                <td>{element[1]}</td>
-                <td>{element[2]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="test">
+        <div>
+          <div>
+            <span>Compare</span>
+            <button type="button" className="button_modal" onClick={handleCancelClick}> X </button>
+          </div>
+          <br />
+          <div>
+            <div className="span_currentProduct">{productName} -- vs --  {relatedProductName}</div>
+          </div>
+        </div>
+        <br />
+        <div className="div_modal_body">
+          <table className="table">
+            <tbody>
+              {result.map((element) => (
+                <tr key={element[1]}>
+                  <td>{element[0]}</td>
+                  <td>{element[1]}</td>
+                  <td>{element[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

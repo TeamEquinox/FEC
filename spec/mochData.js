@@ -494,7 +494,7 @@ module.exports = {
       }
     }
   ],
-  question: {
+  questions: {
     product_id: '71698',
     results: [
       {

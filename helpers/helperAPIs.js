@@ -119,9 +119,30 @@ const getReviews = (productId) => {
     });
 };
 
+const sendClickTrack = (req, res) => {
+  const options = {
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+    data: req.body,
+  };
+
+  axios(options)
+    .then(() => {
+      res.send('success!');
+    })
+    .catch((err) => {
+      console.log('error sending click data', err);
+      res.send(err);
+    });
+};
+
 module.exports.getProducts = getProducts;
 module.exports.getProductsById = getProductsById;
 module.exports.getProductsByStyle = getProductsByStyle;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
 module.exports.getReviews = getReviews;
+module.exports.sendClickTrack = sendClickTrack;

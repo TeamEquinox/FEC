@@ -1,6 +1,59 @@
 require('dotenv').config();
 const axios = require('axios');
 
+let addCart = () => {
+  let options = {
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
+    headers: {
+      'Authorization': `${process.env.TOKEN}`
+    },
+    params: {
+      sku_id : 2580528
+    },
+    data: {
+      "sku_id" : 2580528,
+        "count" : 2
+      }
+  }
+  let axiosRequest = axios(options);
+
+  let axiosPromise = axiosRequest
+    .then((response) => {
+      // console.log('cart', response)
+      return response.data
+    }
+    )
+    .catch(err => {
+      console.log('error', err)
+    })
+  return axiosPromise;
+}
+
+let getCart = () => {
+  console.log('is it running????????????????')
+  let options = {
+    method: 'get',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
+    headers: {
+      'Authorization': `${process.env.TOKEN}`,
+      'Accept': 'application/json'
+    }
+  }
+
+return axios(options)
+    .then((response) => {
+      console.log('GETcart', response)
+      return response.data
+    }
+    )
+    .catch(err => {
+      console.log('error', err)
+    })
+  // return axiosPromise;
+}
+
+
 const getProducts = () => {
   const options = {
     method: 'get',
@@ -119,6 +172,7 @@ const getReviews = (productId) => {
     });
 };
 
+<<<<<<< HEAD
 const sendClickTrack = (req, res) => {
   const options = {
     method: 'post',
@@ -136,6 +190,25 @@ const sendClickTrack = (req, res) => {
     .catch((err) => {
       console.log('error sending click data', err);
       res.send(err);
+=======
+const helpfulReview = (reviewId) => {
+  const options = {
+    method: 'post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/helpful`,
+    // params: { reviewId },
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
+
+  return axios(options)
+    .then((data) => {
+      console.log('return from posting helpfulReview', data);
+    })
+    .catch((err) => {
+      console.log('error posting helpfulReview', err);
+      console.log('error posting helpfulReview', options);
+>>>>>>> 516c971e62c49d477250dfa577d31ce099777efd
     });
 };
 
@@ -145,4 +218,9 @@ module.exports.getProductsByStyle = getProductsByStyle;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
 module.exports.getReviews = getReviews;
+<<<<<<< HEAD
 module.exports.sendClickTrack = sendClickTrack;
+=======
+module.exports.addCart = addCart;
+module.exports.getCart = getCart;
+>>>>>>> 516c971e62c49d477250dfa577d31ce099777efd

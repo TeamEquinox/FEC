@@ -12,7 +12,7 @@ import useClickTracking from './useClickTracking';
 function App() {
   const [product, setProduct] = useState([]);
   const [relatedData, setRelatedData] = useState([]);
-  const [dataToCompare, setDataToCompare] = useState({});
+  const [dataToCompare, setDataToCompare] = useState([]);
   const [outfit, setOutfit] = useState([]);
 
   const getRelatedProducts = (id) => {
@@ -29,7 +29,7 @@ function App() {
       url: '/products',
       method: 'GET',
       success: (data) => {
-        // console.log('success from get', data)
+        // console.log('success from get', data);
         setProduct(data);
         getRelatedProducts(data[1].product_id);
       },
@@ -71,37 +71,18 @@ function App() {
   if (product.length) {
     return (
       <div>
-        <div className="div__banner">
-          <h1>
-            <b>Equinox Apparel</b>
-          </h1>
-          {' '}
-        </div>
-        <section className="section__announcement">
-          <i>SITE-WIDE ANNOUCEMENT!</i>
-          SALE/DISCOUNT
-          <b>OFFER</b>
-          -
-          {' '}
-          <u>NEW PRODUCT HIGHLIGHT</u>
-        </section>
-        <ProductOverview product={product} />
-        <RelatedProducts
-          product={product}
-          setRelatedData={setRelatedData}
-          relatedData={relatedData}
-          update={getAndCompareCurrentProduct}
-          compare={dataToCompare}
-          updateProduct={updateCurrentProduct}
-          setoutfit={setOutfit}
-          outfit={outfit}
-        />
+        <div className="div__banner"><h1><b>Equinox Apparel</b></h1> </div>
+        <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
+        <ProductOverview product={product} setOutfit={setOutfit} />
+        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct} setoutfit={setOutfit} outfit={outfit}/>
         <RatingsAndReviews product={product} />
-        <QuestionsList product_id={product[0].id} />
-      </div>
-    );
+        <QuestionsList product_id={product[0]['id']}/>
+      </div >
+    )
+  } else {
+    return (
+      <div>Loading..</div>
+    )
   }
-  return <div>Loading..</div>;
 }
-
 ReactDOM.render(<App />, document.getElementById('root'));

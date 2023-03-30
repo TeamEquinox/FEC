@@ -1,14 +1,13 @@
-import React from "react";
-import ReactDom from "react-dom";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactDom from 'react-dom';
 
-const Cart = ({ setCart }) => {
+function Cart({ setCart }) {
   return (
-    <div className="expandedview">hi
-      <button onClick={() => { setCart(false) }}>close</button>
+    <div className="div__cart_view">
+      <button onClick={() => { setCart(false); }}>close</button>
       {localStorage.getItem('cart')}
     </div>
-  )
+  );
 }
 
 export default Cart;

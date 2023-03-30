@@ -172,6 +172,26 @@ const getReviews = (productId) => {
     });
 };
 
+const helpfulReview = (reviewId) => {
+  const options = {
+    method: 'post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/helpful`,
+    // params: { reviewId },
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
+
+  return axios(options)
+    .then((data) => {
+      console.log('return from posting helpfulReview', data);
+    })
+    .catch((err) => {
+      console.log('error posting helpfulReview', err);
+      console.log('error posting helpfulReview', options);
+    });
+};
+
 module.exports.getProducts = getProducts;
 module.exports.getProductsById = getProductsById;
 module.exports.getProductsByStyle = getProductsByStyle;

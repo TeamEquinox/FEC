@@ -71,18 +71,36 @@ function App() {
   if (product.length) {
     return (
       <div>
-        <div className="div__banner"><h1><b>Equinox Apparel</b></h1> </div>
-        <section className="section__announcement"><i>SITE-WIDE ANNOUCEMENT!</i> SALE/DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u></section>
+        <div className="div__banner">
+          <h1>
+            <b>Equinox Apparel</b>
+          </h1>
+        </div>
+        <section className="section__announcement">
+          <i>SITE-WIDE ANNOUCEMENT!</i>
+          SALE/DISCOUNT
+          <b>OFFER</b>
+          -
+          <u>NEW PRODUCT HIGHLIGHT</u>
+        </section>
         <ProductOverview product={product} setOutfit={setOutfit} />
-        <RelatedProducts product={product} setRelatedData={setRelatedData} relatedData={relatedData} update={getAndCompareCurrentProduct} compare={dataToCompare} updateProduct={updateCurrentProduct} setoutfit={setOutfit} outfit={outfit}/>
+        <RelatedProducts
+          product={product}
+          setRelatedData={setRelatedData}
+          relatedData={relatedData}
+          update={getAndCompareCurrentProduct}
+          compare={dataToCompare}
+          updateProduct={updateCurrentProduct}
+          setoutfit={setOutfit}
+          outfit={outfit}
+        />
         <RatingsAndReviews product={product} />
-        <QuestionsList product_id={product[0]['id']}/>
-      </div >
-    )
-  } else {
-    return (
-      <div>Loading..</div>
-    )
+        <QuestionsList product_id={product[0].id} />
+      </div>
+    );
   }
+  return (
+    <div>Loading..</div>
+  );
 }
 ReactDOM.render(<App />, document.getElementById('root'));

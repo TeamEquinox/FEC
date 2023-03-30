@@ -1,58 +1,53 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const axios = require('axios');
 
-let addCart = () => {
-  let options = {
+const addCart = () => {
+  const options = {
     method: 'post',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
     headers: {
-      'Authorization': `${process.env.TOKEN}`
+      Authorization: `${process.env.TOKEN}`,
     },
     params: {
-      sku_id : 2580528
+      sku_id: 2580528,
     },
     data: {
-      "sku_id" : 2580528,
-        "count" : 2
-      }
-  }
-  let axiosRequest = axios(options);
+      sku_id: 2580528,
+      count: 2,
+    },
+  };
+  const axiosRequest = axios(options);
 
-  let axiosPromise = axiosRequest
-    .then((response) => {
-      // console.log('cart', response)
-      return response.data
-    }
-    )
-    .catch(err => {
-      console.log('error', err)
-    })
+  const axiosPromise = axiosRequest
+    .then((response) => response.data)
+    .catch((err) => {
+      console.log('error', err);
+    });
   return axiosPromise;
-}
+};
 
-let getCart = () => {
-  console.log('is it running????????????????')
-  let options = {
+const getCart = () => {
+  console.log('is it running????????????????');
+  const options = {
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
     headers: {
-      'Authorization': `${process.env.TOKEN}`,
-      'Accept': 'application/json'
-    }
-  }
+      Authorization: `${process.env.TOKEN}`,
+      Accept: 'application/json',
+    },
+  };
 
-return axios(options)
+  return axios(options)
     .then((response) => {
-      console.log('GETcart', response)
-      return response.data
-    }
-    )
-    .catch(err => {
-      console.log('error', err)
+      console.log('GETcart', response);
+      return response.data;
     })
+    .catch((err) => {
+      console.log('error', err);
+    });
   // return axiosPromise;
-}
-
+};
 
 const getProducts = () => {
   const options = {
@@ -172,25 +167,6 @@ const getReviews = (productId) => {
     });
 };
 
-<<<<<<< HEAD
-const sendClickTrack = (req, res) => {
-  const options = {
-    method: 'post',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
-    headers: {
-      Authorization: `${process.env.TOKEN}`,
-    },
-    data: req.body,
-  };
-
-  axios(options)
-    .then(() => {
-      res.send('success!');
-    })
-    .catch((err) => {
-      console.log('error sending click data', err);
-      res.send(err);
-=======
 const helpfulReview = (reviewId) => {
   const options = {
     method: 'post',
@@ -208,7 +184,26 @@ const helpfulReview = (reviewId) => {
     .catch((err) => {
       console.log('error posting helpfulReview', err);
       console.log('error posting helpfulReview', options);
->>>>>>> 516c971e62c49d477250dfa577d31ce099777efd
+    });
+};
+
+const sendClickTrack = (req, res) => {
+  const options = {
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+    data: req.body,
+  };
+
+  axios(options)
+    .then(() => {
+      res.send('success!');
+    })
+    .catch((err) => {
+      console.log('error sending click data', err);
+      res.send(err);
     });
 };
 
@@ -218,9 +213,7 @@ module.exports.getProductsByStyle = getProductsByStyle;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
 module.exports.getReviews = getReviews;
-<<<<<<< HEAD
-module.exports.sendClickTrack = sendClickTrack;
-=======
 module.exports.addCart = addCart;
 module.exports.getCart = getCart;
->>>>>>> 516c971e62c49d477250dfa577d31ce099777efd
+module.exports.sendClickTrack = sendClickTrack;
+module.exports.helpfulReview = helpfulReview;

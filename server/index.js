@@ -109,11 +109,17 @@ app.post('/answers', (req, res) => {
   questionsAPI.postAnswer(req, res);
 });
 
-app.post('/', (req, res) => {
-  // console.log('hello from app.post')
-
-  // console.log(req.body)
-  res.send('Hello, World!');
+//  WIP
+app.post('/reviews/:id/helpful', (req, res) => {
+  const reviewId = req.params.id;
+  helperAPI.helpfulReview(reviewId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 });
 
 app.get('*', (req, res) => {

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
-import RatingBreakdownBars from './components/RatingBreakdownBars';
-import SortFilters from './components/SortFilters';
-import OverallReview from './components/OverallReview';
-import ProductBreakdown from './components/ProductBreakdown';
-import ReviewList from './components/ReviewList';
-import SearchBar from './components/SearchBar';
+import React, { useState, useEffect } from "react";
+import RatingBreakdownBars from "./components/RatingBreakdownBars";
+import SortFilters from "./components/SortFilters";
+import OverallReview from "./components/OverallReview";
+import ProductBreakdown from "./components/ProductBreakdown";
+import ReviewList from "./components/ReviewList";
+import SearchBar from "./components/SearchBar";
 
 function RatingsAndReviews({ product }) {
   const [meta, setMeta] = useState(product[3]);
@@ -31,8 +31,16 @@ function RatingsAndReviews({ product }) {
         setDisplayedReviews={setDisplayedReviews}
       />
       <ProductBreakdown meta={meta} />
-      <SortFilters reviews={sorted} setSorted={setSorted} setReviews={setReviews} />
-      <ReviewList reviews={sorted} />
+      <SortFilters
+        reviews={sorted}
+        setSorted={setSorted}
+        setReviews={setReviews}
+      />
+      <ReviewList
+        reviews={sorted}
+        productId={product[2].product}
+        prodCharacteristics={[product[3].characteristics]}
+      />
       <SearchBar />
     </>
   );

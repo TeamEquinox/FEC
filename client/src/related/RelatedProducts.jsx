@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Product from './Products.jsx';
-import Outfits from './Outfits.jsx';
-import Modal from './Modal.jsx';
+import React, { useState} from 'react';
+import Product from './Products';
+import Outfits from './Outfits';
+import Modal from './Modal';
 
 function RelatedProducts({
   relatedData, product, update, compare, updateProduct, outfit, setoutfit,

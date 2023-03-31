@@ -581,11 +581,11 @@ Icons...........................
   top: 12px;
 }
 
-/* .icon_action:hover {
+.icon_action:hover {
   cursor: pointer;
   background-color: white;
   color: black;
-} */
+}
 
 .icon_action:hover:before {
   content: "Compare!";

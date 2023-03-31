@@ -1,14 +1,16 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { StarRating } from '../../starRatings';
-import { postHelpfulReview } from '../helpers/userRequests';
+import { postReview, postHelpfulReview } from '../helpers/userRequests';
 import ReviewModal from '../helpers/ReviewModal';
 
-function ReviewList({ reviews, productId, prodCharacteristics }) {
+function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
   // console.log(prodCharacteristics[0]);
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
+  const [tempCharStorage, setTempCharStorage] = useState({});
   const [reviewFormData, setReviewFormData] = useState({
     product_id: '',
     rating: '',
@@ -25,21 +27,29 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
       Quality: {},
     },
   });
+
   let reviewArr = [];
   if (Array.isArray(reviews)) {
     reviewArr = reviews;
   }
 
   useEffect(() => {
-    if (prodCharacteristics.length) {
-      reviewFormData.characteristics.Fit.id = prodCharacteristics[0]?.Fit?.id;
-      reviewFormData.characteristics.Length.id = prodCharacteristics[0]?.Length?.id;
-      reviewFormData.characteristics.Comfort.id = prodCharacteristics[0]?.Comfort?.id;
-      reviewFormData.characteristics.Quality.id = prodCharacteristics[0]?.Quality?.id;
-      reviewFormData.characteristics.Fit.value = '';
-      reviewFormData.characteristics.Length.value = '';
-      reviewFormData.characteristics.Comfort.value = '';
-      reviewFormData.characteristics.Quality.value = '';
+    if (prodCharacteristics.length > 0) {
+      const { Fit, Length, Comfort, Quality } = prodCharacteristics[0];
+      reviewFormData.characteristics = {
+        [Fit?.id]: Fit ? null : undefined,
+        [Length?.id]: Length ? null : undefined,
+        [Comfort?.id]: Comfort ? null : undefined,
+        [Quality?.id]: Quality ? null : undefined,
+      };
+      setTempCharStorage({
+        Fit: Fit?.id,
+        Length: Length?.id,
+        Comfort: Comfort?.id,
+        Quality: Quality?.id,
+        Name: prodName,
+      });
+      console.log(reviewFormData, tempCharStorage);
     }
   }, [prodCharacteristics]);
 
@@ -72,8 +82,9 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
 
   const handleSubmitReview = (event) => {
     event.preventDefault();
-    reviewFormData.product_id = productId;
+    reviewFormData.product_id = Number(productId);
     console.log('reviewFormData: ', reviewFormData);
+    postReview(reviewFormData);
     setShowModal(false);
   };
 
@@ -84,10 +95,7 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
         ...prevState,
         characteristics: {
           ...prevState.characteristics,
-          [element]: {
-            ...prevState.characteristics[element],
-            value,
-          },
+          [element]: value,
         },
       }));
     } else {
@@ -181,6 +189,7 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
           handleSubmit={handleSubmitReview}
           handleInputChange={handleInputChange}
           formData={reviewFormData}
+          tempCharStorage={tempCharStorage}
         />
       ) : null}
       <span style={{ marginLeft: '10px' }}>|</span>

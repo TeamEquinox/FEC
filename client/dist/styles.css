@@ -902,7 +902,7 @@ START Review CSS======================^
   width: 60%;
   height: 40%;
   min-width: 550px;
-  min-height: 450px;
+  min-height: 500px;
   /* display: flex; */
   justify-content: center;
   align-items: center;

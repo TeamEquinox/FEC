@@ -2,6 +2,22 @@
 /* eslint-disable arrow-body-style */
 const axios = require('axios');
 
+const postReview = (reviewData) => {
+  const options = {
+    method: 'post',
+    url: '/reviews',
+    data: reviewData,
+  };
+
+  return axios(options)
+    .then((data) => {
+      console.log('return from posting review', data);
+    })
+    .catch((err) => {
+      console.log('error posting new review', err);
+    });
+};
+
 const postHelpfulReview = (reviewId) => {
   const options = {
     method: 'post',
@@ -38,5 +54,6 @@ const postHelpfulReview = (reviewId) => {
 
 module.exports = {
   postHelpfulReview,
+  postReview,
   // reportReview,
 };

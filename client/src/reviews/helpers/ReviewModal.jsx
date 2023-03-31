@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
@@ -8,10 +9,14 @@ import RadioButtons from './RadioButtons';
 
 function ReviewModal(props) {
   const {
-    show, handleClose, handleSubmit, handleInputChange, formData,
+    show,
+    handleClose,
+    handleSubmit,
+    handleInputChange,
+    formData,
+    tempCharStorage,
   } = props;
   const [rating, setRating] = useState(0);
-
   const showHideClassName = show
     ? 'modal review-display-block'
     : 'modal review-display-none';
@@ -44,6 +49,12 @@ function ReviewModal(props) {
     <div className={showHideClassName}>
       <section className="review-modal-main">
         <form onSubmit={handleSubmit}>
+          <h3 style={{ marginTop: '10px' }}>
+            Review for the
+            {' '}
+            {tempCharStorage.Name}
+            !
+          </h3>
           <label htmlFor="rating">Rating: </label>
           <div>{[...Array(5)].map((_, index) => renderStar(index))}</div>
           <br />
@@ -128,7 +139,8 @@ function ReviewModal(props) {
             <RadioButtons
               element="Fit"
               formData={formData}
-              handleInputChange={(e) => handleInputChange(e, 'Fit')}
+              tempCharStorage={tempCharStorage}
+              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Fit)}
               style={{ flex: 1 }}
             />
             <span style={{ marginLeft: '10px', marginRight: '10px' }}>|</span>
@@ -136,7 +148,8 @@ function ReviewModal(props) {
             <RadioButtons
               element="Length"
               formData={formData}
-              handleInputChange={(e) => handleInputChange(e, 'Length')}
+              tempCharStorage={tempCharStorage}
+              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Length)}
               style={{ flex: 1 }}
             />
           </div>
@@ -146,7 +159,8 @@ function ReviewModal(props) {
             <RadioButtons
               element="Quality"
               formData={formData}
-              handleInputChange={(e) => handleInputChange(e, 'Quality')}
+              tempCharStorage={tempCharStorage}
+              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Quality)}
               style={{ flex: 1 }}
             />
             <span style={{ marginLeft: '10px', marginRight: '10px' }}>|</span>
@@ -154,7 +168,8 @@ function ReviewModal(props) {
             <RadioButtons
               element="Comfort"
               formData={formData}
-              handleInputChange={(e) => handleInputChange(e, 'Comfort')}
+              tempCharStorage={tempCharStorage}
+              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Comfort)}
               style={{ flex: 1 }}
             />
           </div>

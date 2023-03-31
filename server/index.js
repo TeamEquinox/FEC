@@ -6,6 +6,7 @@ const path = require('path');
 const helperAPI = require('../helpers/helperAPIs');
 const relatedHelpers = require('../helpers/relatedProductHelpers');
 const questionsAPI = require('../helpers/questionsAPI');
+const reviewAPI = require('../helpers/reviewAPI');
 
 const app = express();
 app.use(compression());
@@ -120,6 +121,17 @@ app.post('/reviews/:id/helpful', (req, res) => {
       console.log(err);
       res.sendStatus(500);
     });
+});
+
+app.post('/reviews', (req, res) => {
+  reviewAPI.postReview(req, res)
+    // .then(() => {
+    //   res.status(201).send('Review created successfully');
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   res.sendStatus(500);
+    // });
 });
 
 app.get('*', (req, res) => {

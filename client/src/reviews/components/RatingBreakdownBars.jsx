@@ -48,7 +48,7 @@ function RatingBreakdownBars({
 
   return (
     <>
-      <div style={{ width: '300px' }}>
+      <div style={{ width: '200px' }}>
         <table>
           <tbody className="stars-container">
             {[5, 4, 3, 2, 1].map((stars) => (

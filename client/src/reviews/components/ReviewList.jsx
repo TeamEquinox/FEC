@@ -167,9 +167,10 @@ function ReviewList({
             <p className="individual-reviews-body">{review.body ?? ''}</p>
             <p className="individual-reviews-user">
               By:
+              {' '}
               {review.reviewer_name ?? 'Anonymous'}
             </p>
-            {Array.isArray(review.photos) && review.photos.length > 0 ? (
+            {review.photos.length > 0 ? (
               review.photos.map((photo) => (
                 <img
                   src={photo.url}

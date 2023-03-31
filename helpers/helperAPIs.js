@@ -2,53 +2,6 @@
 require('dotenv').config();
 const axios = require('axios');
 
-const addCart = () => {
-  const options = {
-    method: 'post',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
-    headers: {
-      Authorization: `${process.env.TOKEN}`,
-    },
-    params: {
-      sku_id: 2580528,
-    },
-    data: {
-      sku_id: 2580528,
-      count: 2,
-    },
-  };
-  const axiosRequest = axios(options);
-
-  const axiosPromise = axiosRequest
-    .then((response) => response.data)
-    .catch((err) => {
-      console.log('error', err);
-    });
-  return axiosPromise;
-};
-
-const getCart = () => {
-  console.log('is it running????????????????');
-  const options = {
-    method: 'get',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
-    headers: {
-      Authorization: `${process.env.TOKEN}`,
-      Accept: 'application/json',
-    },
-  };
-
-  return axios(options)
-    .then((response) => {
-      console.log('GETcart', response);
-      return response.data;
-    })
-    .catch((err) => {
-      console.log('error', err);
-    });
-  // return axiosPromise;
-};
-
 const getProducts = () => {
   const options = {
     method: 'get',
@@ -213,7 +166,3 @@ module.exports.getProductsByStyle = getProductsByStyle;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
 module.exports.getReviews = getReviews;
-module.exports.addCart = addCart;
-module.exports.getCart = getCart;
-module.exports.sendClickTrack = sendClickTrack;
-module.exports.helpfulReview = helpfulReview;

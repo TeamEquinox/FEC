@@ -166,3 +166,4 @@ module.exports.getProductsByStyle = getProductsByStyle;
 module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
 module.exports.getReviews = getReviews;
+module.exports.sendClickTrack = sendClickTrack;

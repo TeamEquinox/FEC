@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-filename-extension */
-/**
- * @jest-environment jsdom
- */
+/* @jest-environment jsdom */
 
 import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
@@ -15,33 +13,6 @@ import Modal from '../client/src/related/Modal';
 import {
   product, relatedData, modalCompare, outfitCompare,
 } from './mochData';
-
-/*
-A "describe" block can be used to group together multiple tests
-which check the same nodule or function.
- */
-// describe('Example tests', () => {
-//   const add = (num1, num2) => num1 + num2;
-//   // Individual tests can be run using the "it" or "test" methods,
-// they are aliased and are equivalent
-//   it('Should add small numbers', () => {
-//     /* This test suite is written in Jest. There are many more methods other than "toBe"
-//     Go to: https://jestjs.io/docs/en/expect
-//     to find more options if "toBe" doesn't fit your use case.
-//     */
-//     expect(add(1, 1)).toBe(2);
-//   });
-
-//   // In addition to expected, "happy path",
-// behaviour as above, you should also test your edge cases
-//   it('Should return Infinity for numbers of type Number which are very large', () => {
-//     expect(add(1.6E310, 1)).toBe(Infinity);
-//   });
-// });
-/*
-We start here. 1 describe block per feature tested.
-We can use the 'only' method to only run the tests we want. https://jestjs.io/docs/en/api#describeonlyname-fn
-*/
 
 test('use jsdom in this test file', () => {
   const element = document.createElement('div');
@@ -60,7 +31,6 @@ test('renders component with text ', () => {
     setoutfit={mochFn}
   />);
   expect(getAllByText(/Name/)[0]).not.toBeNull();
-  // screen.debug();
 });
 
 describe('Related Product Component', () => {
@@ -76,8 +46,6 @@ describe('Related Product Component', () => {
       setoutfit={mochFn}
     />);
     expect(screen.getByText(/Related Products/)).toBeInTheDocument();
-
-    // screen.debug();
   });
 
   it('Displays the related products component with text Category', () => {
@@ -92,7 +60,6 @@ describe('Related Product Component', () => {
       setoutfit={mochFn}
     />);
     expect(screen.getAllByText(/Category/)[0]).toBeInTheDocument();
-    // screen.debug();
   });
 
   it('renders component text Name', () => {
@@ -121,7 +88,6 @@ describe('Related Product Component', () => {
       setoutfit={mochFn}
     />);
     expect(screen.getAllByText(/\$/)[0]).toBeInTheDocument();
-    // screen.debug;
   });
 
   it('renders component text Your Outfit', () => {
@@ -163,7 +129,6 @@ describe('Outfit List Component', () => {
       data={outfitCompare}
       setoutfit={mochFn}
     />);
-    // screen.debug();
     expect(screen.getByText(/Your Outfit/)).toBeInTheDocument();
   });
   it('Checks if Outfit List component is rendering the text Add to Outfit', () => {
@@ -173,7 +138,6 @@ describe('Outfit List Component', () => {
       data={outfitCompare}
       setoutfit={mochFn}
     />);
-    // screen.debug();
     expect(screen.getByText(/Add to Outfit/)).toBeInTheDocument();
   });
   it('Checks if Outfit List card is rendering the text Category', () => {
@@ -184,7 +148,6 @@ describe('Outfit List Component', () => {
       setoutfit={mochFn}
     />);
     expect(screen.getAllByText(/Category/)[0]).toBeInTheDocument();
-    // screen.debug();
   });
 
   it('Checks if Outfit List card is rendering the text Name', () => {
@@ -205,22 +168,15 @@ describe('Outfit List Component', () => {
       setoutfit={mochFn}
     />);
     expect(screen.getAllByText(/\$/)[0]).toBeInTheDocument();
-    // screen.debug;
   });
   it('Checks if Outfit List card is removed when x icon is clicked', () => {
     const mochFn = jest.fn();
     render(<Outfits
       product={product}
       data={outfitCompare}
-      // data={[]}
       setoutfit={mochFn}
     />);
-    // const button = screen.getByTestId('addOutfit');
-    // expect(button).not.toBeNull();
-    // fireEvent.click(button);
     const outfitList2 = screen.getAllByText(/Category/);
-    // const button2 = screen.getAllByTestId('outfitIcon')[2];
-    // fireEvent.click(button2);
     expect(outfitList2.length).toEqual(2);
 
     screen.debug();
@@ -236,7 +192,6 @@ describe('Product Component', () => {
       updates={mochFn}
       updateProduct={mochFn}
     />);
-    // screen.debug();
     expect(screen.getByText(/Related Products/)).toBeInTheDocument();
   });
   it('renders component with text Name', () => {
@@ -247,7 +202,6 @@ describe('Product Component', () => {
       updates={mochFn}
       updateProduct={mochFn}
     />);
-    // screen.debug();
     expect(screen.getAllByText(/Name/)[0]).toBeInTheDocument();
   });
   it('renders component with text Category', () => {
@@ -258,7 +212,6 @@ describe('Product Component', () => {
       updates={mochFn}
       updateProduct={mochFn}
     />);
-    // screen.debug();
     expect(screen.getAllByText(/Category/)[0]).toBeInTheDocument();
   });
   it('renders component with text $ symbol', () => {
@@ -269,7 +222,6 @@ describe('Product Component', () => {
       updates={mochFn}
       updateProduct={mochFn}
     />);
-    // screen.debug();
     expect(screen.getAllByText(/\$/)[0]).toBeInTheDocument();
   });
 });
@@ -289,8 +241,6 @@ describe('Modal Component', () => {
     const button = screen.getAllByTestId('iconId')[0];
     expect(screen.queryByText(/Compare/)).toBeNull();
     fireEvent.click(button);
-
-    // screen.debug();
     await expect(screen.getByText(/Compare/)).toBeInTheDocument();
   });
 
@@ -312,6 +262,5 @@ describe('Modal Component', () => {
     await expect(screen.getByText(/Compare/)).toBeInTheDocument();
     fireEvent.click(button2);
     await expect(screen.queryByText(/Compare/)).toBeNull();
-    // screen.debug();
   });
 });

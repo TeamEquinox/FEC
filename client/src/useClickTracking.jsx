@@ -13,9 +13,7 @@ const useClickTracking = () => {
     // console.log('inside useEffect');
     // handle click fn to update state with gathered data
     const handleClick = (e) => {
-      // console.log('event', e, '\n event.view.parent', e.view.parent);
       // collect various parts of event object to be target data
-      // console.log('date', Date.now().toString());
       /*
       widget (string)
       element (string)
@@ -25,7 +23,7 @@ const useClickTracking = () => {
       data.element = e.target.localName;
       data.widget = e.target.id;
       data.time = Date.now().toString();
-      console.log('data', data);
+      // console.log('data', data);
       // update state with the collect event datas
       setClickData(data);
     };
@@ -39,7 +37,7 @@ const useClickTracking = () => {
   useEffect(() => {
     axios.post('/clickTrack', clickData)
       .then(() => {
-        console.log('sent click data!');
+        // console.log('sent click data!');
       })
       .catch((err) => {
         console.log('error sending click data', err);

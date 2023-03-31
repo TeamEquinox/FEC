@@ -94,7 +94,61 @@ const postAnswer = (req, res) => {
     });
 };
 
+const putHelpful = (req, res) => {
+  const options = {
+    method: 'put',
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
+
+  if (req.query.questionId) {
+    options.url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/helpful`;
+    options.params = { question_id: req.query.questionId };
+  } else if (req.query.answerId) {
+    options.url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.answerId}/helpful`;
+    options.params = { answer_id: req.query.answerId };
+  }
+
+  axios(options)
+    .then((success) => {
+      res.send(success.data);
+    })
+    .catch((err) => {
+      console.log('error reporting helpful', err);
+      res.send(err);
+    });
+};
+
+const report = (req, res) => {
+  const options = {
+    method: 'put',
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
+
+  if (req.query.questionId) {
+    options.url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/report`;
+    options.params = { question_id: req.query.questionId };
+  } else if (req.query.answerId) {
+    options.url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.answerId}/helpful`;
+    options.params = { answer_id: req.query.answerId };
+  }
+
+  axios(options)
+    .then((success) => {
+      res.send(success.data);
+    })
+    .catch((err) => {
+      console.log('error reporting', err);
+      res.send(err);
+    });
+};
+
 module.exports.getQuestions = getQuestions;
 module.exports.getAnswers = getAnswers;
 module.exports.postAnswer = postAnswer;
 module.exports.postQuestion = postQuestion;
+module.exports.putHelpful = putHelpful;
+module.exports.report = report;

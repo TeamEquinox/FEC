@@ -157,6 +157,14 @@ app.get('/cart', (req, res) => {
   // console.log('req', req.body)
 });
 
+app.put('/report', (req, res) => {
+  questionsAPI.report(req, res);
+});
+
+app.put('/helpful', (req, res) => {
+  questionsAPI.putHelpful(req, res);
+});
+
 app.listen(process.env.PORT, (() => {
   console.log(`The server is listening on port ${process.env.PORT}`);
 }));

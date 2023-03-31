@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Answers from './Answers';
 import AnswerModal from './AnswerModal';
-import { getAnswers } from './calls';
+import { getAnswers, putHelpfulQuestion, reportQuestion } from './calls';
 
 function QuestionBox({ question, product_id }) {
   const [answers, setAnswers] = useState([]);
@@ -20,17 +20,36 @@ function QuestionBox({ question, product_id }) {
     changeWindow();
   };
 
+  // report handler
+  const handleReport = () => {
+    reportQuestion(question.question_id);
+  };
+  // helpful handler
+  const handleHelpful = () => {
+    putHelpfulQuestion(question.question_id);
+  };
+
   // set answers once questions have loaded
   useEffect(() => {
+    const currentAns = [];
+    // get array of object keys for question.answers.results
+    const keys = Object.keys(question.answers);
+    // iterate over that array
+    keys.forEach((key) => {
+      // add each corresponding answer to current ans array
+      currentAns.push(question.answers[key]);
+    });
+    // set answers to updated array
+    setAnswers(currentAns);
     // setAnswers(sampleAns.results);
-    getAnswers(question.question_id)
-      .then((ans) => {
-        setAnswers(ans);
-      })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log('error getting answers on load', err);
-      });
+    // getAnswers(question.question_id)
+    //   .then((ans) => {
+    //     setAnswers(ans);
+    //   })
+    //   .catch((err) => {
+    //     // eslint-disable-next-line no-console
+    //     console.log('error getting answers on load', err);
+    //   });
   }, []);
 
   return (
@@ -43,10 +62,10 @@ function QuestionBox({ question, product_id }) {
       <p>{question.question_date}</p>
       <span>
         Is this helpful?
-        <button type="button">Yes!</button>
+        <button type="button" onClick={handleHelpful}>Yes!</button>
         {question.question_helpfulness}
       </span>
-      <button type="button" className="report">Report</button>
+      <button type="button" className="report" onClick={handleReport}>Report</button>
       {answers.length === 0 && (
         <div>
           No answers yet!

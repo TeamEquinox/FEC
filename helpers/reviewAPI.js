@@ -27,42 +27,40 @@ const helpfulReview = (reviewId) => {
   const options = {
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/helpful`,
-    // params: { reviewId },
     headers: {
       Authorization: `${process.env.TOKEN}`,
     },
   };
 
   return axios(options)
-    .then((data) => {
-      console.log('return from posting helpfulReview', data);
+    .then(() => {
+      console.log('return from posting helpfulReview');
     })
     .catch((err) => {
       console.log('error posting helpfulReview', err);
-      console.log('error posting helpfulReview', options);
+      console.log('error posting helpfulReview options: ', options);
     });
 };
 
-// const postAnswer = (req, res) => {
-//   const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${req.query.questionId}/answers`;
-//   const options = {
-//     method: 'post',
-//     url,
-//     headers: {
-//       Authorization: `${process.env.TOKEN}`,
-//     },
-//     data: req.body,
-//   };
+const reportReview = (reviewId) => {
+  const options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/report`,
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
 
-//   axios(options)
-//     .then((created) => {
-//       res.send(created.data);
-//     })
-//     .catch((err) => {
-//       console.log(`error posting answer to question ${req.query.questionId}`, err);
-//       res.send(err);
-//     });
-// };
+  return axios(options)
+    .then(() => {
+      console.log('return from posting reportReview');
+    })
+    .catch((err) => {
+      console.log('error posting reportReview', err);
+      console.log('error posting reportReview options: ', options);
+    });
+};
 
 module.exports.postReview = postReview;
 module.exports.helpfulReview = helpfulReview;
+module.exports.reportReview = reportReview;

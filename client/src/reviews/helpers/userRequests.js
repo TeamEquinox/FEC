@@ -18,7 +18,7 @@ const postReview = (reviewData) => {
     });
 };
 
-const postHelpfulReview = (reviewId) => {
+const putHelpfulReview = (reviewId) => {
   const options = {
     method: 'put',
     url: `/reviews/${reviewId}/helpful`,
@@ -26,35 +26,32 @@ const postHelpfulReview = (reviewId) => {
   };
 
   return axios(options)
-    .then((data) => {
+    .then(() => {
       console.log('return from posting helpfulReview');
     })
     .catch((err) => {
-      // console.log('error posting helpfulReview', err.response);
-      // console.log('error posting helpfulReview from userRequests');
-      console.log('error posting helpfulReview from userRequests', options);
+      console.log('error posting helpfulReview from userRequests', err);
     });
 };
 
-// const reportReview = (answerData, questionId) => {
-//   const options = {
-//     method: 'post',
-//     url: '',
-//     data: answerData,
-//     params: { questionId },
-//   };
+const putReportReview = (reviewId) => {
+  const options = {
+    method: 'put',
+    url: `/reviews/${reviewId}/report`,
+    params: { reviewId },
+  };
 
-//   return axios(options)
-//     .then((data) => {
-//       console.log('return from posting reportReview', data);
-//     })
-//     .catch((err) => {
-//       console.log('error posting reportReview', err);
-//     });
-// };
+  return axios(options)
+    .then(() => {
+      console.log('return from posting helpfulReview');
+    })
+    .catch((err) => {
+      console.log('error posting helpfulReview from userRequests', err);
+    });
+};
 
 module.exports = {
-  postHelpfulReview,
+  putHelpfulReview,
   postReview,
-  // reportReview,
+  putReportReview,
 };

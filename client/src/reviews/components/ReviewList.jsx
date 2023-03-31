@@ -3,10 +3,11 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { StarRating } from '../../starRatings';
-import { postReview, postHelpfulReview } from '../helpers/userRequests';
+import { postReview, putHelpfulReview, putReportReview } from '../helpers/userRequests';
 import ReviewModal from '../helpers/ReviewModal';
 
 function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
+  // console.log(reviews)
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [tempCharStorage, setTempCharStorage] = useState({});
@@ -56,18 +57,23 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
   };
 
   const helpfulReviewHandler = (reviewId) => {
-    console.log(`error with ${reviewId} in ReviewList`);
-    postHelpfulReview(reviewId)
-
-      .then((response) => {
-        console.log('Success from helpfulReviewHandler: ', response);
+    putHelpfulReview(reviewId)
+      .then(() => {
+        console.log('Success from helpfulReviewHandler');
       })
       .catch((err) => {
         console.log(`error with ${reviewId} in ReviewList`, err);
       });
   };
 
-  const reportReview = () => {
+  const reportReview = (reviewId) => {
+    putReportReview(reviewId)
+      .then(() => {
+        console.log('Success from reportReview');
+      })
+      .catch((err) => {
+        console.log(`error with ${reviewId} in reportReview`, err);
+      });
     // console.log('user clicked reportReview!');
   };
 
@@ -163,7 +169,7 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
             {/* {reviewCount <= reviewArr.length && ( */}
             <button
               type="button"
-              onClick={() => reportReview()}
+              onClick={() => reportReview(Number(review.review_id))}
               className="report-review-button"
             >
               Report

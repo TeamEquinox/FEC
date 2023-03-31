@@ -115,6 +115,11 @@ app.put('/reviews/:id/helpful', (req) => {
   reviewAPI.helpfulReview(reviewId);
 });
 
+app.put('/reviews/:id/report', (req) => {
+  const reviewId = req.params.id;
+  reviewAPI.reportReview(reviewId);
+});
+
 app.post('/reviews', (req, res) => {
   reviewAPI.postReview(req, res)
     // .then(() => {
@@ -136,9 +141,6 @@ app.get('/reviews/:id', () => {
 
 app.post('/clickTrack', (req, res) => {
   helperAPI.sendClickTrack(req, res);
-});
-app.put('/report', (req, res) => {
-  questionsAPI.report(req, res);
 });
 
 app.put('/helpful', (req, res) => {

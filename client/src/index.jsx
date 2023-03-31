@@ -95,7 +95,7 @@ function App() {
           outfit={outfit}
         />
         <RatingsAndReviews product={product} />
-        {/* <QuestionsList product_id={product[0].id} /> */}
+        <QuestionsList product_id={product[0].id} />
       </div>
     );
   }

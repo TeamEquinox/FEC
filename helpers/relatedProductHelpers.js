@@ -89,7 +89,17 @@ const UpdateDetailsList = (id) => {
     .catch((err) => err);
 };
 
+const CompareDetailsList = (id) => {
+  const first = productAPI.getProductsById(id);
+  const second = productAPI.getMetaReviewData(id);
+  const result = [first, second];
+  return Promise.all(result)
+    .then((data) => data)
+    .catch((err) => err);
+};
+
 // export helper function ====================
 module.exports.relatedProducts = relatedProducts;
 module.exports.relatedProductInfo = relatedProductInfo;
 module.exports.UpdateDetailsList = UpdateDetailsList;
+module.exports.CompareDetailsList = CompareDetailsList;

@@ -579,13 +579,17 @@ Icons...........................
   border-radius: 10px;
   left: 85%;
   top: 12px;
-  z-index: 2;
 }
 
-.icon_action:hover {
+/* .icon_action:hover {
   cursor: pointer;
   background-color: white;
   color: black;
+} */
+
+.icon_action:hover:before {
+  content: "Compare!";
+  z-index: 2;
 }
 
 /*
@@ -637,28 +641,42 @@ Modal...........................
 */
 
 .div_modal_container {
-  position: fixed;
-  height: 250px;
-  width: 320px;
-  top: 0;
+  /* position: absolute; */
+  /* height: 350px;
+  width: 420px; */
+  /* top: 0;
   right: 0;
   left: 0;
+  bottom: 0; */
+  /* background-color: antiquewhite; */
+  /* overflow: auto; */
+  /* z-index: 3;  */
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
   bottom: 0;
-  background-color: antiquewhite;
-  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
-.div_modal_X_button {
-  position: absolute;
+/* .div_modal_X_button {
+  position: relative;
   left: 90%;
   top: 5px;
   border-radius: 10px;
-}
+} */
 
 .button_modal {
   border: none;
-  background-color: antiquewhite;
+  position: relative;
+  left: 75%;
+  top: 1px;
+  border-radius: 10px;
+  /* background-color: antiquewhite; */
 }
 
 .button_modal:hover {
@@ -666,15 +684,40 @@ Modal...........................
   border-radius: 5px;
   cursor: pointer;
 }
-/* .div_modal_title {
-  position: absolute;
-  top: 5px;
-  left: 2px;
-} */
-/* .div_modal_body {
-  overflow-y: scroll;
-  white-space: nowrap;
-} */
+
+.table * {
+  border: 1px solid black;
+  text-align: center;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.test {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 250px;
+  width: 420px;
+}
+.div_modal_body {
+  overflow-y: auto;
+  /* border: 1px solid red; */
+  height: 187px;
+  width: 420px;
+}
+.span_relatedProduct {
+  position: relative;
+  display: inline-block;
+  left: 200px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.span_currentProduct {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
 /*
 END Related CSS======================^
 <<<<<<< HEAD
@@ -831,16 +874,11 @@ START Review CSS======================^
 }
 
 .more-reviews-button {
-  background: none;
-  border: none;
-  color: rgb(144, 144, 144);
-  font-size: 12px;
-}
-
-.more-reviews-button:hover {
   cursor: pointer;
-  background-color: rgb(125, 125, 125);
-  color: white;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
 }
 
 .submit-reviews-button {
@@ -849,6 +887,47 @@ START Review CSS======================^
   margin-left: 10px;
   margin-bottom: 10px;
   padding: 8px 12px;
+}
+
+.close-review-modal {
+  cursor: pointer;
+}
+
+.submit-review-modal {
+  cursor: pointer;
+}
+
+.modal {
+  background-color: rgba(106, 106, 106);
+  width: 60%;
+  height: 40%;
+  min-width: 550px;
+  min-height: 450px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin-top: 20%;
+  margin-left: 20%;
+  border-radius: 20px;
+}
+
+.review-modal-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label, input, select, textarea {
+  margin-bottom: 10px;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
 }
 
 /*

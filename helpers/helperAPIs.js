@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const axios = require('axios');
 
@@ -116,6 +117,46 @@ const getReviews = (productId) => {
     .then((response) => response.data)
     .catch((err) => {
       console.log(`error with ${productId}`, err);
+    });
+};
+
+const helpfulReview = (reviewId) => {
+  const options = {
+    method: 'post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/helpful`,
+    // params: { reviewId },
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+  };
+
+  return axios(options)
+    .then((data) => {
+      console.log('return from posting helpfulReview', data);
+    })
+    .catch((err) => {
+      console.log('error posting helpfulReview', err);
+      console.log('error posting helpfulReview', options);
+    });
+};
+
+const sendClickTrack = (req, res) => {
+  const options = {
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+    data: req.body,
+  };
+
+  axios(options)
+    .then(() => {
+      res.send('success!');
+    })
+    .catch((err) => {
+      console.log('error sending click data', err);
+      res.send(err);
     });
 };
 

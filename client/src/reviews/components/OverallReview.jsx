@@ -29,11 +29,11 @@ function OverallReview({ meta }) {
           {numOfStars.toFixed(1)}
         </h3>
         <StarRating rating={numOfStars} pixels={20} />
-        <h5>
+        <h4>
           {((recommendCount / numOfReviews) * 100).toFixed(0)}
           % of reviews recommend this product!
           {' '}
-        </h5>
+        </h4>
       </div>
       <h5>
         {numOfReviews}

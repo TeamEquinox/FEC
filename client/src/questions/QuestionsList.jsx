@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
@@ -5,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionBox from './QuestionBox';
 import QuestionModal from './QuestionModal';
 import { getQuestions } from './calls';
+// import useClickTracking from '../useClickTracking';
 
 function QuestionsList({ product_id }) {
   // initialize state
@@ -12,7 +14,6 @@ function QuestionsList({ product_id }) {
   // const [displayQs, setDisplayQs] = useState([]);
   // const [displayIndex, setDisplayIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
-
   // update show modal
   const changeWindow = () => {
     setShowModal(!showModal);

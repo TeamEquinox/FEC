@@ -5,7 +5,7 @@ import axios from 'axios';
 export const getQuestions = (productId) => {
   return axios.get('/questions/', { params: { productId } })
     .then((qData) => {
-      console.log('this is questions', qData);
+      // console.log('this is questions', qData);
       return qData.data.results;
     })
     .catch((err) => {
@@ -16,7 +16,7 @@ export const getQuestions = (productId) => {
 export const getAnswers = (questionId) => {
   return axios.get('/answers/', { params: { questionId } })
     .then((aData) => {
-      console.log('this is answers', aData);
+      // console.log('this is answers', aData);
       return aData.data.results;
     })
     .catch((err) => {

@@ -9,28 +9,31 @@ import helpers from '../clientSideHelpers';
 function Products({
   relatedData, setShowModal, updates, updateProduct, product,
 }) {
+  // console.log('MOCHDATA=====>', relatedData);
   const [caretDisplay, setCaretDisplay] = useState(0);
-  const [rightCaretDisplay, setRightCaretDisplay] = useState('hi');
+  const [maxScroll, setMaxScroll] = useState(0);
 
-  let check = 0;
   const handleRightClick = (elem) => {
     const slideRight = helpers.slideRight(elem);
-    // var nextSlideRight = helpers.slideRight(elem);
-    if (caretDisplay === slideRight && check === 0) {
-      setRightCaretDisplay(caretDisplay);
-      check += 1;
-      return;
+    const max = slideRight.scrollWidth - slideRight.clientWidth;
+    setMaxScroll(max);
+    let newSlider = caretDisplay;
+    newSlider += 181;
+    if (newSlider >= max) {
+      newSlider = max;
     }
-    setCaretDisplay(slideRight);
+    setCaretDisplay(newSlider);
   };
 
   const handleLeftClick = (elem) => {
-    const slideLeft = helpers.slideLeft(elem);
-
-    setCaretDisplay(slideLeft);
+    helpers.slideLeft(elem);
+    let newSlider2 = caretDisplay;
+    newSlider2 -= 181;
+    if (newSlider2 <= 0) {
+      newSlider2 = 0;
+    }
+    setCaretDisplay(newSlider2);
   };
-  // console.log('rightCaretDisplay', rightCaretDisplay);
-  // console.log('caretDisplay', caretDisplay);
 
   const handleStarClick = (item) => {
     setShowModal(true);
@@ -51,19 +54,19 @@ function Products({
     <>
       <h3 className="h3_related_title">Related Products</h3>
       <div className="div_card_container">
-        {caretDisplay <= 0 ? <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret_noShow" />
+        {caretDisplay === 0 ? <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret_noShow" />
           : <RxCaretLeft onClick={() => handleLeftClick('slider')} className="div_left_caret" />}
         <div id="slider" className="div_slider">
           <div>
             {
+
+              // eslint-disable-next-line array-callback-return, consistent-return
               relatedData.map((item) => {
                 const price = item.original_price;
                 let salesPrice = null;
                 if (item.sale_price !== 'N/A') {
                   salesPrice = item.sale_price;
                 }
-                // console.log('PRODUCT----->', product[0].id);
-                // console.log('ITEM----->', item.id);
                 if (item.photo !== 'N/A' && product[0].id !== item.id) {
                   return (
                     <div key={item.id} className="div_card">
@@ -76,7 +79,7 @@ function Products({
                         />
                         {/* eslint-disable-next-line max-len */}
                         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-                        <img className="img_card" src={item.photo} alt="" onClick={() => { handleRelatedCardClick(item.id); }} />
+                        <img className="img_card" src={item.photo} alt="RelatedImage" onClick={() => { handleRelatedCardClick(item.id); }} />
                       </div>
                       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                       <div className="div_info_container" onClick={() => { handleRelatedCardClick(item.id); }}>
@@ -118,7 +121,7 @@ function Products({
             }
           </div>
         </div>
-        {caretDisplay === rightCaretDisplay ? <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret_noShow" />
+        {caretDisplay === maxScroll && maxScroll !== 0 ? <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret_noShow" />
           : <RxCaretRight onClick={() => handleRightClick('slider')} className="div_right_caret" />}
       </div>
     </>

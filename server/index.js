@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const helperAPI = require('../helpers/helperAPIs');
 const relatedHelpers = require('../helpers/relatedProductHelpers');
 const questionsAPI = require('../helpers/questionsAPI');
 
 const app = express();
+app.use(compression());
 
 // middleware used before each request is handled==========
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   console.log(`the incoming request type is a ${req.method} request`);
   console.log(`the incoming request url is ${req.url}`);
@@ -59,10 +61,19 @@ app.get('/relatedProducts', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
+// app.get('/compare', (req, res) => {
+//   helperAPI.getProductsById(req.query.data)
+//     .then((data) => {
+//       console.log('related Products Data from successfull compare call ', data);
+//       res.status(200).send(data);
+//     })
+//     .catch((err) => res.status(400).send(err));
+// });
+
 app.get('/compare', (req, res) => {
-  helperAPI.getProductsById(req.query.data)
+  relatedHelpers.CompareDetailsList(req.query.data)
     .then((data) => {
-      console.log('related Products Data from successfull compare call ', data);
+      // console.log('related Products Data from successfull compare call ', data);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));
@@ -71,7 +82,7 @@ app.get('/compare', (req, res) => {
 app.get('/setCurrentProduct', (req, res) => {
   relatedHelpers.UpdateDetailsList(req.query.data)
     .then((data) => {
-      console.log('related Products Data from successfull setCurrentProduct call ', data);
+      // console.log('related Products Data from successfull setCurrentProduct call ', data);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));
@@ -98,11 +109,17 @@ app.post('/answers', (req, res) => {
   questionsAPI.postAnswer(req, res);
 });
 
-app.post('/', (req, res) => {
-  // console.log('hello from app.post')
-
-  // console.log(req.body)
-  res.send('Hello, World!');
+//  WIP
+app.post('/reviews/:id/helpful', (req, res) => {
+  const reviewId = req.params.id;
+  helperAPI.helpfulReview(reviewId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 });
 
 app.get('*', (req, res) => {
@@ -111,6 +128,10 @@ app.get('*', (req, res) => {
 
 app.get('/reviews/:id', () => {
   helperAPI.getReviews();
+});
+
+app.post('/clickTrack', (req, res) => {
+  helperAPI.sendClickTrack(req, res);
 });
 
 app.listen(process.env.PORT, (() => {

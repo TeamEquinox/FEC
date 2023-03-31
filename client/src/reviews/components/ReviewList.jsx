@@ -1,14 +1,28 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { StarRating } from '../../starRatings';
-import { postHelpfulReview } from '../helpers/userRequests';
+import {
+  postReview,
+  putHelpfulReview,
+  putReportReview,
+} from '../helpers/userRequests';
 import ReviewModal from '../helpers/ReviewModal';
 
-function ReviewList({ reviews, productId, prodCharacteristics }) {
-  // console.log(prodCharacteristics[0]);
+function ReviewList({
+  reviews,
+  toggle,
+  setToggle,
+  productId,
+  prodCharacteristics,
+  prodName,
+}) {
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
+  const [tempCharStorage, setTempCharStorage] = useState({});
   const [reviewFormData, setReviewFormData] = useState({
     product_id: '',
     rating: '',
@@ -25,21 +39,28 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
       Quality: {},
     },
   });
+
   let reviewArr = [];
   if (Array.isArray(reviews)) {
     reviewArr = reviews;
   }
 
   useEffect(() => {
-    if (prodCharacteristics.length) {
-      reviewFormData.characteristics.Fit.id = prodCharacteristics[0]?.Fit?.id;
-      reviewFormData.characteristics.Length.id = prodCharacteristics[0]?.Length?.id;
-      reviewFormData.characteristics.Comfort.id = prodCharacteristics[0]?.Comfort?.id;
-      reviewFormData.characteristics.Quality.id = prodCharacteristics[0]?.Quality?.id;
-      reviewFormData.characteristics.Fit.value = '';
-      reviewFormData.characteristics.Length.value = '';
-      reviewFormData.characteristics.Comfort.value = '';
-      reviewFormData.characteristics.Quality.value = '';
+    if (prodCharacteristics.length > 0) {
+      const { Fit, Length, Comfort, Quality } = prodCharacteristics[0];
+      reviewFormData.characteristics = {
+        [Fit?.id]: Fit ? null : undefined,
+        [Length?.id]: Length ? null : undefined,
+        [Comfort?.id]: Comfort ? null : undefined,
+        [Quality?.id]: Quality ? null : undefined,
+      };
+      setTempCharStorage({
+        Fit: Fit?.id,
+        Length: Length?.id,
+        Comfort: Comfort?.id,
+        Quality: Quality?.id,
+        Name: prodName,
+      });
     }
   }, [prodCharacteristics]);
 
@@ -48,18 +69,25 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
   };
 
   const helpfulReviewHandler = (reviewId) => {
-    console.log(`/reviews/${reviewId}/helpful`);
-    postHelpfulReview(reviewId)
-      .then((response) => {
-        console.log('Success from helpfulReviewHandler: ', response);
+    putHelpfulReview(reviewId)
+      .then(() => {
+        console.log('Success from putHelpfulReview');
+        setToggle(!toggle);
       })
       .catch((err) => {
-        console.log(`error with ${reviewId} in ReviewList`, err);
+        console.log(`error with ${reviewId} in putHelpfulReview`, err);
       });
   };
 
-  const reportReview = () => {
-    // console.log('user clicked reportReview!');
+  const reportReview = (reviewId) => {
+    putReportReview(reviewId)
+      .then(() => {
+        console.log('Success from reportReview');
+        setToggle(!toggle);
+      })
+      .catch((err) => {
+        console.log(`error with ${reviewId} in reportReview`, err);
+      });
   };
 
   const handleShowModal = () => {
@@ -72,8 +100,20 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
 
   const handleSubmitReview = (event) => {
     event.preventDefault();
-    reviewFormData.product_id = productId;
-    console.log('reviewFormData: ', reviewFormData);
+    reviewFormData.product_id = Number(productId);
+    for (const key in reviewFormData.characteristics) {
+      reviewFormData.characteristics[key] = Number(reviewFormData.characteristics[key]);
+    }
+    if (reviewFormData.recommend === 'false') {
+      reviewFormData.recommend = false;
+    } else { reviewFormData.recommend = true; }
+    postReview(reviewFormData)
+      .then(() => {
+        setToggle(!toggle);
+      })
+      .catch((err) => {
+        console.log('Error sending to server: ', err);
+      });
     setShowModal(false);
   };
 
@@ -84,10 +124,7 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
         ...prevState,
         characteristics: {
           ...prevState.characteristics,
-          [element]: {
-            ...prevState.characteristics[element],
-            value,
-          },
+          [element]: value,
         },
       }));
     } else {
@@ -132,9 +169,22 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
               By:
               {review.reviewer_name ?? 'Anonymous'}
             </p>
-            {/* <p className="individual-reviews-photos">{review.photos ?? ''}</p> */}
+            {Array.isArray(review.photos) && review.photos.length > 0 ? (
+              review.photos.map((photo) => (
+                <img
+                  src={photo.url}
+                  alt="Review"
+                  key={photo.id}
+                  style={{ maxWidth: '25%', height: 'auto' }}
+                />
+              ))
+            ) : (
+              <p className="individual-reviews-photos">
+                {review.photos[0] ?? ''}
+              </p>
+            )}
             <p className="individual-reviews-recommend">
-              {review.recommend !== true ? 'I recommend this product' : ''}
+              {review.recommend === true ? 'I recommend this product' : ''}
             </p>
             <p className="individual-reviews-helpfulness">
               {review.helpfulness === 1
@@ -143,7 +193,6 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
               {' '}
               found this helpful
             </p>
-            {/* {reviewCount <= reviewArr.length && ( */}
             <button
               type="button"
               onClick={() => helpfulReviewHandler(Number(review.review_id))}
@@ -151,12 +200,10 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
             >
               Helpful
             </button>
-            {/* )} */}
             <span style={{ marginLeft: '10px' }}>|</span>
-            {/* {reviewCount <= reviewArr.length && ( */}
             <button
               type="button"
-              onClick={() => reportReview()}
+              onClick={() => reportReview(Number(review.review_id))}
               className="report-review-button"
             >
               Report
@@ -181,6 +228,7 @@ function ReviewList({ reviews, productId, prodCharacteristics }) {
           handleSubmit={handleSubmitReview}
           handleInputChange={handleInputChange}
           formData={reviewFormData}
+          tempCharStorage={tempCharStorage}
         />
       ) : null}
       <span style={{ marginLeft: '10px' }}>|</span>

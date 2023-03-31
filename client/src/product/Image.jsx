@@ -1,32 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import {
-  RxCaretLeft, RxCaretRight, RxCaretUp, RxCaretDown, RxDividerHorizontal,
+  RxCaretLeft, RxCaretRight, RxCaretUp, RxCaretDown,
 } from 'react-icons/Rx';
 import ExpandedView from './ExpandedView.jsx';
 
 function Image({
-  photos, gallery, largeImage, setLargeImage, setOriginalGallery, originalGallery, setZoom, zoom, showModal, setShowModal
+  photos, gallery, largeImage, setLargeImage, setOriginalGallery, originalGallery, setZoom, zoom, showModal, setShowModal,
 }) {
   const [showLeftCaret, setShowLeftCaret] = useState(true);
   const [showRightCaret, setShowRightCaret] = useState(true);
-  // const [showModal, setShowModal] = useState(false);
-  const [showBar, setShowBar] = useState(false);
-  // const [originalGallery, setOriginalGallery] = useState(gallery.slice(0,7));
   const [galleryIndex, setGalleryIndex] = useState(0);
-  // console.log('galleryHERE', gallery);
-  // console.log('ogee', originalGallery)
+
+  const checkSmallImage = (photo) => {
+    // console.log('photo HERE', photo)
+    const imgArray = document.getElementsByClassName('img__id');
+    console.log('img HERE', imgArray);
+    for (let i = 0; i < imgArray.length; i++) {
+      // console.log('iiiii', imgArray[i].id)
+      console.log('id', imgArray[i].className);
+      if (imgArray[i].className === 'img__id img__gallery_small3') {
+        if (imgArray[i].id.slice(0, 60) !== photo) {
+          document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small4';
+        } else {
+          console.log('does this ever run?')
+          document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small4';
+          console.log('id', imgArray[i].className);
+        }
+      }
+      if (imgArray[i].id.slice(0, 60) !== photo) {
+        document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small';
+      } else {
+        document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small2';
+      }
+    }
+  };
+
+  const switchGallery = () => {
+    const imgArray = document.getElementsByClassName('img__id');
+    for (let i = 0; i < imgArray.length; i++) {
+      document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small3';
+    }
+  };
+
   useEffect(() => {
-    // console.log('clicked is', clicked);
     setOriginalGallery(gallery.slice(galleryIndex, galleryIndex + 7));
-    // console.log('when this runs', originalGallery);
-    // console.log('product is', product)
   }, [galleryIndex]);
-// console.log('afterrrrr', originalGallery)
   useEffect(() => {
     if (largeImage === photos[0].photos[0].url) {
       setShowLeftCaret(false);
     }
+    checkSmallImage(photos[0].photos[0].url.slice(0, 60));
+    // console.log('fotos r here', photos[0].photos[0].url)
   }, [gallery]);
 
   useEffect(() => {
@@ -130,51 +155,23 @@ function Image({
     }
   };
 
-
   const caretDown = () => {
     setGalleryIndex(galleryIndex - 1);
   };
 
-  const checkSmallImage = (photo) => {
-    console.log('photo HERE', photo)
-    let imgArray = document.getElementsByClassName(`img__id`);
-    console.log('img HERE', imgArray )
-    for (var i = 0; i < imgArray.length; i++) {
-      console.log('iiiii', imgArray[i])
-      console.log('id', imgArray[i].id)
-      if (imgArray[i].id !== photo) {
-        document.getElementsByClassName('img__id')[i].className = "img__id img__gallery_small";
-      } else {
-        document.getElementsByClassName('img__id')[i].className = "img__id img__gallery_small2";
-
-      }
-
-    }
-
-  }
-
-
-
   return (
     <div className="div__image_container">
-      {showModal ? null : <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} />}
-      {showModal ? null : <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} />}
       {showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} /> : null}
       {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
-     { showModal ? null : <div className="div__large_image"><img id="img__gallery" src={largeImage} onClick={() => { setShowModal(true); reSize(); }} /></div> }
-      {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} zoom={zoom} setZoom={setZoom} originalGallery={originalGallery} setLargeImage={setLargeImage}/> : null}
+      { showModal ? null : <div className="div__large_image" style={{ cursor: 'zoom-in' }}><img id="img__gallery" src={largeImage} onClick={() => { setShowModal(true); reSize(); }} /></div> }
+      {showModal ? switchGallery() : null}
+      {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} zoom={zoom} setZoom={setZoom} originalGallery={originalGallery} setLargeImage={setLargeImage} /> : null}
       <div className="div__img_gallery_small">
-
-        <RxCaretUp className="caret__up" onClick={(e) => { e.preventDefault(); caretUp()}} />
-        {originalGallery.slice(0,7).map((photo) => (
-          <>
-            <img className="img__id img__gallery_small" id={photo.thumbnail_url} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url) }} key={photo.thumbnail_url} />
-
-            {showBar ? <RxDividerHorizontal className="divider_horizontal" /> : null}
-          </>
+        <RxCaretUp className="caret__up" onClick={(e) => { e.preventDefault(); caretUp(); }} />
+        {originalGallery.slice(0, 7).map((photo) => (
+          <img className="img__id img__gallery_small" id={photo.thumbnail_url} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url.slice(0, 60)); }} key={photo.thumbnail_url} />
         ))}
         <RxCaretDown className="caret__down" onClick={() => { caretDown(); }} />
-
       </div>
     </div>
   );

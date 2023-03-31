@@ -9,7 +9,6 @@ function StyleList({
     if (largeImage && document.getElementById(`check-${largeImage}`)) {
       document.getElementById(`check-${largeImage}`).classList.remove('check_circled2');
       document.getElementById(`check-${largeImage}`).classList.add('check_circled');
-      // setLargeImage(url);
       document.getElementById(`check-${url}`).classList.remove('check_circled');
       document.getElementById(`check-${url}`).classList.add('check_circled2');
     }
@@ -17,12 +16,7 @@ function StyleList({
     if (document.getElementById(`check-${largeImage}`) === null) {
       const array = document.getElementsByClassName('check_circled2');
       for (let i = 0; i < array.length; i++) {
-        // console.log('rei', array[i])
-        // console.log('rei2', document.getElementById(`check-${url}`).id)
-        // console.log('rei3', array[i].id)
-        // console.log('rei4', document.getElementById(`${array[i].id}`))
         if (array[i].id !== document.getElementById(`check-${url}`).id) {
-          // array[i].class = 'check_circled';
           document.getElementById(`${array[i].id}`).remove('check_circled2');
           document.getElementById(`${array[i].id}`).add('check_circled')
           console.log('removed');

@@ -7,6 +7,7 @@ const path = require('path');
 const helperAPI = require('../helpers/helperAPIs');
 const relatedHelpers = require('../helpers/relatedProductHelpers');
 const questionsAPI = require('../helpers/questionsAPI');
+const reviewAPI = require('../helpers/reviewAPI');
 
 const app = express();
 app.use(compression());
@@ -110,36 +111,60 @@ app.post('/answers', (req, res) => {
   questionsAPI.postAnswer(req, res);
 });
 
-//  WIP
-app.post('/reviews/:id/helpful', (req, res) => {
+app.put('/reviews/:id/helpful', (req, res) => {
   const reviewId = req.params.id;
-  helperAPI.helpfulReview(reviewId)
+  reviewAPI.helpfulReview(reviewId)
     .then(() => {
-      res.sendStatus(204);
+      res.status(201).send('Review marked helpful successfully');
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(500);
+      console.log('Error in app.put /reviews/:id/helpful in index.js: ', err);
     });
 });
 
-app.get('*', (req, res) => {
-  res.redirect('/');
+app.put('/reviews/:id/report', (req, res) => {
+  const reviewId = req.params.id;
+  reviewAPI.reportReview(reviewId)
+    .then(() => {
+      res.status(201).send('Review reported successfully');
+    })
+    .catch((err) => {
+      console.log('Error in app.put /reviews/:id/report in index.js: ', err);
+    });
 });
 
-app.get('/reviews/:id', () => {
-  helperAPI.getReviews();
+app.post('/reviews', (req, res) => {
+  reviewAPI.postReview(req, res)
+    // .then(() => {
+    //   res.status(201).send('Review created successfully');
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   res.sendStatus(500);
+    // });
+});
+
+app.get('/reviews/', (req, res) => {
+  const { productId } = req.query;
+  reviewAPI.getReviews(productId)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send('Error retrieving reviews', err);
+    });
 });
 
 app.post('/clickTrack', (req, res) => {
   helperAPI.sendClickTrack(req, res);
 });
-app.put('/report', (req, res) => {
-  questionsAPI.report(req, res);
-});
 
 app.put('/helpful', (req, res) => {
   questionsAPI.putHelpful(req, res);
+});
+
+app.get('*', (req, res) => {
+  res.redirect('/');
 });
 
 app.listen(process.env.PORT, (() => {

@@ -114,13 +114,13 @@ app.post('/answers', (req, res) => {
 app.post('/reviews/:id/helpful', (req, res) => {
   const reviewId = req.params.id;
   helperAPI.helpfulReview(reviewId)
-    .then(() => {
-      res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(500);
-    });
+    // .then(() => {
+    //   res.sendStatus(204);
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   res.sendStatus(500);
+    // });
 });
 
 app.post('/reviews', (req, res) => {

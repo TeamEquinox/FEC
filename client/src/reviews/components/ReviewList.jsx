@@ -58,7 +58,6 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
   };
 
   const helpfulReviewHandler = (reviewId) => {
-    console.log(`/reviews/${reviewId}/helpful`);
     postHelpfulReview(reviewId)
       .then((response) => {
         console.log('Success from helpfulReviewHandler: ', response);

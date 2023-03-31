@@ -22,16 +22,17 @@ const postHelpfulReview = (reviewId) => {
   const options = {
     method: 'post',
     url: `/reviews/${reviewId}/helpful`,
-    // params: { reviewId },
+    params: { reviewId },
   };
 
   return axios(options)
     .then((data) => {
-      console.log('return from posting helpfulReview', data);
+      console.log('return from posting helpfulReview');
     })
     .catch((err) => {
-      console.log('error posting helpfulReview', err);
-      console.log('error posting helpfulReview', options);
+      // console.log('error posting helpfulReview', err.response);
+      // console.log('error posting helpfulReview from userRequests');
+      console.log('error posting helpfulReview from userRequests', options);
     });
 };
 

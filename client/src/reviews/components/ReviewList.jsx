@@ -1,13 +1,25 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { StarRating } from '../../starRatings';
-import { postReview, putHelpfulReview, putReportReview } from '../helpers/userRequests';
+import {
+  postReview,
+  putHelpfulReview,
+  putReportReview,
+} from '../helpers/userRequests';
 import ReviewModal from '../helpers/ReviewModal';
 
-function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
-  // console.log(reviews)
+function ReviewList({
+  reviews,
+  toggle,
+  setToggle,
+  productId,
+  prodCharacteristics,
+  prodName,
+}) {
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [tempCharStorage, setTempCharStorage] = useState({});
@@ -59,10 +71,11 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
   const helpfulReviewHandler = (reviewId) => {
     putHelpfulReview(reviewId)
       .then(() => {
-        console.log('Success from helpfulReviewHandler');
+        console.log('Success from putHelpfulReview');
+        setToggle(!toggle);
       })
       .catch((err) => {
-        console.log(`error with ${reviewId} in ReviewList`, err);
+        console.log(`error with ${reviewId} in putHelpfulReview`, err);
       });
   };
 
@@ -70,11 +83,11 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
     putReportReview(reviewId)
       .then(() => {
         console.log('Success from reportReview');
+        setToggle(!toggle);
       })
       .catch((err) => {
         console.log(`error with ${reviewId} in reportReview`, err);
       });
-    // console.log('user clicked reportReview!');
   };
 
   const handleShowModal = () => {
@@ -88,8 +101,19 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
   const handleSubmitReview = (event) => {
     event.preventDefault();
     reviewFormData.product_id = Number(productId);
-    console.log('reviewFormData: ', reviewFormData);
-    postReview(reviewFormData);
+    for (const key in reviewFormData.characteristics) {
+      reviewFormData.characteristics[key] = Number(reviewFormData.characteristics[key]);
+    }
+    if (reviewFormData.recommend === 'false') {
+      reviewFormData.recommend = false;
+    } else { reviewFormData.recommend = true; }
+    postReview(reviewFormData)
+      .then(() => {
+        setToggle(!toggle);
+      })
+      .catch((err) => {
+        console.log('Error sending to server: ', err);
+      });
     setShowModal(false);
   };
 
@@ -145,9 +169,22 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
               By:
               {review.reviewer_name ?? 'Anonymous'}
             </p>
-            {/* <p className="individual-reviews-photos">{review.photos ?? ''}</p> */}
+            {Array.isArray(review.photos) && review.photos.length > 0 ? (
+              review.photos.map((photo) => (
+                <img
+                  src={photo.url}
+                  alt="Review"
+                  key={photo.id}
+                  style={{ maxWidth: '25%', height: 'auto' }}
+                />
+              ))
+            ) : (
+              <p className="individual-reviews-photos">
+                {review.photos[0] ?? ''}
+              </p>
+            )}
             <p className="individual-reviews-recommend">
-              {review.recommend !== true ? 'I recommend this product' : ''}
+              {review.recommend === true ? 'I recommend this product' : ''}
             </p>
             <p className="individual-reviews-helpfulness">
               {review.helpfulness === 1
@@ -156,7 +193,6 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
               {' '}
               found this helpful
             </p>
-            {/* {reviewCount <= reviewArr.length && ( */}
             <button
               type="button"
               onClick={() => helpfulReviewHandler(Number(review.review_id))}
@@ -164,9 +200,7 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
             >
               Helpful
             </button>
-            {/* )} */}
             <span style={{ marginLeft: '10px' }}>|</span>
-            {/* {reviewCount <= reviewArr.length && ( */}
             <button
               type="button"
               onClick={() => reportReview(Number(review.review_id))}

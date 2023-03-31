@@ -5,7 +5,7 @@ const axios = require('axios');
 const postReview = (req, res) => {
   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews';
 
-  console.log(req.body)
+  console.log('req in reviewAPI postReview: ', req.body);
   axios.post(url, req.body, {
     headers: {
       Authorization: `${process.env.TOKEN}`,
@@ -61,6 +61,29 @@ const reportReview = (reviewId) => {
     });
 };
 
+const getReviews = (productId) => {
+  const options = {
+    method: 'get',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews',
+    headers: {
+      Authorization: `${process.env.TOKEN}`,
+    },
+    params: {
+      page: 1,
+      count: 1000,
+      sort: 'newest',
+      product_id: productId,
+    },
+  };
+
+  return axios(options)
+    .then((response) => response.data)
+    .catch((err) => {
+      console.log(`error with ${productId}`, err);
+    });
+};
+
 module.exports.postReview = postReview;
 module.exports.helpfulReview = helpfulReview;
 module.exports.reportReview = reportReview;
+module.exports.getReviews = getReviews;

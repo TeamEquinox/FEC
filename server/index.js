@@ -110,14 +110,26 @@ app.post('/answers', (req, res) => {
   questionsAPI.postAnswer(req, res);
 });
 
-app.put('/reviews/:id/helpful', (req) => {
+app.put('/reviews/:id/helpful', (req, res) => {
   const reviewId = req.params.id;
-  reviewAPI.helpfulReview(reviewId);
+  reviewAPI.helpfulReview(reviewId)
+    .then(() => {
+      res.status(201).send('Review marked helpful successfully');
+    })
+    .catch((err) => {
+      console.log('Error in app.put /reviews/:id/helpful in index.js: ', err);
+    });
 });
 
-app.put('/reviews/:id/report', (req) => {
+app.put('/reviews/:id/report', (req, res) => {
   const reviewId = req.params.id;
-  reviewAPI.reportReview(reviewId);
+  reviewAPI.reportReview(reviewId)
+    .then(() => {
+      res.status(201).send('Review reported successfully');
+    })
+    .catch((err) => {
+      console.log('Error in app.put /reviews/:id/report in index.js: ', err);
+    });
 });
 
 app.post('/reviews', (req, res) => {
@@ -131,12 +143,15 @@ app.post('/reviews', (req, res) => {
     // });
 });
 
-app.get('*', (req, res) => {
-  res.redirect('/');
-});
-
-app.get('/reviews/:id', () => {
-  helperAPI.getReviews();
+app.get('/reviews/', (req, res) => {
+  const { productId } = req.query;
+  reviewAPI.getReviews(productId)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send('Error retrieving reviews', err);
+    });
 });
 
 app.post('/clickTrack', (req, res) => {
@@ -145,6 +160,10 @@ app.post('/clickTrack', (req, res) => {
 
 app.put('/helpful', (req, res) => {
   questionsAPI.putHelpful(req, res);
+});
+
+app.get('*', (req, res) => {
+  res.redirect('/');
 });
 
 app.listen(process.env.PORT, (() => {

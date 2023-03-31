@@ -29,7 +29,6 @@ function App() {
       url: '/products',
       method: 'GET',
       success: (data) => {
-        // console.log('success from get', data);
         setProduct(data);
         getRelatedProducts(data[1].product_id);
       },
@@ -40,7 +39,6 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log('pageload use effect')
     pageLoad();
   }, []);
 

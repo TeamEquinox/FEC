@@ -2,41 +2,67 @@
 /* eslint-disable arrow-body-style */
 const axios = require('axios');
 
-const postHelpfulReview = (reviewId) => {
+const postReview = (reviewData) => {
   const options = {
     method: 'post',
-    url: `/reviews/${reviewId}/helpful`,
-    // params: { reviewId },
+    url: '/reviews',
+    data: reviewData,
   };
 
   return axios(options)
-    .then((data) => {
-      console.log('return from posting helpfulReview', data);
+    .then(() => {
+      console.log('return from posting review');
     })
     .catch((err) => {
-      console.log('error posting helpfulReview', err);
-      console.log('error posting helpfulReview', options);
+      console.log('error posting new review', err);
     });
 };
 
-// const reportReview = (answerData, questionId) => {
-//   const options = {
-//     method: 'post',
-//     url: '',
-//     data: answerData,
-//     params: { questionId },
-//   };
+const putHelpfulReview = (reviewId) => {
+  const options = {
+    method: 'put',
+    url: `/reviews/${reviewId}/helpful`,
+    params: { reviewId },
+  };
 
-//   return axios(options)
-//     .then((data) => {
-//       console.log('return from posting reportReview', data);
-//     })
-//     .catch((err) => {
-//       console.log('error posting reportReview', err);
-//     });
-// };
+  return axios(options)
+    .then(() => {
+      console.log('return from posting helpfulReview in userRequests');
+    })
+    .catch((err) => {
+      console.log('error posting helpfulReview from userRequests', err);
+    });
+};
+
+const putReportReview = (reviewId) => {
+  const options = {
+    method: 'put',
+    url: `/reviews/${reviewId}/report`,
+    params: { reviewId },
+  };
+
+  return axios(options)
+    .then(() => {
+      console.log('return from posting putReportReview');
+    })
+    .catch((err) => {
+      console.log('error posting putReportReview from userRequests', err);
+    });
+};
+
+const getReviewsRefresher = (productId) => {
+  return axios.get('/reviews', { params: { productId } })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log('error retrieving questions', err);
+    });
+};
 
 module.exports = {
-  postHelpfulReview,
-  // reportReview,
+  putHelpfulReview,
+  postReview,
+  putReportReview,
+  getReviewsRefresher,
 };

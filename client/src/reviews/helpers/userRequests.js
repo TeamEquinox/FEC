@@ -20,7 +20,7 @@ const postReview = (reviewData) => {
 
 const postHelpfulReview = (reviewId) => {
   const options = {
-    method: 'post',
+    method: 'put',
     url: `/reviews/${reviewId}/helpful`,
     params: { reviewId },
   };

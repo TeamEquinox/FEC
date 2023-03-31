@@ -122,7 +122,7 @@ const getReviews = (productId) => {
 
 const helpfulReview = (reviewId) => {
   const options = {
-    method: 'post',
+    method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/helpful`,
     // params: { reviewId },
     headers: {

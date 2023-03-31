@@ -110,17 +110,9 @@ app.post('/answers', (req, res) => {
   questionsAPI.postAnswer(req, res);
 });
 
-//  WIP
-app.post('/reviews/:id/helpful', (req, res) => {
+app.put('/reviews/:id/helpful', (req) => {
   const reviewId = req.params.id;
-  helperAPI.helpfulReview(reviewId)
-    // .then(() => {
-    //   res.sendStatus(204);
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    //   res.sendStatus(500);
-    // });
+  reviewAPI.helpfulReview(reviewId);
 });
 
 app.post('/reviews', (req, res) => {

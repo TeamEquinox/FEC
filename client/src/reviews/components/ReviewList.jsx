@@ -7,7 +7,6 @@ import { postReview, postHelpfulReview } from '../helpers/userRequests';
 import ReviewModal from '../helpers/ReviewModal';
 
 function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
-  // console.log(prodCharacteristics[0]);
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [tempCharStorage, setTempCharStorage] = useState({});
@@ -49,7 +48,6 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
         Quality: Quality?.id,
         Name: prodName,
       });
-      console.log(reviewFormData, tempCharStorage);
     }
   }, [prodCharacteristics]);
 
@@ -58,7 +56,9 @@ function ReviewList({ reviews, productId, prodCharacteristics, prodName }) {
   };
 
   const helpfulReviewHandler = (reviewId) => {
+    console.log(`error with ${reviewId} in ReviewList`);
     postHelpfulReview(reviewId)
+
       .then((response) => {
         console.log('Success from helpfulReviewHandler: ', response);
       })

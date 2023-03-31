@@ -23,25 +23,23 @@ const postReview = (req, res) => {
     });
 };
 
-const postHelpfulReview = (req, res) => {
-  // console.log('req.query: ', req.query);
-  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req}/helpful`;
-
-  console.log('req.body: ', req.body)
-  axios.post(url, req.body, {
+const helpfulReview = (reviewId) => {
+  const options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewId}/helpful`,
+    // params: { reviewId },
     headers: {
       Authorization: `${process.env.TOKEN}`,
     },
-    data: req.body,
-  })
-    .then((success) => {
-      res.status(201).send(success.data);
+  };
+
+  return axios(options)
+    .then((data) => {
+      console.log('return from posting helpfulReview', data);
     })
     .catch((err) => {
-      console.log('error posting review in server');
-      // console.log('err.response.data: ', err.response.data); // logs the error message
-      console.log('err.response.status: ', err.response.status); // logs the error status code
-      res.send(err);
+      console.log('error posting helpfulReview', err);
+      console.log('error posting helpfulReview', options);
     });
 };
 
@@ -67,4 +65,4 @@ const postHelpfulReview = (req, res) => {
 // };
 
 module.exports.postReview = postReview;
-module.exports.postHelpfulReview = postHelpfulReview;
+module.exports.helpfulReview = helpfulReview;

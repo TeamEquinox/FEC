@@ -6,13 +6,11 @@ import {
 import ExpandedView from './ExpandedView.jsx';
 
 function Image({
-  photos, gallery, largeImage, setLargeImage, setOriginalGallery, originalGallery
+  photos, gallery, largeImage, setLargeImage, setOriginalGallery, originalGallery, setZoom, zoom, showModal, setShowModal
 }) {
-
-
   const [showLeftCaret, setShowLeftCaret] = useState(true);
   const [showRightCaret, setShowRightCaret] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [showBar, setShowBar] = useState(false);
   // const [originalGallery, setOriginalGallery] = useState(gallery.slice(0,7));
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -138,14 +136,16 @@ function Image({
   };
 
   const checkSmallImage = (photo) => {
-    let imgArray = document.getElementsByClassName(`img__gallery_small`);
+    console.log('photo HERE', photo)
+    let imgArray = document.getElementsByClassName(`img__id`);
     console.log('img HERE', imgArray )
-    for (var i = 0; i < imgArray.length; i ++) {
+    for (var i = 0; i < imgArray.length; i++) {
       console.log('iiiii', imgArray[i])
+      console.log('id', imgArray[i].id)
       if (imgArray[i].id !== photo) {
-        document.getElementsByClassName('img__gallery_small')[i].className = "img__gallery_small";
+        document.getElementsByClassName('img__id')[i].className = "img__id img__gallery_small";
       } else {
-        document.getElementsByClassName('img__gallery_small')[i].className = "img__gallery_small2";
+        document.getElementsByClassName('img__id')[i].className = "img__id img__gallery_small2";
 
       }
 
@@ -157,16 +157,18 @@ function Image({
 
   return (
     <div className="div__image_container">
+      {showModal ? null : <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} />}
+      {showModal ? null : <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} />}
       {showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} /> : null}
       {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
-      <div className="div__large_image"><img id="img__gallery" src={largeImage} onClick={() => { setShowModal(true); reSize(); }} /></div>
-      {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} /> : null}
+     { showModal ? null : <div className="div__large_image"><img id="img__gallery" src={largeImage} onClick={() => { setShowModal(true); reSize(); }} /></div> }
+      {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} zoom={zoom} setZoom={setZoom} originalGallery={originalGallery} setLargeImage={setLargeImage}/> : null}
       <div className="div__img_gallery_small">
 
         <RxCaretUp className="caret__up" onClick={(e) => { e.preventDefault(); caretUp()}} />
         {originalGallery.slice(0,7).map((photo) => (
           <>
-            <img className="img__gallery_small" id={`${photo.thumbnail_url}`} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url) }} key={photo.thumbnail_url} />
+            <img className="img__id img__gallery_small" id={photo.thumbnail_url} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url) }} key={photo.thumbnail_url} />
 
             {showBar ? <RxDividerHorizontal className="divider_horizontal" /> : null}
           </>

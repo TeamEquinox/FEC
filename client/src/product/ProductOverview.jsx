@@ -18,6 +18,8 @@ function ProductOverview({ product, setOutfit }) {
   const [largeImage, setLargeImage] = useState(product[1].results[0].photos[0].url);
   const [reviews, setReviews] = useState(0);
   const [cart, setCart] = useState(false);
+  const [zoom, setZoom] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setLargeImage(product[1].results[0].photos[0].url);
@@ -57,18 +59,18 @@ function ProductOverview({ product, setOutfit }) {
     <section className="section__product">
       <FontAwesomeIcon icon={faCartShopping} className="shoppingCart" onClick={() => { setCart(true); }} />
       {cart ? <Cart setCart={setCart} /> : null}
-      <div className="div__product">
+      {showModal ? null : <div className="div__product">
         <div className="div__reviews" onClick={() => { window.location.replace('/#overall-rating'); }}>
         <u>Read all {reviews}{' '}reviews</u>
         </div>
           <div className="div__starRating"><StarRating rating={configRatings(product[3].ratings)} pixels={10} /></div>
 
         <h3>{product.length ? product[0].category : 'Category'}</h3>
-        <h2>{product.length ? product[0].name : 'Name'}</h2>
-        <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/>
-      </div>
-      <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/>
-      <h2 className="h2__slogan">{product[0].slogan}</h2>
+        <div className="div__product_name">{product.length ? product[0].name : 'Name'}</div>
+        { showModal ? null : <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/> }
+      </div>}
+      <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} zoom={zoom} setZoom={setZoom} showModal={showModal} setShowModal={setShowModal} zoom={zoom}/>
+      <div className="div__slogan">{product[0].slogan}</div>
       <div className="div__description">{product.length ? product[0].description : 'Description'}</div>
       <div className="div__verticalLine"></div>
       <div className="div__feature">

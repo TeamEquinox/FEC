@@ -62,53 +62,6 @@ function App() {
       .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err));
   };
 
-  // useEffect(() => {
-  // console.log('productAfterUseEffect', product)
-  // }, [product])
-  // };
-
-  // const getFromCart = () => {
-  //   axios.get('/cart')
-  //     .then((data) => {
-  //       console.log('data from cart', data)
-  //     })
-  //     .catch((err) => console.log('There was an error in the cart get request: ', err));
-  // };
-
-  // const getFromCart = () => {
-  //   $.ajax({
-  //     url: '/cart',
-  //     method: 'GET',
-  //     success: (data) => {
-  //       // console.log('success from get', data)
-  //       // console.log('successful GET', data);
-  //     },
-  //     error: (err) => {
-  //       // console.log('error GETTING data', err);
-  //     },
-  //   });
-  // };
-
-  // const addToCart = () => {
-  //   $.ajax({
-  //     url: '/cart',
-  //     method: 'POST',
-  //     data: {
-  //       sku_id: 2580528,
-  //       count: 2,
-  //     },
-  //     success: (data) => {
-  //       // console.log('success from get', data)
-  //       getFromCart();
-  //       // console.log('successful POST');
-  //     },
-  //     error: (err) => {
-  //       // console.log('error POSTING data', err);
-  //     },
-  //   });
-  // };
-
-
 
   if (product.length) {
     return (

@@ -7,7 +7,7 @@ import ProductOverview from './product/ProductOverview';
 import RatingsAndReviews from './reviews/index';
 import RelatedProducts from './related/RelatedProducts';
 import QuestionsList from './questions/QuestionsList';
-// import useClickTracking from './useClickTracking';
+import useClickTracking from './useClickTracking';
 
 function App() {
   const [product, setProduct] = useState([]);
@@ -64,7 +64,7 @@ function App() {
   // useEffect(() => {
   // console.log('productAfterUseEffect', product)
   // }, [product])
-  // useClickTracking();
+  useClickTracking();
 
   if (product.length) {
     return (

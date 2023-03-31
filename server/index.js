@@ -133,6 +133,13 @@ app.get('/reviews/:id', () => {
 app.post('/clickTrack', (req, res) => {
   helperAPI.sendClickTrack(req, res);
 });
+app.put('/report', (req, res) => {
+  questionsAPI.report(req, res);
+});
+
+app.put('/helpful', (req, res) => {
+  questionsAPI.putHelpful(req, res);
+});
 
 app.listen(process.env.PORT, (() => {
   console.log(`The server is listening on port ${process.env.PORT}`);

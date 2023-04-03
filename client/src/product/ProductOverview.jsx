@@ -8,7 +8,7 @@ import StarRating from '../starRatings.jsx';
 import Image from './Image';
 import Style from './Style';
 import Cart from './Cart.jsx';
-import {RxCheck} from 'react-icons/Rx';
+import {RxCheck} from 'react-icons/rx';
 
 function ProductOverview({ product, setOutfit }) {
   // console.table('productOnLoad', product);

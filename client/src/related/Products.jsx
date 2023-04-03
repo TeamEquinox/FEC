@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 // eslint-disable-next-line import/no-unresolved
-import { RxStar, RxCaretLeft, RxCaretRight } from 'react-icons/Rx';
+import { RxStar, RxCaretLeft, RxCaretRight } from 'react-icons/rx';
 import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 

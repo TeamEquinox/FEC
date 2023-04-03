@@ -147,4 +147,3 @@ module.exports.getRelatedProducts = getRelatedProducts;
 module.exports.getMetaReviewData = getMetaReviewData;
 module.exports.sendClickTrack = sendClickTrack;
 module.exports.getReviews = getReviews;
-module.exports.sendClickTrack = sendClickTrack;

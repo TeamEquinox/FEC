@@ -36,7 +36,7 @@ function StyleList({
     }
   };
 
-  console.log('largeimage', largeImage);
+  // console.log('largeimage', largeImage);
 
   return (
 

@@ -103,9 +103,4 @@ module.exports = {
     localStorage.setItem('outfit', JSON.stringify(outfit));
     module.exports.getOutfit(setOutfit);
   },
-
-  caretDisplay: () => {
-
-  },
-
 };

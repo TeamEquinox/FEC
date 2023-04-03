@@ -68,15 +68,15 @@ function QuestionsList({ product_id }) {
   // render
   if (questions.length === 0) {
     return (
-      <div className="list">
-        <h2>Questions</h2>
+      <div className="questions__list questions__list--empty" id="q&a">
+        <h2 className="questions__title" id="q&a">Questions</h2>
         <SearchQuestions
           questions={questions}
           setQuestions={setSearchedQuestions}
           product_id={product_id}
         />
         No questions yet...
-        <button name="askQuestion" type="button" onClick={changeWindow}>Ask a Question!</button>
+        <button className="questions__button--ask questions__button" id="q&a" name="askQuestion" type="button" onClick={changeWindow}>Ask a Question!</button>
         <QuestionModal
           show={showModal}
           product_id={product_id}
@@ -88,8 +88,8 @@ function QuestionsList({ product_id }) {
     );
   }
   return (
-    <section className="list questionsList questionsList--extended">
-      <h2>Questions</h2>
+    <section className="questions__list questions__list--extended" id="q&a">
+      <h2 className="questions__title" id="q&a">Questions</h2>
       <SearchQuestions
         questions={questions}
         setQuestions={setSearchedQuestions}
@@ -106,7 +106,7 @@ function QuestionsList({ product_id }) {
             sortByHelpful={sortByHelpful}
           />
         ))}
-        <button type="button" onClick={changeWindow}>Ask a Question!</button>
+        <button className="questions__button--ask questions__button" id="q&a" type="button" onClick={changeWindow}>Ask a Question!</button>
         <QuestionModal
           show={showModal}
           product_id={product_id}
@@ -114,7 +114,7 @@ function QuestionsList({ product_id }) {
           changeWindow={changeWindow}
           sortByHelpful={sortByHelpful}
         />
-        {questions.length > displayCount && (<button type="button" onClick={showMoreQuestions}>More AnsweredQuestions</button>)}
+        {questions.length > displayCount && (<button className="questions__button--extend questions__button" id="q&a" type="button" onClick={showMoreQuestions}>More AnsweredQuestions</button>)}
       </div>
     </section>
   );

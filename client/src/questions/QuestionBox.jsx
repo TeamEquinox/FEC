@@ -47,13 +47,13 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
   }, []);
 
   return (
-    <div className="question">
-      <h3>
+    <div className="questions__listElem" id="q&a">
+      <h3 className="questions__body" id="q&a">
         Q:
         {' '}
         {question.question_body}
       </h3>
-      <span>{question.asker_name}</span>
+      <span className="questions__asker" id="q&a">{question.asker_name}</span>
       <p>
         {new Date(question.question_date).toLocaleDateString('en-US', {
           month: 'long',
@@ -61,15 +61,15 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
           year: 'numeric',
         })}
       </p>
-      <span>
+      <span className="questions__helpful" id="q&a">
         Is this helpful?
-        <button type="button" onClick={handleHelpful}>Yes!</button>
+        <button className="questions__button questions__button--helpful" id="q&a" type="button" onClick={handleHelpful}>Yes!</button>
         {question.question_helpfulness}
       </span>
-      <button type="button" className="report" onClick={handleReport}>Report</button>
+      <button className="questions__button questions__button--report" id="q&a" type="button" onClick={handleReport}>Report</button>
       {answers.length === 0 && (
-        <div>
-          No answers yet!
+        <div className="questions__list--empty questions__list--answers questions__list" id="q&a">
+          Be the first to answer!
           <AnswerModal
             show={showAnsModal}
             updateAnswers={updateAnswers}
@@ -78,11 +78,11 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
             changeWindow={changeWindow}
             sortByHelpful={sortByHelpful}
           />
-          <button type="button" onClick={changeWindow}>Add Answer</button>
+          <button className="questions__button questions__button--answer" id="q&a" type="button" onClick={changeWindow}>Add Answer</button>
         </div>
       )}
       {answers.length > 0 && (
-      <div className="list answersList">
+      <div className="questions__list questions__list--answers" id="q&a">
         {/* map over results array from answers and pass to answer */}
         {answers.map((ans) => (
           <Answers
@@ -99,7 +99,7 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
           changeWindow={changeWindow}
           sortByHelpful={sortByHelpful}
         />
-        <button type="button" onClick={changeWindow}>Add Answer</button>
+        <button className="questions__button questions__button--answer" id="q&a" type="button" onClick={changeWindow}>Add Answer</button>
       </div>
       )}
     </div>

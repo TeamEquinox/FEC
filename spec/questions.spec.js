@@ -46,7 +46,9 @@ describe('Questions List', () => {
     });
     expect(screen.getByText(/No questions yet.../i)).toBeInTheDocument();
   });
+});
 
+describe('Individual Question', () => {
   test('renders an individual question with desired data', () => {
     act(() => {
       render(<QuestionBox
@@ -57,12 +59,14 @@ describe('Questions List', () => {
     });
     expect(screen.getByText(/justin/i)).toBeInTheDocument();
   });
+});
 
+describe('asking a question', () => {
   test('opens question modal when ask question button is clicked', () => {
     act(() => {
       render(<QuestionsList />);
       fireEvent.click(screen.getByText(/ask a question/i));
     });
-    expect(screen.getByLabelText(/nickname/i)).toBeInTheDocument();
-  })
+    expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
+  });
 });

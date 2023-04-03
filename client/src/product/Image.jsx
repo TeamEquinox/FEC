@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import {
   RxCaretLeft, RxCaretRight, RxCaretUp, RxCaretDown,
-} from 'react-icons/Rx';
+} from 'react-icons/rx';
 import ExpandedView from './ExpandedView.jsx';
 
 function Image({

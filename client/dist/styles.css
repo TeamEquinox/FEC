@@ -461,7 +461,8 @@ END OF PRODUCT CSS
 }
 
 .questionsList {
-  height: 100vh;
+  min-height: 200px;
+  max-height: 100vh;
   overflow-y: scroll;
 }
 

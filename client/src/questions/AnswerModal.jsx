@@ -10,6 +10,7 @@ function AnswerModal({
   product_id,
   question_id,
   changeWindow,
+  sortByHelpful,
 }) {
   const [answer, setAnswer] = useState('');
   const [nickname, setNickname] = useState('');
@@ -40,6 +41,7 @@ function AnswerModal({
       .then(() => {
         getAnswers(question_id)
           .then((ans) => {
+            ans.sort(sortByHelpful);
             updateAnswers(ans);
           })
           .catch((err) => {

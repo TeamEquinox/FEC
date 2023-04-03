@@ -134,14 +134,7 @@ app.put('/reviews/:id/report', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-  reviewAPI.postReview(req, res)
-    // .then(() => {
-    //   res.status(201).send('Review created successfully');
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    //   res.sendStatus(500);
-    // });
+  reviewAPI.postReview(req, res);
 });
 
 app.get('/reviews/', (req, res) => {
@@ -157,6 +150,10 @@ app.get('/reviews/', (req, res) => {
 
 app.post('/clickTrack', (req, res) => {
   helperAPI.sendClickTrack(req, res);
+});
+
+app.put('/report', (req, res) => {
+  questionsAPI.report(req, res);
 });
 
 app.put('/helpful', (req, res) => {

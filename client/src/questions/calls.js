@@ -32,8 +32,8 @@ export const postQuestion = (questionData) => {
   };
 
   return axios(options)
-    .then((data) => {
-      console.log('return from posting question', data);
+    .then(() => {
+      // console.log('return from posting question', data);
     })
     .catch((err) => {
       console.log('error posting new question', err);
@@ -49,8 +49,8 @@ export const postAnswer = (answerData, questionId) => {
   };
 
   return axios(options)
-    .then((data) => {
-      console.log('return from posting answer', data);
+    .then(() => {
+      // console.log('return from posting answer', data);
     })
     .catch((err) => {
       console.log('error posting new question', err);
@@ -68,7 +68,7 @@ export const putHelpfulQuestion = (questionId) => {
 
   return axios(options)
     .then(() => {
-      console.log('success reporting question as helpful');
+      // console.log('success reporting question as helpful', success);
     })
     .catch((err) => {
       console.log('error reporting question as helpful', err);
@@ -84,14 +84,14 @@ export const reportQuestion = (questionId) => {
 
   return axios(options)
     .then(() => {
-      console.log('success reporting question');
+      // console.log('success reporting question');
     })
     .catch((err) => {
       console.log('error reporting question', err);
     });
 };
 
-export const putHelpfulAnswer = (answerId) => {
+export const putHelpfulAnswer = (answerId, questionId) => {
   const options = {
     method: 'put',
     url: '/helpful',
@@ -100,7 +100,8 @@ export const putHelpfulAnswer = (answerId) => {
 
   return axios(options)
     .then(() => {
-      console.log('thank you for your help!');
+      // console.log('thank you for your help!', success);
+      getAnswers(questionId);
     })
     .catch((err) => {
       console.log('error posting helpful on answer', err);

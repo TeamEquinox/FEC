@@ -4,7 +4,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { HiCheck } from 'react-icons/Hi';
+import { HiCheck } from 'react-icons/hi';
 import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 

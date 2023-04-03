@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
-import { RxCheckCircled } from 'react-icons/Rx';
+import { RxCheckCircled } from 'react-icons/rx';
 
 function StyleList({
   style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage, setOriginalGallery, originalGallery
@@ -36,7 +36,7 @@ function StyleList({
     }
   };
 
-  console.log('largeimage', largeImage);
+  // console.log('largeimage', largeImage);
 
   return (
 

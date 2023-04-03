@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
-import { RxCross1 } from 'react-icons/Rx';
+import { RxCross1 } from 'react-icons/rx';
 import {
   RxCaretLeft, RxCaretRight
-} from 'react-icons/Rx';
+} from 'react-icons/rx';
 
 function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery, setLargeImage }) {
   const [backgroundPosition, setBackgroundPosition] = useState({

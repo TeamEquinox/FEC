@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   RxCrossCircled, RxCaretLeft, RxCaretRight, RxPlus,
-} from 'react-icons/Rx';
+} from 'react-icons/rx';
 import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 

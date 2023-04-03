@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { postQuestion, getQuestions } from './calls';
 
 function QuestionModal({
-  product_id, show, updateQuestions, changeWindow,
+  product_id, show, updateQuestions, changeWindow, sortByHelpful,
 }) {
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
@@ -34,8 +34,9 @@ function QuestionModal({
         // console.log('made it back into questions modal')
         getQuestions(product_id)
           .then((questions) => {
-            console.log('questions from posting', questions);
-            updateQuestions(questions);
+            // console.log('questions from posting', questions);
+            const sortedQs = questions.sort(sortByHelpful);
+            updateQuestions(sortedQs);
           })
           .catch((err) => {
             console.log('error updating questions in modal', err);

@@ -15,17 +15,17 @@ function Image({
   const checkSmallImage = (photo) => {
     // console.log('photo HERE', photo)
     const imgArray = document.getElementsByClassName('img__id');
-    console.log('img HERE', imgArray);
+    // console.log('img HERE', imgArray);
     for (let i = 0; i < imgArray.length; i++) {
       // console.log('iiiii', imgArray[i].id)
-      console.log('id', imgArray[i].className);
+      // console.log('id', imgArray[i].className);
       if (imgArray[i].className === 'img__id img__gallery_small3') {
         if (imgArray[i].id.slice(0, 60) !== photo) {
           document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small4';
         } else {
-          console.log('does this ever run?')
+          // console.log('does this ever run?')
           document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small4';
-          console.log('id', imgArray[i].className);
+          // console.log('id', imgArray[i].className);
         }
       }
       if (imgArray[i].id.slice(0, 60) !== photo) {

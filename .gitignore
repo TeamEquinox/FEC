@@ -5,3 +5,6 @@ client/dist/compiled
 ./coverage
 coverage
 /coverage
+spec
+/spec
+./spec

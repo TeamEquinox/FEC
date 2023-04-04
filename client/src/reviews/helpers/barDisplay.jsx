@@ -49,7 +49,7 @@ export function MultiBarDisplay({ element = 0, headerText }) {
               <div style={{ position: 'relative' }}>
                 <HorizontalLine />
                 <div style={{
-                  fontSize: '12px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px',
+                  fontSize: '15px', textAlign: 'left', marginTop: '-3px', marginLeft: '3px',
                 }}
                 >
                   Poor
@@ -59,14 +59,14 @@ export function MultiBarDisplay({ element = 0, headerText }) {
             <div style={{ width: '33.33%', zIndex: 1 }}>
               <div style={{ position: 'relative' }}>
                 <HorizontalLine />
-                <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '-5px' }}>Good</div>
+                <div style={{ fontSize: '15px', textAlign: 'center', marginTop: '-5px' }}>Good</div>
               </div>
             </div>
             <div style={{ width: '33.33%', zIndex: 1 }}>
               <div style={{ position: 'relative' }}>
                 <HorizontalLine />
                 <div style={{
-                  fontSize: '12px', textAlign: 'right', marginTop: '-5px', marginRight: '5px',
+                  fontSize: '15px', textAlign: 'right', marginTop: '-5px', marginRight: '5px',
                 }}
                 >
                   Excellent
@@ -101,13 +101,13 @@ export function SingleBarDisplay({
             <div style={{ width: '100%', position: 'relative' }}>
               <HorizontalLine />
               <div style={{
-                fontSize: '12px', textAlign: 'left', marginTop: '-5px', marginLeft: '5px',
+                fontSize: '15px', textAlign: 'left', marginTop: '-5px', marginLeft: '5px',
               }}
               >
                 {lowRating}
               </div>
               <div style={{
-                fontSize: '12px', textAlign: 'right', marginTop: '-14px', marginRight: '5px',
+                fontSize: '15px', textAlign: 'right', marginTop: '-14px', marginRight: '5px',
               }}
               >
                 {highRating}

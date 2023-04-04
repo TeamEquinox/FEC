@@ -23,9 +23,9 @@ function OverallReview({ meta }) {
 
   return (
     <>
-      <div style={{ width: '300px' }}>
+      <div style={{ width: '300px', fontSize: '20px' }}>
         <h3 id="overall-rating">
-          Overall Rating:
+          Overall Rating:{' '}
           {numOfStars.toFixed(1)}
         </h3>
         <StarRating rating={numOfStars} pixels={20} />

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
-import { RxCross1 } from 'react-icons/rx';
+import { RxCross1 } from 'react-icons/Rx';
 import {
   RxCaretLeft, RxCaretRight
-} from 'react-icons/rx';
+} from 'react-icons/Rx';
 
 function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery, setLargeImage }) {
   const [backgroundPosition, setBackgroundPosition] = useState({
@@ -15,7 +15,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
   const [showRightCaretExpanded, setShowRightCaretExpanded] = useState(true);
 
   const zoomIn = (e) => {
-    console.log('zoomed');
     const { left, top, width, height } = e.target.getBoundingClientRect()
     const horizontalAxis = (e.pageX - left) / width * 100
     const verticalAxis = (e.pageY - top) / height * 100
@@ -23,8 +22,11 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       backgroundPosition: `${horizontalAxis}% ${verticalAxis}%`,
       'background-size': '250%',
       backgroundImage: `url(${largeImage})`
-    })
+    });
   };
+
+  let nextIndex;
+  let nextPhoto;
 
   const caretRight = () => {
     if (!originalGallery.length) {
@@ -60,10 +62,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       });
     }
   };
-
-  let nextIndex;
-  let nextPhoto;
-
   const caretLeft = () => {
     if (!originalGallery.length) {
       if (photos[0].photos) {
@@ -109,7 +107,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       <div style={zoom ? {'display': 'none'} : null}>
          <img className="img__expandedview" src={largeImage} onClick={() => {setZoom(true) }} style={{cursor: 'crosshair'}} />
       </div>
-
     </div>
   );
 }

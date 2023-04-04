@@ -87,8 +87,8 @@ function ProductOverview({ product, setOutfit }) {
               <ul key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>
                 <RxCheck className="rxCheck" key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)} />
                 {feature.feature}
-                {' '}
                 :
+                {' '}
                 {feature.value}
 
               </ul>

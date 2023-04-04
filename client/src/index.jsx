@@ -78,6 +78,7 @@ function App() {
           <i>SITE-WIDE ANNOUCEMENT!</i>
           {' '}
           SALE/DISCOUNT
+          {' '}
           <b>OFFER</b>
           -
           <u>NEW PRODUCT HIGHLIGHT</u>

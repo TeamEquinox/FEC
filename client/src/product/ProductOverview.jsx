@@ -4,17 +4,17 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { RxCheck } from 'react-icons/rx';
 import StarRating from '../starRatings.jsx';
 import Image from './Image';
 import Style from './Style';
 import Cart from './Cart.jsx';
-import {RxCheck} from 'react-icons/rx';
 
 function ProductOverview({ product, setOutfit }) {
   // console.table('productOnLoad', product);
 
   const [gallery, setGallery] = useState(product[1].results[0].photos);
-  const [originalGallery, setOriginalGallery] = useState(gallery.slice(0,7));
+  const [originalGallery, setOriginalGallery] = useState(gallery.slice(0, 7));
   const [largeImage, setLargeImage] = useState(product[1].results[0].photos[0].url);
   const [reviews, setReviews] = useState(0);
   const [cart, setCart] = useState(false);
@@ -23,8 +23,8 @@ function ProductOverview({ product, setOutfit }) {
 
   useEffect(() => {
     setLargeImage(product[1].results[0].photos[0].url);
-    setGallery(product[1].results[0].photos)
-    setOriginalGallery(product[1].results[0].photos)
+    setGallery(product[1].results[0].photos);
+    setOriginalGallery(product[1].results[0].photos);
   }, [product]);
 
   useEffect(() => {
@@ -59,30 +59,44 @@ function ProductOverview({ product, setOutfit }) {
     <section className="section__product">
       <FontAwesomeIcon icon={faCartShopping} className="shoppingCart" onClick={() => { setCart(true); }} />
       {cart ? <Cart setCart={setCart} /> : null}
-      {showModal ? null : <div className="div__product">
-        <div className="div__reviews" onClick={() => { window.location.replace('/#overall-rating'); }}>
-        <u>Read all {reviews}{' '}reviews</u>
-        </div>
+      {showModal ? null : (
+        <div className="div__product">
+          <div className="div__reviews" onClick={() => { window.location.replace('/#overall-rating'); }}>
+            <u>
+              Read all{' '}
+              {reviews}
+              {' '}
+              reviews
+            </u>
+          </div>
           <div className="div__starRating"><StarRating rating={configRatings(product[3].ratings)} pixels={10} /></div>
 
-        <h3>{product.length ? product[0].category : 'Category'}</h3>
-        <div className="div__product_name">{product.length ? product[0].name : 'Name'}</div>
-        { showModal ? null : <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery}/> }
-      </div>}
-      <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} zoom={zoom} setZoom={setZoom} showModal={showModal} setShowModal={setShowModal} zoom={zoom}/>
-      <div className="div__slogan">{product[0].slogan}</div>
-      <div className="div__description">{product.length ? product[0].description : 'Description'}</div>
-      <div className="div__verticalLine"></div>
-      <div className="div__feature">
-        {product.length ? product[0].features.map((feature) => (
-          <ul key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>
-            <RxCheck className="rxCheck" key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}/>
-              {feature.feature} : {feature.value}
+          <h3>{product.length ? product[0].category : 'Category'}</h3>
+          <div className="div__product_name">{product.length ? product[0].name : 'Name'}</div>
+          { showModal ? null : <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} /> }
+        </div>
+      )}
+      <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} zoom={zoom} setZoom={setZoom} showModal={showModal} setShowModal={setShowModal} zoom={zoom} />
+      { showModal ? null : (
+        <div className="div__bottom_bar">
+          <div className="div__slogan">{product[0].slogan}</div>
+          <div className="div__description">{product.length ? product[0].description : 'Description'}</div>
+          <div className="div__verticalLine" />
+          <div className="div__feature">
+            {product.length ? product[0].features.map((feature) => (
+              <ul key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)}>
+                <RxCheck className="rxCheck" key={Math.floor(Math.random() * (1000 - 0 + 1) + 0)} />
+                {feature.feature}
+                {' '}
+                :
+                {feature.value}
 
-          </ul>
-        ))
-          : null}
-      </div>
+              </ul>
+            ))
+              : null}
+          </div>
+        </div>
+      )}
     </section>
 
   );

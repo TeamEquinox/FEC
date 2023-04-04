@@ -30,3 +30,6 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+fec-equinox-ml.pem
+

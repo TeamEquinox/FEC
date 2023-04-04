@@ -10,7 +10,7 @@ const getProducts = () => {
       Authorization: `${process.env.TOKEN}`,
     },
     params: {
-      page: 1,
+      page: 8,
       count: 1,
     },
   };

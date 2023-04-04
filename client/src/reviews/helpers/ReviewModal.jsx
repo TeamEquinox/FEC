@@ -56,7 +56,7 @@ function ReviewModal(props) {
             !
           </h3>
           <label htmlFor="rating">Rating: </label>
-          <div>{[...Array(5)].map((_, index) => renderStar(index))}</div>
+          <div>{[5, 4, 3, 2, 1].map((_, index) => renderStar(index))}</div>
           <br />
 
           <label htmlFor="summary">Summary: </label>

@@ -807,12 +807,15 @@ START Review CSS======================^
 
 .stars-text {
   white-space: nowrap;
-  margin-right: 10px;
+  margin-right: 5px;
+  font-size: 10px;
 }
 
 .reviews-text {
   white-space: nowrap;
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 10px;
 }
 
 #5star {
@@ -837,7 +840,7 @@ START Review CSS======================^
 
 .container-bar {
   height: 10px;
-  width: 300px;
+  width: 200px;
   background-color: #ccc;
   position: relative;
 }
@@ -866,8 +869,10 @@ START Review CSS======================^
   display: block;
   position: relative;
   margin-bottom: 2px;
+  border-top: solid #909090;
+  border-bottom: solid #909090;
   width: 100%;
-  max-height: 400px;
+  height: 500px;
   overflow: auto;
 }
 

@@ -5,6 +5,9 @@ client/dist/compiled
 ./coverage
 coverage
 /coverage
+spec
+/spec
+./spec
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

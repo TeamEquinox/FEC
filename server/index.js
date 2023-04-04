@@ -26,12 +26,8 @@ app.get('/products', (req, res) => {
   const dataToSend = [];
   helperAPI.getProducts()
     .then((data) => {
-      // console.log('data', data)
-      // res.send(data)
       helperAPI.getProductsById(data[0].id)
         .then((data2) => {
-          // console.log('data2', data2)
-          // res.send(data2)
           dataToSend.push(data2);
           helperAPI.getProductsByStyle(data2.id)
             .then((data3) => {
@@ -42,7 +38,6 @@ app.get('/products', (req, res) => {
                   helperAPI.getMetaReviewData(data2.id)
                     .then((data5) => {
                       dataToSend.push(data5);
-                      // console.log('queried data: ', data5)
                       res.send(dataToSend);
                     });
                 });

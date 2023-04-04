@@ -20,6 +20,7 @@ function ReviewList({
   prodCharacteristics,
   prodName,
 }) {
+  const [helpfulReviews, setHelpfulReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [tempCharStorage, setTempCharStorage] = useState({});
@@ -68,15 +69,26 @@ function ReviewList({
     setReviewCount(reviewCount + 2);
   };
 
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   const helpfulReviewHandler = (reviewId) => {
-    putHelpfulReview(reviewId)
-      .then(() => {
-        console.log('Success from putHelpfulReview');
-        setToggle(!toggle);
-      })
-      .catch((err) => {
-        console.log(`error with ${reviewId} in putHelpfulReview`, err);
-      });
+    if (!helpfulReviews.includes(reviewId)) {
+      putHelpfulReview(reviewId)
+        .then(() => {
+          console.log('Success from putHelpfulReview');
+          setToggle(!toggle);
+          setHelpfulReviews([...helpfulReviews, reviewId]);
+        })
+        .catch((err) => {
+          console.log(`error with ${reviewId} in putHelpfulReview`, err);
+        });
+    }
   };
 
   const reportReview = (reviewId) => {
@@ -88,14 +100,6 @@ function ReviewList({
       .catch((err) => {
         console.log(`error with ${reviewId} in reportReview`, err);
       });
-  };
-
-  const handleShowModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
   };
 
   const handleSubmitReview = (event) => {
@@ -167,9 +171,10 @@ function ReviewList({
             <p className="individual-reviews-body">{review.body ?? ''}</p>
             <p className="individual-reviews-user">
               By:
+              {' '}
               {review.reviewer_name ?? 'Anonymous'}
             </p>
-            {Array.isArray(review.photos) && review.photos.length > 0 ? (
+            {review.photos.length > 0 ? (
               review.photos.map((photo) => (
                 <img
                   src={photo.url}

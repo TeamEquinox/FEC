@@ -24,6 +24,7 @@ function ProductBreakdown({ meta }) {
       <MultiBarDisplay element={quality} headerText="Quality" />
       <MultiBarDisplay element={size} headerText="Size" />
       <MultiBarDisplay element={fit} headerText="Fit" />
+      <br />
     </div>
   );
 }

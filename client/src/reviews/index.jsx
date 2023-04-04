@@ -5,7 +5,7 @@ import SortFilters from './components/SortFilters';
 import OverallReview from './components/OverallReview';
 import ProductBreakdown from './components/ProductBreakdown';
 import ReviewList from './components/ReviewList';
-import SearchBar from './components/SearchBar';
+// import SearchBar from './components/SearchBar';
 import { getReviewsRefresher } from './helpers/userRequests';
 
 function RatingsAndReviews({ product }) {
@@ -39,29 +39,35 @@ function RatingsAndReviews({ product }) {
   }, [toggle]);
 
   return (
-    <>
-      <OverallReview meta={meta} />
-      <RatingBreakdownBars
-        meta={meta}
-        reviews={reviews}
-        setDisplayedReviews={setDisplayedReviews}
-      />
-      <ProductBreakdown meta={meta} />
-      <SortFilters
-        reviews={sorted}
-        setSorted={setSorted}
-        setReviews={setReviews}
-      />
-      <ReviewList
-        reviews={sorted}
-        toggle={toggle}
-        setToggle={setToggle}
-        productId={product[2].product}
-        prodCharacteristics={[product[3].characteristics]}
-        prodName={product[0].name}
-      />
-      <SearchBar />
-    </>
+    <div style={{ display: 'flex' }}>
+      <br />
+      <div style={{ flexGrow: 1 }}>
+        <OverallReview meta={meta} />
+        <RatingBreakdownBars
+          meta={meta}
+          reviews={reviews}
+          setDisplayedReviews={setDisplayedReviews}
+        />
+        <ProductBreakdown meta={meta} />
+      </div>
+      <div style={{ flexGrow: 1, width: '70%' }}>
+        <SortFilters
+          reviews={sorted}
+          setSorted={setSorted}
+          setReviews={setReviews}
+        />
+        {/* <SearchBar /> */}
+        <ReviewList
+          reviews={sorted}
+          toggle={toggle}
+          setToggle={setToggle}
+          productId={product[2].product}
+          prodCharacteristics={[product[3].characteristics]}
+          prodName={product[0].name}
+        />
+      </div>
+      <br />
+    </div>
   );
 }
 

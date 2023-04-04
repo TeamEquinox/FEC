@@ -51,22 +51,22 @@ function QuestionModal({
     return null;
   }
   return (
-    <div className="modal questionModal modal--open">
-      <form className="form questionForm">
-        <button type="button" onClick={changeWindow}>Close</button>
-        <label htmlFor="body">
+    <div className="questions__form--container questions__form--question" id="q&a">
+      <form className="questions__form questions__form--question" id="q&a">
+        <button className="questions__button questions__button--close" id="q&a" type="button" onClick={changeWindow}>Close</button>
+        <label className="questions__form--label" id="q&a" htmlFor="body">
           Question:
-          <textarea name="body" rows="5" cols="30" value={question} onChange={handleQuestion} />
+          <textarea className="questions__form--input" id="q&a" name="body" rows="5" cols="30" value={question} onChange={handleQuestion} />
         </label>
-        <label htmlFor="name">
+        <label className="questions__form--label" id="q&a" htmlFor="name">
           Nickname:
-          <input name="name" value={nickname} onChange={handleNickname} />
+          <input className="questions__form--input" id="q&a" name="name" value={nickname} onChange={handleNickname} />
         </label>
-        <label htmlFor="email">
+        <label className="questions__form--label" id="q&a" htmlFor="email">
           Email:
-          <input name="email" value={email} onChange={handleEmail} />
+          <input className="questions__form--input" id="q&a" name="email" value={email} onChange={handleEmail} />
         </label>
-        <button type="button" onClick={handleSubmit}>Submit Question</button>
+        <button className="questions__button questions__button--submit" id="q&a" type="button" onClick={handleSubmit}>Submit Question</button>
       </form>
     </div>
   );

@@ -57,27 +57,22 @@ function AnswerModal({
     return null;
   }
   return (
-    <div className="modal answerModal">
-      <form className="form answerForm">
-        <button type="button" onClick={changeWindow}>Close</button>
-        <label htmlFor="body">
+    <div className="questions__form--container questions__form--answer" id="q&a">
+      <form className="questions__form questions__form--answer" id="q&a">
+        <button className="questions__button questions__button--close" id="q&a" type="button" onClick={changeWindow}>Close</button>
+        <label className="questions__form--label" id="q&a" htmlFor="body">
           Answer:
-          <textarea name="body" rows="5" cols="30" value={answer} onChange={handleAnswer} />
+          <textarea className="questions__form--input" id="q&a" name="body" rows="5" cols="30" value={answer} onChange={handleAnswer} />
         </label>
-        <label htmlFor="name">
+        <label className="questions__form--label" id="q&a" htmlFor="name">
           Nickname:
-          <input name="name" value={nickname} onChange={handleNickname} />
+          <input className="questions__form--input" id="q&a" name="name" value={nickname} onChange={handleNickname} />
         </label>
-        <label htmlFor="email">
+        <label className="questions__form--label" id="q&a" htmlFor="email">
           Email:
-          <input name="email" value={email} onChange={handleEmail} />
+          <input className="questions__form--input" id="q&a" name="email" value={email} onChange={handleEmail} />
         </label>
-        {/* photos will require more examination to actually implement */}
-        <label htmlFor="photos">
-          Photos:
-          <input name="photos" />
-        </label>
-        <button type="button" onClick={handleSubmit}>Submit answer</button>
+        <button className="questions__button questions__button--submit" id="q&a" type="button" onClick={handleSubmit}>Submit answer</button>
       </form>
     </div>
   );

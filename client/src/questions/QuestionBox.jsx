@@ -53,7 +53,7 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
         {' '}
         {question.question_body}
       </h3>
-      <span className="questions__asker" id="q&a">{question.asker_name}</span>
+      <span className="questions__name" id="q&a">{question.asker_name}</span>
       <p>
         {new Date(question.question_date).toLocaleDateString('en-US', {
           month: 'long',
@@ -68,7 +68,7 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
       </span>
       <button className="questions__button questions__button--report" id="q&a" type="button" onClick={handleReport}>Report</button>
       {answers.length === 0 && (
-        <div className="questions__list--empty questions__list--answers questions__list" id="q&a">
+        <div className="questions__list--empty questions__list--answers" id="q&a">
           Be the first to answer!
           <AnswerModal
             show={showAnsModal}

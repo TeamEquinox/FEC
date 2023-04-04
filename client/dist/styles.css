@@ -453,24 +453,22 @@ END OF PRODUCT CSS
 /* question CSS home ~*~*~*~*~*~*~*~*~*~
 */
 
-.list {
+.questions__list {
   display: block;
   border-radius: 5px;
   border: solid olive;
   position: relative;
-}
-
-.questionsList {
   min-height: 200px;
   max-height: 100vh;
   overflow-y: scroll;
 }
 
-.question {
-  bottom: 20px;
+.questions__list--empty {
+  display: block;
+  height: 20px;
 }
 
-.modal {
+.questions__form--container {
   position: fixed;
   left: 0;
   top: 0;
@@ -483,16 +481,10 @@ END OF PRODUCT CSS
   z-index: 9999;
 }
 
-.form {
+.questions__form {
   padding: 10px;
   background-color: #fff;
   width: 500px;
-}
-
-.answer {
-  bottom: 20px;
-  border-radius: 5px;
-  border: solid greenyellow;
 }
 
 /*

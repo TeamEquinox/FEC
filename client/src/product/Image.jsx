@@ -163,7 +163,7 @@ function Image({
     <div className="div__image_container">
       {showLeftCaret ? <RxCaretLeft className="caret__left" onClick={() => { caretLeft(); }} /> : null}
       {showRightCaret ? <RxCaretRight className="caret__right" onClick={() => { caretRight(); }} /> : null}
-      { showModal ? null : <div className="div__large_image" style={{ cursor: 'zoom-in' }}><img id="img__gallery" src={largeImage} onClick={() => { setShowModal(true); reSize(); }} /></div> }
+      { showModal ? null : <div className="div__large_image"><img id="img__gallery" src={largeImage} onClick={() => { setShowModal(true); reSize(); }} /></div> }
       {showModal ? switchGallery() : null}
       {showModal ? <ExpandedView setShowModal={setShowModal} largeImage={largeImage} zoom={zoom} setZoom={setZoom} originalGallery={originalGallery} setLargeImage={setLargeImage} /> : null}
       <div className="div__img_gallery_small">

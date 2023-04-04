@@ -109,11 +109,10 @@ IMAGE CSS
   flex-grow: 1;
   flex-basis: 0px;
   position: absolute;
-  left: 280px;
+  left: 335px;
   top: 350px;
   max-width: 90%;
   max-height: 90%;
-
 }
 
 .img__gallery_small {
@@ -325,7 +324,7 @@ DESCRIPTION CSS
   height: 150px;
   padding: 10px;
   position: absolute;
-  top: 1070px;
+  top: 1075px;
   left: 140px
 
 }
@@ -365,7 +364,7 @@ React Icons CSS
   background-color: rgb(158, 158, 158);
   border-radius: 5px;
   position: absolute;
-  top: 620px;
+  top: 580px;
   /* left: -100px */
   left: 178px
 }
@@ -377,7 +376,7 @@ React Icons CSS
   background-color: rgb(158, 158, 158);
   border-radius: 5px;
   position: absolute;
-  top: 620px;
+  top: 580px;
   /* left: 480px */
   left: 1000px
 }

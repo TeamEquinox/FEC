@@ -106,11 +106,15 @@ function ReviewList({
     event.preventDefault();
     reviewFormData.product_id = Number(productId);
     for (const key in reviewFormData.characteristics) {
-      reviewFormData.characteristics[key] = Number(reviewFormData.characteristics[key]);
+      reviewFormData.characteristics[key] = Number(
+        reviewFormData.characteristics[key],
+      );
     }
     if (reviewFormData.recommend === 'false') {
       reviewFormData.recommend = false;
-    } else { reviewFormData.recommend = true; }
+    } else {
+      reviewFormData.recommend = true;
+    }
     postReview(reviewFormData)
       .then(() => {
         setToggle(!toggle);
@@ -189,8 +193,18 @@ function ReviewList({
               </p>
             )}
             <p className="individual-reviews-recommend">
-              {review.recommend === true ? 'I recommend this product' : ''}
+              {review.recommend === true ? (
+                <span>
+                  <span style={{ color: 'green' }}>
+                    &#x2713;
+                  </span>
+                  <span>
+                    I recommend this product
+                  </span>
+                </span>
+              ) : ''}
             </p>
+
             <p className="individual-reviews-helpfulness">
               {review.helpfulness === 1
                 ? '1 person'
@@ -213,7 +227,6 @@ function ReviewList({
             >
               Report
             </button>
-            {/* )} */}
           </div>
         ))}
       </div>

@@ -84,11 +84,11 @@ function Products({
                       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                       <div className="div_info_container" onClick={() => { handleRelatedCardClick(item.id); }}>
                         <div className="div_related_category related_card">
-                          Category:
+                          {/* Category: */}
                           {item.category}
                         </div>
                         <div className="div_related_name related_card">
-                          Name:
+                          {/* Name: */}
                           {item.name}
                         </div>
                         { salesPrice !== null ? (
@@ -112,7 +112,7 @@ function Products({
                           </div>
                         )}
                         <br />
-                        <StarRating rating={helpers.configRatings(item.rating)} pixels={10} className="div_rating" />
+                        <div className="div_rating"><StarRating rating={helpers.configRatings(item.rating)} id="related_star" pixels={10} /></div>
                       </div>
                     </div>
                   );

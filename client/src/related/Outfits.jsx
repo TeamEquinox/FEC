@@ -103,11 +103,11 @@ function Outfits({ data = [], product, setoutfit }) {
                       </div>
                       <div className="div_info_container">
                         <div className="div_related_category">
-                          Category:
+                          {/* Category: */}
                           {item.category}
                         </div>
                         <div className="div_related_name">
-                          Name:
+                          {/* Name: */}
                           {item.name}
                         </div>
                         { salesPrice !== null ? (
@@ -132,7 +132,7 @@ function Outfits({ data = [], product, setoutfit }) {
                         )}
 
                         <br />
-                        <StarRating rating={helpers.configRatings(item.rating)} pixels={10} className="div_rating" />
+                        <div className="div_rating"><StarRating rating={helpers.configRatings(item.rating)} id="related_star" pixels={10}/></div>
                       </div>
                     </div>
                   );

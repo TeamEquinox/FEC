@@ -609,18 +609,30 @@ Start Related CSS======================>
   height: 84px;
   width: 175;
   font-size: 20px;
-
+  text-align: center;
 }
 
 .div_rating {
-  left: 5px;
-  top: 85%;
+  position: relative;
+  left: -48px;
+  /* top: 85%; */
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#related_star{
+  text-align: center;
 }
 
 .span_salesPrice {
   color: red;
 }
 
+.div_related_category {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-weight: 900px;
+}
 /*
 Outfit...........................
 */
@@ -677,6 +689,7 @@ Outfit...........................
   left: 67px;
   top: 85px;
 }
+
 
 /*
 Icons...........................

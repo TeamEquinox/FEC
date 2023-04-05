@@ -29,6 +29,7 @@ h1 {
 
 .div__starRating{
   display: inline-block;
+  font-size: 20px;
 }
 
 .div__banner {
@@ -617,11 +618,13 @@ Start Related CSS======================>
   left: -48px;
   /* top: 85%; */
   text-align: center;
+  margin-bottom: 10px;
   padding-bottom: 10px;
 }
 
 #related_star{
   text-align: center;
+  padding-bottom: 10px;
 }
 
 .span_salesPrice {

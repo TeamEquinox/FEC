@@ -132,7 +132,7 @@ function Outfits({ data = [], product, setoutfit }) {
                         )}
 
                         <br />
-                        <div className="div_rating"><StarRating rating={helpers.configRatings(item.rating)} id="related_star" pixels={15}/></div>
+                        <div className="div_rating"><StarRating rating={helpers.configRatings(item.rating)} id="related_star" pixels={15} padding-bottom={5} /></div>
                       </div>
                     </div>
                   );

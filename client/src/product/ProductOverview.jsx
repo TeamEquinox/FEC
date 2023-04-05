@@ -69,7 +69,7 @@ function ProductOverview({ product, setOutfit }) {
               reviews
             </u>
           </div>
-          <div className="div__starRating"><StarRating rating={configRatings(product[3].ratings)} pixels={10} /></div>
+          <div className="div__starRating"><StarRating rating={configRatings(product[3].ratings)} pixels={20} topMargin={-25} /></div>
 
           <h3>{product.length ? product[0].category : 'Category'}</h3>
           <div className="div__product_name">{product.length ? product[0].name : 'Name'}</div>

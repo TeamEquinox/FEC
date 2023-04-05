@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { RxCross1 } from 'react-icons/rx';
 import {
   RxCaretLeft, RxCaretRight
-} from 'react-icons/Rx';
+} from 'react-icons/rx';
 
 function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery, setLargeImage, setShowLeftCaret, setShowRightCaret }) {
   const [backgroundPosition, setBackgroundPosition] = useState({
@@ -117,7 +117,7 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       {showLeftCaretExpanded || zoom ? <RxCaretLeft className="caret__left_expanded" onClick={() => { caretLeft(); }} /> : null}
       {showRightCaretExpanded || zoom ? <RxCaretRight className="caret__right_expanded" onClick={() => { caretRight(); }} /> : null}
       <div style={zoom ? {'display': 'none'} : null}>
-         <img className="img__expandedview" src={largeImage} onClick={() => {setZoom(true) }} style={{cursor: 'crosshair'}} />
+         <img className="img__expandedview" src={largeImage} onClick={() => {setZoom(true) }} style={{cursor: 'crosshair'}} alt="expanded view" />
       </div>
     </div>
   );

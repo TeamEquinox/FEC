@@ -169,7 +169,7 @@ function Image({
       <div className="div__img_gallery_small">
         <RxCaretUp className="caret__up" onClick={(e) => { e.preventDefault(); caretUp(); }} />
         {originalGallery.slice(0, 7).map((photo) => (
-          <img className="img__id img__gallery_small" id={photo.thumbnail_url} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url.slice(0, 60)); }} key={photo.thumbnail_url} />
+          <img className="img__id img__gallery_small" id={photo.thumbnail_url} src={photo.thumbnail_url} onClick={(e) => { e.preventDefault(); setLargeImage(photo.thumbnail_url.slice(0, 60)); checkSmallImage(photo.thumbnail_url.slice(0, 60)); }} key={photo.thumbnail_url} alt="small vertical gallery"/>
         ))}
         <RxCaretDown className="caret__down" onClick={() => { caretDown(); }} />
       </div>

@@ -3,9 +3,9 @@ import ReactDom from 'react-dom';
 import { RxCross1 } from 'react-icons/rx';
 import {
   RxCaretLeft, RxCaretRight
-} from 'react-icons/rx';
+} from 'react-icons/Rx';
 
-function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery, setLargeImage }) {
+function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery, setLargeImage, setShowLeftCaret, setShowRightCaret }) {
   const [backgroundPosition, setBackgroundPosition] = useState({
     backgroundPosition: `0% 0%`,
     'background-size': '100%',
@@ -15,7 +15,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
   const [showRightCaretExpanded, setShowRightCaretExpanded] = useState(true);
 
   const zoomIn = (e) => {
-    console.log('zoomed');
     const { left, top, width, height } = e.target.getBoundingClientRect()
     const horizontalAxis = (e.pageX - left) / width * 100
     const verticalAxis = (e.pageY - top) / height * 100
@@ -23,8 +22,11 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       backgroundPosition: `${horizontalAxis}% ${verticalAxis}%`,
       'background-size': '250%',
       backgroundImage: `url(${largeImage})`
-    })
+    });
   };
+
+  let nextIndex;
+  let nextPhoto;
 
   const caretRight = () => {
     if (!originalGallery.length) {
@@ -60,10 +62,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       });
     }
   };
-
-  let nextIndex;
-  let nextPhoto;
-
   const caretLeft = () => {
     if (!originalGallery.length) {
       if (photos[0].photos) {
@@ -101,15 +99,26 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
     }
   };
 
+
+  const switchGalleryBack = () => {
+    console.log('switch')
+    const imgArray = document.getElementsByClassName('img__id');
+    for (let i = 0; i < imgArray.length; i++) {
+      document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small';
+    }
+  };
+
+
+
+
   return (
     <div className="div__expandedview" style={zoom ? backgroundPosition : null} onMouseMove={ (zoom) ? zoomIn : null} onClick={zoom ? () => {setZoom(false)} : null} >
-      <RxCross1 className="rxCross1" onClick={() => { setShowModal(false); }} />
-      {showLeftCaretExpanded && zoom ? <RxCaretLeft className="caret__left_expanded" onClick={() => { caretLeft(); }} /> : null}
-      {showRightCaretExpanded && zoom ? <RxCaretRight className="caret__right_expanded" onClick={() => { caretRight(); }} /> : null}
+      <RxCross1 className="rxCross1" onClick={() => { setShowModal(false); setShowLeftCaret(true); setShowRightCaret(true); switchGalleryBack(); }} />
+      {showLeftCaretExpanded || zoom ? <RxCaretLeft className="caret__left_expanded" onClick={() => { caretLeft(); }} /> : null}
+      {showRightCaretExpanded || zoom ? <RxCaretRight className="caret__right_expanded" onClick={() => { caretRight(); }} /> : null}
       <div style={zoom ? {'display': 'none'} : null}>
          <img className="img__expandedview" src={largeImage} onClick={() => {setZoom(true) }} style={{cursor: 'crosshair'}} />
       </div>
-
     </div>
   );
 }

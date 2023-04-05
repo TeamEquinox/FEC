@@ -138,7 +138,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage, product, setOutf
 
       <br></br>
       <br></br>
-      <button className="button__cart" onClick={() => {
+      <button className="button__cart" label="button__cart" onClick={() => {
       errorMessage(); addItem(); setItemAdded(true); console.log('settt', itemAdded)
       }}>Add to cart</button>
       <button className="button__star" onClick={()=>{handlerAddClick();}}><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>

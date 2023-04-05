@@ -35,7 +35,7 @@ function SortFilters({ reviews, setSorted }) {
 
   return (
     <div>
-      <label htmlFor="sort-order">Sort order:</label>
+      <label className="sort_order" htmlFor="sort-order">Sort order: </label>
       <select id="sort-order" value={sortDropdown} onChange={handleSortChange}>
         <option value="" />
         <option value="Relevance">Relevance</option>

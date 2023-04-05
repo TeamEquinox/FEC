@@ -114,7 +114,7 @@ function QuestionsList({ product_id }) {
           changeWindow={changeWindow}
           sortByHelpful={sortByHelpful}
         />
-        {questions.length > displayCount && (<button type="button" onClick={showMoreQuestions}>More AnsweredQuestions</button>)}
+        {questions.length > displayCount && (<button type="button" onClick={showMoreQuestions}>More Answered Questions</button>)}
       </div>
     </section>
   );

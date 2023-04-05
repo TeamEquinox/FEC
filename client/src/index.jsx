@@ -68,7 +68,7 @@ function App() {
     const banner = document.getElementById('banner');
     root.className = 'body2';
     bar.className = 'div__bottom_bar2';
-    banner.className = 'div__banner';
+    banner.className = 'div__banner2';
     setDark(true);
   };
 
@@ -78,7 +78,7 @@ function App() {
     const banner = document.getElementById('banner');
     root.className = 'body';
     bar.className = 'div__bottom_bar';
-    banner.className = 'div__banner2';
+    banner.className = 'div__banner';
     setDark(false);
   };
 

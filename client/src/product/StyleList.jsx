@@ -48,7 +48,7 @@ function StyleList({
     >
       {' '}
       <RxCheckCircled id={`check-${style.photos[0].url}`} className="check_circled" />
-      <img className="img__style" src={style ? style.photos[0].thumbnail_url : null} />
+      <img className="img__style" src={style ? style.photos[0].thumbnail_url : null} alt="circle style images"/>
       <br />
       <br />
       <br />

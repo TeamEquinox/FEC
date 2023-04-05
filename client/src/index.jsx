@@ -65,16 +65,20 @@ function App() {
   const darkMode = () => {
     const root = document.getElementById('root');
     const bar = document.getElementById('bottom_bar');
+    const banner = document.getElementById('banner');
     root.className = 'body2';
     bar.className = 'div__bottom_bar2';
+    banner.className = 'div__banner';
     setDark(true);
   };
 
   const liteMode = () => {
     const root = document.getElementById('root');
     const bar = document.getElementById('bottom_bar');
+    const banner = document.getElementById('banner');
     root.className = 'body';
     bar.className = 'div__bottom_bar';
+    banner.className = 'div__banner2';
     setDark(false);
   };
 
@@ -86,7 +90,7 @@ function App() {
   if (product.length) {
     return (
       <div>
-        <div className="div__banner" onClick={ () => { dark ? liteMode() : darkMode(); } }>
+        <div className="div__banner" id="banner" onClick={ () => { dark ? liteMode() : darkMode(); } }>
           <h1>
             <b>Equinox Apparel</b>
           </h1>

@@ -10,7 +10,7 @@ body {
   font-family: "Tahoma", sans-serif;
   background: linear-gradient(white, rgb(8, 78, 78) 200px, rgb(2, 6, 70));
   /* filter: invert(80%); */
-  color:  #3e3c3c;
+  color:  #ffffff;
   letter-spacing: 0.3px;
   line-height: 1.3;
 }
@@ -43,6 +43,11 @@ h1 {
 
 .div__banner {
   background-color:  #3e3c3c;
+  height: 130px;
+}
+
+.div__banner2 {
+  background-color:  #000000;
   height: 130px;
 }
 
@@ -359,6 +364,7 @@ DESCRIPTION CSS
 .div__bottom_bar2 {
   display: flex;
   background-color:  linear-gradient(white, rgb(8, 78, 78) 200px, rgb(2, 6, 70));
+  color: white;
   box-sizing: border-box;
   margin: 10px auto;
   width: 90%;

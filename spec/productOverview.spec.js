@@ -7,8 +7,7 @@ import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import product from './mochData.js';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
-
-
+import Style from '../client/src/product/Style.jsx';
 import ProductOverview from '../client/src/product/ProductOverview.jsx';
 
 test('use jsdom in this test file', () => {
@@ -44,5 +43,11 @@ describe('ProductOverview', () => {
     render(<ProductOverview product={product.product}/>)
     expect(screen.getByText(/Quantity/i)).toBeInTheDocument();
   })
+  it('calls onClick prop when clicked', () => {
+    const handleClick = jest.fn();
+    const { getByText } = render(<Style label="button__cart" onClick={handleClick} />);
+    fireEvent.click(getByText('Add to cart'));
+    expect(handleClick).toHaveBeenCalled();
+  });
 
 });

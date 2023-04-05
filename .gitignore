@@ -8,3 +8,8 @@ coverage
 spec
 /spec
 ./spec
+
+
+fec-equinox-ml.pem
+
+./fec-equinox-ml.pem

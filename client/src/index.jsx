@@ -14,6 +14,7 @@ function App() {
   const [relatedData, setRelatedData] = useState([]);
   const [dataToCompare, setDataToCompare] = useState([]);
   const [outfit, setOutfit] = useState([]);
+  const [dark, setDark] = useState(false);
 
   const getRelatedProducts = (id) => {
     axios
@@ -61,6 +62,22 @@ function App() {
       .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err));
   };
 
+  const darkMode = () => {
+    const root = document.getElementById('root');
+    const bar = document.getElementById('bottom_bar');
+    root.className = 'body2';
+    bar.className = 'div__bottom_bar2';
+    setDark(true);
+  };
+
+  const liteMode = () => {
+    const root = document.getElementById('root');
+    const bar = document.getElementById('bottom_bar');
+    root.className = 'body';
+    bar.className = 'div__bottom_bar';
+    setDark(false);
+  };
+
   // useEffect(() => {
   // console.log('productAfterUseEffect', product)
   // }, [product])
@@ -69,7 +86,7 @@ function App() {
   if (product.length) {
     return (
       <div>
-        <div className="div__banner">
+        <div className="div__banner" onClick={ () => { dark ? liteMode() : darkMode(); } }>
           <h1>
             <b>Equinox Apparel</b>
           </h1>

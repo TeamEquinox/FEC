@@ -78,7 +78,7 @@ function ProductOverview({ product, setOutfit }) {
       )}
       <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} zoom={zoom} setZoom={setZoom} showModal={showModal} setShowModal={setShowModal} zoom={zoom} />
       { showModal ? null : (
-        <div className="div__bottom_bar">
+        <div className="div__bottom_bar" id="bottom_bar">
           <div className="div__slogan">{product[0].slogan}</div>
           <div className="div__description">{product.length ? product[0].description : 'Description'}</div>
           <div className="div__verticalLine" />

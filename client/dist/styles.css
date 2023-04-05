@@ -6,6 +6,15 @@ body {
   line-height: 1.3;
 }
 
+.body2 {
+  font-family: "Tahoma", sans-serif;
+  background: linear-gradient(white, rgb(8, 78, 78) 200px, rgb(2, 6, 70));
+  /* filter: invert(80%); */
+  color:  #3e3c3c;
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
 h1 {
   color: white;
   font-size: 45px;
@@ -337,6 +346,19 @@ DESCRIPTION CSS
 .div__bottom_bar {
   display: flex;
   background-color:  rgb(193, 223, 223);
+  box-sizing: border-box;
+  margin: 10px auto;
+  width: 90%;
+  height: 180px;
+  padding: 10px;
+  position: absolute;
+  top: 1095px;
+  left: 100px;
+}
+
+.div__bottom_bar2 {
+  display: flex;
+  background-color:  linear-gradient(white, rgb(8, 78, 78) 200px, rgb(2, 6, 70));
   box-sizing: border-box;
   margin: 10px auto;
   width: 90%;

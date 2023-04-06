@@ -6,6 +6,15 @@ body {
   line-height: 1.3;
 }
 
+.body2 {
+  font-family: "Tahoma", sans-serif;
+  background: linear-gradient(white, rgb(8, 78, 78) 200px, rgb(2, 6, 70));
+  /* filter: invert(80%); */
+  color:  #ffffff;
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
 h1 {
   color: white;
   font-size: 45px;
@@ -34,6 +43,11 @@ h1 {
 
 .div__banner {
   background-color:  #3e3c3c;
+  height: 130px;
+}
+
+.div__banner2 {
+  background-color:  #000000;
   height: 130px;
 }
 
@@ -347,6 +361,20 @@ DESCRIPTION CSS
   left: 100px;
 }
 
+.div__bottom_bar2 {
+  display: flex;
+  background-color:  linear-gradient(white, rgb(8, 78, 78) 200px, rgb(2, 6, 70));
+  color: white;
+  box-sizing: border-box;
+  margin: 10px auto;
+  width: 90%;
+  height: 180px;
+  padding: 10px;
+  position: absolute;
+  top: 1095px;
+  left: 100px;
+}
+
 .div__description {
   display: block;
   font-size: 20px;
@@ -645,8 +673,6 @@ Outfit...........................
 .div_outfit_card {
   display: inline-block;
   border: 1px solid black;
-  /* width: 175px;
-  height: 280px; */
   width: 270px;
   height: 430px;
   margin: 3px;
@@ -655,8 +681,6 @@ Outfit...........................
 .div_addOutfit_card {
   background-color: #ccc;
   border: 1px solid black;
-  /* width: 175px;
-  height: 280px; */
   width: 270px;
   height: 430px;
   margin: 3px;
@@ -668,7 +692,7 @@ Outfit...........................
 }
 .h3_add_outfit_action_header {
   background: none;
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
   height: 84px;
   width: 175;
   text-align: center;
@@ -685,7 +709,7 @@ Outfit...........................
   height: 40px;
   width: 40px;
   position: absolute;
-  left: 67px;
+  left: 115px;
   top: 85px;
 }
 
@@ -762,16 +786,6 @@ Modal...........................
 */
 
 .div_modal_container {
-  /* position: absolute; */
-  /* height: 350px;
-  width: 420px; */
-  /* top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0; */
-  /* background-color: antiquewhite; */
-  /* overflow: auto; */
-  /* z-index: 3;  */
   position: fixed;
   left: 0;
   top: 0;
@@ -784,20 +798,13 @@ Modal...........................
   z-index: 9999;
 }
 
-/* .div_modal_X_button {
-  position: relative;
-  left: 90%;
-  top: 5px;
-  border-radius: 10px;
-} */
-
 .button_modal {
   border: none;
+  background-color: #ccc;
   position: relative;
   left: 75%;
   top: 1px;
   border-radius: 10px;
-  /* background-color: antiquewhite; */
 }
 
 .button_modal:hover {
@@ -809,20 +816,19 @@ Modal...........................
 .table * {
   border: 1px solid black;
   text-align: center;
-  /* display: flex; */
-  /* align-items: center; */
 }
 
 .test {
   padding: 10px;
-  background-color: #fff;
+  background-color: rgb(159, 199, 199);
   border-radius: 5px;
-  height: 250px;
+  height: 260px;
   width: 420px;
 }
+
 .div_modal_body {
   overflow-y: auto;
-  /* border: 1px solid red; */
+  background-color: #ccc;
   height: 187px;
   width: 420px;
 }
@@ -861,14 +867,14 @@ START Review CSS======================^
 .stars-text {
   white-space: nowrap;
   margin-right: 5px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .reviews-text {
   white-space: nowrap;
   margin-left: 5px;
   margin-right: 5px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #5star {
@@ -921,10 +927,10 @@ START Review CSS======================^
 .individual-reviews-container {
   display: block;
   position: relative;
-  margin-bottom: 2px;
   border-top: solid #909090;
   border-bottom: solid #909090;
   width: 100%;
+  max-width: 1000px;
   height: 700px;
   overflow: auto;
   margin-bottom: 10px;
@@ -983,7 +989,7 @@ START Review CSS======================^
 }
 
 .applied-filters {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .applied-filters-button {

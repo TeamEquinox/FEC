@@ -24,6 +24,7 @@ function ReviewList({
   const [reviewCount, setReviewCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [tempCharStorage, setTempCharStorage] = useState({});
+  const [imageUpload, setImageUpload] = useState({});
   const [reviewFormData, setReviewFormData] = useState({
     product_id: '',
     rating: '',
@@ -38,6 +39,8 @@ function ReviewList({
       Length: {},
       Comfort: {},
       Quality: {},
+      Width: {},
+      Size: {},
     },
   });
 
@@ -48,18 +51,34 @@ function ReviewList({
 
   useEffect(() => {
     if (prodCharacteristics.length > 0) {
-      const { Fit, Length, Comfort, Quality } = prodCharacteristics[0];
-      reviewFormData.characteristics = {
-        [Fit?.id]: Fit ? null : undefined,
-        [Length?.id]: Length ? null : undefined,
-        [Comfort?.id]: Comfort ? null : undefined,
-        [Quality?.id]: Quality ? null : undefined,
-      };
+      const { Fit, Length, Comfort, Quality, Width, Size } = prodCharacteristics[0];
+      const characteristicsData = {};
+      if (Fit) {
+        characteristicsData[Fit.id] = null;
+      }
+      if (Length) {
+        characteristicsData[Length.id] = null;
+      }
+      if (Comfort) {
+        characteristicsData[Comfort.id] = null;
+      }
+      if (Quality) {
+        characteristicsData[Quality.id] = null;
+      }
+      if (Width) {
+        characteristicsData[Width.id] = null;
+      }
+      if (Size) {
+        characteristicsData[Size.id] = null;
+      }
+      reviewFormData.characteristics = characteristicsData;
       setTempCharStorage({
         Fit: Fit?.id,
         Length: Length?.id,
         Comfort: Comfort?.id,
         Quality: Quality?.id,
+        Width: Width?.id,
+        Size: Size?.id,
         Name: prodName,
       });
     }
@@ -105,12 +124,17 @@ function ReviewList({
   const handleSubmitReview = (event) => {
     event.preventDefault();
     reviewFormData.product_id = Number(productId);
+    // debugger;
     for (const key in reviewFormData.characteristics) {
-      reviewFormData.characteristics[key] = Number(reviewFormData.characteristics[key]);
+      reviewFormData.characteristics[key] = Number(
+        reviewFormData.characteristics[key],
+      );
     }
     if (reviewFormData.recommend === 'false') {
       reviewFormData.recommend = false;
-    } else { reviewFormData.recommend = true; }
+    } else {
+      reviewFormData.recommend = true;
+    }
     postReview(reviewFormData)
       .then(() => {
         setToggle(!toggle);
@@ -123,12 +147,12 @@ function ReviewList({
 
   const handleInputChange = (event, element) => {
     const { name, value, type } = event.target;
-    if (type === 'radio' && name !== 'recommend') {
+    if (type === 'select-one') {
       setReviewFormData((prevState) => ({
         ...prevState,
         characteristics: {
           ...prevState.characteristics,
-          [element]: value,
+          [tempCharStorage[name]]: value,
         },
       }));
     } else {
@@ -189,8 +213,18 @@ function ReviewList({
               </p>
             )}
             <p className="individual-reviews-recommend">
-              {review.recommend === true ? 'I recommend this product' : ''}
+              {review.recommend === true ? (
+                <span>
+                  <span style={{ color: 'green' }}>
+                    &#x2713;
+                  </span>
+                  <span>
+                    I recommend this product
+                  </span>
+                </span>
+              ) : ''}
             </p>
+
             <p className="individual-reviews-helpfulness">
               {review.helpfulness === 1
                 ? '1 person'
@@ -213,7 +247,6 @@ function ReviewList({
             >
               Report
             </button>
-            {/* )} */}
           </div>
         ))}
       </div>
@@ -234,6 +267,8 @@ function ReviewList({
           handleInputChange={handleInputChange}
           formData={reviewFormData}
           tempCharStorage={tempCharStorage}
+          imageUpload={imageUpload}
+          setImageUpload={setImageUpload}
         />
       ) : null}
       <span style={{ marginLeft: '10px' }}>|</span>

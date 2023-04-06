@@ -99,6 +99,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage, product, setOutf
   }
 
   const handlerAddClick = () => {
+    console.log(product)
     var newOutfit = helpers.extractOutfitData(product);
     helpers.saveItemToOutfit(newOutfit, setOutfit);
   }

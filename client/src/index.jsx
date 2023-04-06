@@ -112,7 +112,7 @@ function App() {
   // useEffect(() => {
   // console.log('productAfterUseEffect', product)
   // }, [product])
-  // useClickTracking();
+  useClickTracking();
 
   if (product.length) {
     return (

@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { RxCheckCircled } from 'react-icons/rx';
 
 function StyleList({
-  style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage, setOriginalGallery, originalGallery
+  style, setCurrStyle, setCurrPrice, setSalePrice, setOnSale, setGallery, setLargeImage, setSize, largeImage, setOriginalGallery, originalGallery,
 }) {
   const checkStyle = (url) => {
     if (largeImage && document.getElementById(`check-${largeImage}`)) {
@@ -18,7 +18,7 @@ function StyleList({
       for (let i = 0; i < array.length; i++) {
         if (array[i].id !== document.getElementById(`check-${url}`).id) {
           document.getElementById(`${array[i].id}`).remove('check_circled2');
-          document.getElementById(`${array[i].id}`).add('check_circled')
+          document.getElementById(`${array[i].id}`).add('check_circled');
           console.log('removed');
           document.getElementById(`check-${url}`).classList.remove('check_circled');
           document.getElementById(`check-${url}`).classList.add('check_circled2');
@@ -48,7 +48,7 @@ function StyleList({
     >
       {' '}
       <RxCheckCircled id={`check-${style.photos[0].url}`} className="check_circled" />
-      <img className="img__style" src={style ? style.photos[0].thumbnail_url : null} alt="circle style images"/>
+      <img className="img__style" src={style ? style.photos[0].thumbnail_url : null} alt="circle style images" />
       <br />
       <br />
       <br />

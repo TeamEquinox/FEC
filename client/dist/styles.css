@@ -506,7 +506,6 @@ END OF PRODUCT CSS
 .questions__list {
   display: block;
   border-radius: 5px;
-  /* border: solid olive; */
   position: relative;
   min-height: 200px;
   max-height: 100vh;
@@ -515,13 +514,13 @@ END OF PRODUCT CSS
 }
 
 .questions__list--empty {
-  display: block;
+  display: flex;
   height: 20px;
   font-size: 20px;
 }
 
 .questions__form--container {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   right: 0;
@@ -539,22 +538,21 @@ END OF PRODUCT CSS
   width: 500px;
 }
 
-.answer {
+.questions__listElem {
   bottom: 20px;
   border-radius: 5px;
   font-size: 20px;
-
-  /* border: solid  rgb(193, 223, 223); */
+  border: solid  rgb(193, 223, 223);
 }
 
-button {
+.question__button {
   margin-left: 3px;
   margin-right: 3px;
   font-weight: 900;
   border-radius: 0px;
 }
 
-input {
+.questions__input {
   margin-left: 5px;
 }
 

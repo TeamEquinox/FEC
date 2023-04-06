@@ -58,7 +58,6 @@ module.exports = {
 
   getOutfit: (setOutfit) => {
     const outfit = localStorage.getItem('outfit');
-    // console.log('TRYING  TO GET OUTFIT DATA', outfit);
     if (outfit === null) {
       setOutfit([]);
       return;
@@ -102,5 +101,29 @@ module.exports = {
     }
     localStorage.setItem('outfit', JSON.stringify(outfit));
     module.exports.getOutfit(setOutfit);
+  },
+
+  checkIfCached: (id, key) => {
+    let cached = localStorage.getItem(key);
+    if (cached) {
+      cached = JSON.parse(cached);
+      if (cached[id]) {
+        return cached[id];
+      }
+    }
+    return false;
+  },
+
+  addAPICallToCache: (id, data, key) => {
+    let cached = localStorage.getItem(key);
+    if (!cached) {
+      cached = {};
+      cached[id] = data;
+      localStorage.setItem(key, JSON.stringify(cached));
+    } else {
+      cached = JSON.parse(cached);
+      cached[id] = data;
+      localStorage.setItem(key, JSON.stringify(cached));
+    }
   },
 };

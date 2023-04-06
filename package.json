@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "server-dev": "nodemon ./server/index.js",
-    "client-dev": "webpack --watch"
+    "client-dev": "webpack --watch --mode production"
   },
   "repository": {
     "type": "git",

@@ -116,7 +116,7 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       <RxCross1 className="rxCross1" onClick={() => { setShowModal(false); setShowLeftCaret(true); setShowRightCaret(true); switchGalleryBack(); }} />
       {showLeftCaretExpanded || zoom ? <RxCaretLeft className="caret__left_expanded" onClick={() => { caretLeft(); }} /> : null}
       {showRightCaretExpanded || zoom ? <RxCaretRight className="caret__right_expanded" onClick={() => { caretRight(); }} /> : null}
-      <div style={zoom ? {'display': 'none'} : null}>
+      <div className="zoomo" style={zoom ? {'display': 'none'} : null}>
          <img className="img__expandedview" src={largeImage} onClick={() => {setZoom(true) }} style={{cursor: 'crosshair'}} alt="expanded view" />
       </div>
     </div>

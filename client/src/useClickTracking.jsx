@@ -36,8 +36,8 @@ const useClickTracking = () => {
   // use effect to send data to server
   useEffect(() => {
     axios.post('/clickTrack', clickData)
-      .then(() => {
-        // console.log('sent click data!');
+      .then((response) => {
+        // console.log('sent click data!', response);
       })
       .catch((err) => {
         console.log('error sending click data', err);

@@ -73,7 +73,7 @@ function ProductOverview({ product, setOutfit }) {
 
           <h3>{product.length ? product[0].category : 'Category'}</h3>
           <div className="div__product_name">{product.length ? product[0].name : 'Name'}</div>
-          { showModal ? null : <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} /> }
+          { showModal ? null : <Style styles={product.length ? product[1].results : null} setGallery={setGallery} setLargeImage={setLargeImage} largeImage={largeImage} product={product} setOutfit={setOutfit} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} /> }
         </div>
       )}
       <Image photos={product.length ? product[1].results : null} setLargeImage={setLargeImage} gallery={gallery} largeImage={largeImage} setGallery={setGallery} setOutfit={setOutfit} product={product} setOriginalGallery={setOriginalGallery} originalGallery={originalGallery} zoom={zoom} setZoom={setZoom} showModal={showModal} setShowModal={setShowModal} zoom={zoom} />

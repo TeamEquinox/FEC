@@ -8,6 +8,7 @@ import RatingsAndReviews from './reviews/index';
 import RelatedProducts from './related/RelatedProducts';
 import QuestionsList from './questions/QuestionsList';
 import useClickTracking from './useClickTracking';
+import clientHelpers from './clientSideHelpers';
 
 function App() {
   const [product, setProduct] = useState([]);
@@ -17,26 +18,39 @@ function App() {
   const [dark, setDark] = useState(false);
 
   const getRelatedProducts = (id) => {
-    axios
-      .get('/relatedProducts', { params: { data: id } })
-      .then((data) => {
-        setRelatedData(data.data);
-      })
-      .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err));
+    const isCached = clientHelpers.checkIfCached(id, 'getRelatedProducts');
+    if (isCached) {
+      setRelatedData(isCached);
+    } else {
+      axios
+        .get('/relatedProducts', { params: { data: id } })
+        .then((data) => {
+          clientHelpers.addAPICallToCache(id, data.data, 'getRelatedProducts');
+          setRelatedData(data.data);
+        })
+        .catch((err) => console.log('There was an error in the getRelatedProducts get request: ', err));
+    }
   };
 
   const pageLoad = () => {
-    $.ajax({
-      url: '/products',
-      method: 'GET',
-      success: (data) => {
-        setProduct(data);
-        getRelatedProducts(data[1].product_id);
-      },
-      error: (err) => {
-        console.log('error getting data', err);
-      },
-    });
+    const isCached = clientHelpers.checkIfCached('product', 'product');
+    if (isCached) {
+      setProduct(isCached);
+      getRelatedProducts(isCached[1].product_id);
+    } else {
+      $.ajax({
+        url: '/products',
+        method: 'GET',
+        success: (data) => {
+          clientHelpers.addAPICallToCache('product', data, 'product');
+          setProduct(data);
+          getRelatedProducts(data[1].product_id);
+        },
+        error: (err) => {
+          console.log('error getting data', err);
+        },
+      });
+    }
   };
 
   useEffect(() => {
@@ -44,22 +58,35 @@ function App() {
   }, []);
 
   const getAndCompareCurrentProduct = (id) => {
-    axios
-      .get('/compare', { params: { data: id } })
-      .then((data) => {
-        setDataToCompare(data.data);
-      })
-      .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err));
+    const isCached = clientHelpers.checkIfCached(id, 'getAndCompareCurrentProduct');
+    if (isCached) {
+      setDataToCompare(isCached);
+    } else {
+      axios
+        .get('/compare', { params: { data: id } })
+        .then((data) => {
+          clientHelpers.addAPICallToCache(id, data, 'getAndCompareCurrentProduct');
+          setDataToCompare(data.data);
+        })
+        .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err));
+    }
   };
 
   const updateCurrentProduct = (id) => {
-    axios
-      .get('/setCurrentProduct', { params: { data: id } })
-      .then((data) => {
-        setProduct(data.data);
-        getRelatedProducts(id);
-      })
-      .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err));
+    const isCached = clientHelpers.checkIfCached(id, 'updateCurrentProduct');
+    if (isCached) {
+      setProduct(isCached);
+      getRelatedProducts(id);
+    } else {
+      axios
+        .get('/setCurrentProduct', { params: { data: id } })
+        .then((data) => {
+          clientHelpers.addAPICallToCache(id, data.data, 'updateCurrentProduct');
+          setProduct(data.data);
+          getRelatedProducts(id);
+        })
+        .catch((err) => console.log('There was an error in the updateCurrentProduct get request: ', err));
+    }
   };
 
   const darkMode = () => {

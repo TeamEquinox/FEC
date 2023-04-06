@@ -58,7 +58,6 @@ module.exports = {
 
   getOutfit: (setOutfit) => {
     const outfit = localStorage.getItem('outfit');
-    // console.log('TRYING  TO GET OUTFIT DATA', outfit);
     if (outfit === null) {
       setOutfit([]);
       return;
@@ -103,25 +102,28 @@ module.exports = {
     localStorage.setItem('outfit', JSON.stringify(outfit));
     module.exports.getOutfit(setOutfit);
   },
-  checkIfCached: (productId, endpoint) => {
-    console.log('checkIfCached----->', productId, endpoint);
-    let cached = localStorage.getItem(endpoint);
+
+  checkIfCached: (id, key) => {
+    let cached = localStorage.getItem(key);
     if (cached) {
       cached = JSON.parse(cached);
-      if (cached[productId]) {
-        const result = new Promise((resolve, reject) => {
-          resolve(cached[productId]);
-        });
-        return result;
+      if (cached[id]) {
+        return cached[id];
       }
     }
     return false;
   },
 
-  addAPICallToCache: (data, endpoint) => {
-    let cached = localStorage.getItem(endpoint);
-    cached = JSON.parse(cached);
-    cached[data.id] = data;
-    localStorage.setItem(endpoint, JSON.stringify(cached));
+  addAPICallToCache: (id, data, key) => {
+    let cached = localStorage.getItem(key);
+    if (!cached) {
+      cached = {};
+      cached[id] = data;
+      localStorage.setItem(key, JSON.stringify(cached));
+    } else {
+      cached = JSON.parse(cached);
+      cached[id] = data;
+      localStorage.setItem(key, JSON.stringify(cached));
+    }
   },
 };

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -5,7 +7,13 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
-import RadioButtons from './RadioButtons';
+// import RadioButtons from './RadioButtons';
+import {
+  ref, uploadBytes, listAll, getDownloadURL,
+} from 'firebase/storage';
+import { v4 } from 'uuid';
+import { storage } from './firebase';
+import DropdownSelector from './DropSelectors';
 
 function ReviewModal(props) {
   const {
@@ -15,8 +23,12 @@ function ReviewModal(props) {
     handleInputChange,
     formData,
     tempCharStorage,
+    imageUpload,
+    setImageUpload,
   } = props;
   const [rating, setRating] = useState(0);
+  const [imageList, setImageList] = useState([]);
+  const imageListRef = ref(storage, 'images/');
   const showHideClassName = show
     ? 'modal review-display-block'
     : 'modal review-display-none';
@@ -43,6 +55,25 @@ function ReviewModal(props) {
         key={index}
       />
     );
+  };
+
+  const uploadImage = () => {
+    if (imageUpload === null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload)
+      .then(() => {
+        listAll(imageListRef).then((response) => {
+          const urlPromises = response.items.map(getDownloadURL);
+          Promise.all(urlPromises).then((urls) => {
+            setImageList((prev) => [...prev, ...urls]);
+            const lastImageUrl = urls[urls.length - 1];
+            formData.photos = [lastImageUrl];
+          });
+        });
+      })
+      .catch((err) => {
+        console.log('Error uploading image: ', err);
+      });
   };
 
   return (
@@ -134,44 +165,107 @@ function ReviewModal(props) {
             value={formData.email}
             onChange={handleInputChange}
           />
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <label style={{ flex: 1 }}>Fit:</label>
-            <RadioButtons
-              element="Fit"
-              formData={formData}
-              tempCharStorage={tempCharStorage}
-              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Fit)}
-              style={{ flex: 1 }}
+
+          <div>
+            <input
+              type="file"
+              onChange={(e) => {
+                setImageUpload(e.target.files[0]);
+              }}
             />
-            <span style={{ marginLeft: '10px', marginRight: '10px' }}>|</span>
-            <label style={{ flex: 1 }}>Length:</label>
-            <RadioButtons
-              element="Length"
-              formData={formData}
-              tempCharStorage={tempCharStorage}
-              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Length)}
-              style={{ flex: 1 }}
-            />
+            <button type="submit" onClick={uploadImage}>
+              Upload Images
+            </button>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <label style={{ flex: 1 }}>Quality:</label>
-            <RadioButtons
-              element="Quality"
-              formData={formData}
-              tempCharStorage={tempCharStorage}
-              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Quality)}
-              style={{ flex: 1 }}
-            />
-            <span style={{ marginLeft: '10px', marginRight: '10px' }}>|</span>
-            <label style={{ flex: 1 }}>Comfort:</label>
-            <RadioButtons
-              element="Comfort"
-              formData={formData}
-              tempCharStorage={tempCharStorage}
-              handleInputChange={(e) => handleInputChange(e, tempCharStorage.Comfort)}
-              style={{ flex: 1 }}
-            />
+            {tempCharStorage.Fit && (
+              <>
+                <label style={{ flex: 1 }}>Fit:</label>
+                <DropdownSelector
+                  element="Fit"
+                  formData={formData}
+                  tempCharStorage={tempCharStorage}
+                  handleInputChange={(e) => handleInputChange(e, tempCharStorage.Fit)}
+                  style={{ flex: 1 }}
+                />
+              </>
+            )}
+            {tempCharStorage.Length && (
+              <>
+                <span style={{ marginLeft: '10px', marginRight: '10px' }}>
+                  |
+                </span>
+                <label style={{ flex: 1 }}>Length:</label>
+                <DropdownSelector
+                  element="Length"
+                  formData={formData}
+                  tempCharStorage={tempCharStorage}
+                  handleInputChange={(e) => handleInputChange(e, tempCharStorage.Length)}
+                  style={{ flex: 1 }}
+                />
+              </>
+            )}
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            {tempCharStorage.Quality && (
+              <>
+                <label style={{ flex: 1 }}>Quality:</label>
+                <DropdownSelector
+                  element="Quality"
+                  formData={formData}
+                  tempCharStorage={tempCharStorage}
+                  handleInputChange={(e) => handleInputChange(e, tempCharStorage.Quality)}
+                  style={{ flex: 1 }}
+                />
+              </>
+            )}
+            {tempCharStorage.Comfort && (
+              <>
+                <span style={{ marginLeft: '10px', marginRight: '10px' }}>
+                  |
+                </span>
+                <label style={{ flex: 1 }}>Comfort:</label>
+                <DropdownSelector
+                  element="Comfort"
+                  formData={formData}
+                  tempCharStorage={tempCharStorage}
+                  handleInputChange={(e) => handleInputChange(e, tempCharStorage.Comfort)}
+                  style={{ flex: 1 }}
+                />
+              </>
+            )}
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            {tempCharStorage.Width && (
+              <>
+                <label style={{ flex: 1 }}>Width:</label>
+                <DropdownSelector
+                  element="Width"
+                  formData={formData}
+                  tempCharStorage={tempCharStorage}
+                  handleInputChange={(e) => handleInputChange(e, tempCharStorage.Width)}
+                  style={{ flex: 1 }}
+                />
+              </>
+            )}
+            {tempCharStorage.Size && (
+              <>
+                <span style={{ marginLeft: '10px', marginRight: '10px' }}>
+                  |
+                </span>
+                <label style={{ flex: 1 }}>Size:</label>
+                <DropdownSelector
+                  element="Size"
+                  formData={formData}
+                  tempCharStorage={tempCharStorage}
+                  handleInputChange={(e) => handleInputChange(e, tempCharStorage.Size)}
+                  style={{ flex: 1 }}
+                />
+              </>
+            )}
           </div>
 
           <br />

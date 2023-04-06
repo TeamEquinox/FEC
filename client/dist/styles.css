@@ -842,6 +842,10 @@ START Review CSS======================^
   align-items: center;
 }
 
+.stars-bar-container:hover {
+  cursor: pointer;
+}
+
 .stars-text {
   white-space: nowrap;
   margin-right: 5px;
@@ -908,8 +912,8 @@ START Review CSS======================^
   border-top: solid #909090;
   border-bottom: solid #909090;
   width: 100%;
-  max-width: 1000px;
-  height: 700px;
+  max-width: auto;
+  height: 640px;
   overflow: auto;
   margin-bottom: 10px;
 }
@@ -1026,12 +1030,12 @@ START Review CSS======================^
   width: 60%;
   height: 40%;
   min-width: 550px;
-  min-height: 450px;
+  min-height: 550px;
   /* display: flex; */
   justify-content: center;
   align-items: center;
   position: fixed;
-  margin-top: 20%;
+  margin-top: 10%;
   margin-left: 20%;
   border-radius: 20px;
 }

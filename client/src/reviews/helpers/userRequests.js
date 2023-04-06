@@ -11,7 +11,7 @@ const postReview = (reviewData) => {
 
   return axios(options)
     .then(() => {
-      console.log('return from posting review');
+      // console.log('return from posting review');
     })
     .catch((err) => {
       console.log('error posting new review', err);
@@ -27,7 +27,7 @@ const putHelpfulReview = (reviewId) => {
 
   return axios(options)
     .then(() => {
-      console.log('return from posting helpfulReview in userRequests');
+      // console.log('return from posting helpfulReview in userRequests');
     })
     .catch((err) => {
       console.log('error posting helpfulReview from userRequests', err);
@@ -43,7 +43,7 @@ const putReportReview = (reviewId) => {
 
   return axios(options)
     .then(() => {
-      console.log('return from posting putReportReview');
+      // console.log('return from posting putReportReview');
     })
     .catch((err) => {
       console.log('error posting putReportReview from userRequests', err);

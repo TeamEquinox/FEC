@@ -103,4 +103,25 @@ module.exports = {
     localStorage.setItem('outfit', JSON.stringify(outfit));
     module.exports.getOutfit(setOutfit);
   },
+  checkIfCached: (productId, endpoint) => {
+    console.log('checkIfCached----->', productId, endpoint);
+    let cached = localStorage.getItem(endpoint);
+    if (cached) {
+      cached = JSON.parse(cached);
+      if (cached[productId]) {
+        const result = new Promise((resolve, reject) => {
+          resolve(cached[productId]);
+        });
+        return result;
+      }
+    }
+    return false;
+  },
+
+  addAPICallToCache: (data, endpoint) => {
+    let cached = localStorage.getItem(endpoint);
+    cached = JSON.parse(cached);
+    cached[data.id] = data;
+    localStorage.setItem(endpoint, JSON.stringify(cached));
+  },
 };

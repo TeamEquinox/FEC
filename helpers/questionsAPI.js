@@ -12,8 +12,8 @@ const getQuestions = (req, res) => {
       Authorization: `${process.env.TOKEN}`,
     },
     params: {
-      product_id: 71697,
-      // product_id: Number(req.query.productId),
+      // product_id: 71697,
+      product_id: Number(req.query.productId),
       page: 2,
       count: 100,
     },

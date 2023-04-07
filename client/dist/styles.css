@@ -94,13 +94,6 @@ IMAGE CSS
 */
 
 .div__image_container {
-  /* display: inline-block;
-  position: absolute;
-  top: 5px;
-  height: 50%;
-  width: 50%;
-  left: 100px;
-  padding-bottom: 10px; */
   justify-content: center;
   align-items: center;
   display: flex;
@@ -110,11 +103,6 @@ IMAGE CSS
 }
 
 #img__gallery {
-  /* max-width: 80%;
-  max-height: 80%;
-  justify-content: center;
-  align-items: center; */
-
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -124,28 +112,14 @@ IMAGE CSS
 
 
 .div__large_image {
-
   height: 846px;
-    width: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center;
-  text-align: center; */
-  /* margin-right: 25px;
-  cursor: zoom-in;
-  flex-shrink: 1;
-  flex-grow: 1;
-  flex-basis: 0px; */
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   left: 240px;
   top: 165px;
-  /* max-width: 90%;
-  max-height: 90%; */
-  /* min-width: 800px;
-  max-height: 100%; */
 }
 
 .img__gallery_small {
@@ -224,7 +198,7 @@ IMAGE CSS
   min-height: 1000px;
   min-width: 1000px;
   top: 150px;
-  left: 275px;
+  left: 465px;
 }
 
 .img__expandedview{
@@ -235,7 +209,7 @@ IMAGE CSS
   max-height: 1200px;
   max-width: 1200px;
   top: 35px;
-  left: 180px;
+  left: 100px;
 }
 
 /*
@@ -309,7 +283,7 @@ CART CSS
   height: 45px;
 }
 
-.button__star {
+.addToOutfitButton {
   font-weight: 900;
   border-radius: 0px;
   position: absolute;
@@ -437,7 +411,7 @@ React Icons CSS
   background-color: rgb(158, 158, 158);
   border-radius: 5px;
   position: absolute;
-  top: 620px;
+  top: 500px;
   /* left: -100px */
   left: -45px;
   width: 24px;
@@ -450,7 +424,7 @@ React Icons CSS
   background-color: rgb(158, 158, 158);
   border-radius: 5px;
   position: absolute;
-  top: 620px;
+  top: 500px;
   /* left: 480px */
   left: 1025px;
   width: 24px;
@@ -1019,6 +993,10 @@ START Review CSS======================^
   align-items: center;
 }
 
+.stars-bar-container:hover {
+  cursor: pointer;
+}
+
 .stars-text {
   white-space: nowrap;
   margin-right: 5px;
@@ -1085,8 +1063,8 @@ START Review CSS======================^
   border-top: solid #909090;
   border-bottom: solid #909090;
   width: 100%;
-  max-width: 1000px;
-  height: 700px;
+  max-width: auto;
+  height: 640px;
   overflow: auto;
   margin-bottom: 10px;
 }
@@ -1203,12 +1181,12 @@ START Review CSS======================^
   width: 60%;
   height: 40%;
   min-width: 550px;
-  min-height: 450px;
+  min-height: 550px;
   /* display: flex; */
   justify-content: center;
   align-items: center;
   position: fixed;
-  margin-top: 20%;
+  margin-top: 10%;
   margin-left: 20%;
   border-radius: 20px;
 }

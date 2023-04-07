@@ -100,7 +100,6 @@ function ReviewList({
     if (!helpfulReviews.includes(reviewId)) {
       putHelpfulReview(reviewId)
         .then(() => {
-          console.log('Success from putHelpfulReview');
           setToggle(!toggle);
           setHelpfulReviews([...helpfulReviews, reviewId]);
         })
@@ -113,7 +112,6 @@ function ReviewList({
   const reportReview = (reviewId) => {
     putReportReview(reviewId)
       .then(() => {
-        console.log('Success from reportReview');
         setToggle(!toggle);
       })
       .catch((err) => {

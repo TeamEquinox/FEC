@@ -39,7 +39,7 @@ function RatingsAndReviews({ product }) {
   }, [toggle]);
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', width: 'auto' }}>
       <br />
       <div style={{ flexGrow: 1 }}>
         <OverallReview meta={meta} />
@@ -50,7 +50,7 @@ function RatingsAndReviews({ product }) {
         />
         <ProductBreakdown meta={meta} />
       </div>
-      <div style={{ flexGrow: 1, width: '70%' }}>
+      <div style={{ flexGrow: 1, width: '100%' }}>
         <SortFilters
           reviews={sorted}
           setSorted={setSorted}

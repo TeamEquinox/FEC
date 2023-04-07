@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
-// import RadioButtons from './RadioButtons';
 import {
   ref, uploadBytes, listAll, getDownloadURL,
 } from 'firebase/storage';
@@ -80,12 +79,12 @@ function ReviewModal(props) {
     <div className={showHideClassName}>
       <section className="review-modal-main">
         <form onSubmit={handleSubmit}>
-          <h3 style={{ marginTop: '10px' }}>
+          <h2 style={{ marginTop: '0px', marginBottom: '0px' }}>
             Review for the
             {' '}
             {tempCharStorage.Name}
             !
-          </h3>
+          </h2>
           <label htmlFor="rating">Rating: </label>
           <div>{[5, 4, 3, 2, 1].map((_, index) => renderStar(index))}</div>
           <br />
@@ -142,7 +141,18 @@ function ReviewModal(props) {
             </label>
           </div>
 
-          <br />
+          <div>
+            <input
+              type="file"
+              onChange={(e) => {
+                setImageUpload(e.target.files[0]);
+              }}
+            />
+            <button type="submit" onClick={uploadImage}>
+              Upload Images
+            </button>
+          </div>
+
           <label htmlFor="name">Username: </label>
           <input
             type="text"
@@ -165,18 +175,6 @@ function ReviewModal(props) {
             value={formData.email}
             onChange={handleInputChange}
           />
-
-          <div>
-            <input
-              type="file"
-              onChange={(e) => {
-                setImageUpload(e.target.files[0]);
-              }}
-            />
-            <button type="submit" onClick={uploadImage}>
-              Upload Images
-            </button>
-          </div>
 
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             {tempCharStorage.Fit && (

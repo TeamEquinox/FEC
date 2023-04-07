@@ -99,6 +99,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage, product, setOutf
   }
 
   const handlerAddClick = () => {
+    console.log(product)
     var newOutfit = helpers.extractOutfitData(product);
     helpers.saveItemToOutfit(newOutfit, setOutfit);
   }
@@ -141,7 +142,7 @@ const Style = ({ styles, setGallery, setLargeImage, largeImage, product, setOutf
       <button className="button__cart" label="button__cart" onClick={() => {
       errorMessage(); addItem(); setItemAdded(true); console.log('settt', itemAdded)
       }}>Add to cart</button>
-      <button className="button__star" onClick={()=>{handlerAddClick();}}><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>
+      <button className="addToOutfitButton" onClick={()=>{handlerAddClick();}}><FontAwesomeIcon icon={regularStar} style={{ color: '#757575' }} /></button>
     </div >
 
   )

@@ -70,7 +70,7 @@ h1 {
 .section__product {
   height: 1100px;
   width: auto;
-  padding-bottom: 30px;
+  padding-bottom: 55px;
 }
 
 .div__product {
@@ -228,7 +228,8 @@ STYLE CSS
   width: 25%;
   box-sizing: border-box;
   position: relative;
-  top: 50px
+  top: 50px;
+  margin-bottom: -45px;
 }
 
 .div__size_quant {
@@ -248,7 +249,7 @@ CART CSS
   height: 55px;
   position: absolute;
   left: -10px;
-  top: 700px;
+  top: 680px;
   text-align-last:left;
 }
 
@@ -268,7 +269,7 @@ CART CSS
   width: 200px;
   height: 55px;
   left: 210px;
-  top: 700px;
+  top: 680px;
   text-align-last:left;
 }
 
@@ -278,19 +279,19 @@ CART CSS
   margin-right: 10px;
   position: absolute;
   left: -10px;
-  top: 780px;
-  width: 200px;
-  height: 45px;
+  top: 750px;
+  width: 350px;
+  height: 55px;
 }
 
 .addToOutfitButton {
   font-weight: 900;
   border-radius: 0px;
   position: absolute;
-  left: 210px;
-  top: 780px;
-  width: 200px;
-  height: 45px;
+  left: 357px;
+  top: 750px;
+  width: 50px;
+  height: 55px;
 }
 
 .p__message {
@@ -328,7 +329,7 @@ DESCRIPTION CSS
   box-sizing: border-box;
   margin: 10px auto;
   width: 90%;
-  height: 180px;
+  height: 200px;
   padding: 10px;
   position: absolute;
   top: 1095px;
@@ -347,24 +348,31 @@ DESCRIPTION CSS
   position: absolute;
   top: 1095px;
   left: 100px;
+  flex-grow: 1;
 }
 
 .div__description {
-  display: block;
+  display: flex;
   font-size: 20px;
   position: absolute;
-  top: 80px;
+  top: 85px;
   left: 14px;
   width: 50%;
   padding-bottom: 5px;
+  padding-left: 10px;
+  flex-grow: 1;
 }
 
 .div__slogan {
+  display: flex;
   font-weight: 900;
   font-size: 35px;
   width: 50%;
-  padding-bottom: 20px;
-
+  padding-bottom: 30px;
+  padding-left: 15px;
+  position: absolute;
+  top: 25px;
+  flex-grow: 1;
 }
 
 .div__feature {
@@ -472,8 +480,7 @@ React Icons CSS
   color: rgb(0, 0, 0);
   position: absolute;
   border-left: 3px solid rgb(0, 0, 0);
-  /* top: 1215px;
-  right: 910px; */
+  top: 40px;
   height: 130px;
   left: 1200px;
   display: flex;

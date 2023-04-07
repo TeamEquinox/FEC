@@ -105,7 +105,7 @@ function QuestionBox({
         </div>
       )}
       {answers.length > 0 && (
-      <div className="questions__list questions__list--answers" id="q&a">
+      <div className="questions__list questions__list--answers" id="q&a" style={{ height: '300px' }}>
         <h4 className="questions__list--titleAns" id="q&a">Answers</h4>
         {answers.slice(0, ansDisplayCount).map((ans) => (
           <Answers
@@ -126,7 +126,7 @@ function QuestionBox({
         />
         <button className="questions__button questions__button--answer" id="q&a" type="button" onClick={changeWindow}>Add Answer</button>
         {answers.length > ansDisplayCount && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={showMoreAnswers}>See More Answers</button>)}
-        {answers.length === ansDisplayCount && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={collapseAnswers}>Collapse Answers</button>)}
+        {answers.length > 2 && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={collapseAnswers}>Collapse Answers</button>)}
       </div>
       )}
     </div>

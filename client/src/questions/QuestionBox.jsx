@@ -105,7 +105,7 @@ function QuestionBox({
         </div>
       )}
       {answers.length > 0 && (
-      <div className="questions__list questions__list--answers" id="q&a" style={{ height: '300px' }}>
+      <div className="questions__list questions__list--answers" id="q&a" style={{ height: showAnsModal ? '700px' : '300px' }}>
         <h4 className="questions__list--titleAns" id="q&a">Answers</h4>
         {answers.slice(0, ansDisplayCount).map((ans) => (
           <Answers

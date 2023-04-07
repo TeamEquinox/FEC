@@ -57,7 +57,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
           nextIndex = index + 1;
           nextPhoto = originalGallery[nextIndex].url;
           setLargeImage(originalGallery[nextIndex].url);
-          console.log('large image is set');
         }
       });
     }
@@ -85,15 +84,15 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
       }
       originalGallery.forEach((photo, index) => {
         if (photo.url.slice(0, 60) === largeImage.slice(0, 60)) {
-          console.log('arge', largeImage);
-          console.log('url', photo.url);
+          // console.log('arge', largeImage);
+          // console.log('url', photo.url);
           if (index === 1) {
             setShowLeftCaretExpanded(!showLeftCaretExpanded);
           }
           nextIndex = index - 1;
           nextPhoto = gallery[nextIndex].url;
           setLargeImage(gallery[nextIndex].url);
-          console.log('large image is set');
+          // console.log('large image is set');
         }
       });
     }
@@ -101,7 +100,6 @@ function ExpandedView({ setShowModal, largeImage, zoom, setZoom, originalGallery
 
 
   const switchGalleryBack = () => {
-    console.log('switch')
     const imgArray = document.getElementsByClassName('img__id');
     for (let i = 0; i < imgArray.length; i++) {
       document.getElementsByClassName('img__id')[i].className = 'img__id img__gallery_small';

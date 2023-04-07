@@ -1252,7 +1252,7 @@ START Review CSS======================^
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 5; /* Make sure the overlay is behind the modal, but in front of everything else */
+  z-index: 5;
 }
 
 .modal {

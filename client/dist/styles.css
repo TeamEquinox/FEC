@@ -770,6 +770,10 @@ Start Related CSS======================>
   cursor: pointer;
 }
 
+.div_card2:hover {
+  cursor: pointer;
+}
+
 .div_image_action_container {
   position: relative;
   height: 70%;

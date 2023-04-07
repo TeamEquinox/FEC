@@ -31,8 +31,11 @@ function Answers({ answer, question_id }) {
       </p>
       <span className="questions__helpful" id="q&a">
         Is this helpful?
-        <button className="questions__button questions__button--helpful" id="q&a" type="button" onClick={handleHelpful}>Yes!</button>
-        {answer.helpfulness}
+        <button className="questions__button questions__button--helpful" id="q&a" type="button" onClick={handleHelpful}>
+          Yes:
+          {' '}
+          {answer.helpfulness}
+        </button>
       </span>
       <button className="questions__button questions__button--report" id="q&a" type="button">Report</button>
     </div>

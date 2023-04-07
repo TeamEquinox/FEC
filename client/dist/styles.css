@@ -1246,18 +1246,17 @@ START Review CSS======================^
 }
 
 .modal {
-  background-color: rgba(106, 106, 106);
+  background-color: rgb(112, 102, 102);
   width: 60%;
   height: 40%;
   min-width: 550px;
-  min-height: 550px;
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  margin-top: 10%;
-  margin-left: 20%;
+  min-height: 600px;
   border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
 .review-modal-main {

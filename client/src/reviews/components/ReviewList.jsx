@@ -88,7 +88,7 @@ function ReviewList({
     setReviewCount(reviewCount + 2);
   };
 
-  const handleShowModal = () => {
+  const handleShowModal = async () => {
     setShowModal(true);
   };
 

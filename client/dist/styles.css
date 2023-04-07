@@ -584,16 +584,21 @@ Start Related CSS======================>
   left:30px
 }
 .div_card_container  {
-  /* border: 2px solid greenyellow; */
   display: flex;
   align-items: center;
 }
 
 .div_card {
   display: inline-block;
-  border: 2px solid black;
-  /* width: 175px;
-  height: 280px; */
+  border: 1px solid black;
+  width: 270px;
+  height: 430px;
+  margin: 3px;
+  align-items: center;
+}
+.div_card2 {
+  display: inline-block;
+  border: 1px solid white;
   width: 270px;
   height: 430px;
   margin: 3px;

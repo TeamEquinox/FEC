@@ -21,6 +21,7 @@ function RelatedProducts({
         updates={update}
         updateProduct={updateProduct}
         product={product}
+        dark={dark}
       />
       <Outfits outfit={outfit} product={product} setOutfit={setOutfit} dark={dark} />
     </div>

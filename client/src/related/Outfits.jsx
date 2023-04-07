@@ -103,11 +103,9 @@ function Outfits({ data = [], product, setoutfit }) {
                       </div>
                       <div className="div_info_container">
                         <div className="div_related_category">
-                          {/* Category: */}
                           {item.category}
                         </div>
                         <div className="div_related_name">
-                          {/* Name: */}
                           {item.name}
                         </div>
                         { salesPrice !== null ? (

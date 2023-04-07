@@ -9,7 +9,6 @@ import helpers from '../clientSideHelpers';
 function Products({
   relatedData, setShowModal, updates, updateProduct, product,
 }) {
-  // console.log('MOCHDATA=====>', relatedData);
   const [caretDisplay, setCaretDisplay] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
 
@@ -84,11 +83,9 @@ function Products({
                       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                       <div className="div_info_container" onClick={() => { handleRelatedCardClick(item.id); }}>
                         <div className="div_related_category related_card">
-                          {/* Category: */}
                           {item.category}
                         </div>
                         <div className="div_related_name related_card">
-                          {/* Name: */}
                           {item.name}
                         </div>
                         { salesPrice !== null ? (

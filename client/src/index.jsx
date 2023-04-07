@@ -65,7 +65,7 @@ function App() {
       axios
         .get('/compare', { params: { data: id } })
         .then((data) => {
-          clientHelpers.addAPICallToCache(id, data, 'getAndCompareCurrentProduct');
+          clientHelpers.addAPICallToCache(id, data.data, 'getAndCompareCurrentProduct');
           setDataToCompare(data.data);
         })
         .catch((err) => console.log('There was an error in the getCurrentProduct get request: ', err));
@@ -112,7 +112,7 @@ function App() {
   // useEffect(() => {
   // console.log('productAfterUseEffect', product)
   // }, [product])
-  useClickTracking();
+  // useClickTracking();
 
   if (product.length) {
     return (

@@ -12,7 +12,6 @@ const reviewAPI = require('../helpers/reviewAPI');
 const app = express();
 app.use(compression());
 
-// middleware used before each request is handled==========
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,7 +31,7 @@ app.get('/products', (req, res) => {
           helperAPI.getProductsByStyle(data2.id)
             .then((data3) => {
               dataToSend.push(data3);
-              helperAPI.getReviews(data2.id) // review queries
+              helperAPI.getReviews(data2.id)
                 .then((data4) => {
                   dataToSend.push(data4);
                   helperAPI.getMetaReviewData(data2.id)
@@ -58,19 +57,9 @@ app.get('/relatedProducts', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-// app.get('/compare', (req, res) => {
-//   helperAPI.getProductsById(req.query.data)
-//     .then((data) => {
-//       console.log('related Products Data from successfull compare call ', data);
-//       res.status(200).send(data);
-//     })
-//     .catch((err) => res.status(400).send(err));
-// });
-
 app.get('/compare', (req, res) => {
   relatedHelpers.CompareDetailsList(req.query.data)
     .then((data) => {
-      // console.log('related Products Data from successfull compare call ', data);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));
@@ -79,7 +68,6 @@ app.get('/compare', (req, res) => {
 app.get('/setCurrentProduct', (req, res) => {
   relatedHelpers.UpdateDetailsList(req.query.data)
     .then((data) => {
-      // console.log('related Products Data from successfull setCurrentProduct call ', data);
       res.status(200).send(data);
     })
     .catch((err) => res.status(400).send(err));

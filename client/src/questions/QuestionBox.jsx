@@ -126,7 +126,7 @@ function QuestionBox({
         />
         <button className="questions__button questions__button--answer" id="q&a" type="button" onClick={changeWindow}>Add Answer</button>
         {answers.length > ansDisplayCount && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={showMoreAnswers}>See More Answers</button>)}
-        {answers.length === ansDisplayCount && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={collapseAnswers}>Collapse Answers</button>)}
+        {answers.length > 2 && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={collapseAnswers}>Collapse Answers</button>)}
       </div>
       )}
     </div>

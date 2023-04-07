@@ -8,7 +8,7 @@ import { HiCheck } from 'react-icons/hi';
 import { StarRating } from '../starRatings';
 import helpers from '../clientSideHelpers';
 
-function Modal({ setShowModal, compares }) {
+function Modal({ setShowModal, compares, dark }) {
   const handleCancelClick = () => {
     setShowModal(false);
   };
@@ -105,8 +105,39 @@ function Modal({ setShowModal, compares }) {
       </div>
     );
   }
+  if (dark) {
+    return (
+      <div className="div_modal_container">
+        <div className="test2">
+          <div>
+            <div>
+              <span>Compare</span>
+              <button type="button" className="button_modal" onClick={handleCancelClick}> X </button>
+            </div>
+            <br />
+            <div>
+              <div className="span_currentProduct">{productName} -- vs --  {relatedProductName}</div>
+            </div>
+          </div>
+          <br />
+          <div className="div_modal_body2">
+            <table className="table2">
+              <tbody>
+                {result.map((element) => (
+                  <tr key={element[1]}>
+                    <td>{element[0]}</td>
+                    <td>{element[1]}</td>
+                    <td>{element[2]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
-
     <div className="div_modal_container">
       <div className="test">
         <div>
@@ -135,7 +166,6 @@ function Modal({ setShowModal, compares }) {
         </div>
       </div>
     </div>
-
   );
 }
 

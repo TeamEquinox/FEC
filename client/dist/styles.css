@@ -818,13 +818,27 @@ Modal...........................
 }
 
 .table * {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   text-align: center;
+  padding: 10px;
+}
+
+.table2 * {
+  border-bottom: 1px solid white;
+  text-align: center;
+  padding: 10px;
 }
 
 .test {
   padding: 10px;
   background-color: rgb(159, 199, 199);
+  border-radius: 5px;
+  height: 260px;
+  width: 420px;
+}
+.test2 {
+  padding: 10px;
+  background-color:rgb(23, 133, 133);
   border-radius: 5px;
   height: 260px;
   width: 420px;
@@ -836,6 +850,13 @@ Modal...........................
   height: 187px;
   width: 420px;
 }
+.div_modal_body2 {
+  overflow-y: auto;
+  background-color: rgb(8, 78, 78);
+  height: 187px;
+  width: 420px;
+}
+
 .span_relatedProduct {
   position: relative;
   display: inline-block;

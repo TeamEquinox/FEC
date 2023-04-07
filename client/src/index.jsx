@@ -141,6 +141,7 @@ function App() {
           updateProduct={updateCurrentProduct}
           setoutfit={setOutfit}
           outfit={outfit}
+          dark={dark}
         />
         <QuestionsList product_id={product[0].id} />
         <br />

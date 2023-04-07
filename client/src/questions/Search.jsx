@@ -50,13 +50,13 @@ function SearchQuestions({
   };
 
   return (
-    <div>
-      <label htmlFor="searchQuestions">
+    <div className="questions__search" id="q&a">
+      <label htmlFor="searchQuestions" className="questions__search--title" id="q&a">
         Have a question? Search for answers...
-        <input name="search" value={query} onChange={handleInputChange} />
+        <input className="questions__search--input" id="q&a" name="search" value={query} onChange={handleInputChange} />
       </label>
-      <button type="button" aria-label="search" onClick={handleSearch}>Search</button>
-      <button type="button" aria-label="clear" onClick={clearSearch}>Clear</button>
+      <button className="questions__button questions__button--search" id="q&a" type="button" aria-label="search" onClick={handleSearch}>Search</button>
+      <button className="questions__button--clear questions__button" id="q&a" type="button" aria-label="clear" onClick={clearSearch}>Clear</button>
     </div>
   );
 }

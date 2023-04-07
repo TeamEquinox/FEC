@@ -11,26 +11,30 @@ function Answers({ answer, question_id }) {
   };
 
   return (
-    <div className="answer">
-      <span>{answer.answerer_name}</span>
-      <p>
+    <div className="questions__listElem questions__answer" id="q&a">
+      <p className="questions__body--answer questions__body" id="q&a">
         A:
         {' '}
         {answer.body}
       </p>
-      <p>
+      <span className="questions__name" id="q&a">
+        By:
+        {' '}
+        {answer.answerer_name}
+      </span>
+      <p className="questions__date" id="q&a">
         {new Date(answer.date).toLocaleDateString('en-US', {
           month: 'long',
           day: 'numeric',
           year: 'numeric',
         })}
       </p>
-      <span>
+      <span className="questions__helpful" id="q&a">
         Is this helpful?
-        <button type="button" onClick={handleHelpful}>Yes!</button>
+        <button className="questions__button questions__button--helpful" id="q&a" type="button" onClick={handleHelpful}>Yes!</button>
         {answer.helpfulness}
       </span>
-      <button type="button" className="report">Report</button>
+      <button className="questions__button questions__button--report" id="q&a" type="button">Report</button>
     </div>
   );
 }

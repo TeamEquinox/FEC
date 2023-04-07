@@ -6,9 +6,21 @@ import Answers from './Answers';
 import AnswerModal from './AnswerModal';
 import { putHelpfulQuestion, reportQuestion } from './calls';
 
-function QuestionBox({ question, product_id, sortByHelpful }) {
+function QuestionBox({
+  question, product_id, sortByHelpful, productName,
+}) {
   const [answers, setAnswers] = useState([]);
   const [showAnsModal, setShowAnsModal] = useState(false);
+  const [ansDisplayCount, setAnsDisplayCount] = useState(2);
+
+  // show more answers
+  const showMoreAnswers = () => {
+    setAnsDisplayCount(ansDisplayCount + 2);
+  };
+
+  const collapseAnswers = () => {
+    setAnsDisplayCount(2);
+  };
 
   // control answer modal
   const changeWindow = () => {
@@ -48,28 +60,37 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
 
   return (
     <div className="questions__listElem" id="q&a">
-      <h3 className="questions__body" id="q&a">
-        Q:
-        {' '}
-        {question.question_body}
-      </h3>
-      <span className="questions__name" id="q&a">{question.asker_name}</span>
-      <p>
+      <p className="questions__date" id="q&a">
         {new Date(question.question_date).toLocaleDateString('en-US', {
           month: 'long',
           day: 'numeric',
           year: 'numeric',
         })}
       </p>
+      <h3 className="questions__body" id="q&a">
+        Q:
+        {' '}
+        {question.question_body}
+      </h3>
+      <span className="questions__name" id="q&a">
+        By:
+        {' '}
+        {question.asker_name}
+      </span>
       <span className="questions__helpful" id="q&a">
         Is this helpful?
-        <button className="questions__button questions__button--helpful" id="q&a" type="button" onClick={handleHelpful}>Yes!</button>
-        {question.question_helpfulness}
+        <button className="questions__button questions__button--helpful" id="q&a" type="button" onClick={handleHelpful}>
+          Yes:
+          {' '}
+          {question.question_helpfulness}
+        </button>
       </span>
+      <span className="questions__divider" id="q&a">|</span>
       <button className="questions__button questions__button--report" id="q&a" type="button" onClick={handleReport}>Report</button>
       {answers.length === 0 && (
         <div className="questions__list--empty questions__list--answers" id="q&a">
-          Be the first to answer!
+          <h4 className="questions__list--titleAns" id="q&a">Answers</h4>
+          <p className="questions__empty" id="q&a">Be the first to answer!</p>
           <AnswerModal
             show={showAnsModal}
             updateAnswers={updateAnswers}
@@ -77,14 +98,16 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
             question_id={question.question_id}
             changeWindow={changeWindow}
             sortByHelpful={sortByHelpful}
+            productName={productName}
+            question_body={question.question_body}
           />
           <button className="questions__button questions__button--answer" id="q&a" type="button" onClick={changeWindow}>Add Answer</button>
         </div>
       )}
       {answers.length > 0 && (
       <div className="questions__list questions__list--answers" id="q&a">
-        {/* map over results array from answers and pass to answer */}
-        {answers.map((ans) => (
+        <h4 className="questions__list--titleAns" id="q&a">Answers</h4>
+        {answers.slice(0, ansDisplayCount).map((ans) => (
           <Answers
             answer={ans}
             key={ans.answer_id}
@@ -98,8 +121,12 @@ function QuestionBox({ question, product_id, sortByHelpful }) {
           question_id={question.question_id}
           changeWindow={changeWindow}
           sortByHelpful={sortByHelpful}
+          productName={productName}
+          question_body={question.question_body}
         />
         <button className="questions__button questions__button--answer" id="q&a" type="button" onClick={changeWindow}>Add Answer</button>
+        {answers.length > ansDisplayCount && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={showMoreAnswers}>See More Answers</button>)}
+        {answers.length === ansDisplayCount && (<button className="questions__button questions__button--extend" id="q&a" type="button" onClick={collapseAnswers}>Collapse Answers</button>)}
       </div>
       )}
     </div>

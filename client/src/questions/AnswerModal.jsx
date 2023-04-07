@@ -11,6 +11,8 @@ function AnswerModal({
   question_id,
   changeWindow,
   sortByHelpful,
+  productName,
+  question_body,
 }) {
   const [answer, setAnswer] = useState('');
   const [nickname, setNickname] = useState('');
@@ -60,19 +62,27 @@ function AnswerModal({
     <div className="questions__form--container questions__form--answer" id="q&a">
       <form className="questions__form questions__form--answer" id="q&a">
         <button className="questions__button questions__button--close" id="q&a" type="button" onClick={changeWindow}>Close</button>
+        <h2 className="questions__form--title" id="q&a">Submit Your Answer</h2>
+        <h4 className="questions__form--subtitle" id="q&a">
+          {productName}
+          {': '}
+          {question_body}
+        </h4>
         <label className="questions__form--label" id="q&a" htmlFor="body">
           Answer:
-          <textarea className="questions__form--input" id="q&a" name="body" rows="5" cols="30" value={answer} onChange={handleAnswer} />
+          <textarea maxLength="1000" className="questions__form--input" id="q&a" placeholder="Write your answer here" name="body" rows="5" cols="30" value={answer} onChange={handleAnswer} />
         </label>
         <label className="questions__form--label" id="q&a" htmlFor="name">
           Nickname:
-          <input className="questions__form--input" id="q&a" name="name" value={nickname} onChange={handleNickname} />
+          <input className="questions__form--input" id="q&a" placeholder="Example: jack543!" name="name" value={nickname} onChange={handleNickname} />
+          <p className="questions__form--disclaimer" id="q&a">For privacy reasons, do not use your full name or email address</p>
         </label>
         <label className="questions__form--label" id="q&a" htmlFor="email">
           Email:
-          <input className="questions__form--input" id="q&a" name="email" value={email} onChange={handleEmail} />
+          <input className="questions__form--input" id="q&a" placeholder="Example: jack@email.com" name="email" value={email} onChange={handleEmail} />
+          <p className="questions__form--disclaimer" id="q&a">For authentication reasons; you will not be emailed</p>
         </label>
-        <button className="questions__button questions__button--submit" id="q&a" type="button" onClick={handleSubmit}>Submit answer</button>
+        <button className="questions__button questions__button--submit" id="q&a" type="button" onClick={handleSubmit}>Submit Answer</button>
       </form>
     </div>
   );

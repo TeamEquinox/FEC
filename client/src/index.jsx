@@ -142,7 +142,7 @@ function App() {
           setoutfit={setOutfit}
           outfit={outfit}
         />
-        <QuestionsList product_id={product[0].id} />
+        <QuestionsList product_id={product[0].id} productName={product[0].name} />
         <br />
         <RatingsAndReviews product={product} />
       </div>

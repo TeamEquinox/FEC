@@ -8,7 +8,7 @@ import QuestionModal from './QuestionModal';
 import { getQuestions } from './calls';
 import SearchQuestions from './Search';
 
-function QuestionsList({ product_id }) {
+function QuestionsList({ product_id, productName }) {
   // initialize state
   const [questions, setQuestions] = useState([]);
   const [displayCount, setDisplayCount] = useState(2);
@@ -83,40 +83,45 @@ function QuestionsList({ product_id }) {
           updateQuestions={updateQuestions}
           changeWindow={changeWindow}
           sortByHelpful={sortByHelpful}
+          productName={productName}
         />
       </div>
     );
   }
   return (
-    <section className="questions__list questions__list--extended" id="q&a">
-      <h2 className="questions__title" id="q&a">Questions</h2>
+    <div className="questions" id="q&a">
+      <h2 className="questions__title" id="q&a">Questions & Answers</h2>
       <SearchQuestions
         questions={questions}
         setQuestions={setSearchedQuestions}
         product_id={product_id}
         sortByHelpful={sortByHelpful}
       />
-      <div>
-        {/* map over retrieved question list and pass them to the individual question item */}
-        {questions.slice(0, displayCount).map((q) => (
-          <QuestionBox
-            question={q}
-            product_id={product_id}
-            key={q.question_id}
-            sortByHelpful={sortByHelpful}
-          />
-        ))}
-        <button className="questions__button--ask questions__button" id="q&a" type="button" onClick={changeWindow}>Ask a Question!</button>
+      <section className="questions__list questions__list--extended" id="q&a">
+        <div className="questions__list--scrollable" id="q&a">
+          {/* map over retrieved question list and pass them to the individual question item */}
+          {questions.slice(0, displayCount).map((q) => (
+            <QuestionBox
+              question={q}
+              product_id={product_id}
+              key={q.question_id}
+              sortByHelpful={sortByHelpful}
+              productName={productName}
+            />
+          ))}
+        </div>
         <QuestionModal
           show={showModal}
           product_id={product_id}
           updateQuestions={updateQuestions}
           changeWindow={changeWindow}
           sortByHelpful={sortByHelpful}
+          productName={productName}
         />
-        {questions.length > displayCount && (<button className="questions__button--extend questions__button" id="q&a" type="button" onClick={showMoreQuestions}>More AnsweredQuestions</button>)}
-      </div>
-    </section>
+      </section>
+      <button className="questions__button--ask questions__button" id="q&a" type="button" onClick={changeWindow}>Ask a Question!</button>
+      {questions.length > displayCount && (<button className="questions__button--extend questions__button" id="q&a" type="button" onClick={showMoreQuestions}>More Answered Questions</button>)}
+    </div>
   );
 }
 

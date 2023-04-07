@@ -17,7 +17,11 @@ function Answers({ answer, question_id }) {
         {' '}
         {answer.body}
       </p>
-      <span className="questions__name" id="q&a">{answer.answerer_name}</span>
+      <span className="questions__name" id="q&a">
+        By:
+        {' '}
+        {answer.answerer_name}
+      </span>
       <p className="questions__date" id="q&a">
         {new Date(answer.date).toLocaleDateString('en-US', {
           month: 'long',

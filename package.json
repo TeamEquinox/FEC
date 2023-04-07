@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "server-dev": "nodemon ./server/index.js",
-    "client-dev": "webpack --watch"
+    "client-dev": "webpack --watch",
+    "struggle-watch": "nodemon --watch ./ --ext js,css --ignore dist --exec \"npm run client-dev\""
   },
   "repository": {
     "type": "git",

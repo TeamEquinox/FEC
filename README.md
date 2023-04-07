@@ -1,12 +1,9 @@
-## Project Title - The name of the project
-FEC - Atelier
+## FEC - Equinox Apparel
 
-## Overview - A brief description outlining what the project is
+## Overview
 Revamp an outdated retail product page including product overview, related products, questions and answers, and reviews.
 
-## Table of Contents - You can link to the different sections below
-
-### Description - A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
+### Description
 1. Product overview
 
 * Image gallery
@@ -46,13 +43,13 @@ The Ratings & Reviews module will allow viewing and submission of reviews for th
 This component will extend the ability to write, read, and browse through reviews for the current product.
 All reviews will be saved per product.  Specific styles will not be accounted for within the review module.
 
-### Installation - How can another developer get your project up and running on their own? What dependencies are required? Are there environmental requirements? Be specific, and outline steps to take in order to get the project running.
+### Installation
 
-* npm install
-* start the server by running npm run server-dev
+* git clone from "Code" dropdown menu
+* run npm install
 * start webpack in watch mode by running npm run client-dev
+* start the server by running npm run server-dev
 
 ### Usage - Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io  ). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD).
 
-* npm test
-* We are using JEST
+This project is meant for the clothing retailer Atelier (rebranded as Equinox Apparel). While the page itself contains navigation elements inside the Related Products section, but best use would be to combine this repo with a display page for all of the items--provided by Atelier. Click on the banner for a surprise!

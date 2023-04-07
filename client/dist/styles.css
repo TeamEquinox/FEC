@@ -512,27 +512,115 @@ END OF PRODUCT CSS
 /* question CSS home ~*~*~*~*~*~*~*~*~*~
 */
 
-.list {
-  display: block;
-  border-radius: 5px;
-  /* border: solid olive; */
-  position: relative;
+.questions {
+  left: 14px;
 }
 
-.questionsList {
+.questions__list {
+  display: block;
+  /* border-radius: 5px; */
+  position: relative;
   min-height: 200px;
   max-height: 100vh;
   overflow-y: scroll;
   font-size: 20px;
 }
 
-.question {
-  bottom: 20px;
+.questions__list--empty {
+  display: block;
+  min-height: 200px;
   font-size: 20px;
 }
 
-.modal {
-  position: fixed;
+.questions__list--answers {
+  margin-left: 40px;
+}
+
+.questions__listElem {
+  bottom: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  border-top: solid #909090;
+  /* margin-bottom: 75px; */
+}
+
+.questions__titleAns {
+  display: block;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.questions__list--emptyIndicator {
+  border-top: solid #909090;
+  display: block;
+  margin-left: 20px;
+}
+
+.questions__empty {
+  /* display: block; */
+  position: absolute;
+  margin-top: 5px;
+  /* top: 30px; */
+  margin-left: 30px;
+}
+
+.questions__button--answer {
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.questions__body {
+  margin-bottom: 10px;
+}
+
+
+.questions__date {
+  font-size: 20px;
+  text-align: right;
+  /* position: absolute right; */
+  float: right;
+  margin-right: 15px;
+  margin-top: 10px;
+  font-weight: lighter;
+}
+
+.questions__name {
+  display: block;
+  margin-left: 30px;
+  width: 500px;
+}
+
+.questions__helpful {
+  margin-left: 30px;
+  font-weight: lighter;
+  font-size: 16px;
+}
+
+.questions__search {
+  margin-bottom: 75px;
+}
+
+.questions__search--title {
+  display: block;
+  border-top: solid rgb(158, 158, 158);
+  border-bottom: solid rgb(158, 158, 158);
+  font-family: inherit;
+  font-size: 20px;
+  padding: 20px;
+  font-weight: lighter;
+}
+
+.questions__search--input {
+  border-radius: 0px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: solid 2px rgb(109, 159, 159);
+}
+
+.questions__form--container {
+  position: absolute;
   left: 0;
   top: 0;
   right: 0;
@@ -544,29 +632,102 @@ END OF PRODUCT CSS
   z-index: 9999;
 }
 
-.form {
+/* .questions__form--question {
+  margin-top: 1500;
+} */
+
+.questions__form {
   padding: 10px;
   background-color: #fff;
   width: 500px;
+  z-index: 9999;
 }
 
-.answer {
-  bottom: 20px;
-  border-radius: 5px;
-  font-size: 20px;
-
-  /* border: solid  rgb(193, 223, 223); */
+.questions__form--title, .questions__form--subtitle {
+  text-align: left;
+  display: block;
+  /* position: absolute; */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-button {
-  margin-left: 3px;
-  margin-right: 3px;
+.questions__form--input {
+  margin-left: 5px;
+  display: block;
+  width: 470px;
+}
+
+.questions__form--disclaimer {
+  font-size: 11px;
+}
+
+.questions__button {
   font-weight: 900;
   border-radius: 0px;
+  margin-right: 10px;
+  /* position: absolute; */
+  /* float: left; */
+  /* display: block; */
+  width: 200px;
+  height: 45px;
+  /* margin-bottom: 20px; */
+  cursor: pointer;
 }
 
-input {
-  margin-left: 5px;
+.questions__button--search, .questions__button--clear {
+  position: relative;
+  float: right;
+  display: block;
+  /* margin-bottom: 50px; */
+}
+
+.questions__button--submit {
+  display: block;
+  font-weight: 900;
+  width: 100px;
+  height: 40px;
+}
+
+.questions__button--close {
+  display: block;
+  font-weight: 900;
+  width: 100px;
+  height: 20px;
+  float: right;
+}
+
+.questions__button--report, .questions__button--helpful {
+  /* display: block; */
+  font-weight: 900;
+  width: 100px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* .questions__button--report {
+  display: block;
+  margin-left: 30px;
+} */
+
+
+input[type=text] {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+textarea[type=text] {
+  padding: 10px;
+  margin: 10px;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 10px;
+  border: 2px solid rgb(109, 159, 159);
 }
 
 /*

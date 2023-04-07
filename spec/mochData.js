@@ -536,6 +536,15 @@ module.exports = {
           ],
         },
       },
+      {
+        question_id: 644690,
+        question_body: 'what is love?',
+        question_date: '2023-01-06T00:00:00.000Z',
+        asker_name: 'justin',
+        question_helpfulness: 9,
+        reported: false,
+        answers: {},
+      },
     ],
   },
   relatedData: [

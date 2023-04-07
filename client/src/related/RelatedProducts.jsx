@@ -5,7 +5,7 @@ import Outfits from './Outfits';
 import Modal from './Modal';
 
 function RelatedProducts({
-  relatedData, product, update, compare, updateProduct, outfit, setoutfit, dark,
+  relatedData, product, update, compare, updateProduct, outfit, setOutfit, dark,
 }) {
   const [showModal, setShowModal] = useState(false);
   const combine = { ...compare[0], ...compare[1] };
@@ -22,7 +22,7 @@ function RelatedProducts({
         updateProduct={updateProduct}
         product={product}
       />
-      <Outfits data={outfit} product={product} setoutfit={setoutfit} />
+      <Outfits outfit={outfit} product={product} setOutfit={setOutfit} dark={dark} />
     </div>
   );
 }

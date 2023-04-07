@@ -139,7 +139,7 @@ function App() {
           update={getAndCompareCurrentProduct}
           compare={dataToCompare}
           updateProduct={updateCurrentProduct}
-          setoutfit={setOutfit}
+          setOutfit={setOutfit}
           outfit={outfit}
           dark={dark}
         />

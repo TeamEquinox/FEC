@@ -663,18 +663,41 @@ Outfit...........................
   margin: 3px;
   padding-bottom: 10px;
 }
+.div_outfit_card2 {
+  display: inline-block;
+  border: 1px solid white;
+  width: 270px;
+  height: 430px;
+  margin: 3px;
+  padding-bottom: 10px;
+}
 .div_addOutfit_card {
-  background-color: #ccc;
+  /* background-color: rgb(245, 245, 248); */
   border: 1px solid black;
   width: 270px;
   height: 430px;
   margin: 3px;
   padding-bottom: 10px;
 }
+.div_addOutfit_card2 {
+  /* background-color: rgb(2, 6, 70); */
+  border: 1px solid white;
+  width: 270px;
+  height: 430px;
+  margin: 3px;
+  padding-bottom: 10px;
+}
+
 .div_addOutfit_card:hover {
   cursor: pointer;
   border: 4px solid black
 }
+
+.div_addOutfit_card2:hover {
+  cursor: pointer;
+  border: 4px solid white
+}
+
 .h3_add_outfit_action_header {
   background: none;
   /* border-top: 1px solid black; */
@@ -812,14 +835,14 @@ Modal...........................
 
 .test {
   padding: 10px;
-  background-color: rgb(159, 199, 199);
+  background-color: rgb(193, 223, 223);
   border-radius: 5px;
   height: 260px;
   width: 420px;
 }
 .test2 {
   padding: 10px;
-  background-color:rgb(23, 133, 133);
+  background-color:rgb(8, 78, 78);
   border-radius: 5px;
   height: 260px;
   width: 420px;
@@ -827,13 +850,13 @@ Modal...........................
 
 .div_modal_body {
   overflow-y: auto;
-  background-color: #ccc;
+  background-color: rgb(159, 199, 199);
   height: 187px;
   width: 420px;
 }
 .div_modal_body2 {
   overflow-y: auto;
-  background-color: rgb(8, 78, 78);
+  background-color: rgb(2, 6, 70);
   height: 187px;
   width: 420px;
 }

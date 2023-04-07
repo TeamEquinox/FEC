@@ -68,14 +68,14 @@ function QuestionsList({ product_id, productName }) {
   // render
   if (questions.length === 0) {
     return (
-      <div className="questions__list questions__list--empty" id="q&a">
+      <div className="questions__list questions__list--empty" id="q&a" style={{ height: showModal ? '700px' : '375px' }}>
         <h2 className="questions__title" id="q&a">Questions</h2>
         <SearchQuestions
           questions={questions}
           setQuestions={setSearchedQuestions}
           product_id={product_id}
         />
-        No questions yet...
+        <p className="questions__list--emptyIndicator" id="q&a">No questions yet...</p>
         <button className="questions__button--ask questions__button" id="q&a" name="askQuestion" type="button" onClick={changeWindow}>Ask a Question!</button>
         <QuestionModal
           show={showModal}

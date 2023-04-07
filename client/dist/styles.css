@@ -521,7 +521,7 @@ END OF PRODUCT CSS
 
 .questions__list--empty {
   display: block;
-  min-height: 100px;
+  min-height: 200px;
   font-size: 20px;
 }
 
@@ -534,7 +534,7 @@ END OF PRODUCT CSS
   border-radius: 5px;
   font-size: 20px;
   border-top: solid #909090;
-  margin-bottom: 75px;
+  /* margin-bottom: 75px; */
 }
 
 .questions__titleAns {
@@ -543,16 +543,24 @@ END OF PRODUCT CSS
   margin-top: 30px;
 }
 
+.questions__list--emptyIndicator {
+  border-top: solid #909090;
+  display: block;
+  margin-left: 20px;
+}
+
 .questions__empty {
   /* display: block; */
   position: absolute;
   margin-top: 5px;
   /* top: 30px; */
+  margin-left: 30px;
 }
 
 .questions__button--answer {
   position: absolute;
   margin-top: 50px;
+  margin-left: 30px;
 }
 
 .questions__body {
@@ -591,7 +599,9 @@ END OF PRODUCT CSS
   border-top: solid rgb(158, 158, 158);
   border-bottom: solid rgb(158, 158, 158);
   font-family: inherit;
+  font-size: 20px;
   padding: 20px;
+  font-weight: lighter;
 }
 
 .questions__search--input {

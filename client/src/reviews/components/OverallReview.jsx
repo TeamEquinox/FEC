@@ -24,7 +24,7 @@ function OverallReview({ meta }) {
   return (
     <>
       <div style={{ width: '400px', fontSize: '20px' }}>
-        <h3 id="overall-rating">
+        <h3 id="overall-rating" className="reviews-title">
           Overall Rating:
           {' '}
           {numOfStars.toFixed(1)}

@@ -116,7 +116,7 @@ function App() {
 
   if (product.length) {
     return (
-      <div>
+      <div style={{ marginLeft: '0px' }}>
         <div className="div__banner" id="banner" onClick={ () => { dark ? liteMode() : darkMode(); } }>
           <h1>
             <b>Equinox Apparel</b>

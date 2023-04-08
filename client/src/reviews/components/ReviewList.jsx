@@ -88,7 +88,7 @@ function ReviewList({
     setReviewCount(reviewCount + 2);
   };
 
-  const handleShowModal = () => {
+  const handleShowModal = async () => {
     setShowModal(true);
   };
 
@@ -213,14 +213,12 @@ function ReviewList({
             <p className="individual-reviews-recommend">
               {review.recommend === true ? (
                 <span>
-                  <span style={{ color: 'green' }}>
-                    &#x2713;
-                  </span>
-                  <span>
-                    I recommend this product
-                  </span>
+                  <span style={{ color: 'green' }}>&#x2713;</span>
+                  <span>I recommend this product</span>
                 </span>
-              ) : ''}
+              ) : (
+                ''
+              )}
             </p>
 
             <p className="individual-reviews-helpfulness">
@@ -257,17 +255,20 @@ function ReviewList({
         Submit Review
       </button>
       {showModal ? (
-        <ReviewModal
-          show={showModal}
-          setShowModal={setShowModal}
-          handleClose={handleCloseModal}
-          handleSubmit={handleSubmitReview}
-          handleInputChange={handleInputChange}
-          formData={reviewFormData}
-          tempCharStorage={tempCharStorage}
-          imageUpload={imageUpload}
-          setImageUpload={setImageUpload}
-        />
+        <>
+          <div className="overlay" />
+          <ReviewModal
+            show={showModal}
+            setShowModal={setShowModal}
+            handleClose={handleCloseModal}
+            handleSubmit={handleSubmitReview}
+            handleInputChange={handleInputChange}
+            formData={reviewFormData}
+            tempCharStorage={tempCharStorage}
+            imageUpload={imageUpload}
+            setImageUpload={setImageUpload}
+          />
+        </>
       ) : null}
       <span style={{ marginLeft: '10px' }}>|</span>
       {reviewCount <= reviewArr.length && (

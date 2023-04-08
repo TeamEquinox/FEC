@@ -44,6 +44,7 @@ function ReviewModal(props) {
           icon={solidStar}
           onClick={() => handleClick(index + 1)}
           key={index}
+          style={{ fontSize: '30px' }}
         />
       );
     }
@@ -52,6 +53,7 @@ function ReviewModal(props) {
         icon={regularStar}
         onClick={() => handleClick(index + 1)}
         key={index}
+        style={{ fontSize: '30px' }}
       />
     );
   };
@@ -87,7 +89,6 @@ function ReviewModal(props) {
           </h2>
           <label htmlFor="rating">Rating: </label>
           <div>{[5, 4, 3, 2, 1].map((_, index) => renderStar(index))}</div>
-          <br />
 
           <label htmlFor="summary">Summary: </label>
           <input
@@ -266,7 +267,6 @@ function ReviewModal(props) {
             )}
           </div>
 
-          <br />
           <button type="submit" className="submit-review-modal">
             Submit Review
           </button>

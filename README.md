@@ -1,5 +1,5 @@
 ## FEC - Equinox Apparel 
-Frontend Capstone project for the clothing retailer Atelier (rebranded as Equinox Apparel), utilizing Javascript (React), CSS, HTML, Node, Express, and deployed on AWS. Click on the banner for a surprise!
+Frontend Capstone project for the clothing retailer Atelier (rebranded as Equinox Apparel), utilizing Javascript, React, Node, Express, CSS, HTML, and deployed on AWS. Click on the banner for a surprise!
 
 ## Overview
 Revamp an outdated retail product page including product overview, related products, questions and answers, and reviews.

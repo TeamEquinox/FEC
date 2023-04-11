@@ -1,5 +1,5 @@
 ## FEC - Equinox Apparel 
-Frontend Capstone project for the clothing retailer Atelier (rebranded as Equinox Apparel), utilizing Javascript (React), CSS, HTML, Node, Express, and deployed on AWS . While the page itself contains navigation elements inside the Related Products section, best use would be to combine this repo with a display page for all of the items--provided by Atelier. Click on the banner for a surprise!
+Frontend Capstone project for the clothing retailer Atelier (rebranded as Equinox Apparel), utilizing Javascript (React), CSS, HTML, Node, Express, and deployed on AWS. Click on the banner for a surprise!
 
 ## Overview
 Revamp an outdated retail product page including product overview, related products, questions and answers, and reviews.
@@ -57,8 +57,8 @@ All reviews will be saved per product.  Specific styles will not be accounted fo
 ### Installation
 
 ```
-* Git Clone from the "Code" dropdown menu
-* Run npm install
-* Start webpack in watch mode by running npm run client-dev
-* Start the server by running npm run server-dev
+Git clone from the "Code" dropdown menu
+Run npm install
+Start webpack in watch mode by running npm run client-dev
+Start the server by running npm run server-dev
 ```

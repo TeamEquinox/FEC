@@ -5,7 +5,7 @@ This project is meant for the clothing retailer Atelier (rebranded as Equinox Ap
 Revamp an outdated retail product page including product overview, related products, questions and answers, and reviews.
 
 ### Description
-###Product Overview
+### Product Overview
 
 ![ProductOverview](https://user-images.githubusercontent.com/108377805/231079145-24e0c7e5-0dc7-4ada-a6f7-848805bfe698.png)
 
@@ -16,14 +16,14 @@ Revamp an outdated retail product page including product overview, related produ
 
 This component will guide the customer through selecting a specific style and size to add to their cart. As such, portions of the Overview module, such as the image gallery and cart selection, will be specific to a SKU chosen as opposed to the overarching product.
 
-###Related products
+### Related products
 
 ![RelatedItems](https://user-images.githubusercontent.com/108377805/231079189-0e0ca9fb-283b-422a-9086-1033edaaf8bb.png)
 
 
 The Related Items & Comparison module will display two sets of related products.  The first set will be a list of products, determined internally, that are related to the product currently being viewed.  The second set will be a list, custom created by the user, of products which the user has grouped with the current product into an ‘outfit’.
 
-###Questions and answers
+### Questions and answers
 
 ![Questions Answers](https://user-images.githubusercontent.com/108377805/231079210-895f6ce0-c682-4044-9792-639bf1dbe5f1.png)
 
@@ -39,7 +39,7 @@ This component will extend the ability to view and search questions, ask questio
 
 All questions will be asked and answered per product.  Specific styles will not be accounted for within the Questions & Answers module.
 
-###Reviews:
+### Reviews:
 
 ![Reviews](https://user-images.githubusercontent.com/108377805/231079237-a4d3139e-cd54-4f20-afd5-21a4cfbb7787.png)
 

@@ -56,7 +56,9 @@ All reviews will be saved per product.  Specific styles will not be accounted fo
 
 ### Installation
 
+```
 * Git Clone from the "Code" dropdown menu
 * Run npm install
 * Start webpack in watch mode by running npm run client-dev
 * Start the server by running npm run server-dev
+```

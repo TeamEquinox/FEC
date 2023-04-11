@@ -1,10 +1,13 @@
-## FEC - Equinox Apparel
+## FEC - Equinox Apparel 
+This project is meant for the clothing retailer Atelier (rebranded as Equinox Apparel). While the page itself contains navigation elements inside the Related Products section, best use would be to combine this repo with a display page for all of the items--provided by Atelier. Click on the banner for a surprise!
 
 ## Overview
 Revamp an outdated retail product page including product overview, related products, questions and answers, and reviews.
 
 ### Description
 1. Product overview
+
+![ProductOverview](https://user-images.githubusercontent.com/108377805/231079145-24e0c7e5-0dc7-4ada-a6f7-848805bfe698.png)
 
 * Image gallery
 * Product information
@@ -15,9 +18,15 @@ This component will guide the customer through selecting a specific style and si
 
 2. Related products
 
+![RelatedItems](https://user-images.githubusercontent.com/108377805/231079189-0e0ca9fb-283b-422a-9086-1033edaaf8bb.png)
+
+
 The Related Items & Comparison module will display two sets of related products.  The first set will be a list of products, determined internally, that are related to the product currently being viewed.  The second set will be a list, custom created by the user, of products which the user has grouped with the current product into an ‘outfit’.
 
 3. Questions and answers
+
+![Questions Answers](https://user-images.githubusercontent.com/108377805/231079210-895f6ce0-c682-4044-9792-639bf1dbe5f1.png)
+
 
 The Questions & Answers module will allow asking and answering of questions for the product selected.  The functionality contained within this module can be divided into several pieces:
 
@@ -32,6 +41,8 @@ All questions will be asked and answered per product.  Specific styles will not 
 
 4. Reviews:
 
+![Reviews](https://user-images.githubusercontent.com/108377805/231079237-a4d3139e-cd54-4f20-afd5-21a4cfbb7787.png)
+
 The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.  The functionality contained within this module can be divided into several pieces
 
 * Write new review
@@ -45,11 +56,7 @@ All reviews will be saved per product.  Specific styles will not be accounted fo
 
 ### Installation
 
-* git clone from "Code" dropdown menu
-* run npm install
-* start webpack in watch mode by running npm run client-dev
-* start the server by running npm run server-dev
-
-### Usage - Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io  ). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD).
-
-This project is meant for the clothing retailer Atelier (rebranded as Equinox Apparel). While the page itself contains navigation elements inside the Related Products section, but best use would be to combine this repo with a display page for all of the items--provided by Atelier. Click on the banner for a surprise!
+* Git Clone from the "Code" dropdown menu
+* Run npm install
+* Start webpack in watch mode by running npm run client-dev
+* Start the server by running npm run server-dev

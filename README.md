@@ -56,9 +56,28 @@ All reviews will be saved per product.  Specific styles will not be accounted fo
 
 ### Installation
 
+1. Clone the repo
+
 ```
-Git clone from the "Code" dropdown menu
-Run npm install
-Start webpack in watch mode by running npm run client-dev
-Start the server by running npm run server-dev
+git clone 
 ```
+
+2. Install all required packages
+
+```
+npm install
+```
+
+3. Compile the client-side code with webpack
+
+```
+npm run client-dev
+```
+
+4. Start the server
+
+```
+npm run server-dev
+```
+
+5. Navigate to localhost:3001

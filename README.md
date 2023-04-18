@@ -25,8 +25,7 @@ The Related Items & Comparison module will display two sets of related products.
 
 ### Questions and answers
 
-![Questions Answers](https://user-images.githubusercontent.com/108377805/231079210-895f6ce0-c682-4044-9792-639bf1dbe5f1.png)
-
+<img width="1399" alt="Q A" src="https://user-images.githubusercontent.com/108377805/232840002-a81dd913-f942-4918-897b-dca43c282a56.png">
 
 The Questions & Answers module will allow asking and answering of questions for the product selected.  The functionality contained within this module can be divided into several pieces:
 
